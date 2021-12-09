@@ -25,11 +25,11 @@ final class Observer<T> {
      해당 프로퍼티의 값이 변경되기만 하면 실행된다.
      */
     var value: T {
-        didSet(oldVal) {
+        didSet {
             // "listener(observing하는 중인 객체)야 지금 값은 value다"라고 알려줌
             // binding된 상태라면 View Component에 변화가 생김
             listener?(value)
-            print("새로운 값: \(self.value), 예전 값: \(oldVal)")
+            print("새로운 값: \(self.value), 예전 값: \(oldValue)")
         }
     }
     

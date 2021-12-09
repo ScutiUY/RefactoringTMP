@@ -4,7 +4,6 @@
 //
 //  Created by InJe Choi on 2021/12/06.
 //
-
 import UIKit
 
 class ViewController: UIViewController {
@@ -27,8 +26,10 @@ class ViewController: UIViewController {
          해당 property에 변화가 생기면 View Component가 update되도록 처리
          (View가 Model에 직접 접근하는 것이 아니다)
          */
-        viewModel.model?.head.bind { [weak self] modelHead in
+        viewModel.obs.bind { [weak self] modelHead in
             self?.headLabel.text = modelHead
+            print("\(modelHead) obs 바인딩")
+    
         }
     }
     
@@ -42,7 +43,6 @@ class ViewController: UIViewController {
         viewModel.changeLabel(tf)
         
         // 모델에 비즈니스 로직으로 인한 변화가 생겼을 때 대응되는지 확인해 보기 위한 메소드
-        viewModel.changeModel()
     }
 
 }

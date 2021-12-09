@@ -29,7 +29,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="changeModelButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0gV-Y4-gzH"/>
+                                    <action selector="changeModelButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OyY-fz-lnc"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="type..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="txg-Ei-imG">
@@ -43,9 +43,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="button" destination="ooe-mb-haY" id="1Up-uS-eY9"/>
-                        <outlet property="headLabel" destination="2wU-YG-ONQ" id="kqb-d8-EDV"/>
-                        <outlet property="headTextField" destination="txg-Ei-imG" id="ngQ-zm-Ur4"/>
+                        <outlet property="button" destination="ooe-mb-haY" id="BrQ-Oh-XrW"/>
+                        <outlet property="headLabel" destination="2wU-YG-ONQ" id="lc5-OO-34w"/>
+                        <outlet property="headTextField" destination="txg-Ei-imG" id="O8z-EQ-ylS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

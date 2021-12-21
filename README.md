@@ -1,1 +1,1 @@
-# TravelMockPlanner
+# TravelManagerPlanner

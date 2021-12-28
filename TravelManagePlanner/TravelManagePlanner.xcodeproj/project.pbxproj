@@ -12,13 +12,18 @@
 		BB81E9BD3CF15C7FBF6A8A92 /* Pods_TravelManagePlanner_TravelManagePlannerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60BFDC245ECCA557D0BD83F2 /* Pods_TravelManagePlanner_TravelManagePlannerUITests.framework */; };
 		F00F17F82778530200211A8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F17F72778530200211A8D /* AppDelegate.swift */; };
 		F00F17FA2778530200211A8D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F17F92778530200211A8D /* SceneDelegate.swift */; };
-		F00F17FC2778530200211A8D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F17FB2778530200211A8D /* ViewController.swift */; };
+		F00F17FC2778530200211A8D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F17FB2778530200211A8D /* LoginViewController.swift */; };
 		F00F17FF2778530200211A8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F00F17FD2778530200211A8D /* Main.storyboard */; };
 		F00F18012778530500211A8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F00F18002778530500211A8D /* Assets.xcassets */; };
 		F00F18042778530500211A8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F00F18022778530500211A8D /* LaunchScreen.storyboard */; };
 		F00F180F2778530500211A8D /* TravelManagePlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F180E2778530500211A8D /* TravelManagePlannerTests.swift */; };
 		F00F18192778530500211A8D /* TravelManagePlannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F18182778530500211A8D /* TravelManagePlannerUITests.swift */; };
 		F00F181B2778530500211A8D /* TravelManagePlannerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F181A2778530500211A8D /* TravelManagePlannerUITestsLaunchTests.swift */; };
+		F00F182827785DE900211A8D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F182727785DE900211A8D /* UserData.swift */; };
+		F00F182A2778637D00211A8D /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F18292778637D00211A8D /* APIService.swift */; };
+		F00F182E277979BB00211A8D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F182D277979BB00211A8D /* LoginViewModel.swift */; };
+		F0FF09B0277A9AED0015D4FC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FF09AF277A9AED0015D4FC /* DetailViewController.swift */; };
+		F0FF09B2277A9AF40015D4FC /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FF09B1277A9AF40015D4FC /* DetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +54,7 @@
 		F00F17F42778530200211A8D /* TravelManagePlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelManagePlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F00F17F72778530200211A8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F00F17F92778530200211A8D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F00F17FB2778530200211A8D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F00F17FB2778530200211A8D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F00F17FE2778530200211A8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F00F18002778530500211A8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F00F18032778530500211A8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -59,6 +64,11 @@
 		F00F18142778530500211A8D /* TravelManagePlannerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TravelManagePlannerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F00F18182778530500211A8D /* TravelManagePlannerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelManagePlannerUITests.swift; sourceTree = "<group>"; };
 		F00F181A2778530500211A8D /* TravelManagePlannerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelManagePlannerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F00F182727785DE900211A8D /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		F00F18292778637D00211A8D /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		F00F182D277979BB00211A8D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		F0FF09AF277A9AED0015D4FC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		F0FF09B1277A9AF40015D4FC /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		F7ABD5855A525E4DBDAD53D2 /* Pods_TravelManagePlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravelManagePlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F91249C0AC5B6BF279DDDB5F /* Pods-TravelManagePlanner-TravelManagePlannerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelManagePlanner-TravelManagePlannerUITests.debug.xcconfig"; path = "Target Support Files/Pods-TravelManagePlanner-TravelManagePlannerUITests/Pods-TravelManagePlanner-TravelManagePlannerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,7 +121,6 @@
 				77C2426C42FF74194A815543 /* Pods-TravelManagePlannerTests.debug.xcconfig */,
 				23688F06A5AF4320F9318297 /* Pods-TravelManagePlannerTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -142,7 +151,10 @@
 			children = (
 				F00F17F72778530200211A8D /* AppDelegate.swift */,
 				F00F17F92778530200211A8D /* SceneDelegate.swift */,
-				F00F17FB2778530200211A8D /* ViewController.swift */,
+				F00F183027797A9D00211A8D /* ViewController */,
+				F00F182F27797A6900211A8D /* ViewModel */,
+				F00F182C277866C500211A8D /* Model */,
+				F00F182B277866B900211A8D /* Network */,
 				F00F17FD2778530200211A8D /* Main.storyboard */,
 				F00F18002778530500211A8D /* Assets.xcassets */,
 				F00F18022778530500211A8D /* LaunchScreen.storyboard */,
@@ -166,6 +178,40 @@
 				F00F181A2778530500211A8D /* TravelManagePlannerUITestsLaunchTests.swift */,
 			);
 			path = TravelManagePlannerUITests;
+			sourceTree = "<group>";
+		};
+		F00F182B277866B900211A8D /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				F00F18292778637D00211A8D /* APIService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		F00F182C277866C500211A8D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F00F182727785DE900211A8D /* UserData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F00F182F27797A6900211A8D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F00F182D277979BB00211A8D /* LoginViewModel.swift */,
+				F0FF09B1277A9AF40015D4FC /* DetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F00F183027797A9D00211A8D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F00F17FB2778530200211A8D /* LoginViewController.swift */,
+				F0FF09AF277A9AED0015D4FC /* DetailViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -407,9 +453,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F00F17FC2778530200211A8D /* ViewController.swift in Sources */,
+				F00F17FC2778530200211A8D /* LoginViewController.swift in Sources */,
+				F00F182A2778637D00211A8D /* APIService.swift in Sources */,
+				F00F182E277979BB00211A8D /* LoginViewModel.swift in Sources */,
 				F00F17F82778530200211A8D /* AppDelegate.swift in Sources */,
 				F00F17FA2778530200211A8D /* SceneDelegate.swift in Sources */,
+				F0FF09B2277A9AF40015D4FC /* DetailViewModel.swift in Sources */,
+				F00F182827785DE900211A8D /* UserData.swift in Sources */,
+				F0FF09B0277A9AED0015D4FC /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

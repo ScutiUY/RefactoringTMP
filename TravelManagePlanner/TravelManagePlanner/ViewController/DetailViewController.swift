@@ -1,21 +1,19 @@
 //
-//  ViewController.swift
+//  DetailViewController.swift
 //  TravelManagePlanner
 //
-//  Created by UY on 2021/12/26.
+//  Created by UY on 2021/12/28.
 //
 
 import UIKit
-import SnapKit
-import Alamofire
 
-class ViewController: UIViewController {
+class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
     }
-
+    
 
 }
-

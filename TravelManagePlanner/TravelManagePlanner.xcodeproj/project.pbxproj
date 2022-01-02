@@ -25,6 +25,7 @@
 		F0CADCC62780DEB900DDC1CD /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCC52780DEB900DDC1CD /* TabbarController.swift */; };
 		F0CADCC92781AAF400DDC1CD /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCC82781AAF400DDC1CD /* UIImage+extension.swift */; };
 		F0CADCCB2781AE5700DDC1CD /* SecondSampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCCA2781AE5700DDC1CD /* SecondSampleViewController.swift */; };
+		F0CADCE92782117E00DDC1CD /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCE82782117E00DDC1CD /* GlobalConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		F0CADCC52780DEB900DDC1CD /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		F0CADCC82781AAF400DDC1CD /* UIImage+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
 		F0CADCCA2781AE5700DDC1CD /* SecondSampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSampleViewController.swift; sourceTree = "<group>"; };
+		F0CADCE82782117E00DDC1CD /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		F7ABD5855A525E4DBDAD53D2 /* Pods_TravelManagePlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravelManagePlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F91249C0AC5B6BF279DDDB5F /* Pods-TravelManagePlanner-TravelManagePlannerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelManagePlanner-TravelManagePlannerUITests.debug.xcconfig"; path = "Target Support Files/Pods-TravelManagePlanner-TravelManagePlannerUITests/Pods-TravelManagePlanner-TravelManagePlannerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -229,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				F0CADCC82781AAF400DDC1CD /* UIImage+extension.swift */,
+				F0CADCE82782117E00DDC1CD /* GlobalConstants.swift */,
 			);
 			path = MISC;
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 			files = (
 				F00F17FC2778530200211A8D /* SampleViewController.swift in Sources */,
 				F00F182A2778637D00211A8D /* APIService.swift in Sources */,
+				F0CADCE92782117E00DDC1CD /* GlobalConstants.swift in Sources */,
 				F0CADCCB2781AE5700DDC1CD /* SecondSampleViewController.swift in Sources */,
 				F0CADCC92781AAF400DDC1CD /* UIImage+extension.swift in Sources */,
 				F00F17F82778530200211A8D /* AppDelegate.swift in Sources */,

@@ -16,7 +16,7 @@ class SampleViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(abutton)
         view.backgroundColor = .white
-        self.title = "home"
+        
         abutton.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.width.equalTo(100)
@@ -27,7 +27,7 @@ class SampleViewController: UIViewController {
         
     }
     @objc func buttonAction() {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SecondSampleViewController") as! SecondSampleViewController
         navigationController?.pushViewController(vc, animated: true)
     }
 

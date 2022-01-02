@@ -15,8 +15,7 @@ struct UserData: Codable {
 }
 
 struct TravelData: Codable {
-    static var shared = TravelData(title: "", desc: "", etc: "")
+    static var shared = TravelData(title: "", desc: "")
     let title: String?
     let desc: String?
-    let etc: String?
 }

@@ -26,6 +26,10 @@
 		F0CADCC92781AAF400DDC1CD /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCC82781AAF400DDC1CD /* UIImage+extension.swift */; };
 		F0CADCCB2781AE5700DDC1CD /* SecondSampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCCA2781AE5700DDC1CD /* SecondSampleViewController.swift */; };
 		F0CADCE92782117E00DDC1CD /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCE82782117E00DDC1CD /* GlobalConstants.swift */; };
+		F0CADCEB278212D500DDC1CD /* JourneyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCEA278212D500DDC1CD /* JourneyDetailViewController.swift */; };
+		F0CADCEE2782139500DDC1CD /* ImageSliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCED2782139500DDC1CD /* ImageSliderCollectionViewCell.swift */; };
+		F0CADCF1278217F700DDC1CD /* JourneyDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCF0278217F700DDC1CD /* JourneyDetailViewModel.swift */; };
+		F0CADCF32782190100DDC1CD /* TravelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCF22782190100DDC1CD /* TravelData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +77,10 @@
 		F0CADCC82781AAF400DDC1CD /* UIImage+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
 		F0CADCCA2781AE5700DDC1CD /* SecondSampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSampleViewController.swift; sourceTree = "<group>"; };
 		F0CADCE82782117E00DDC1CD /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
+		F0CADCEA278212D500DDC1CD /* JourneyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyDetailViewController.swift; sourceTree = "<group>"; };
+		F0CADCED2782139500DDC1CD /* ImageSliderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderCollectionViewCell.swift; sourceTree = "<group>"; };
+		F0CADCF0278217F700DDC1CD /* JourneyDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyDetailViewModel.swift; sourceTree = "<group>"; };
+		F0CADCF22782190100DDC1CD /* TravelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelData.swift; sourceTree = "<group>"; };
 		F7ABD5855A525E4DBDAD53D2 /* Pods_TravelManagePlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravelManagePlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F91249C0AC5B6BF279DDDB5F /* Pods-TravelManagePlanner-TravelManagePlannerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelManagePlanner-TravelManagePlannerUITests.debug.xcconfig"; path = "Target Support Files/Pods-TravelManagePlanner-TravelManagePlannerUITests/Pods-TravelManagePlanner-TravelManagePlannerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -154,9 +162,9 @@
 			children = (
 				F00F17F72778530200211A8D /* AppDelegate.swift */,
 				F00F17F92778530200211A8D /* SceneDelegate.swift */,
-				F0A9C53C278046AE009EE5FE /* View */,
+				F0CADCEC2782137100DDC1CD /* View */,
 				F00F183027797A9D00211A8D /* ViewController */,
-				F00F182F27797A6900211A8D /* ViewModel */,
+				F0CADCEF278213BD00DDC1CD /* ViewModel */,
 				F00F182C277866C500211A8D /* Model */,
 				F00F182B277866B900211A8D /* Network */,
 				F0CADCC72781AAB600DDC1CD /* MISC */,
@@ -199,15 +207,9 @@
 			isa = PBXGroup;
 			children = (
 				F00F182727785DE900211A8D /* UserData.swift */,
+				F0CADCF22782190100DDC1CD /* TravelData.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		F00F182F27797A6900211A8D /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		F00F183027797A9D00211A8D /* ViewController */ = {
@@ -216,15 +218,9 @@
 				F00F17FB2778530200211A8D /* SampleViewController.swift */,
 				F0CADCCA2781AE5700DDC1CD /* SecondSampleViewController.swift */,
 				F0CADCC52780DEB900DDC1CD /* TabbarController.swift */,
+				F0CADCEA278212D500DDC1CD /* JourneyDetailViewController.swift */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		F0A9C53C278046AE009EE5FE /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		F0CADCC72781AAB600DDC1CD /* MISC */ = {
@@ -234,6 +230,22 @@
 				F0CADCE82782117E00DDC1CD /* GlobalConstants.swift */,
 			);
 			path = MISC;
+			sourceTree = "<group>";
+		};
+		F0CADCEC2782137100DDC1CD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F0CADCED2782139500DDC1CD /* ImageSliderCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F0CADCEF278213BD00DDC1CD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F0CADCF0278217F700DDC1CD /* JourneyDetailViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -475,14 +487,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0CADCEB278212D500DDC1CD /* JourneyDetailViewController.swift in Sources */,
+				F0CADCF32782190100DDC1CD /* TravelData.swift in Sources */,
 				F00F17FC2778530200211A8D /* SampleViewController.swift in Sources */,
 				F00F182A2778637D00211A8D /* APIService.swift in Sources */,
 				F0CADCE92782117E00DDC1CD /* GlobalConstants.swift in Sources */,
 				F0CADCCB2781AE5700DDC1CD /* SecondSampleViewController.swift in Sources */,
 				F0CADCC92781AAF400DDC1CD /* UIImage+extension.swift in Sources */,
 				F00F17F82778530200211A8D /* AppDelegate.swift in Sources */,
+				F0CADCEE2782139500DDC1CD /* ImageSliderCollectionViewCell.swift in Sources */,
 				F00F17FA2778530200211A8D /* SceneDelegate.swift in Sources */,
 				F0A9C537277E7FEE009EE5FE /* ImageLoader.swift in Sources */,
+				F0CADCF1278217F700DDC1CD /* JourneyDetailViewModel.swift in Sources */,
 				F0CADCC62780DEB900DDC1CD /* TabbarController.swift in Sources */,
 				F00F182827785DE900211A8D /* UserData.swift in Sources */,
 			);

@@ -18,7 +18,7 @@ class TabbarController: UITabBarController {
         // VC 선언 부분
         let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SampleViewController")
         
-        let sampleVC1 = SampleViewController() // 여행 리스트 VC
+        let journeyListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "JourneyListSB") // 여행 리스트 VC
         let sampleVC2 = SampleViewController() // 커뮤니티 VC
         let sampleVC3 = SampleViewController() // 마이페이지 VC
         
@@ -28,9 +28,9 @@ class TabbarController: UITabBarController {
         homeTab.tabBarItem.image = UIImage(named: "Home2")!.resizedImage(targetSize: CGSize(width: 25, height: 25))
         homeTab.title = "home"
         // 여행 리스트 탭
-        let planTab = UINavigationController(rootViewController: sampleVC1)
-        planTab.tabBarItem.image = UIImage(named: "List3")!.resizedImage(targetSize: CGSize(width: 25, height: 25))
-        planTab.title = "journey"
+        let journeyListTab = UINavigationController(rootViewController: journeyListVC)
+        journeyListTab.tabBarItem.image = UIImage(named: "List3")!.resizedImage(targetSize: CGSize(width: 25, height: 25))
+        journeyListTab.title = "journey list"
         
         // 커뮤니티 탭
         let commuTab = UINavigationController(rootViewController: sampleVC2)
@@ -42,7 +42,7 @@ class TabbarController: UITabBarController {
         myPageTab.tabBarItem.image = UIImage(named: "MyPage")!.resizedImage(targetSize: CGSize(width: 25, height: 25))
         myPageTab.title = "myPage"
         
-        self.viewControllers = [homeTab, planTab, commuTab, myPageTab]
+        self.viewControllers = [homeTab, journeyListTab, commuTab, myPageTab]
         
     }
     

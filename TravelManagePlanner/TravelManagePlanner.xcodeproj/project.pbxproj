@@ -152,11 +152,11 @@
 		F00F17F62778530200211A8D /* TravelManagePlanner */ = {
 			isa = PBXGroup;
 			children = (
+				F0CADCF527822C8100DDC1CD /* ViewModel */,
+				F0CADCF427822C7C00DDC1CD /* View */,
 				F00F17F72778530200211A8D /* AppDelegate.swift */,
 				F00F17F92778530200211A8D /* SceneDelegate.swift */,
-				F0A9C53C278046AE009EE5FE /* View */,
 				F00F183027797A9D00211A8D /* ViewController */,
-				F00F182F27797A6900211A8D /* ViewModel */,
 				F00F182C277866C500211A8D /* Model */,
 				F00F182B277866B900211A8D /* Network */,
 				F0CADCC72781AAB600DDC1CD /* MISC */,
@@ -203,13 +203,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		F00F182F27797A6900211A8D /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		F00F183027797A9D00211A8D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,13 +213,6 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		F0A9C53C278046AE009EE5FE /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		F0CADCC72781AAB600DDC1CD /* MISC */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +220,20 @@
 				F0CADCE82782117E00DDC1CD /* GlobalConstants.swift */,
 			);
 			path = MISC;
+			sourceTree = "<group>";
+		};
+		F0CADCF427822C7C00DDC1CD /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F0CADCF527822C8100DDC1CD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -8,8 +8,8 @@
 import Foundation
 
 struct UserData: Codable {
-    static var shared = UserData(userId: "", userPw: "", name: "")
-    let userId: String?
+    static var shared = UserData(userEmail: "", userPw: "", name: "")
+    let userEmail: String?
     let userPw: String?
     let name: String?
 }

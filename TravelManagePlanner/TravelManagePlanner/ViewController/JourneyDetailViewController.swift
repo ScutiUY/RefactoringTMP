@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class DetailViewController: UIViewController {
+class JourneyDetailViewController: UIViewController {
     let images: [UIImage] = [UIImage(named: "Seoul1")!, UIImage(named: "Seoul2")!, UIImage(named: "Seoul3")!, UIImage(named: "Seoul4")!]
     
     lazy var detailScrollView: UIScrollView = {
@@ -106,7 +106,7 @@ class DetailViewController: UIViewController {
     }
     
 }
-extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension JourneyDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         imagePageControl.numberOfPages = images.count
         return images.count
@@ -124,13 +124,13 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         }
     }
 }
-extension DetailViewController: UICollectionViewDelegateFlowLayout {
+extension JourneyDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return imageSliderCollectionView.frame.size
     }
     
 }
-extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
+extension JourneyDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
     }

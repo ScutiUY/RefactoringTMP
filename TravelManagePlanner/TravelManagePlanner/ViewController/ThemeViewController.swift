@@ -6,11 +6,13 @@
 //
 
 import UIKit
-import SnapKit
 
 let cellID = "Cell"
 
-class ThemeViewContoller: UIViewController{
+class ThemeViewController: UIViewController{
+    
+    // Assets의 사진 출력
+    lazy var imgDataName = ["커플", "가족", "우정", "기타"]
     
     // 테마 타이틀
     lazy var themeTitleLabel: UILabel = {
@@ -121,39 +123,50 @@ class ThemeViewContoller: UIViewController{
     } // setConstraints
 } // class
 
-extension ThemeViewContoller: UICollectionViewDataSource {
+extension ThemeViewController: UICollectionViewDataSource {
     // Cell갯수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return 4
+        // 4가아닌 배열수만큼으로 변경
     }
+    
+    // 해당cell선택시에 action delegate 함수구현
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        //해당 셀클릭시 디테일 버튼 추후 구현하기
+        //collectionView.cellForItemAtIndexPath(1)?.backgroundColor = UIColor.grayColor
+        
+        // 내가고른게 선택되는지 찍어보기
+        print()
+    }
+
     
     // Cell 백그라운드 이미지 지정 및 타입캐스팅
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        // Assets의 사진 출력
-        let imgData = ["커플", "가족", "우정", "기타"]
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ThemeViewCell
         
         // cell지정한 갯수만큼 이미지 출력
-        cell.backgroundView = UIImageView(image: UIImage(named: imgData[indexPath.item]))
-        
+//        cell.backgroundView = UIImageView(image: UIImage(named: imgData[indexPath.item]))
+
 //        cell.imgButton.setImage(UIImage(named: "우정"), for: .normal)
 //        cell.backgroundView = UIImageView(image: UIImage(named: imgData[indexPath.item]))
+        
+        cell.cellLoadImage(imgDataName[indexPath.item])
         
         return cell
     }
     
     
-} // ThemeViewContoller
+} // ThemeViewController
 
-extension ThemeViewContoller: UICollectionViewDelegate {
+extension ThemeViewController: UICollectionViewDelegate {
     
 }
 
 // cell 사이즈 정의
-extension ThemeViewContoller: UICollectionViewDelegateFlowLayout {
+extension ThemeViewController: UICollectionViewDelegateFlowLayout {
     
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 //

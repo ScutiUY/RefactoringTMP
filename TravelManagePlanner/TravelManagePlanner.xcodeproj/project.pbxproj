@@ -217,9 +217,9 @@
 		F00F183027797A9D00211A8D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F0CADCC52780DEB900DDC1CD /* TabbarController.swift */,
 				F00F17FB2778530200211A8D /* SampleViewController.swift */,
 				F0CADCCA2781AE5700DDC1CD /* SecondSampleViewController.swift */,
-				F0CADCC52780DEB900DDC1CD /* TabbarController.swift */,
 				6B7D8B2B27833D95003B2266 /* ThemeViewController.swift */,
 				6B7D8B2D27833DC5003B2266 /* ThemeViewCell.swift */,
 			);
@@ -672,7 +672,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QA5P85RJWN;
+				DEVELOPMENT_TEAM = 788V8JND7A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TravelManagePlanner/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -701,7 +701,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QA5P85RJWN;
+				DEVELOPMENT_TEAM = 788V8JND7A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TravelManagePlanner/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -22,6 +22,7 @@
 		F00F182827785DE900211A8D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F182727785DE900211A8D /* UserData.swift */; };
 		F00F182A2778637D00211A8D /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F18292778637D00211A8D /* APIService.swift */; };
 		F0A9C537277E7FEE009EE5FE /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A9C536277E7FEE009EE5FE /* ImageLoader.swift */; };
+		F0AFB7722783D7AF00FBA3FF /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AFB7712783D7AF00FBA3FF /* Observer.swift */; };
 		F0CADCC62780DEB900DDC1CD /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCC52780DEB900DDC1CD /* TabbarController.swift */; };
 		F0CADCC92781AAF400DDC1CD /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCC82781AAF400DDC1CD /* UIImage+extension.swift */; };
 		F0CADCCB2781AE5700DDC1CD /* SecondSampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCCA2781AE5700DDC1CD /* SecondSampleViewController.swift */; };
@@ -73,6 +74,7 @@
 		F00F182727785DE900211A8D /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		F00F18292778637D00211A8D /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		F0A9C536277E7FEE009EE5FE /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		F0AFB7712783D7AF00FBA3FF /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		F0CADCC52780DEB900DDC1CD /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		F0CADCC82781AAF400DDC1CD /* UIImage+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
 		F0CADCCA2781AE5700DDC1CD /* SecondSampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSampleViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 		F00F17F62778530200211A8D /* TravelManagePlanner */ = {
 			isa = PBXGroup;
 			children = (
+				F0AFB7702783D77000FBA3FF /* Utilities */,
 				F00F17F72778530200211A8D /* AppDelegate.swift */,
 				F00F17F92778530200211A8D /* SceneDelegate.swift */,
 				F0CADCEC2782137100DDC1CD /* View */,
@@ -215,12 +218,36 @@
 		F00F183027797A9D00211A8D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F0AFB7732783D7C800FBA3FF /* JourneyDetail */,
 				F00F17FB2778530200211A8D /* SampleViewController.swift */,
 				F0CADCCA2781AE5700DDC1CD /* SecondSampleViewController.swift */,
 				F0CADCC52780DEB900DDC1CD /* TabbarController.swift */,
-				F0CADCEA278212D500DDC1CD /* JourneyDetailViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		F0AFB7702783D77000FBA3FF /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				F0AFB7712783D7AF00FBA3FF /* Observer.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		F0AFB7732783D7C800FBA3FF /* JourneyDetail */ = {
+			isa = PBXGroup;
+			children = (
+				F0CADCEA278212D500DDC1CD /* JourneyDetailViewController.swift */,
+			);
+			path = JourneyDetail;
+			sourceTree = "<group>";
+		};
+		F0AFB7742783D7E000FBA3FF /* JourneyDetail */ = {
+			isa = PBXGroup;
+			children = (
+				F0CADCF0278217F700DDC1CD /* JourneyDetailViewModel.swift */,
+			);
+			path = JourneyDetail;
 			sourceTree = "<group>";
 		};
 		F0CADCC72781AAB600DDC1CD /* MISC */ = {
@@ -243,7 +270,7 @@
 		F0CADCEF278213BD00DDC1CD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				F0CADCF0278217F700DDC1CD /* JourneyDetailViewModel.swift */,
+				F0AFB7742783D7E000FBA3FF /* JourneyDetail */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -488,6 +515,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0CADCEB278212D500DDC1CD /* JourneyDetailViewController.swift in Sources */,
+				F0AFB7722783D7AF00FBA3FF /* Observer.swift in Sources */,
 				F0CADCF32782190100DDC1CD /* TravelData.swift in Sources */,
 				F00F17FC2778530200211A8D /* SampleViewController.swift in Sources */,
 				F00F182A2778637D00211A8D /* APIService.swift in Sources */,

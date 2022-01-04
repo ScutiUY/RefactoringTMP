@@ -22,6 +22,7 @@
 		F00F182827785DE900211A8D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F182727785DE900211A8D /* UserData.swift */; };
 		F00F182A2778637D00211A8D /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F18292778637D00211A8D /* APIService.swift */; };
 		F0A9C537277E7FEE009EE5FE /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A9C536277E7FEE009EE5FE /* ImageLoader.swift */; };
+		F0AFB76F2783D12B00FBA3FF /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AFB76E2783D12B00FBA3FF /* Observer.swift */; };
 		F0CADCC62780DEB900DDC1CD /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCC52780DEB900DDC1CD /* TabbarController.swift */; };
 		F0CADCC92781AAF400DDC1CD /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCC82781AAF400DDC1CD /* UIImage+extension.swift */; };
 		F0CADCCB2781AE5700DDC1CD /* SecondSampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCCA2781AE5700DDC1CD /* SecondSampleViewController.swift */; };
@@ -69,6 +70,7 @@
 		F00F182727785DE900211A8D /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		F00F18292778637D00211A8D /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		F0A9C536277E7FEE009EE5FE /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		F0AFB76E2783D12B00FBA3FF /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		F0CADCC52780DEB900DDC1CD /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		F0CADCC82781AAF400DDC1CD /* UIImage+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
 		F0CADCCA2781AE5700DDC1CD /* SecondSampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSampleViewController.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 		F00F17F62778530200211A8D /* TravelManagePlanner */ = {
 			isa = PBXGroup;
 			children = (
+				F0AFB76D2783D0F200FBA3FF /* Utility */,
 				F00F17F72778530200211A8D /* AppDelegate.swift */,
 				F00F17F92778530200211A8D /* SceneDelegate.swift */,
 				F0A9C53C278046AE009EE5FE /* View */,
@@ -225,6 +228,14 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		F0AFB76D2783D0F200FBA3FF /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				F0AFB76E2783D12B00FBA3FF /* Observer.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		F0CADCC72781AAB600DDC1CD /* MISC */ = {
@@ -483,6 +494,7 @@
 				F00F17F82778530200211A8D /* AppDelegate.swift in Sources */,
 				F00F17FA2778530200211A8D /* SceneDelegate.swift in Sources */,
 				F0A9C537277E7FEE009EE5FE /* ImageLoader.swift in Sources */,
+				F0AFB76F2783D12B00FBA3FF /* Observer.swift in Sources */,
 				F0CADCC62780DEB900DDC1CD /* TabbarController.swift in Sources */,
 				F00F182827785DE900211A8D /* UserData.swift in Sources */,
 			);

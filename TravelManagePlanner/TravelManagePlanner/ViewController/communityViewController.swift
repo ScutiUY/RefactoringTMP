@@ -15,7 +15,7 @@ let cellID = "Cell"
 //MARK: - PickerView
 class communityPickerView: UIPickerView {
 
-//    self.back
+//    self.back 
 }
 
 //MARK: - Main ViewController

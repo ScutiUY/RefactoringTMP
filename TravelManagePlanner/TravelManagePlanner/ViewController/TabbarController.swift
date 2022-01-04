@@ -16,11 +16,11 @@ class TabbarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // VC 선언 부분
-        let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SampleViewController")
+        let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SampleViewSB")
         
-        let sampleVC1 = SampleViewController() // 여행 리스트 VC
-        let sampleVC2 = SampleViewController() // 커뮤니티 VC
-        let sampleVC3 = SampleViewController() // 마이페이지 VC
+        let sampleVC1 = SecondSampleViewController() // 여행 리스트 VC
+        let sampleVC2 = communityViewController() // 커뮤니티 VC
+        let sampleVC3 = SecondSampleViewController() // 마이페이지 VC
         
         // 홈 탭
         // Tab의 VC 목록에 해당 VC를 넣을 때 Navigation Controller에 넣어서 추가하면 네비게이션 컨트롤러를 자동으로 상속 합니다

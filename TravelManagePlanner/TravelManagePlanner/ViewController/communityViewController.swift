@@ -10,103 +10,87 @@ import SnapKit
 import JJFloatingActionButton
 
 
+
+let communityFloatingButton = communityFloatingButtonClass().communityFloatingButton
+let communitySearchBar = communitySearchBarClass().communitySearchBar
 let cellID = "Cell"
+let commuinityCategorydata = ["전체", "연인", "가족", "친구", "기타"]
 
-//MARK: - PickerView
-class communityPickerView: UIPickerView {
-
-//    self.back 
-}
-
-//MARK: - Main ViewController
 class communityViewController: UIViewController {
+    
     // MARK: - Properties
+    lazy var communityCategorytextField : UITextField = {
+        let textfield = UITextField()
+        textfield.text = "전체"
+        textfield.contentVerticalAlignment = .center
+        textfield.tintColor = .clear
+        textfield.backgroundColor = .clear
+        return textfield
+    }()
+    
+    let communityCategoryPickerView = UIPickerView()
+    let communityCategoryToolBarSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+    let communityCategoryToolBarButton = UIBarButtonItem(title: "확인", style: .done, target: self, action: #selector(onPickDone))
+    
+    lazy var communityCategoryToolBar : UIToolbar = {
+        let toolbar = UIToolbar()
+        toolbar.frame = CGRect(x: 0, y: 0, width: 0, height: 40)
+        toolbar.backgroundColor = .darkGray
+        toolbar.setItems([communityCategoryToolBarSpace, communityCategoryToolBarButton], animated: true)
+        return toolbar
+    }()
     
     lazy var communityCollectionView: UICollectionView = {
         let flowlayout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowlayout)
         return cv
     }()
-//
+
 //    lazy var communityCollectionViewCellImage : UIImage = {
 //
 //    }()
-//
+
 //    lazy var communityCollectionViewCellHashTag : UITextView = {
 //
 //    }()
 
-    
-    // MARK: - UISearchBar (따로 분리 예정)
-    lazy var communitySearchBar: UISearchBar = {
-        let searchBar = UISearchBar()
-        searchBar.placeholder = "여행지를 입력해주세요."
-        searchBar.backgroundImage = UIImage() // searchBar 테두리 없애는 편법
-        searchBar.setImage(UIImage(named: "icCaencel"), for: .clear, state: .normal)
-        
-        if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
-            textfield.frame.size.height = 1
-            textfield.backgroundColor = UIColor.white
-            textfield.layer.cornerRadius = 15.0
-            textfield.attributedPlaceholder = NSAttributedString(string: textfield.placeholder ?? "", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
-            textfield.textColor = UIColor.black
-            
-            if let rightView = textfield.rightView as? UIImageView {
-                rightView.image = rightView.image?.withRenderingMode(.alwaysTemplate)
-                //이미지 틴트 정하기
-                rightView.tintColor = UIColor.white
-            }
-        }
-        return searchBar
-    }()
-    
-    // MARK: - JJFloatingButton
-    lazy var comminityFloatingButton : JJFloatingActionButton = {
-        let actionButton = JJFloatingActionButton()
-        let alert = UIAlertController()
-        let defaultAction = UIAlertAction(title: "OK", style: .default , handler: nil)
-        
-        alert.title = "You Clicked!"
-        alert.addAction(defaultAction)
-        
-        actionButton.buttonColor = #colorLiteral(red: 0.2039215686, green: 0.5960784314, blue: 0.8588235294, alpha: 1)
-        actionButton.addItem(title: "북마크 리뷰", image: UIImage(named: "First")?.withRenderingMode(.alwaysTemplate)) { item in
-            alert.message = "\(item.titleLabel.text!)"
-            self.present(alert, animated: true)
-        }
-
-        actionButton.addItem(title: "내가 작성한 리뷰", image: UIImage(named: "Second")?.withRenderingMode(.alwaysTemplate)) { item in
-            alert.message = "\(item.titleLabel.text!)"
-            self.present(alert, animated: true, completion: nil)
-        }
-
-        actionButton.addItem(title: "리뷰 작성하기", image: nil) { item in
-            alert.message = "\(item.titleLabel.text!)"
-            self.present(alert, animated: true, completion: nil)
-        }
-        return actionButton
-    }()
-    
     // MARK: - Lifecyle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         communityCollectionView.dataSource = self
         communityCollectionView.delegate = self
-        view.backgroundColor = .blue
         setCollectionView()
+        setCommunityPickerView()
+        setFloatingButton()
         communityCollectionView.register(DemoCell.self, forCellWithReuseIdentifier: cellID)
-        
        
 
-        view.addSubview(comminityFloatingButton)
-        comminityFloatingButton.translatesAutoresizingMaskIntoConstraints = false
-        comminityFloatingButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
-        comminityFloatingButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
+       
     }
     
     
-    // MARK: - AutoLayout(SnapKit)
+    // MARK: - Methods
+    func setCommunityPickerView()
+    {
+        view.addSubview(communityCategorytextField)
+        communityCategorytextField.addLeftPadding()
+        
+        communityCategorytextField.snp.makeConstraints { make in
+            make.trailing.equalTo(communitySearchBar.snp.trailing).offset(100)
+            make.top.equalTo(communitySearchBar.snp.top).offset(10)
+            make.width.equalTo(communitySearchBar).multipliedBy(0.3)
+            make.height.equalTo(communitySearchBar).multipliedBy(0.6)
+        }
+        communityCategoryPickerView.delegate = self
+        self.communityCategorytextField.inputView = communityCategoryPickerView
+        self.communityCategorytextField.inputAccessoryView = communityCategoryToolBar
+        
+    }
+    
+    
+    
     func setCollectionView() {
         
         view.addSubview(communityCollectionView)
@@ -125,7 +109,27 @@ class communityViewController: UIViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
     }
+    
+    func setFloatingButton() {
+        view.addSubview(communityFloatingButton)
+        
+        communityFloatingButton.snp.makeConstraints { make in
+            make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-16)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-16)
+        }
+    }
+    
+    @objc func onPickDone() {
+        communityCategorytextField.resignFirstResponder()
+     }
+
 }
+
+
+
+
+
+// MARK: - extensions
 
 
 extension communityViewController: UICollectionViewDataSource {
@@ -153,17 +157,38 @@ extension communityViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width / 4 , height: communityCollectionView.frame.height / 3)
     }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 10
-//    }
-
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 5, bottom: 5, right: 5)
     }
 }
 
-//
-//extension communityViewController : UIPickerViewDelegate, UIPickerViewDataSource {
-//
-//}
+extension communityViewController : UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return commuinityCategorydata.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        communityCategorytextField.text = "\(commuinityCategorydata[row])"
+        communityCategorytextField.sizeToFit()
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 30
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return commuinityCategorydata[row]
+    }
+}
+
+extension UITextField {
+    func addLeftPadding() {
+      let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.frame.height))
+      self.leftView = paddingView
+      self.leftViewMode = ViewMode.always
+    }
+}

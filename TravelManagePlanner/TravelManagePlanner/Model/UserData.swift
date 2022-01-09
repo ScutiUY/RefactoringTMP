@@ -8,7 +8,12 @@
 import Foundation
 
 struct UserData: Codable {
-    static var shared = UserData(userEmail: "", userPw: "", name: "")
+    static var shared = UserData(email: "", pw: "", name: "")
+    init(email: String, pw: String, name: String) {
+        self.userEmail = email
+        self.userPw = pw
+        self.name = name
+    }
     let userEmail: String?
     let userPw: String?
     let name: String?
@@ -19,4 +24,14 @@ struct TravelData: Codable {
     let title: String?
     let desc: String?
     let etc: String?
+}
+
+struct LoginData: Codable {
+    static var shared = LoginData(email: "", pw: "")
+    init(email: String, pw: String) {
+        self.email = email
+        self.password = pw
+    }
+    var email: String
+    var password: String
 }

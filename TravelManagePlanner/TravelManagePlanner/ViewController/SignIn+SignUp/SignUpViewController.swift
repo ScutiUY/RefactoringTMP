@@ -61,7 +61,8 @@ class SignUpViewController: UIViewController {
     private lazy var registerButton : UIButton = {
         var button = UIButton.init(type: .system)
         button.setTitle("register", for: .normal)
-        button.setTitleColor(GlobalConstants.Color.Text.buttonTextColor, for: .normal)
+        button.backgroundColor = GlobalConstants.Color.Background.loginButtonbackgroundColor
+        button.setTitleColor(GlobalConstants.Color.Text.SignUpResisterButtonTextColor, for: .normal)
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 10
         button.addTarget(self, action: #selector(registerAction), for: .touchUpInside)
@@ -95,7 +96,7 @@ class SignUpViewController: UIViewController {
     }
     private func setLayout() {
         
-        view.backgroundColor = UIColor(red: 131/255, green: 247/255, blue: 178/255, alpha: 1)
+        view.backgroundColor = GlobalConstants.Color.Background.themeColor
         view.addSubview(containerView)
         view.addSubview(exitButton)
         containerView.addSubview(emailLabel)
@@ -216,6 +217,8 @@ class SignUpViewController: UIViewController {
     @objc func exitButtonAction() {
         dismiss(animated: true, completion: nil)
     }
+    
+    
     @objc func registerAction() {
         
         guard let email = emailTextField.text else { return }

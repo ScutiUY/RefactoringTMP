@@ -8,7 +8,14 @@
 import UIKit
 import SnapKit
 
+protocol SignInButtonPressed {
+    func validateUserInfo()
+  }
+
 class SignInViewController: UIViewController {
+    
+    // MARK: - Properties
+    var signInViewModel: SignInViewModel!
     
     var isLoading = false
     
@@ -54,8 +61,9 @@ class SignInViewController: UIViewController {
     
     lazy var invalidLabel: UILabel = {
         var label = UILabel()
+        label.alpha = 0.0
         label.font = UIFont.systemFont(ofSize: 10)
-        label.text = "비밀번호 오류"
+        label.text = "이메일을 정확하게 입력하세요."
         label.textColor = .red
         return label
     }()
@@ -63,7 +71,7 @@ class SignInViewController: UIViewController {
     lazy var loginButton: LoadingButton = {
         var button = LoadingButton()
         button.setTitle("로그인", for: .normal)
-        button.setTitleColor(GlobalConstants.Color.Text.buttonTextColor, for: .normal)
+        button.setTitleColor(GlobalConstants.Color.Text.SignInButtonTextColor, for: .normal)
         button.backgroundColor = GlobalConstants.Color.Background.loginButtonbackgroundColor
         button.titleLabel?.font = UIFont.systemFont(ofSize: GlobalConstants.Font.Size.mainFontSize)
         return button
@@ -84,35 +92,45 @@ class SignInViewController: UIViewController {
         return view
     }()
     
+    lazy var signUpStackView: UIStackView = {
+        var stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        return stackView
+    }()
     lazy var signUpLabel: UILabel = {
         var label = UILabel()
         label.text = "회원이 아니신가요?"
+        label.textColor = GlobalConstants.Color.Text.SignUpLabelTextColor
+        label.font = UIFont.systemFont(ofSize: 15)
         return label
     }()
     lazy var signUpButton: UIButton = {
         var button = UIButton()
         button.setTitle("새 계정 만들기", for: .normal)
-        button.setTitleColor(GlobalConstants.Color.Text.buttonTextColor, for: .normal)
+        button.setTitleColor(GlobalConstants.Color.Text.SignUpButtonTextColor, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         return button
     }()
     lazy var findPwdButton: UIButton = {
         var button = UIButton()
         button.setTitle("비밀번호 찾기", for: .normal)
-        button.setTitleColor(GlobalConstants.Color.Text.buttonTextColor, for: .normal)
+        button.setTitleColor(GlobalConstants.Color.Text.FindPasswordButtonTextColor, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 10)
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        signInViewModel = SignInViewModel()
+        callDataToUIUpdateFromVM()
         setDelegate()
         setLayout()
         setButtonAction()
         // Do any additional setup after loading the view.
     }
     
-    // MARK: - Layout setting
+    // MARK: - Layout Setting Section
     func setLayout() {
         
         view.backgroundColor = GlobalConstants.Color.Background.themeColor
@@ -121,12 +139,15 @@ class SignInViewController: UIViewController {
         totalPaddingView.addSubview(logoImageAnchorView)
         logoImageAnchorView.addSubview(logoImageView)
         
+        totalPaddingView.addSubview(invalidLabel)
+        
         totalPaddingView.addSubview(loginInfoSectionStackView)
         
         loginInfoSectionStackView.addArrangedSubview(emailTextField)
         loginInfoSectionStackView.addArrangedSubview(pwdTextField)
         
-        totalPaddingView.addSubview(invalidLabel)
+        view.bringSubviewToFront(loginInfoSectionStackView)
+        view.bringSubviewToFront(pwdTextField)
         
         totalPaddingView.addSubview(loginButton)
         
@@ -135,8 +156,9 @@ class SignInViewController: UIViewController {
         totalPaddingView.addSubview(socialLoginButtonAnchorView)
         socialLoginButtonAnchorView.addSubview(socialLoginButtonStackView)
         
-        totalPaddingView.addSubview(signUpLabel)
-        totalPaddingView.addSubview(signUpButton)
+        totalPaddingView.addSubview(signUpStackView)
+        signUpStackView.addArrangedSubview(signUpLabel)
+        signUpStackView.addArrangedSubview(signUpButton)
         
         totalPaddingView.snp.makeConstraints { const in
             const.top.equalTo(view.safeAreaLayoutGuide.snp.top)
@@ -171,9 +193,9 @@ class SignInViewController: UIViewController {
             const.height.equalTo(30)
         }
         invalidLabel.snp.makeConstraints { const in
-            const.top.equalTo(loginInfoSectionStackView.snp.bottom).offset(5)
-            const.leading.equalTo(loginInfoSectionStackView.snp.leading)
             const.height.equalTo(20)
+            const.top.equalTo(self.pwdTextField.snp.bottom).offset(5)
+            const.leading.equalTo(self.pwdTextField.snp.leading).offset(5)
         }
         loginButton.snp.makeConstraints { const in
             const.top.equalTo(loginInfoSectionStackView.snp.bottom).offset(30)
@@ -199,11 +221,31 @@ class SignInViewController: UIViewController {
             const.width.equalToSuperview().multipliedBy(0.75)
             const.height.equalTo(100)
         }
-        signUpButton.snp.makeConstraints { const in
+        signUpStackView.snp.makeConstraints { const in
             const.centerX.equalToSuperview()
             const.bottom.equalToSuperview().offset(-10)
-            const.width.equalTo(100)
             const.height.equalTo(15)
+        }
+        signUpLabel.snp.makeConstraints { make in
+            make.height.equalTo(15)
+        }
+        signUpButton.snp.makeConstraints { const in
+            const.height.equalTo(15)
+        }
+    }
+    
+    func callDataToUIUpdateFromVM() {
+        signInViewModel.loadingStarted.bind { [weak self] in
+            self?.loginButton.startIndicator()
+            print($0)
+        }
+        signInViewModel.loadingEnded.bind { [weak self] in
+            self?.loginButton.stopIndicator()
+            print($0)
+        }
+        signInViewModel.userInfoInputErrorMessage.bind { [weak self] in
+            print("ErroMessage Bind ",$0)
+            self?.invalidLabel.text = $0
         }
     }
     
@@ -215,58 +257,57 @@ class SignInViewController: UIViewController {
         emailTextField.delegate = self
         pwdTextField.delegate = self
     }
+    
+    // MARK: - Action Section
     @objc func loginButtonPressed() {
-        
-        pwdTextField.resignFirstResponder()
-        emailTextField.resignFirstResponder()
-        
-        self.isLoading.toggle()
-        if isLoading {
-            loginButton.startIndicator()
-        } else {
-            loginButton.stopIndicator()
-        }
-        
         
         guard let email = emailTextField.text else { return }
         guard let password = pwdTextField.text else { return }
         
-        let regex = try? NSRegularExpression(pattern: "[A-Z0-9a-z._&+-]+@[A-Z0-9a-z.-]+[.]+[A-Za-z]{2,20}", options: NSRegularExpression.Options.caseInsensitive)
-        let textToNS = email as NSString
-        let emailCheck = regex?.matches(in: email, options: [], range: NSRange(location: 0, length: textToNS.length)).map{textToNS.substring(with: $0.range)}
+        signInViewModel.updateUserEmail(email: email)
+        signInViewModel.updateUserPwd(password: password)
         
-        if emailCheck!.isEmpty || email == "" {
-            self.invalidLabel.text = "이메일을 정확하게 입력하세요."
-            UIView.animate(withDuration: 0.2) {
-                self.invalidLabel.snp.remakeConstraints({ (m) in
-                    m.top.equalTo(self.pwdTextField.snp.bottom).offset(5)
-                    m.leading.equalTo(self.pwdTextField.snp.leading).offset(5)
-                })
-                self.view.layoutIfNeeded()
-            }
-            return
-        } else if password == "" || password.count < 6 {
-            self.invalidLabel.text = "비밀번호를 6자리 이상 입력해 주세요."
-            UIView.animate(withDuration: 0.2) {
-                self.invalidLabel.snp.remakeConstraints({ (m) in
-                    m.top.equalTo(self.pwdTextField.snp.bottom).offset(5)
-                    m.leading.equalTo(self.pwdTextField.snp.leading).offset(5)
-                })
-                self.view.layoutIfNeeded()
-            }
+        switch signInViewModel.validateUserInformation() {
+        case .invalidEmail:
+            self.invalidLabel.alpha = 1.0
+            self.view.layoutIfNeeded()
+        case .invalidPwd:
+            self.invalidLabel.alpha = 1.0
+            self.view.layoutIfNeeded()
+        case .success:
+            self.invalidLabel.alpha = 0.0
+            self.view.layoutIfNeeded()
+            login()
         }
     }
+    
     @objc func signUpButtonPressed() {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignUpViewSB") as! SignUpViewController
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignUpSB") as! SignUpViewController
+        self.modalPresentationStyle = .overFullScreen
         self.present(vc, animated: true, completion: nil)
+    }
+    
+    func login() {
+        if !isLoading {
+            loginButton.startIndicator()
+            self.isLoading.toggle()
+        }
+        signInViewModel.login()
     }
 }
 
 
 extension SignInViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        emailTextField.resignFirstResponder()
-        pwdTextField.resignFirstResponder()
+        if textField == emailTextField {
+            signInViewModel.inputUserInfo(textField: textField)
+            pwdTextField.becomeFirstResponder()
+        } else {
+            signInViewModel.inputUserInfo(textField: textField)
+            textField.resignFirstResponder()
+        }
+//        emailTextField.resignFirstResponder()
+//        pwdTextField.resignFirstResponder()
         return true
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {

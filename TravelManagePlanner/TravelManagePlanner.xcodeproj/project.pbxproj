@@ -19,8 +19,11 @@
 		F00F180F2778530500211A8D /* TravelManagePlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F180E2778530500211A8D /* TravelManagePlannerTests.swift */; };
 		F00F18192778530500211A8D /* TravelManagePlannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F18182778530500211A8D /* TravelManagePlannerUITests.swift */; };
 		F00F181B2778530500211A8D /* TravelManagePlannerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F181A2778530500211A8D /* TravelManagePlannerUITestsLaunchTests.swift */; };
-		F00F182827785DE900211A8D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F182727785DE900211A8D /* Data.swift */; };
+		F00F182827785DE900211A8D /* TravelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F182727785DE900211A8D /* TravelList.swift */; };
 		F00F182A2778637D00211A8D /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F18292778637D00211A8D /* APIService.swift */; };
+		F04FD8B2278B8C72007D8866 /* JourneyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04FD8B1278B8C72007D8866 /* JourneyListViewModel.swift */; };
+		F04FD8B5278B8F22007D8866 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04FD8B4278B8F22007D8866 /* DateUtil.swift */; };
+		F04FD8B7278B9E72007D8866 /* Travel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04FD8B6278B9E72007D8866 /* Travel.swift */; };
 		F0A9C537277E7FEE009EE5FE /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A9C536277E7FEE009EE5FE /* ImageLoader.swift */; };
 		F0CADCC62780DEB900DDC1CD /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCC52780DEB900DDC1CD /* TabbarController.swift */; };
 		F0CADCC92781AAF400DDC1CD /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCC82781AAF400DDC1CD /* UIImage+extension.swift */; };
@@ -71,8 +74,11 @@
 		F00F18142778530500211A8D /* TravelManagePlannerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TravelManagePlannerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F00F18182778530500211A8D /* TravelManagePlannerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelManagePlannerUITests.swift; sourceTree = "<group>"; };
 		F00F181A2778530500211A8D /* TravelManagePlannerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelManagePlannerUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		F00F182727785DE900211A8D /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		F00F182727785DE900211A8D /* TravelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelList.swift; sourceTree = "<group>"; };
 		F00F18292778637D00211A8D /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		F04FD8B1278B8C72007D8866 /* JourneyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyListViewModel.swift; sourceTree = "<group>"; };
+		F04FD8B4278B8F22007D8866 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
+		F04FD8B6278B9E72007D8866 /* Travel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Travel.swift; sourceTree = "<group>"; };
 		F0A9C536277E7FEE009EE5FE /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		F0CADCC52780DEB900DDC1CD /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		F0CADCC82781AAF400DDC1CD /* UIImage+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
@@ -162,7 +168,8 @@
 		F00F17F62778530200211A8D /* TravelManagePlanner */ = {
 			isa = PBXGroup;
 			children = (
-				F0CADCF527822C8100DDC1CD /* ViewModel */,
+				F04FD8B3278B8F0A007D8866 /* Utilities */,
+				F04FD8B0278B8C60007D8866 /* ViewModel */,
 				F0CADCF427822C7C00DDC1CD /* View */,
 				F00F17F72778530200211A8D /* AppDelegate.swift */,
 				F00F17F92778530200211A8D /* SceneDelegate.swift */,
@@ -208,7 +215,8 @@
 		F00F182C277866C500211A8D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F00F182727785DE900211A8D /* Data.swift */,
+				F00F182727785DE900211A8D /* TravelList.swift */,
+				F04FD8B6278B9E72007D8866 /* Travel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -222,6 +230,22 @@
 				F0CADCC52780DEB900DDC1CD /* TabbarController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		F04FD8B0278B8C60007D8866 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F04FD8B1278B8C72007D8866 /* JourneyListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F04FD8B3278B8F0A007D8866 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				F04FD8B4278B8F22007D8866 /* DateUtil.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		F0CADCC72781AAB600DDC1CD /* MISC */ = {
@@ -239,13 +263,6 @@
 				F0CADCFD2782479C00DDC1CD /* JourneyList */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		F0CADCF527822C8100DDC1CD /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		F0CADCFC2782478D00DDC1CD /* JourenyList */ = {
@@ -511,16 +528,19 @@
 				F00F182A2778637D00211A8D /* APIService.swift in Sources */,
 				F0CADCE92782117E00DDC1CD /* GlobalConstants.swift in Sources */,
 				F0CADCCB2781AE5700DDC1CD /* SecondSampleViewController.swift in Sources */,
+				F04FD8B5278B8F22007D8866 /* DateUtil.swift in Sources */,
 				F0CADCF7278230FC00DDC1CD /* JourneyListViewController.swift in Sources */,
 				F0CADD0127824F0000DDC1CD /* JourneyDetailDateCollectionViewCell.swift in Sources */,
 				F0CADCC92781AAF400DDC1CD /* UIImage+extension.swift in Sources */,
 				F00F17F82778530200211A8D /* AppDelegate.swift in Sources */,
+				F04FD8B2278B8C72007D8866 /* JourneyListViewModel.swift in Sources */,
 				F00F17FA2778530200211A8D /* SceneDelegate.swift in Sources */,
 				F0A9C537277E7FEE009EE5FE /* ImageLoader.swift in Sources */,
 				F0CADCFF27824EF000DDC1CD /* JourneyDetailListCollectionViewCell.swift in Sources */,
 				F0CADCFB2782478400DDC1CD /* JourneyListDetailViewController.swift in Sources */,
+				F04FD8B7278B9E72007D8866 /* Travel.swift in Sources */,
 				F0CADCC62780DEB900DDC1CD /* TabbarController.swift in Sources */,
-				F00F182827785DE900211A8D /* Data.swift in Sources */,
+				F00F182827785DE900211A8D /* TravelList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

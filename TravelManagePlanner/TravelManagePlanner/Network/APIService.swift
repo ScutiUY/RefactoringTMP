@@ -20,6 +20,7 @@ enum APIError: Int, Error {
 struct APIRequest {
     static let url: String = "http://cutely93.cafe24.com:19624/mmb/joinMember.tpi"
     
+    
     /// - GET
     func getJson(error: APIError? = nil, completion: @escaping (UserData) -> Void) {
         
@@ -29,9 +30,37 @@ struct APIRequest {
     }
     
     /// - Post
-    func postData() {
-        AF.request(APIRequest.url, method: .post, parameters: nil).validate(statusCode: 0..<400).responseJSON { response in
-            print(response)
+    func login(loginData: LoginData) {
+        let url = "https://eunryuplaners.com:19624/mmb/checkLogin.tpi"
+        
+        var request = URLRequest(url: URL(string: url)!)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "appCode - TMP_iOS")
+        request.timeoutInterval = 10
+        // POST 로 보낼 정보
+        let params: [String: String] = ["loginid":"\(loginData.email)", "loginPw":"\(loginData.password)"]
+        
+        // httpBody 에 parameters 추가
+        do {
+            try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
+        } catch {
+            print("http Body Error")
+        }
+        AF.request(request).responseString { (response) in
+            switch response.result {
+            case .success:
+                print(response.value)
+                print(response.data)
+                print(response.result)
+                print("POST 성공")
+            case .failure(let error):
+                print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
+            }
         }
     }
+    
+    func signUp(userData: UserData) {
+        
+    }
+    
 }

@@ -9,20 +9,15 @@ import Foundation
 import UIKit
 
 
-enum ValidationResult {
-    case success
-    case invalidEmail
-    case invalidPwd
-}
-
 class SignInViewModel {
     
     //private let signInData: UserData
     private var api = APIRequest()
+    
     private var userInfo = UserData(email: "", pw: "", name: "") {
         didSet {
-            email = userInfo.userEmail!
-            password = userInfo.userPw!
+            email = userInfo.userEmail
+            password = userInfo.userPw
             
         }
     }
@@ -30,15 +25,16 @@ class SignInViewModel {
     var userInfoInputErrorMessage: Observable<String> = Observable("")
     var loadingStarted: Observable<Bool> = Observable(false)
     var loadingEnded: Observable = Observable("")
+    var loginSuccess: Observable = Observable(false)
     
     private var email = ""
     private var password = ""
     
     func updateUserEmail(email: String) {
-        self.email = email
+        userInfo.userEmail = email
     }
     func updateUserPwd(password: String) {
-        self.password = password
+        userInfo.userPw = password
     }
     func inputUserInfo(textField: UITextField) {
         
@@ -60,10 +56,17 @@ class SignInViewModel {
             return .success
         }
     }
+    
     func login() {
-        LoginData.shared.email = email
-        LoginData.shared.password = password
-        api.login(loginData: LoginData.shared)
+        api.login(loginData: userInfo) { result in
+            switch result {
+            case .success(let userData):
+                print(userData)
+                self.loginSuccess.value = true
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 
@@ -71,5 +74,10 @@ extension SignInViewModel {
     enum userDataStatus {
         case Correct
         case Incorrect
+    }
+    enum ValidationResult {
+        case success
+        case invalidEmail
+        case invalidPwd
     }
 }

@@ -247,6 +247,18 @@ class SignInViewController: UIViewController {
             print("ErroMessage Bind ",$0)
             self?.invalidLabel.text = $0
         }
+        signInViewModel.loginSuccess.bind { [weak self] in
+            print("login 성공여부: ", $0)
+            if $0 {
+                let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SampleViewController")
+                
+                let tabbar = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabbarControllerSB") as! TabbarController
+                tabbar.modalPresentationStyle = .fullScreen
+                
+                //self?.navigationController?.pushViewController(tabbar, animated: true)
+                self!.present(tabbar, animated: true, completion: nil)
+            }
+        }
     }
     
     func setButtonAction() {
@@ -283,7 +295,8 @@ class SignInViewController: UIViewController {
     
     @objc func signUpButtonPressed() {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignUpSB") as! SignUpViewController
-        self.modalPresentationStyle = .overFullScreen
+        vc.modalPresentationStyle = .fullScreen
+        
         self.present(vc, animated: true, completion: nil)
     }
     
@@ -300,18 +313,14 @@ class SignInViewController: UIViewController {
 extension SignInViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == emailTextField {
-            signInViewModel.inputUserInfo(textField: textField)
             pwdTextField.becomeFirstResponder()
         } else {
-            signInViewModel.inputUserInfo(textField: textField)
             textField.resignFirstResponder()
         }
-//        emailTextField.resignFirstResponder()
-//        pwdTextField.resignFirstResponder()
         return true
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        
+        invalidLabel.alpha = 0.0
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

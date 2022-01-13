@@ -10,31 +10,34 @@ import SnapKit
 
 class SignUpViewController: UIViewController {
 
+    var signUpViewModel: SignUpViewModel!
+    
     private var containerView = UIView()
+    
     private lazy var exitButton:UIButton = {
         var button = UIButton(type: .system)
         button.setTitleColor(UIColor.black, for: .normal)
         button.setTitle("✖︎", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         button.addTarget(self, action: #selector(exitButtonAction), for: .touchUpInside)
         return button
     }()
     private lazy var emailLabel: UILabel = {
         var label = UILabel()
         label.text = "Email"
-        label.font = UIFont.italicSystemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: GlobalConstants.Font.Size.signUpLabelFontSize)
         return label
     }()
     private lazy var pwLabel: UILabel = {
         var label = UILabel()
         label.text = "Password"
-        label.font = UIFont.italicSystemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: GlobalConstants.Font.Size.signUpLabelFontSize)
         return label
     }()
     private lazy var nameLabel: UILabel = {
         var label = UILabel()
         label.text = "Name(선택)"
-        label.font = UIFont.italicSystemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: GlobalConstants.Font.Size.signUpLabelFontSize)
         return label
     }()
     private lazy var emailTextField : UITextField = {
@@ -60,7 +63,7 @@ class SignUpViewController: UIViewController {
     
     private lazy var registerButton : UIButton = {
         var button = UIButton.init(type: .system)
-        button.setTitle("register", for: .normal)
+        button.setTitle("등록", for: .normal)
         button.backgroundColor = GlobalConstants.Color.Background.loginButtonbackgroundColor
         button.setTitleColor(GlobalConstants.Color.Text.SignUpResisterButtonTextColor, for: .normal)
         button.layer.borderWidth = 1
@@ -85,7 +88,9 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        signUpViewModel = SignUpViewModel()
         setLayout()
+        callDataToUIUpdateFromVM()
         emailTextField.delegate = self
         pwTextField.delegate = self
         // Do any additional setup after loading the view.
@@ -94,6 +99,7 @@ class SignUpViewController: UIViewController {
         super.viewDidLayoutSubviews()
         setTextFieldUnderLine()
     }
+    
     private func setLayout() {
         
         view.backgroundColor = GlobalConstants.Color.Background.themeColor
@@ -178,6 +184,21 @@ class SignUpViewController: UIViewController {
         }
     }
     
+    private func callDataToUIUpdateFromVM() {
+        signUpViewModel.userInfoInputErrorMessage.bind { [weak self] in
+            self?.invalidLabel.text = $0
+            print($0)
+        }
+        signUpViewModel.registerSuccess.bind { [weak self] in
+            if $0 {
+                print("register 성공여부:\($0)")
+                self!.dismiss(animated: true, completion: nil)
+            } else {
+                // alert
+            }
+        }
+    }
+    
     private func setTextFieldUnderLine() {
         
         let border1: CALayer? = CALayer()
@@ -223,13 +244,14 @@ class SignUpViewController: UIViewController {
         
         guard let email = emailTextField.text else { return }
         guard let password = pwTextField.text else { return }
+        guard let name = nameTextField.text else { return }
         
-        let regex = try? NSRegularExpression.init(pattern: "[A-Z0-9a-z._&+-]+@[A-Z0-9a-z.-]+[.]+[A-Za-z]{2,20}")
-        let textToNS = email as NSString
-        let emailCheck = regex?.matches(in: email, options: [], range: NSRange(location: 0, length: textToNS.length)).map{textToNS.substring(with: $0.range)}
+        signUpViewModel.updateUserEmail(email: email)
+        signUpViewModel.updateUserPwd(password: password)
+        signUpViewModel.updateUserName(name: name)
         
-        if emailCheck!.isEmpty || email == "" {
-            self.invalidLabel.text = "이메일을 정확하게 입력하세요."
+        if signUpViewModel.validateUserInformation() == .invalidEmail {
+            
             UIView.animate(withDuration: 0.2) {
                 self.invalidLabel.snp.remakeConstraints({ (m) in
                     m.top.equalTo(self.nameTextField.snp.bottom).offset(5)
@@ -238,8 +260,15 @@ class SignUpViewController: UIViewController {
                 self.view.layoutIfNeeded()
             }
             return
-        } else if password == "" || password.count < 6 {
-            self.invalidLabel.text = "비밀번호를 6자리 이상 입력해 주세요."
+        } else if signUpViewModel.validateUserInformation() == .invalidPwd {
+            UIView.animate(withDuration: 0.2) {
+                self.invalidLabel.snp.remakeConstraints({ (m) in
+                    m.top.equalTo(self.nameTextField.snp.bottom).offset(5)
+                    m.leading.equalTo(self.nameTextField.snp.leading)
+                })
+                self.view.layoutIfNeeded()
+            }
+        } else if signUpViewModel.validateUserInformation() == .invalidName {
             UIView.animate(withDuration: 0.2) {
                 self.invalidLabel.snp.remakeConstraints({ (m) in
                     m.top.equalTo(self.nameTextField.snp.bottom).offset(5)
@@ -248,8 +277,7 @@ class SignUpViewController: UIViewController {
                 self.view.layoutIfNeeded()
             }
         } else {
-            print("계정 생성")
-            self.dismiss(animated: true, completion: nil)
+            signUpViewModel.register()
         }
     }
     
@@ -258,15 +286,18 @@ class SignUpViewController: UIViewController {
         self.pwTextField.resignFirstResponder()
         self.nameTextField.resignFirstResponder()
     }
-    
 }
 
 
 extension SignUpViewController : UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.emailTextField.resignFirstResponder()
-        self.pwTextField.resignFirstResponder()
-        self.nameTextField.resignFirstResponder()
+        if textField == emailTextField {
+            pwTextField.becomeFirstResponder()
+        } else if textField == pwTextField {
+            nameTextField.resignFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
         return true
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {

@@ -14,9 +14,9 @@ struct UserData: Codable {
         self.userPw = pw
         self.name = name
     }
-    let userEmail: String?
-    let userPw: String?
-    let name: String?
+    var userEmail: String
+    var userPw: String
+    var name: String
 }
 
 struct TravelData: Codable {

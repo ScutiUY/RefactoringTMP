@@ -8,6 +8,10 @@
 import Foundation
 import Alamofire
 
+import Foundation
+import Alamofire
+import UIKit
+
 enum APIError: Int, Error {
     case unknown = -1
     case jsonError = -2
@@ -18,20 +22,31 @@ enum APIError: Int, Error {
 }
 
 struct APIRequest {
-    static let url: String = "http://cutely93.cafe24.com:19624/mmb/joinMember.tpi"
-    
-    /// - GET
-    func getJson(error: APIError? = nil, completion: @escaping (UserData) -> Void) {
-        
-        AF.request(APIRequest.url, method: .get, headers: nil).validate(statusCode: 0..<300).responseJSON { response in
-            print(response)
-        }
-    }
+    static let url: String = "https://eunryuplaners.com:19624"
     
     /// - Post
-    func postData() {
-        AF.request(APIRequest.url, method: .post, parameters: nil).validate(statusCode: 0..<400).responseJSON { response in
-            print(response)
+    func getJourneyList(completed: @escaping (Result<String, Error>) -> Void) {
+        let url = "https://eunryuplaners.com:19624/mmb/checkLogin.tpi"
+        var request = URLRequest(url: URL(string: url)!)
+        let header = ["appCode": "TMP_iOS"]
+        request.timeoutInterval = 10
+        // POST 로 보낼 정보
+        
+        let params: [String: String] = ["":""]
+        let method = HTTPMethod(rawValue: "POST")
+        // httpBody 에 parameters 추가
+        
+        AF.request(url, method: method, parameters: params, headers: HTTPHeaders(header)).responseString { (response) in
+            switch response.result {
+            case .success:
+                print(response.result)
+                print("POST 성공")
+                let re = String(data: response.data!, encoding: .utf16)
+                completed(Result.success(re!))
+            case .failure(let error):
+                print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
+                completed(Result.failure(error))
+            }
         }
     }
 }

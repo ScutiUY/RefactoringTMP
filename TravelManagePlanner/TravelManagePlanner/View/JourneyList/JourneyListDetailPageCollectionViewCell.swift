@@ -7,6 +7,7 @@
 
 import UIKit
 
-class JourneyDetailListCollectionViewCell: UICollectionViewCell {
+class JourneyDetailPageCollectionViewCell: UICollectionViewCell {
     
 }
+

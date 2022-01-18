@@ -2,3 +2,4 @@ ${PODS_ROOT}/Target Support Files/Pods-TravelManagePlanner-TravelManagePlannerUI
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/JJFloatingActionButton/JJFloatingActionButton.framework
 ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
+${BUILT_PRODUCTS_DIR}/Then/Then.framework

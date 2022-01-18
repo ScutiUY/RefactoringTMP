@@ -9,7 +9,7 @@ target 'TravelManagePlanner' do
   pod 'SnapKit'
   pod 'Alamofire'
   pod 'JJFloatingActionButton'
-
+  pod 'Then'
   target 'TravelManagePlannerTests' do
     inherit! :search_paths
     # Pods for testing

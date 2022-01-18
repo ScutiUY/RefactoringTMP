@@ -10,11 +10,17 @@ import SnapKit
 
 class JourneyListDetailDateCollectionViewCell: UICollectionViewCell {
     
-    lazy var dateLabel: UILabel = {
+    override var isHighlighted: Bool {
+        didSet {
+            self.contentView.backgroundColor = isSelected ? .red : .clear
+        }
+    }
+    
+    private lazy var dateLabel: UILabel = {
         var label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 30)
+        label.font = UIFont.systemFont(ofSize: 15)
         label.textColor = .black
-        label.text = "Test - test"
+        label.textAlignment = .center
         return label
     }()
     
@@ -28,4 +34,14 @@ class JourneyListDetailDateCollectionViewCell: UICollectionViewCell {
             make.bottom.equalToSuperview()
         }
     }
+    func setLabelName(name: String) {
+        dateLabel.text = name
+    }
+    func selected() {
+        dateLabel.backgroundColor = .red
+    }
+    func deseleted() {
+        dateLabel.backgroundColor = .clear
+    }
+    
 }

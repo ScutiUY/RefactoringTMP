@@ -221,7 +221,6 @@
 				F00F17FB2778530200211A8D /* SampleViewController.swift */,
 				F0CADCCA2781AE5700DDC1CD /* SecondSampleViewController.swift */,
 				6B7D8B2B27833D95003B2266 /* ThemeViewController.swift */,
-				6B7D8B2D27833DC5003B2266 /* ThemeViewCell.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -229,6 +228,7 @@
 		F0A9C53C278046AE009EE5FE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6B7D8B2D27833DC5003B2266 /* ThemeViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

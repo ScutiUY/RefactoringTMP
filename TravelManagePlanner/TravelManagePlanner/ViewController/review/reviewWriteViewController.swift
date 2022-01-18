@@ -14,7 +14,6 @@ class reviewWriteViewController: UIViewController {
     let scrollView = UIScrollView()
     let contentView = UIView()
     
-    
     let headerview = UIView()
     
     lazy var headerTitle = UILabel().then({
@@ -103,7 +102,7 @@ class reviewWriteViewController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = GlobalConstants.Color.Background.themeColor
         Setup()
         headerSetUp()
         bodySetup()

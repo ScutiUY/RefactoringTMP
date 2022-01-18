@@ -9,8 +9,6 @@ import UIKit
 import SnapKit
 import JJFloatingActionButton
 
-
-
 let communityFloatingButton = communityFloatingButtonClass().communityFloatingButton
 let communitySearchBar = communitySearchBarClass().communitySearchBar
 let cellID = "Cell"
@@ -18,16 +16,21 @@ let commuinityCategorydata = ["전체", "연인", "가족", "친구", "기타"]
 
 class communityViewController: UIViewController {
     
+    
+    
+    
     // MARK: - Properties
     lazy var communityCategorytextField : UITextField = {
         let textfield = UITextField()
-        textfield.text = "전체"
+        textfield.text = " 전체"
         textfield.contentVerticalAlignment = .center
         textfield.tintColor = .clear
-        textfield.backgroundColor = .clear
+        textfield.layer.cornerRadius = 10
+        textfield.backgroundColor = .white
         return textfield
     }()
-    
+
+        
     let communityCategoryPickerView = UIPickerView()
     let communityCategoryToolBarSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     let communityCategoryToolBarButton = UIBarButtonItem(title: "확인", style: .done, target: self, action: #selector(onPickDone))
@@ -43,6 +46,7 @@ class communityViewController: UIViewController {
     lazy var communityCollectionView: UICollectionView = {
         let flowlayout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowlayout)
+        cv.backgroundColor = GlobalConstants.Color.Background.themeColor
         return cv
     }()
 
@@ -58,16 +62,16 @@ class communityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = GlobalConstants.Color.Background.themeColor
         communityCollectionView.dataSource = self
         communityCollectionView.delegate = self
         setCollectionView()
         setCommunityPickerView()
         setFloatingButton()
         communityCollectionView.register(DemoCell.self, forCellWithReuseIdentifier: cellID)
-       
-
-       
+        
+        
+        communityFloatingButton.firstButton
     }
     
     
@@ -86,7 +90,6 @@ class communityViewController: UIViewController {
         communityCategoryPickerView.delegate = self
         self.communityCategorytextField.inputView = communityCategoryPickerView
         self.communityCategorytextField.inputAccessoryView = communityCategoryToolBar
-        
     }
     
     
@@ -125,12 +128,7 @@ class communityViewController: UIViewController {
 
 }
 
-
-
-
-
 // MARK: - extensions
-
 
 extension communityViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -192,3 +190,10 @@ extension UITextField {
       self.leftViewMode = ViewMode.always
     }
 }
+//
+//@objc func ButtonPressed(_: UIButton)
+//{
+//    print("HEY!")
+//    let reviewVC = reviewWriteViewController()
+//    
+//}

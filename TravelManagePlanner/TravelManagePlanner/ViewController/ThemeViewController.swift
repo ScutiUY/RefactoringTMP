@@ -159,10 +159,9 @@ extension ThemeViewController: UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ThemeViewCell
         
-//        cell.cellLoadImage(imgDataName[indexPath.item])
-        
-        cell.imageView.image = (imgArray[indexPath.row])
-        
+//      cell.imageView.image = (imgArray[indexPath.row])
+        cell.cellLoadImage(imgDataName[indexPath.row])
+    
         return cell
     }
         

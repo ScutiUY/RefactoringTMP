@@ -11,6 +11,9 @@ class ThemeViewCell: UICollectionViewCell {
     
     lazy var imgButton: UIButton = {
        let button = UIButton()
+        // 어떤셀을 쓸건지 지정, 어떤이름으로 쓸건지 지정
+        
+        
 //        button.setImage(UIImage(named: "가족"), for: .normal)
         
         return button
@@ -35,10 +38,9 @@ class ThemeViewCell: UICollectionViewCell {
     
     func setUpView() {
         
-        self.backgroundColor = .red
-        
         addSubview(imgButton)
-        imgButton.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
+        addSubview(imageView)
+        imageView.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
             
         }
      

@@ -12,7 +12,21 @@ let cellID = "Cell"
 class ThemeViewController: UIViewController{
     
     // Assets의 사진 출력
-    lazy var imgDataName = ["커플", "가족", "우정", "기타"]
+    lazy var imgDataName = ["couple", "family", "friend", "guitar"]
+    
+    var imgArray: [UIImage] {
+        var img:[UIImage] = []
+        
+        for i in imgDataName {
+            if let asImg = UIImage(named: i) {
+                
+                img.append(asImg)
+            }else {
+                print("데이터 nil")
+            }
+        }
+        return img
+    }
     
     // 테마 타이틀
     lazy var themeTitleLabel: UILabel = {
@@ -44,18 +58,18 @@ class ThemeViewController: UIViewController{
         return collectionView
     }()
     
-//    // 이미지뷰 넣기
-//    let imageViewCell: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.contentMode = .scaleAspectFit
-////        imageView.backgroundColor = .green
-////        imageView.layer.shadowColor = UIColor.black.cgColor
-////        imageView.layer.shadowOffset = CGSize(width: 0, height: 4)
-////        imageView.layer.shadowRadius = 5
-////        imageView.layer.shadowOpacity = 0.3
-//
-//        return imageView
-//    }()
+    //    // 이미지뷰 넣기
+    //    let imageViewCell: UIImageView = {
+    //        let imageView = UIImageView()
+    //        imageView.contentMode = .scaleAspectFit
+    ////        imageView.backgroundColor = .green
+    ////        imageView.layer.shadowColor = UIColor.black.cgColor
+    ////        imageView.layer.shadowOffset = CGSize(width: 0, height: 4)
+    ////        imageView.layer.shadowRadius = 5
+    ////        imageView.layer.shadowOpacity = 0.3
+    //
+    //        return imageView
+    //    }()
     
     
     
@@ -66,7 +80,8 @@ class ThemeViewController: UIViewController{
         self.view.backgroundColor = UIColor(red: 243/255, green: 255/255, blue: 251/255, alpha: 1)
         
         setUpView()
-        setConstraints()
+        setLayout()
+        setDelegate()
     }
     
     
@@ -75,13 +90,13 @@ class ThemeViewController: UIViewController{
         view.addSubview(themeTitleLabel)
         view.addSubview(themeSubTitleLabel)
         view.addSubview(themeCollectionView)
-//        view.addSubview(imageViewCell)
-
+        //        view.addSubview(imageViewCell)
+        
         
     }
     
     // 뷰 레이아웃 설정
-    func setConstraints() {
+    func setLayout() {
         
         themeTitleLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(30)
@@ -103,63 +118,65 @@ class ThemeViewController: UIViewController{
             $0.leading.equalTo(view.snp.centerX).multipliedBy(0.1)
             $0.bottom.equalToSuperview().offset(-54)
             $0.trailing.equalToSuperview().offset(-24)
-         
-            // 어떤셀을 쓸건지 지정, 어떤이름으로 쓸건지 지정
-            themeCollectionView.register(ThemeViewCell.self, forCellWithReuseIdentifier: cellID)
             
-            // cell 사용을위한 권한 주기
-            themeCollectionView.dataSource = self
-            themeCollectionView.delegate = self
+            
         }
         
-//        imageViewCell.snp.makeConstraints {
-//            $0.top.equalTo(themeCollectionView.snp.top).multipliedBy(1.3)
-//            $0.leading.equalToSuperview().offset(24)
-//            $0.right.equalToSuperview().offset(-24)
-//
-//            // 콜렉션뷰에 cell넣어주기 여기서 설정하는게 맞나?
-//        }
-//
+        
+        //        imageViewCell.snp.makeConstraints {
+        //            $0.top.equalTo(themeCollectionView.snp.top).multipliedBy(1.3)
+        //            $0.leading.equalToSuperview().offset(24)
+        //            $0.right.equalToSuperview().offset(-24)
+        //
+        //            // 콜렉션뷰에 cell넣어주기 여기서 설정하는게 맞나?
+        //        }
+        //
     } // setConstraints
+    
+    func setDelegate() {
+        
+        
+        // cell 사용을위한 권한 주기
+        themeCollectionView.dataSource = self
+        themeCollectionView.delegate = self
+        
+        // 어떤셀을 쓸건지 지정, 어떤이름으로 쓸건지 지정
+        themeCollectionView.register(ThemeViewCell.self, forCellWithReuseIdentifier: cellID)
+    }
+    
 } // class
 
 extension ThemeViewController: UICollectionViewDataSource {
-    // Cell갯수
+    
+    // 셀 갯수 설정(필수)
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 4
-        // 4가아닌 배열수만큼으로 변경
+        return imgDataName.count
     }
     
-    // 해당cell선택시에 action delegate 함수구현
+    // 셀 형태 설정(필수)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ThemeViewCell
+        
+//        cell.cellLoadImage(imgDataName[indexPath.item])
+        
+        cell.imageView.image = (imgArray[indexPath.row])
+        
+        return cell
+    }
+        
+    // 해당 셀 선택시에 액션
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         //해당 셀클릭시 디테일 버튼 추후 구현하기
         //collectionView.cellForItemAtIndexPath(1)?.backgroundColor = UIColor.grayColor
         
         // 내가고른게 선택되는지 찍어보기
-        print()
+        print("클릭됬니")
     }
+}
 
-    
-    // Cell 백그라운드 이미지 지정 및 타입캐스팅
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ThemeViewCell
-        
-        // cell지정한 갯수만큼 이미지 출력
-//        cell.backgroundView = UIImageView(image: UIImage(named: imgData[indexPath.item]))
-
-//        cell.imgButton.setImage(UIImage(named: "우정"), for: .normal)
-//        cell.backgroundView = UIImageView(image: UIImage(named: imgData[indexPath.item]))
-        
-        cell.cellLoadImage(imgDataName[indexPath.item])
-        
-        return cell
-    }
-    
-    
-} // ThemeViewController
 
 extension ThemeViewController: UICollectionViewDelegate {
     
@@ -168,32 +185,32 @@ extension ThemeViewController: UICollectionViewDelegate {
 // cell 사이즈 정의
 extension ThemeViewController: UICollectionViewDelegateFlowLayout {
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        // 전체 공간에서 4를 나눠 배치
-//        return CGSize(width: (view.frame.width  - 10) / 3, height: (view.frame.width  - 10) / 3)
-//    }
+    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    //
+    //        // 전체 공간에서 4를 나눠 배치
+    //        return CGSize(width: (view.frame.width  - 10) / 3, height: (view.frame.width  - 10) / 3)
+    //    }
     
     // cell 가운대 정렬 정의
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let sectionInsets = UIEdgeInsets(top: 25, left: 5, bottom: 0, right: 5)
-           let width = collectionView.frame.width
-           let height = collectionView.frame.height
-           let itemsPerRow: CGFloat = 2
-           let widthPadding = sectionInsets.left * (itemsPerRow + 1)
-           let itemsPerColumn: CGFloat = 3
-           let heightPadding = sectionInsets.top * (itemsPerColumn + 1)
-           let cellWidth = (width - widthPadding) / itemsPerRow
-           let cellHeight = (height - heightPadding) / itemsPerColumn
-           
-           return CGSize(width: cellWidth, height: cellHeight)
-           
-       }
+        let width = collectionView.frame.width
+        let height = collectionView.frame.height
+        let itemsPerRow: CGFloat = 2
+        let widthPadding = sectionInsets.left * (itemsPerRow + 1)
+        let itemsPerColumn: CGFloat = 3
+        let heightPadding = sectionInsets.top * (itemsPerColumn + 1)
+        let cellWidth = (width - widthPadding) / itemsPerRow
+        let cellHeight = (height - heightPadding) / itemsPerColumn
+        
+        return CGSize(width: cellWidth, height: cellHeight)
+        
+    }
     
     // Cell간격 조절
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
         return 1
     }
-
+    
 }

@@ -12,7 +12,7 @@ let cellID = "Cell"
 class ThemeViewController: UIViewController{
     
     // Assets의 사진 출력
-    lazy var imgDataName = ["couple", "family", "friend", "guitar"]
+    lazy var imgDataName = ["커플", "가족", "우정", "기타"]
     
     var imgArray: [UIImage] {
         var img:[UIImage] = []
@@ -22,7 +22,7 @@ class ThemeViewController: UIViewController{
                 
                 img.append(asImg)
             }else {
-                print("데이터 nil")
+                print("imgData is nil")
             }
         }
         return img
@@ -52,6 +52,7 @@ class ThemeViewController: UIViewController{
         let flowlayout = UICollectionViewFlowLayout()
         // 셀 가로세로 정의(미정의시 가로 디폴트)
         flowlayout.scrollDirection = .vertical
+        
         let collectionView = UICollectionView (frame: .zero, collectionViewLayout: flowlayout)
         collectionView.backgroundColor = .clear
         
@@ -114,7 +115,7 @@ class ThemeViewController: UIViewController{
         
         
         themeCollectionView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(150)
+            $0.top.equalTo(themeSubTitleLabel.snp.bottom).multipliedBy(1.3)
             $0.leading.equalTo(view.snp.centerX).multipliedBy(0.1)
             $0.bottom.equalToSuperview().offset(-54)
             $0.trailing.equalToSuperview().offset(-24)
@@ -134,7 +135,6 @@ class ThemeViewController: UIViewController{
     } // setConstraints
     
     func setDelegate() {
-        
         
         // cell 사용을위한 권한 주기
         themeCollectionView.dataSource = self
@@ -159,12 +159,13 @@ extension ThemeViewController: UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ThemeViewCell
         
-//      cell.imageView.image = (imgArray[indexPath.row])
+        //      cell.imageView.image = (imgArray[indexPath.row])
         cell.cellLoadImage(imgDataName[indexPath.row])
-    
+        cell.imgLabel.text = imgDataName[indexPath.row]
+        
         return cell
     }
-        
+    
     // 해당 셀 선택시에 액션
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
@@ -183,12 +184,6 @@ extension ThemeViewController: UICollectionViewDelegate {
 
 // cell 사이즈 정의
 extension ThemeViewController: UICollectionViewDelegateFlowLayout {
-    
-    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    //
-    //        // 전체 공간에서 4를 나눠 배치
-    //        return CGSize(width: (view.frame.width  - 10) / 3, height: (view.frame.width  - 10) / 3)
-    //    }
     
     // cell 가운대 정렬 정의
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

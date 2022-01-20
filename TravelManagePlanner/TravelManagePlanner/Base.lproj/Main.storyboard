@@ -26,10 +26,17 @@
         <!--Community View Controller-->
         <scene sceneID="KmB-ko-B6v">
             <objects>
-                <viewController storyboardIdentifier="communityViewSB" id="VyF-qD-1Gf" customClass="communityViewController" sceneMemberID="viewController"/>
+                <viewController storyboardIdentifier="communityViewSB" id="VyF-qD-1Gf" customClass="communityViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Aug-Ti-n47">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <viewLayoutGuide key="safeArea" id="uRa-sc-ooP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lLM-5I-vcb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="466.66666666666669" y="-805.58035714285711"/>
+            <point key="canvasLocation" x="822" y="-858"/>
         </scene>
         <!--Review Write View Controller-->
         <scene sceneID="MzD-w2-OSD">

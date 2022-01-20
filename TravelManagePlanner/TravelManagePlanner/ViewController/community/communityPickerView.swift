@@ -42,7 +42,6 @@ class communityPickerViewClass: UIPickerView {
     lazy var communityPickerView : UIPickerView = {
         let picker = UIPickerView()
         picker.frame = CGRect(x: 100, y: 100, width: 200, height: 200)
-        
         return picker
     }()
 

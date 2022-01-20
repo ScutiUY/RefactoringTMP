@@ -10,6 +10,8 @@ target 'TravelManagePlanner' do
   pod 'Alamofire'
   pod 'JJFloatingActionButton'
   pod 'Then'
+  pod 'BSImagePicker'
+
   target 'TravelManagePlannerTests' do
     inherit! :search_paths
     # Pods for testing

@@ -8,13 +8,11 @@
 import UIKit
 import SnapKit
 
-class JourneyDetailViewController: UIViewController {
-    let images: [UIImage] = [UIImage(named: "Seoul1")!, UIImage(named: "Seoul2")!, UIImage(named: "Seoul3")!, UIImage(named: "Seoul4")!]
+class DestinationDetailViewController: UIViewController {
     
-    lazy var detailScrollView: UIScrollView = {
-        var scrollView = UIScrollView()
-        return scrollView
-    }()
+    var destinationDetailViewModel: DestinationDetailViewModel!
+    
+    let images: [UIImage] = [UIImage(named: "Seoul1")!, UIImage(named: "Seoul2")!, UIImage(named: "Seoul3")!, UIImage(named: "Seoul4")!]
     
     lazy var imageAnchorView: UIView = {
         var view = UIView()
@@ -32,35 +30,24 @@ class JourneyDetailViewController: UIViewController {
         return collectionView
     }()
     
-    lazy var contentTableView: UITableView = {
-        var tableView = UITableView()
-        return tableView
-    }()
-    
     lazy var imagePageControl: UIPageControl = {
         var pageControl = UIPageControl()
         pageControl.currentPage = 0
         return pageControl
     }()
     
-    lazy var contentAnchorView: UIView = {
-        var view = UIView()
-        return view
-    }()
-    
-    lazy var titleLabel: UILabel = {
-        var label = UILabel()
-        label.text = "Sample"
-        return label
-    }()
-    lazy var descTextView: UITextView = {
-        var textView = UITextView()
-        textView.text = "Sample"
-        return textView
+    lazy var destinationDetailContentTableView: UITableView = {
+        var tableView = UITableView()
+        tableView.allowsSelection = false
+        tableView.register(DestinationDetailContentTableViewCell.self, forCellReuseIdentifier: "JDCcell")
+        tableView.register(DestinationDetailContentTableViewHeader.self, forHeaderFooterViewReuseIdentifier: "header")
+        return tableView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        destinationDetailViewModel = DestinationDetailViewModel()
+        destinationDetailViewModel.getDestinationData()
         setLayout()
         setDelegate()
         // Do any additional setup after loading the view.
@@ -71,12 +58,12 @@ class JourneyDetailViewController: UIViewController {
         imageAnchorView.addSubview(imageSliderCollectionView)
         imageAnchorView.addSubview(imagePageControl)
         
-        view.addSubview(contentAnchorView)
+        view.addSubview(destinationDetailContentTableView)
         
         imageAnchorView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.bottom.equalTo(view.snp.centerY)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.centerY)
             make.width.equalToSuperview()
         }
         imageSliderCollectionView.snp.makeConstraints { make in
@@ -90,23 +77,25 @@ class JourneyDetailViewController: UIViewController {
             make.width.equalToSuperview().multipliedBy(0.7)
         }
         
-        contentAnchorView.snp.makeConstraints { make in
+        destinationDetailContentTableView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.centerY)
+            make.bottom.equalTo(view.snp.bottom)
             make.centerX.equalTo(view.snp.centerX)
             make.width.equalTo(view.snp.width).multipliedBy(0.9)
-            make.height.equalTo(view.snp.height).multipliedBy(0.45)
+            
         }
+        
     }
     
     func setDelegate(){
         imageSliderCollectionView.delegate = self
         imageSliderCollectionView.dataSource = self
-        contentTableView.delegate = self
-        contentTableView.dataSource = self
+        destinationDetailContentTableView.delegate = self
+        destinationDetailContentTableView.dataSource = self
     }
     
 }
-extension JourneyDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension DestinationDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         imagePageControl.numberOfPages = images.count
         return images.count
@@ -118,27 +107,34 @@ extension JourneyDetailViewController: UICollectionViewDelegate, UICollectionVie
         cell.setCollectionViewIngredient(image: image)
         return cell
     }
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if let indexPath = imageSliderCollectionView.indexPathsForVisibleItems.first {
-            imagePageControl.currentPage = indexPath.row
-        }
-    }
+    
 }
-extension JourneyDetailViewController: UICollectionViewDelegateFlowLayout {
+extension DestinationDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return imageSliderCollectionView.frame.size
     }
     
 }
-extension JourneyDetailViewController: UITableViewDelegate, UITableViewDataSource {
+extension DestinationDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = destinationDetailContentTableView.dequeueReusableCell(withIdentifier: "JDCcell", for: indexPath) as! DestinationDetailContentTableViewCell
+        cell.setLayout()
         return cell
     }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 400
+    }
     
+}
+
+extension DestinationDetailViewController { // scrollview
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let idx = imageSliderCollectionView.visibleCells.last!
+        imagePageControl.currentPage = imageSliderCollectionView.indexPath(for: idx)!.row
+    }
     
 }

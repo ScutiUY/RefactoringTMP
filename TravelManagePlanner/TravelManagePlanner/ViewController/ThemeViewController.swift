@@ -83,7 +83,10 @@ class ThemeViewController: UIViewController{
         setUpView()
         setLayout()
         setDelegate()
+        
+        
     }
+    
     
     
     // 뷰 요소들 화면에 세팅하기
@@ -179,6 +182,13 @@ extension ThemeViewController: UICollectionViewDataSource {
 
 
 extension ThemeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        // main에 있는 두번째화면 불러오기(스토리보드 활용)
+        let secondView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SampleViewController") as! SampleViewController
+        
+        navigationController!.pushViewController(secondView, animated: true)
+    }
     
 }
 
@@ -187,7 +197,7 @@ extension ThemeViewController: UICollectionViewDelegateFlowLayout {
     
     // cell 가운대 정렬 정의
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let sectionInsets = UIEdgeInsets(top: 5, left: 5, bottom: 0, right: 5)
+        let sectionInsets = UIEdgeInsets(top: 2, left: 5, bottom: 0, right: 5)
         let width = collectionView.frame.width
         let height = collectionView.frame.height
         let itemsPerRow: CGFloat = 2

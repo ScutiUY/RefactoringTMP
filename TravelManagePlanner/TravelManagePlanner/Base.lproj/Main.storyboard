@@ -26,17 +26,33 @@
         <!--Theme View Controller-->
         <scene sceneID="cl2-8v-JYV">
             <objects>
-                <viewController storyboardIdentifier="ThemeViewSB" id="PBy-BC-b4u" customClass="ThemeViewController" customModule="TravelManagePlanner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ThemeViewSB" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PBy-BC-b4u" customClass="ThemeViewController" customModule="TravelManagePlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Yd2-Cf-jRj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="ue8-W9-diy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="3yp-vN-vyz"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jHW-sH-85K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="374" y="-754"/>
+            <point key="canvasLocation" x="1731.8840579710147" y="-754.01785714285711"/>
+        </scene>
+        <!--Second Sample View Controller-->
+        <scene sceneID="x4H-cz-PUH">
+            <objects>
+                <viewController storyboardIdentifier="SecondSampleSB" id="585-5K-ft9" customClass="SecondSampleViewController" customModule="TravelManagePlanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="o9J-HO-aFW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="UTo-fe-pch"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HBD-TA-N7M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2471.0144927536235" y="-754.01785714285711"/>
         </scene>
         <!--Sample View Controller-->
         <scene sceneID="tne-QT-ifu">

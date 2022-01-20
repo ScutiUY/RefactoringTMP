@@ -20,6 +20,7 @@ class ThemeViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 25)
         label.textAlignment = .center
+        label.textColor = UIColor(red: 94/255, green: 94/255, blue: 94/255, alpha: 1)
         
         return label
     }()
@@ -31,6 +32,8 @@ class ThemeViewCell: UICollectionViewCell {
         
         return stackView
     }()
+    
+ 
     
     // 함수생성후 뷰컨에서 호출 이미지를 뷰컨에서 넘겨줌
     func cellLoadImage(_ imgData: String) {
@@ -47,8 +50,8 @@ class ThemeViewCell: UICollectionViewCell {
         super.init(frame: frame)
         setUpView()
         setLayout()
-        
     }
+    
     
     func setUpView() {
         addSubview(imgStack)
@@ -57,14 +60,6 @@ class ThemeViewCell: UICollectionViewCell {
     
     func setLayout() {
         imgStack.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
-        
-        //        imgLabel.frame = CGRect(x: 1, y: 1, width: contentView.frame.width, height: contentView.frame.height)
-        
-        //        imgLabel.snp.makeConstraints {
-        //            $0.top.equalTo(imgButton.snp.bottom).multipliedBy(1)
-        //            $0.leading.equalToSuperview().offset(24)
-        //            $0.right.equalToSuperview().offset(-24)
-        //        }
         
     }
     

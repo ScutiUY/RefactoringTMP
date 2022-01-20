@@ -24,6 +24,7 @@ enum GlobalConstants {
         }
         enum Background {
             static var themeColor: UIColor = UIColor(red: 131/255, green: 247/255, blue: 178/255, alpha: 1)
+            
             static var loginButtonbackgroundColor: UIColor = .blue
         }
         

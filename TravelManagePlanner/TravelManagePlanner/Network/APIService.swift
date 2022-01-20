@@ -18,20 +18,17 @@ enum APIError: Int, Error {
 }
 
 struct APIRequest {
-    static let url: String = "http://cutely93.cafe24.com:19624/mmb/joinMember.tpi"
+    static let url: String = "https://eunryuplaners.com:19624"
+    static let headerDic: [String: String] = ["appCode": "TMP_iOS"]
     
-    /// - GET
-    func getJson(error: APIError? = nil, completion: @escaping (UserData) -> Void) {
-        
-        AF.request(APIRequest.url, method: .get, headers: nil).validate(statusCode: 0..<300).responseJSON { response in
-            print(response)
-        }
-    }
     
     /// - Post
-    func postData() {
-        AF.request(APIRequest.url, method: .post, parameters: nil).validate(statusCode: 0..<400).responseJSON { response in
-            print(response)
+    func getJourneyDetailImage(completion: @escaping (DestinationDetailData) -> Void) {
+        let destinationDataURL = "/plan/getAllShopList.tpi" // 임시
+        
+        AF.request(APIRequest.url + destinationDataURL, method: .post, headers: HTTPHeaders(APIRequest.headerDic)).validate().responseString { response in
+            print("",response.result)
+            
         }
     }
 }

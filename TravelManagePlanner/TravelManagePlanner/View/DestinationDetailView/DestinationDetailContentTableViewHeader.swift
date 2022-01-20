@@ -7,7 +7,7 @@
 
 import UIKit
 
-class JourneyDetailContentTableViewHeader: UITableViewHeaderFooterView {
+class DestinationDetailContentTableViewHeader: UITableViewHeaderFooterView {
 
     /*
     // Only override draw() if you perform custom drawing.

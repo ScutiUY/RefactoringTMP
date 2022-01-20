@@ -9,10 +9,6 @@ import Foundation
 import Alamofire
 
 class DestinationInfoRepositories: NSObject {
-    /**
-     * 국가평생교육진흥원_K-MOOC_강좌정보API
-     * https://www.data.go.kr/data/15042355/openapi.do
-     */
 
     private let httpClient = HttpClient(baseUrl: "https://eunryuplaners.com:19624")
     private var params = ""

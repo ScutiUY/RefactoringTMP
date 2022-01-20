@@ -19,15 +19,18 @@ class ThemeViewCell: UICollectionViewCell {
     lazy var imgLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 25)
+        label.textAlignment = .center
         
         return label
     }()
     
-    //    let imageView: UIImageView = {
-    //           let iv = UIImageView()
-    //           iv.contentMode = .scaleAspectFit
-    //           return iv
-    //    }()
+    lazy var imgStack: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [imgButton, imgLabel])
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        
+        return stackView
+    }()
     
     // 함수생성후 뷰컨에서 호출 이미지를 뷰컨에서 넘겨줌
     func cellLoadImage(_ imgData: String) {
@@ -48,20 +51,20 @@ class ThemeViewCell: UICollectionViewCell {
     }
     
     func setUpView() {
-        addSubview(imgButton)
-        addSubview(imgLabel)
+        addSubview(imgStack)
+        //        addSubview(imgLabel)
     }
     
     func setLayout() {
-        imgButton.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
+        imgStack.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
         
-        imgLabel.frame = CGRect(x: 1, y: 1, width: contentView.frame.width, height: contentView.frame.height)
+        //        imgLabel.frame = CGRect(x: 1, y: 1, width: contentView.frame.width, height: contentView.frame.height)
         
-//        imgLabel.snp.makeConstraints {
-//            $0.top.equalTo(imgButton.snp.bottom).multipliedBy(1)
-//            $0.leading.equalToSuperview().offset(24)
-//            $0.right.equalToSuperview().offset(-24)
-//        }
+        //        imgLabel.snp.makeConstraints {
+        //            $0.top.equalTo(imgButton.snp.bottom).multipliedBy(1)
+        //            $0.leading.equalToSuperview().offset(24)
+        //            $0.right.equalToSuperview().offset(-24)
+        //        }
         
     }
     

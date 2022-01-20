@@ -187,7 +187,7 @@ extension ThemeViewController: UICollectionViewDelegateFlowLayout {
     
     // cell 가운대 정렬 정의
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let sectionInsets = UIEdgeInsets(top: 25, left: 5, bottom: 0, right: 5)
+        let sectionInsets = UIEdgeInsets(top: 5, left: 5, bottom: 0, right: 5)
         let width = collectionView.frame.width
         let height = collectionView.frame.height
         let itemsPerRow: CGFloat = 2

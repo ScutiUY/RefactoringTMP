@@ -171,9 +171,9 @@ extension ThemeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         // main에 있는 두번째화면 불러오기(스토리보드 활용)
-        let secondView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SampleViewController") as! SampleViewController
+        let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "DetaileSettingViewSB") as! DetaileSettingViewController
         
-        navigationController!.pushViewController(secondView, animated: true)
+        navigationController!.pushViewController(nextView, animated: true)
     }
     
 }

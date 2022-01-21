@@ -23,14 +23,12 @@
 		F00F182A2778637D00211A8D /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F18292778637D00211A8D /* APIService.swift */; };
 		F0782693278FB4C300B9319F /* APIResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0782692278FB4C300B9319F /* APIResponseData.swift */; };
 		F079D513278ADA9E004BF9F6 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F079D512278ADA9E004BF9F6 /* SignUpViewModel.swift */; };
-		F07E160C2788DA5E00BE0563 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07E160B2788DA5D00BE0563 /* Observer.swift */; };
 		F0A9C537277E7FEE009EE5FE /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A9C536277E7FEE009EE5FE /* ImageLoader.swift */; };
-		F0AFB7792783F96500FBA3FF /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AFB7782783F96500FBA3FF /* Repository.swift */; };
 		F0CADCC62780DEB900DDC1CD /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCC52780DEB900DDC1CD /* TabbarController.swift */; };
 		F0CADCC92781AAF400DDC1CD /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCC82781AAF400DDC1CD /* UIImage+extension.swift */; };
 		F0CADCCB2781AE5700DDC1CD /* SecondSampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCCA2781AE5700DDC1CD /* SecondSampleViewController.swift */; };
 		F0CADCDD2781EEFA00DDC1CD /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCDC2781EEFA00DDC1CD /* SignInViewController.swift */; };
-		F0CADCDF2781EF2D00DDC1CD /* GlobalConstrants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCDE2781EF2D00DDC1CD /* GlobalConstrants.swift */; };
+		F0CADCDF2781EF2D00DDC1CD /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCDE2781EF2D00DDC1CD /* GlobalConstants.swift */; };
 		F0CADCE12781EF5500DDC1CD /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCE02781EF5500DDC1CD /* LoadingButton.swift */; };
 		F0CADCE52781EFB500DDC1CD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCE42781EFB500DDC1CD /* SignUpViewController.swift */; };
 		F0CADCE72781F63D00DDC1CD /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCE62781F63D00DDC1CD /* SignInViewModel.swift */; };
@@ -78,14 +76,12 @@
 		F00F18292778637D00211A8D /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		F0782692278FB4C300B9319F /* APIResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponseData.swift; sourceTree = "<group>"; };
 		F079D512278ADA9E004BF9F6 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
-		F07E160B2788DA5D00BE0563 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		F0A9C536277E7FEE009EE5FE /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
-		F0AFB7782783F96500FBA3FF /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		F0CADCC52780DEB900DDC1CD /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		F0CADCC82781AAF400DDC1CD /* UIImage+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
 		F0CADCCA2781AE5700DDC1CD /* SecondSampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSampleViewController.swift; sourceTree = "<group>"; };
 		F0CADCDC2781EEFA00DDC1CD /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		F0CADCDE2781EF2D00DDC1CD /* GlobalConstrants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstrants.swift; sourceTree = "<group>"; };
+		F0CADCDE2781EF2D00DDC1CD /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		F0CADCE02781EF5500DDC1CD /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoadingButton.swift; path = TravelManagePlanner/View/LoadingButton.swift; sourceTree = SOURCE_ROOT; };
 		F0CADCE42781EFB500DDC1CD /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F0CADCE62781F63D00DDC1CD /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
@@ -168,8 +164,6 @@
 		F00F17F62778530200211A8D /* TravelManagePlanner */ = {
 			isa = PBXGroup;
 			children = (
-				F07E160A2788DA4300BE0563 /* Utilities */,
-				F0AFB7772783F94C00FBA3FF /* Repository */,
 				F0CADCE22781EF8700DDC1CD /* View */,
 				F00F17F72778530200211A8D /* AppDelegate.swift */,
 				F00F17F92778530200211A8D /* SceneDelegate.swift */,
@@ -233,14 +227,6 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		F07E160A2788DA4300BE0563 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				F07E160B2788DA5D00BE0563 /* Observer.swift */,
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
 		F0AFB7752783D86200FBA3FF /* SignIn+SignUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,19 +245,11 @@
 			path = "SignIn+SignUpVM";
 			sourceTree = "<group>";
 		};
-		F0AFB7772783F94C00FBA3FF /* Repository */ = {
-			isa = PBXGroup;
-			children = (
-				F0AFB7782783F96500FBA3FF /* Repository.swift */,
-			);
-			path = Repository;
-			sourceTree = "<group>";
-		};
 		F0CADCC72781AAB600DDC1CD /* MISC */ = {
 			isa = PBXGroup;
 			children = (
 				F0CADCC82781AAF400DDC1CD /* UIImage+extension.swift */,
-				F0CADCDE2781EF2D00DDC1CD /* GlobalConstrants.swift */,
+				F0CADCDE2781EF2D00DDC1CD /* GlobalConstants.swift */,
 			);
 			path = MISC;
 			sourceTree = "<group>";
@@ -533,11 +511,9 @@
 			files = (
 				F00F17FC2778530200211A8D /* SampleViewController.swift in Sources */,
 				F079D513278ADA9E004BF9F6 /* SignUpViewModel.swift in Sources */,
-				F07E160C2788DA5E00BE0563 /* Observer.swift in Sources */,
 				F0CADCE12781EF5500DDC1CD /* LoadingButton.swift in Sources */,
-				F0AFB7792783F96500FBA3FF /* Repository.swift in Sources */,
 				F00F182A2778637D00211A8D /* APIService.swift in Sources */,
-				F0CADCDF2781EF2D00DDC1CD /* GlobalConstrants.swift in Sources */,
+				F0CADCDF2781EF2D00DDC1CD /* GlobalConstants.swift in Sources */,
 				F0CADCCB2781AE5700DDC1CD /* SecondSampleViewController.swift in Sources */,
 				F0CADCC92781AAF400DDC1CD /* UIImage+extension.swift in Sources */,
 				F00F17F82778530200211A8D /* AppDelegate.swift in Sources */,

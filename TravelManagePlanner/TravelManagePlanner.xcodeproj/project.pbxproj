@@ -23,6 +23,7 @@
 		F00F181B2778530500211A8D /* TravelManagePlannerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F181A2778530500211A8D /* TravelManagePlannerUITestsLaunchTests.swift */; };
 		F00F182827785DE900211A8D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F182727785DE900211A8D /* UserData.swift */; };
 		F00F182A2778637D00211A8D /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F18292778637D00211A8D /* APIService.swift */; };
+		F080CF26279AE7C1007C1151 /* HomeTabSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F080CF25279AE7C1007C1151 /* HomeTabSB.storyboard */; };
 		F0A9C537277E7FEE009EE5FE /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A9C536277E7FEE009EE5FE /* ImageLoader.swift */; };
 		F0CADCC62780DEB900DDC1CD /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCC52780DEB900DDC1CD /* TabbarController.swift */; };
 		F0CADCC92781AAF400DDC1CD /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCC82781AAF400DDC1CD /* UIImage+extension.swift */; };
@@ -72,6 +73,7 @@
 		F00F181A2778530500211A8D /* TravelManagePlannerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelManagePlannerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F00F182727785DE900211A8D /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		F00F18292778637D00211A8D /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		F080CF25279AE7C1007C1151 /* HomeTabSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeTabSB.storyboard; sourceTree = "<group>"; };
 		F0A9C536277E7FEE009EE5FE /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		F0CADCC52780DEB900DDC1CD /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		F0CADCC82781AAF400DDC1CD /* UIImage+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
@@ -160,11 +162,11 @@
 				F00F17F92778530200211A8D /* SceneDelegate.swift */,
 				F0A9C53C278046AE009EE5FE /* View */,
 				F00F183027797A9D00211A8D /* ViewController */,
-				F00F182F27797A6900211A8D /* ViewModel */,
 				F00F182C277866C500211A8D /* Model */,
 				F00F182B277866B900211A8D /* Network */,
 				F0CADCC72781AAB600DDC1CD /* MISC */,
 				F00F17FD2778530200211A8D /* Main.storyboard */,
+				F080CF25279AE7C1007C1151 /* HomeTabSB.storyboard */,
 				F00F18002778530500211A8D /* Assets.xcassets */,
 				F00F18022778530500211A8D /* LaunchScreen.storyboard */,
 				F00F180D2778530500211A8D /* TravelManagePlannerTests */,
@@ -207,28 +209,37 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		F00F182F27797A6900211A8D /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		F00F183027797A9D00211A8D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				F0CADCC52780DEB900DDC1CD /* TabbarController.swift */,
+				F080CF28279AE7D3007C1151 /* HomeTabVC */,
 				F00F17FB2778530200211A8D /* SampleViewController.swift */,
+				F0CADCC52780DEB900DDC1CD /* TabbarController.swift */,
 				F0CADCCA2781AE5700DDC1CD /* SecondSampleViewController.swift */,
-				6B7D8B2B27833D95003B2266 /* ThemeViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		F080CF27279AE7C7007C1151 /* HomeTabView */ = {
+			isa = PBXGroup;
+			children = (
+				6B7D8B2D27833DC5003B2266 /* ThemeViewCell.swift */,
+			);
+			path = HomeTabView;
+			sourceTree = "<group>";
+		};
+		F080CF28279AE7D3007C1151 /* HomeTabVC */ = {
+			isa = PBXGroup;
+			children = (
+				6B7D8B2B27833D95003B2266 /* ThemeViewController.swift */,
+			);
+			path = HomeTabVC;
 			sourceTree = "<group>";
 		};
 		F0A9C53C278046AE009EE5FE /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6B7D8B2D27833DC5003B2266 /* ThemeViewCell.swift */,
+				F080CF27279AE7C7007C1151 /* HomeTabView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -351,6 +362,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F080CF26279AE7C1007C1151 /* HomeTabSB.storyboard in Resources */,
 				F00F18042778530500211A8D /* LaunchScreen.storyboard in Resources */,
 				F00F18012778530500211A8D /* Assets.xcassets in Resources */,
 				F00F17FF2778530200211A8D /* Main.storyboard in Resources */,

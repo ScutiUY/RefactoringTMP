@@ -31,7 +31,6 @@
 		F0CADCC62780DEB900DDC1CD /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCC52780DEB900DDC1CD /* TabbarController.swift */; };
 		F0CADCC92781AAF400DDC1CD /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCC82781AAF400DDC1CD /* UIImage+extension.swift */; };
 		F0CADCCB2781AE5700DDC1CD /* SecondSampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCCA2781AE5700DDC1CD /* SecondSampleViewController.swift */; };
-		F0CADCE92782117E00DDC1CD /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCE82782117E00DDC1CD /* GlobalConstants.swift */; };
 		F0CADCEB278212D500DDC1CD /* DestinationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCEA278212D500DDC1CD /* DestinationDetailViewController.swift */; };
 		F0CADCEE2782139500DDC1CD /* ImageSliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCED2782139500DDC1CD /* ImageSliderCollectionViewCell.swift */; };
 		F0CADCF1278217F700DDC1CD /* DestinationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCF0278217F700DDC1CD /* DestinationDetailViewModel.swift */; };
@@ -87,7 +86,6 @@
 		F0CADCC52780DEB900DDC1CD /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		F0CADCC82781AAF400DDC1CD /* UIImage+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
 		F0CADCCA2781AE5700DDC1CD /* SecondSampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSampleViewController.swift; sourceTree = "<group>"; };
-		F0CADCE82782117E00DDC1CD /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		F0CADCEA278212D500DDC1CD /* DestinationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationDetailViewController.swift; sourceTree = "<group>"; };
 		F0CADCED2782139500DDC1CD /* ImageSliderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderCollectionViewCell.swift; sourceTree = "<group>"; };
 		F0CADCF0278217F700DDC1CD /* DestinationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationDetailViewModel.swift; sourceTree = "<group>"; };
@@ -282,7 +280,6 @@
 			isa = PBXGroup;
 			children = (
 				F0CADCC82781AAF400DDC1CD /* UIImage+extension.swift */,
-				F0CADCE82782117E00DDC1CD /* GlobalConstants.swift */,
 			);
 			path = MISC;
 			sourceTree = "<group>";
@@ -547,7 +544,6 @@
 				F0AFB7722783D7AF00FBA3FF /* Observer.swift in Sources */,
 				F00F17FC2778530200211A8D /* SampleViewController.swift in Sources */,
 				F00F182A2778637D00211A8D /* APIService.swift in Sources */,
-				F0CADCE92782117E00DDC1CD /* GlobalConstants.swift in Sources */,
 				F0B258592798FDFC0042771F /* Repositories.swift in Sources */,
 				F076BDDA2796941000AF6FFD /* DestinationDetailContentTableViewHeader.swift in Sources */,
 				F0CADCCB2781AE5700DDC1CD /* SecondSampleViewController.swift in Sources */,

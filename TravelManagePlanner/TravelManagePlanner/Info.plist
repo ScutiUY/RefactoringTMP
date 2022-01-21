@@ -4,8 +4,11 @@
 <dict>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>localhost</key>
+			<string> https://eunryuplaners.com:19624</string>
+		</dict>
 	</dict>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

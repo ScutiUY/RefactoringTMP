@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class Observer<T> {
+final class Observable<T> {
     
     // didSet: property observer를 사용하기 위해선 초기값이 무조건 필요
     init(_ value: T) {

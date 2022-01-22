@@ -190,7 +190,6 @@
 				F00F17F92778530200211A8D /* SceneDelegate.swift */,
 				F0A9C53C278046AE009EE5FE /* View */,
 				F00F183027797A9D00211A8D /* ViewController */,
-				F00F182F27797A6900211A8D /* ViewModel */,
 				F00F182C277866C500211A8D /* Model */,
 				F00F182B277866B900211A8D /* Network */,
 				F0CADCC72781AAB600DDC1CD /* MISC */,
@@ -235,13 +234,6 @@
 				F00F182727785DE900211A8D /* UserData.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		F00F182F27797A6900211A8D /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		F00F183027797A9D00211A8D /* ViewController */ = {

@@ -49,6 +49,8 @@
 		F0CADCEE2782139500DDC1CD /* ImageSliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCED2782139500DDC1CD /* ImageSliderCollectionViewCell.swift */; };
 		F0CADCF1278217F700DDC1CD /* DestinationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCF0278217F700DDC1CD /* DestinationDetailViewModel.swift */; };
 		F0E91D6B279BA19900B6024A /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E91D6A279BA19900B6024A /* CommunityViewController.swift */; };
+		F0F05B53279BA6AA009A1291 /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F05B52279BA6AA009A1291 /* UIImage+extension.swift */; };
+		F0F05B55279BA6D1009A1291 /* SampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F05B54279BA6D1009A1291 /* SampleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +122,8 @@
 		F0CADCED2782139500DDC1CD /* ImageSliderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderCollectionViewCell.swift; sourceTree = "<group>"; };
 		F0CADCF0278217F700DDC1CD /* DestinationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationDetailViewModel.swift; sourceTree = "<group>"; };
 		F0E91D6A279BA19900B6024A /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
+		F0F05B52279BA6AA009A1291 /* UIImage+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
+		F0F05B54279BA6D1009A1291 /* SampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleViewController.swift; sourceTree = "<group>"; };
 		F7ABD5855A525E4DBDAD53D2 /* Pods_TravelManagePlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravelManagePlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F91249C0AC5B6BF279DDDB5F /* Pods-TravelManagePlanner-TravelManagePlannerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelManagePlanner-TravelManagePlannerUITests.debug.xcconfig"; path = "Target Support Files/Pods-TravelManagePlanner-TravelManagePlannerUITests/Pods-TravelManagePlanner-TravelManagePlannerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -286,6 +290,7 @@
 				4AB15DBD278FB1BC008135FB /* community */,
 				F080CF28279AE7D3007C1151 /* HomeTabVC */,
 				F0CADCC52780DEB900DDC1CD /* TabbarController.swift */,
+				F0F05B54279BA6D1009A1291 /* SampleViewController.swift */,
 				F0CADCCA2781AE5700DDC1CD /* SecondSampleViewController.swift */,
 				F0AFB7732783D7C800FBA3FF /* DestinationDetail */,
 				F0AFB7752783D86200FBA3FF /* SignIn+SignUp */,
@@ -373,6 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				F0CADCDE2781EF2D00DDC1CD /* GlobalConstants.swift */,
+				F0F05B52279BA6AA009A1291 /* UIImage+extension.swift */,
 			);
 			path = MISC;
 			sourceTree = "<group>";
@@ -648,6 +654,7 @@
 				F0B258592798FDFC0042771F /* Repositories.swift in Sources */,
 				F076BDDA2796941000AF6FFD /* DestinationDetailContentTableViewHeader.swift in Sources */,
 				F0CADCEE2782139500DDC1CD /* ImageSliderCollectionViewCell.swift in Sources */,
+				F0F05B55279BA6D1009A1291 /* SampleViewController.swift in Sources */,
 				F076BDDC27969DD200AF6FFD /* DestinationDetailData.swift in Sources */,
 				F0CADCDF2781EF2D00DDC1CD /* GlobalConstants.swift in Sources */,
 				F0CADCCB2781AE5700DDC1CD /* SecondSampleViewController.swift in Sources */,
@@ -664,6 +671,7 @@
 				F0A9C537277E7FEE009EE5FE /* ImageLoader.swift in Sources */,
 				F0CADCF1278217F700DDC1CD /* DestinationDetailViewModel.swift in Sources */,
 				F0CADCC62780DEB900DDC1CD /* TabbarController.swift in Sources */,
+				F0F05B53279BA6AA009A1291 /* UIImage+extension.swift in Sources */,
 				F0B258562798FA740042771F /* HttpClient.swift in Sources */,
 				F076BDD72796922A00AF6FFD /* DestinationDetailContentTableViewCell.swift in Sources */,
 				F0CADCDD2781EEFA00DDC1CD /* SignInViewController.swift in Sources */,

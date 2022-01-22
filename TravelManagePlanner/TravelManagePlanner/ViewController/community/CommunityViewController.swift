@@ -1,25 +1,20 @@
 //
-//  ViewController.swift
+//  EXViewController.swift
 //  TravelManagePlanner
 //
 //  Created by UY on 2022/01/22.
 //
 
 import UIKit
-
-import UIKit
 import SnapKit
 import JJFloatingActionButton
 
-
-
-let communityFloatingButton = communityFloatingButtonClass().communityFloatingButton
-let communitySearchBar = communitySearchBarClass().communitySearchBar
-let cellID = "Cell"
+let communityFloatingButton = CommunityFloatingButtonClass().communityFloatingButton
+let communitySearchBar = CommunitySearchBarClass().communitySearchBar
+let cellId: String = "Cell"
 let commuinityCategorydata = ["전체", "연인", "가족", "친구", "기타"]
 
 class CommunityViewController: UIViewController {
-    
     // MARK: - Properties
     lazy var communityCategorytextField : UITextField = {
         let textfield = UITextField()
@@ -125,16 +120,13 @@ class CommunityViewController: UIViewController {
         communityCategorytextField.resignFirstResponder()
      }
 
+
 }
-
-
-
-
 
 // MARK: - extensions
 
 
-extension communityViewController: UICollectionViewDataSource {
+extension CommunityViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 16
     }
@@ -149,12 +141,12 @@ extension communityViewController: UICollectionViewDataSource {
     
 }
 
-extension communityViewController: UICollectionViewDelegate {
+extension CommunityViewController: UICollectionViewDelegate {
     
 }
 
 
-extension communityViewController : UICollectionViewDelegateFlowLayout {
+extension CommunityViewController : UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width / 4 , height: communityCollectionView.frame.height / 3)
@@ -164,7 +156,7 @@ extension communityViewController : UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension communityViewController : UIPickerViewDelegate, UIPickerViewDataSource {
+extension CommunityViewController : UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

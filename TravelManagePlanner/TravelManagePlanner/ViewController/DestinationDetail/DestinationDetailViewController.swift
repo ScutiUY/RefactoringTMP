@@ -76,15 +76,13 @@ class DestinationDetailViewController: UIViewController {
             make.bottom.equalToSuperview().offset(-30)
             make.width.equalToSuperview().multipliedBy(0.7)
         }
-        
         destinationDetailContentTableView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.centerY)
             make.bottom.equalTo(view.snp.bottom)
             make.centerX.equalTo(view.snp.centerX)
-            make.width.equalTo(view.snp.width).multipliedBy(0.9)
+            make.width.equalTo(view.snp.width)
             
         }
-        
     }
     
     func setDelegate(){

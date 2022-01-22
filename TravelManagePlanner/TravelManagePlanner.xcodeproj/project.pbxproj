@@ -22,12 +22,12 @@
 		F00F18192778530500211A8D /* TravelManagePlannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F18182778530500211A8D /* TravelManagePlannerUITests.swift */; };
 		F00F181B2778530500211A8D /* TravelManagePlannerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F181A2778530500211A8D /* TravelManagePlannerUITestsLaunchTests.swift */; };
 		F00F182A2778637D00211A8D /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F18292778637D00211A8D /* APIService.swift */; };
-		F080CF26279AE7C1007C1151 /* HomeTabSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F080CF25279AE7C1007C1151 /* HomeTabSB.storyboard */; };
 		F076BDD72796922A00AF6FFD /* DestinationDetailContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076BDD62796922A00AF6FFD /* DestinationDetailContentTableViewCell.swift */; };
 		F076BDDA2796941000AF6FFD /* DestinationDetailContentTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076BDD92796941000AF6FFD /* DestinationDetailContentTableViewHeader.swift */; };
 		F076BDDC27969DD200AF6FFD /* DestinationDetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076BDDB27969DD200AF6FFD /* DestinationDetailData.swift */; };
 		F0782693278FB4C300B9319F /* APIResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0782692278FB4C300B9319F /* APIResponseData.swift */; };
 		F079D513278ADA9E004BF9F6 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F079D512278ADA9E004BF9F6 /* SignUpViewModel.swift */; };
+		F080CF26279AE7C1007C1151 /* HomeTabSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F080CF25279AE7C1007C1151 /* HomeTabSB.storyboard */; };
 		F0A9C537277E7FEE009EE5FE /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A9C536277E7FEE009EE5FE /* ImageLoader.swift */; };
 		F0AFB7722783D7AF00FBA3FF /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AFB7712783D7AF00FBA3FF /* Observable.swift */; };
 		F0B258562798FA740042771F /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B258552798FA740042771F /* HttpClient.swift */; };
@@ -88,12 +88,12 @@
 		F00F18182778530500211A8D /* TravelManagePlannerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelManagePlannerUITests.swift; sourceTree = "<group>"; };
 		F00F181A2778530500211A8D /* TravelManagePlannerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelManagePlannerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F00F18292778637D00211A8D /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
-		F080CF25279AE7C1007C1151 /* HomeTabSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeTabSB.storyboard; sourceTree = "<group>"; };
 		F076BDD62796922A00AF6FFD /* DestinationDetailContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationDetailContentTableViewCell.swift; sourceTree = "<group>"; };
 		F076BDD92796941000AF6FFD /* DestinationDetailContentTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationDetailContentTableViewHeader.swift; sourceTree = "<group>"; };
 		F076BDDB27969DD200AF6FFD /* DestinationDetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationDetailData.swift; sourceTree = "<group>"; };
 		F0782692278FB4C300B9319F /* APIResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponseData.swift; sourceTree = "<group>"; };
 		F079D512278ADA9E004BF9F6 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		F080CF25279AE7C1007C1151 /* HomeTabSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeTabSB.storyboard; sourceTree = "<group>"; };
 		F0A9C536277E7FEE009EE5FE /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		F0AFB7712783D7AF00FBA3FF /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		F0B258552798FA740042771F /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
@@ -261,6 +261,16 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		F076BDD82796933100AF6FFD /* DestinationDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				F0CADCED2782139500DDC1CD /* ImageSliderCollectionViewCell.swift */,
+				F076BDD62796922A00AF6FFD /* DestinationDetailContentTableViewCell.swift */,
+				F076BDD92796941000AF6FFD /* DestinationDetailContentTableViewHeader.swift */,
+			);
+			path = DestinationDetailView;
+			sourceTree = "<group>";
+		};
 		F080CF27279AE7C7007C1151 /* HomeTabView */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,16 +285,6 @@
 				6B7D8B2B27833D95003B2266 /* ThemeViewController.swift */,
 			);
 			path = HomeTabVC;
-			sourceTree = "<group>";
-		};
-		F076BDD82796933100AF6FFD /* DestinationDetailView */ = {
-			isa = PBXGroup;
-			children = (
-				F0CADCED2782139500DDC1CD /* ImageSliderCollectionViewCell.swift */,
-				F076BDD62796922A00AF6FFD /* DestinationDetailContentTableViewCell.swift */,
-				F076BDD92796941000AF6FFD /* DestinationDetailContentTableViewHeader.swift */,
-			);
-			path = DestinationDetailView;
 			sourceTree = "<group>";
 		};
 		F0AFB7702783D77000FBA3FF /* Utilities */ = {
@@ -812,7 +812,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 788V8JND7A;
+				DEVELOPMENT_TEAM = QA5P85RJWN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TravelManagePlanner/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -841,7 +841,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 788V8JND7A;
+				DEVELOPMENT_TEAM = QA5P85RJWN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TravelManagePlanner/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

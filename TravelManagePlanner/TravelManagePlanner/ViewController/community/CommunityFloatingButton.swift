@@ -11,7 +11,7 @@ import UIKit
 
 
 // MARK: - JJFloatingButton
-class communityFloatingButtonClass
+class CommunityFloatingButtonClass
 {
     lazy var communityFloatingButton : JJFloatingActionButton = {
         let actionButton = JJFloatingActionButton()

@@ -2,8 +2,10 @@
 //  ViewController.swift
 //  TravelManagePlanner
 //
-//  Created by UY on 2021/12/26.
+//  Created by UY on 2022/01/22.
 //
+
+import UIKit
 
 import UIKit
 import SnapKit
@@ -16,7 +18,7 @@ let communitySearchBar = communitySearchBarClass().communitySearchBar
 let cellID = "Cell"
 let commuinityCategorydata = ["전체", "연인", "가족", "친구", "기타"]
 
-class communityViewController: UIViewController {
+class CommunityViewController: UIViewController {
     
     // MARK: - Properties
     lazy var communityCategorytextField : UITextField = {

@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - UISearchBar (따로 분리 예정)
 
-class communitySearchBarClass
+class CommunitySearchBarClass
 {
     lazy var communitySearchBar: UISearchBar = {
         let searchBar = UISearchBar()

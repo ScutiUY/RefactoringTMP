@@ -9,7 +9,7 @@ import UIKit
 
 var list = ["연인", "가족", "친구", "기타"]
 
-class communityPickerViewClass: UIPickerView {
+class CommunityPickerViewClass: UIPickerView {
     
     // MARK: - Init
     init(mainViewController: UIViewController)

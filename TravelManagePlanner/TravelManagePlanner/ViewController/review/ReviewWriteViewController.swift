@@ -8,7 +8,7 @@
 import UIKit
 import Then
 
-class reviewWriteViewController: UIViewController {
+class ReviewWriteViewController: UIViewController {
 
     // MARK: - Properties
     let scrollView = UIScrollView()

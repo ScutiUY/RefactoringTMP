@@ -8,23 +8,21 @@
 import Foundation
 
 struct DestinationDetailData: Codable {
+    let resCode: String
+    let resMsg: String
+    let data: [DestinationData]
     
-    static var shared = DestinationDetailData(idx: "", name: "", address: "", imgUrl: [], content: "")
-    
-    var idx: String
-    var name: String
-    var address: String
-    var imgUrl: [String]
-    var content: String
-    
-    init(idx: String, name: String, address: String, imgUrl: [String], content: String) {
-        self.idx = idx
-        self.name = name
-        self.address = address
-        self.imgUrl = imgUrl
-        self.content = content
+    struct DestinationData: Codable {
+        static var shared = DestinationData(imgUrl: "", address: "", name: "", idx: "", content: "")
+        let imgUrl: String
+        let address: String
+        let name: String
+        let idx: String
+        let content: String
     }
 }
+
+
 
 struct DestinationDetailImage: Codable {
     static var shared = DestinationDetailImage(title: "", link: "")

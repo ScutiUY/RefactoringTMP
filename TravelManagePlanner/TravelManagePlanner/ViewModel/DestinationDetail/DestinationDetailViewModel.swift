@@ -12,11 +12,7 @@ class DestinationDetailViewModel {
     
     var repo = DestinationInfoRepositories()
     
-    var destinationInfo: DestinationDetailData = DestinationDetailData.shared {
-        didSet {
-            
-        }
-    }
+  
     
     
     var destTitle = ""

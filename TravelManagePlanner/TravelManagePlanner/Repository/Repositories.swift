@@ -13,11 +13,17 @@ class DestinationInfoRepositories: NSObject {
     private let httpClient = HttpClient(baseUrl: "https://eunryuplaners.com:19624")
     private var params = ""
 
-
     func getDestinationDetail(completed: @escaping (DestinationDetailData) -> Void) {
         httpClient.getJson(path: "/plan/getAllShopList.tpi") { [self] result in
             
             if let json = try? result.get() {
+                print(String(data: json, encoding: .utf8))
+                do {
+                let data = try  JSONDecoder().decode(DestinationDetailData.self, from: json)
+                    print(data)
+                } catch {
+                    print(error)
+                }
                 //completed(parseDestinationData(jsonObjext: self.JSONObject(json)))
             }
             
@@ -34,7 +40,9 @@ class DestinationInfoRepositories: NSObject {
     }
     
 //    private func parseDestinationData(jsonObjext: [String: Any]) -> DestinationDetailData {
+//
 //        let destData = (jsonObjext["data"] as! String).data(using: .utf8)
+//
 //        let json = try String(contentsOf: destData, encoding: .utf8)
 //
 //        let destS = DestinationDetailData(idx: destData["idx"] as! String, name: destData["name"] as! String, address: destData["address"] as! String, imgUrl: [destData["imgUrl"] as! String], content: destData["content"] as! String)

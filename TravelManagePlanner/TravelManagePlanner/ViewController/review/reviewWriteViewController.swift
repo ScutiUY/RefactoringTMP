@@ -164,7 +164,7 @@ class reviewWriteViewController: UIViewController, UINavigationControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 243/255, green: 255/255, blue: 251/255, alpha: 1)
-        picker.delegate = self
+//        picker.delegate = self
         Setup()
         headerSetUp()
         bodySetup()
@@ -172,7 +172,7 @@ class reviewWriteViewController: UIViewController, UINavigationControllerDelegat
         
         reviewPhotoCollectionView.dataSource = self
         reviewPhotoCollectionView.delegate = self
-        reviewPhotoCollectionView.register(photoCollectionCell.self, forCellWithReuseIdentifier: photoID)
+        reviewPhotoCollectionView.register(reviewPhotoCollectionViewCell.self, forCellWithReuseIdentifier: photoID)
     }
     
 
@@ -327,7 +327,7 @@ class reviewWriteViewController: UIViewController, UINavigationControllerDelegat
         contentView.addSubview(reviewPhotoCollectionView)
         reviewPhotoCollectionView.snp.makeConstraints {
             $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
-            $0.height.equalTo(300)
+            $0.height.equalTo(200)
             $0.top.equalTo(photoButton.snp.bottom).offset(10)
             $0.left.equalTo(headerview.snp.left).offset(20)
             $0.bottom.equalToSuperview()
@@ -353,7 +353,12 @@ class reviewWriteViewController: UIViewController, UINavigationControllerDelegat
         }, finish: {
             (assets) in
                 // Done 버튼 누르면 실행되는 내용
-            
+            print("Finished with selections: \(assets.count)")
+            print("Finished with selections: \(self.test.selectedAssets.count)")
+            for i in 0..<assets.count
+            {
+//                self.test.selectedAssets.
+            }
             
         })
     }
@@ -414,39 +419,22 @@ class reviewWriteViewController: UIViewController, UINavigationControllerDelegat
 }
 
 
-class photoCollectionCell : UICollectionViewCell {
-    static let identifier = "photoCell"
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        CellSetup()
-    }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    let imageSelectedView = UIImageView()
-    
-    func CellSetup()
-    {
-        backgroundColor = .blue
-        
-        addSubview(imageSelectedView)
-        
-        imageSelectedView.snp.makeConstraints {
-            $0.top.bottom.trailing.leading.equalToSuperview()
-        }
-    }
-}
+// MARK: - extentions
 
 extension reviewWriteViewController : UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return self.test.selectedAssets.count
     }
     
+//    func collectionview
+    
+    
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photoID, for: indexPath) as! photoCollectionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photoID, for: indexPath) as! reviewPhotoCollectionViewCell
         
         cell.backgroundColor = .red
         return cell
@@ -458,18 +446,18 @@ extension reviewWriteViewController : UICollectionViewDelegateFlowLayout, UIColl
     
     
 }
-
-
-extension reviewWriteViewController : UIImagePickerControllerDelegate, UINavigationBarDelegate
-{
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
-//                  photoImageView.image = image
-                  print(info)
-              }
-              dismiss(animated: true, completion: nil)
-    }
-}
-
-
-
+//
+//
+//extension reviewWriteViewController : UIImagePickerControllerDelegate, UINavigationBarDelegate
+//{
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+////                  photoImageView.image = image
+//                  print(info)
+//              }
+//              dismiss(animated: true, completion: nil)
+//    }
+//}
+//
+//
+//

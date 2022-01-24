@@ -10,6 +10,7 @@ import SnapKit
 
 class JourneyListDetailViewController: UIViewController {
 
+    var isDateCellSelected = false
     let col: [UIColor] = [.red, .blue, .orange, .yellow, .green]
     let colN = ["red", "blue", "orrange", "yellow", "green"]
     
@@ -107,7 +108,13 @@ extension JourneyListDetailViewController: UICollectionViewDelegate, UICollectio
             cell.deseleted()
         }
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if !isDateCellSelected && indexPath.row == 0 {
+            isDateCellSelected.toggle()
+            let dell = collectionView.cellForItem(at: indexPath) as! JourneyListDetailDateCollectionViewCell
+            dell.selected()
+        }
+    }
 }
 
 extension JourneyListDetailViewController {
@@ -118,23 +125,22 @@ extension JourneyListDetailViewController {
     }
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
-        guard let seletedItemInDate = journeyListDetailDateCollectionView.indexPathsForSelectedItems else { return }
-        guard let seletedItemInPage = journeyListDetailPageCollectionView.indexPathsForSelectedItems else { return }
-        
-        if scrollView == journeyListDetailDateCollectionView {
-            journeyListDetailDateCollectionView.deselectItem(at: seletedItemInDate.first!, animated: true)
-            journeyListDetailDateCollectionView.selectItem(at: seletedItemInPage.first!, animated: true, scrollPosition: .centeredHorizontally)
-        }
-        
-        
-        for cell in journeyListDetailPageCollectionView.visibleCells {
-            let pageIdx = journeyListDetailPageCollectionView.indexPath(for: cell)
-            print(pageIdx)
-            
-            journeyListDetailDateCollectionView.selectItem(at: pageIdx, animated: true, scrollPosition: .centeredHorizontally)
+//        guard let seletedItemInDate = journeyListDetailDateCollectionView.indexPathsForSelectedItems else { return }
+//        guard let seletedItemInPage = journeyListDetailPageCollectionView.indexPathsForSelectedItems else { return }
+//        print(seletedItemInDate)
+//        print(seletedItemInPage)
+//        if scrollView == journeyListDetailPageCollectionView {
+//            journeyListDetailDateCollectionView.deselectItem(at: seletedItemInDate.first!, animated: true)
+//            print(journeyListDetailPageCollectionView.indexPathsForVisibleItems)
+//        }
+//        for cell in journeyListDetailPageCollectionView.visibleCells {
+//            let pageIdx = journeyListDetailPageCollectionView.indexPath(for: cell)
+//            print(pageIdx)
+//
+//            journeyListDetailDateCollectionView.selectItem(at: pageIdx, animated: true, scrollPosition: .centeredHorizontally)
+//
+//        }
 
-        }
-        
         
     }
 }

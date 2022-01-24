@@ -9,6 +9,7 @@ import UIKit
 
 let cellID = "Cell"
 
+// 커밋 테스트
 class ThemeViewController: UIViewController{
     
     // Assets의 사진 출력
@@ -58,21 +59,6 @@ class ThemeViewController: UIViewController{
         
         return collectionView
     }()
-    
-    //    // 이미지뷰 넣기
-    //    let imageViewCell: UIImageView = {
-    //        let imageView = UIImageView()
-    //        imageView.contentMode = .scaleAspectFit
-    ////        imageView.backgroundColor = .green
-    ////        imageView.layer.shadowColor = UIColor.black.cgColor
-    ////        imageView.layer.shadowOffset = CGSize(width: 0, height: 4)
-    ////        imageView.layer.shadowRadius = 5
-    ////        imageView.layer.shadowOpacity = 0.3
-    //
-    //        return imageView
-    //    }()
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -185,9 +171,9 @@ extension ThemeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         // main에 있는 두번째화면 불러오기(스토리보드 활용)
-        let secondView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SampleViewController") as! SampleViewController
+        let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "DetaileSettingViewSB") as! DetaileSettingViewController
         
-        navigationController!.pushViewController(secondView, animated: true)
+        navigationController!.pushViewController(nextView, animated: true)
     }
     
 }

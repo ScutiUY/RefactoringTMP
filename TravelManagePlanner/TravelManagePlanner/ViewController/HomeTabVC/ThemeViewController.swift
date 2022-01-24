@@ -7,11 +7,9 @@
 
 import UIKit
 
-let cellID = "Cell"
-
 // 커밋 테스트
 class ThemeViewController: UIViewController{
-    
+    let cellID = "Cell"
     // Assets의 사진 출력
     lazy var imgDataName = ["커플", "가족", "우정", "기타"]
     
@@ -23,7 +21,7 @@ class ThemeViewController: UIViewController{
                 
                 img.append(asImg)
             }else {
-                print("imgData is nil")
+                print("Theme imgData is nil")
             }
         }
         return img
@@ -87,21 +85,17 @@ class ThemeViewController: UIViewController{
     
     // 뷰 레이아웃 설정
     func setLayout() {
-        
         themeTitleLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(30)
             $0.leading.equalTo(view.snp.centerX).multipliedBy(0.1)
-            $0.right.equalToSuperview().offset(-24)
-            // 콜렉션뷰에 cell넣어주기 여기서 설정하는게 맞나?
+            $0.trailing.equalToSuperview().offset(-24)
         }
         
         themeSubTitleLabel.snp.makeConstraints {
             $0.top.equalTo(themeTitleLabel.snp.bottom).multipliedBy(1)
             $0.leading.equalToSuperview().offset(24)
-            $0.right.equalToSuperview().offset(-24)
-            // 콜렉션뷰에 cell넣어주기 여기서 설정하는게 맞나?
+            $0.trailing.equalToSuperview().offset(-24)
         }
-        
         
         themeCollectionView.snp.makeConstraints {
             $0.top.equalTo(themeSubTitleLabel.snp.bottom).multipliedBy(1.3)
@@ -143,7 +137,7 @@ extension ThemeViewController: UICollectionViewDataSource {
         return imgDataName.count
     }
     
-    // 셀 형태 설정(필수)
+    // 셀 데이터 내용 불러오기
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ThemeViewCell
@@ -170,8 +164,11 @@ extension ThemeViewController: UICollectionViewDataSource {
 extension ThemeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+//        // main에 있는 두번째화면 불러오기(스토리보드 활용)
+//        let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "DetaileSettingViewSB") as! DetaileSettingViewController
+        
         // main에 있는 두번째화면 불러오기(스토리보드 활용)
-        let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "DetaileSettingViewSB") as! DetaileSettingViewController
+        let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "AccomoViewSB") as! AccomoViewController
         
         navigationController!.pushViewController(nextView, animated: true)
     }
@@ -180,7 +177,7 @@ extension ThemeViewController: UICollectionViewDelegate {
 
 // cell 사이즈 정의
 extension ThemeViewController: UICollectionViewDelegateFlowLayout {
-    
+
     // cell 가운대 정렬 정의
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let sectionInsets = UIEdgeInsets(top: 2, left: 5, bottom: 0, right: 5)

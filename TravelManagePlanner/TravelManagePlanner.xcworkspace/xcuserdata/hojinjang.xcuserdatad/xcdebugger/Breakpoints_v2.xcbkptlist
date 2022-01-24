@@ -14,8 +14,8 @@
             filePath = "TravelManagePlanner/ViewController/review/reviewWriteViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "13"
-            endingLineNumber = "13"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
             landmarkName = "reviewWriteViewController"
             landmarkType = "3">
             <Locations>
@@ -65,6 +65,22 @@
                   offsetFromSymbolStart = "201">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1686B431-F226-4C94-A956-70C60C4E6586"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TravelManagePlanner/ViewController/review/reviewWriteViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "reviewWriteViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

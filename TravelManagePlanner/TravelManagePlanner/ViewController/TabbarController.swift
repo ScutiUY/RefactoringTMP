@@ -20,7 +20,7 @@ class TabbarController: UITabBarController {
         
         let sampleVC1 = SecondSampleViewController() // 여행 리스트 VC
         let sampleVC2 = CommunityViewController() // 커뮤니티 VC
-        let sampleVC3 = ReviewWriteViewController() // 마이페이지 VC
+        let sampleVC3 = reviewWriteViewController() // 마이페이지 VC
         
         // 홈 탭
         // Tab의 VC 목록에 해당 VC를 넣을 때 Navigation Controller에 넣어서 추가하면 네비게이션 컨트롤러를 자동으로 상속 합니다

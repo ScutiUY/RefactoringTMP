@@ -16,6 +16,11 @@ class CommunitySearchBarClass
         searchBar.placeholder = "여행지를 입력해주세요."
         searchBar.backgroundImage = UIImage() // searchBar 테두리 없애는 편법
         searchBar.setImage(UIImage(named: "icCaencel"), for: .clear, state: .normal)
+        searchBar.layer.shadowColor = UIColor.black.cgColor
+        searchBar.layer.shadowOffset = CGSize(width: 0, height: 4)
+        searchBar.layer.shadowRadius = 5
+        searchBar.layer.shadowOpacity = 0.2
+        
         
         if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
             textfield.frame.size.height = 1

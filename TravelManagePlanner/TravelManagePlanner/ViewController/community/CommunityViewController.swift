@@ -16,15 +16,22 @@ let commuinityCategorydata = ["전체", "연인", "가족", "친구", "기타"]
 
 class CommunityViewController: UIViewController {
     // MARK: - Properties
+    
+    
     lazy var communityCategorytextField : UITextField = {
         let textfield = UITextField()
-        textfield.text = "전체"
+        textfield.text = " 전체"
         textfield.contentVerticalAlignment = .center
         textfield.tintColor = .clear
-        textfield.backgroundColor = .clear
+        textfield.layer.cornerRadius = 10
+        textfield.backgroundColor = .white
+        textfield.layer.shadowColor = UIColor.black.cgColor
+        textfield.layer.shadowOffset = CGSize(width: 0, height: 4)
+        textfield.layer.shadowRadius = 5
+        textfield.layer.shadowOpacity = 0.2
         return textfield
     }()
-    
+        
     let communityCategoryPickerView = UIPickerView()
     let communityCategoryToolBarSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     let communityCategoryToolBarButton = UIBarButtonItem(title: "확인", style: .done, target: self, action: #selector(onPickDone))
@@ -40,6 +47,7 @@ class CommunityViewController: UIViewController {
     lazy var communityCollectionView: UICollectionView = {
         let flowlayout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowlayout)
+        cv.backgroundColor = UIColor(red: 243/255, green: 255/255, blue: 251/255, alpha: 1)
         return cv
     }()
 
@@ -55,16 +63,15 @@ class CommunityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(red: 243/255, green: 255/255, blue: 251/255, alpha: 1)
+        communityFloatingButton.items[0].addTarget(self, action: #selector(ButtonPressed(_:)), for: .touchUpInside)
         communityCollectionView.dataSource = self
         communityCollectionView.delegate = self
+        communityFloatingButton.delegate = self
         setCollectionView()
         setCommunityPickerView()
         setFloatingButton()
         communityCollectionView.register(DemoCell.self, forCellWithReuseIdentifier: cellID)
-       
-
-       
     }
     
     
@@ -83,7 +90,6 @@ class CommunityViewController: UIViewController {
         communityCategoryPickerView.delegate = self
         self.communityCategorytextField.inputView = communityCategoryPickerView
         self.communityCategorytextField.inputAccessoryView = communityCategoryToolBar
-        
     }
     
     
@@ -120,11 +126,19 @@ class CommunityViewController: UIViewController {
         communityCategorytextField.resignFirstResponder()
      }
 
+    
+    @objc func ButtonPressed(_: UIButton)
+    {
+        print("HEY!")
+        let reviewVC = reviewWriteViewController()
+        //let navigationController = UINavigationController(rootViewController: self)
+        //navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: revi)
+        self.navigationController!.pushViewController(reviewVC, animated: true)
+    }
 
 }
 
 // MARK: - extensions
-
 
 extension CommunityViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -184,5 +198,17 @@ extension UITextField {
       let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.frame.height))
       self.leftView = paddingView
       self.leftViewMode = ViewMode.always
+    }
+}
+
+extension CommunityViewController : JJFloatingActionButtonDelegate
+{
+    func floatingActionButtonWillOpen(_ button: JJFloatingActionButton) {
+        communityFloatingButton.buttonColor = .white
+        communityFloatingButton.buttonImageColor = #colorLiteral(red: 0.2039215686, green: 0.5960784314, blue: 0.8588235294, alpha: 1)
+    }
+    func floatingActionButtonWillClose(_ button: JJFloatingActionButton) {
+        communityFloatingButton.buttonColor =  #colorLiteral(red: 0.2039215686, green: 0.5960784314, blue: 0.8588235294, alpha: 1)
+        communityFloatingButton.buttonImageColor = .white
     }
 }

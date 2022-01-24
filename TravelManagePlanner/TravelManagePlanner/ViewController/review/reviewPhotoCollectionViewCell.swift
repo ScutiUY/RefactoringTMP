@@ -7,7 +7,7 @@
 
 import UIKit
 
-class reviewPhotoCollectionViewCell: UICollectionViewCell {
+class ReviewPhotoCollectionViewCell: UICollectionViewCell {
     static let identifier = "photoCell"
     
     override init(frame: CGRect) {

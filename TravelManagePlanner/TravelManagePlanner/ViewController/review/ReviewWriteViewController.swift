@@ -172,7 +172,7 @@ class reviewWriteViewController: UIViewController, UINavigationControllerDelegat
         
         reviewPhotoCollectionView.dataSource = self
         reviewPhotoCollectionView.delegate = self
-        reviewPhotoCollectionView.register(reviewPhotoCollectionViewCell.self, forCellWithReuseIdentifier: photoID)
+        reviewPhotoCollectionView.register(ReviewPhotoCollectionViewCell.self, forCellWithReuseIdentifier: photoID)
     }
     
 
@@ -434,7 +434,7 @@ extension reviewWriteViewController : UICollectionViewDelegateFlowLayout, UIColl
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photoID, for: indexPath) as! reviewPhotoCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photoID, for: indexPath) as! ReviewPhotoCollectionViewCell
         
         cell.backgroundColor = .red
         return cell

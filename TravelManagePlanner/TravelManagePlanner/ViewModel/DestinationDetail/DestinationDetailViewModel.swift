@@ -12,9 +12,6 @@ class DestinationDetailViewModel {
     
     var repo = DestinationInfoRepositories()
     
-  
-    
-    
     var destTitle = ""
     var destDesc = ""
     var destImages = [String]()
@@ -23,6 +20,9 @@ class DestinationDetailViewModel {
         repo.getDestinationDetail { data in
             print(data)
         }
+    }
+    func data() {
+        
     }
     
 }

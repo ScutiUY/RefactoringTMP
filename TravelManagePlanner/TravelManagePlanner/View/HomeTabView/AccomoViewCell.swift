@@ -69,10 +69,10 @@ class AccomoViewCell: UITableViewCell {
     
     func setUpView() {
         addSubview(accomoAllStack)
-        //        addSubview(imgLabel)
     }
     
     func setLayout() {
+//        accomoAllStack.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
         accomoAllStack.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
         
     }

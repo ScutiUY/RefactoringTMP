@@ -11,7 +11,7 @@ import UIKit
 class AccomoViewController: UIViewController {
     let cellID = "Cell"
     
-    lazy var imgDataName = ["accomoA", "accomoB", "accomoC"]
+    lazy var imgDataName = ["accomoA", "accomoB", "accomoC","accomoA", "accomoB", "accomoC"]
     
     var imgArray: [UIImage] {
         var img:[UIImage] = []
@@ -56,7 +56,7 @@ class AccomoViewController: UIViewController {
     // 테이블뷰를 활용하여 추천지 구현하기
     lazy var accomoTableView: UITableView = {
         let tableVIew = UITableView()
-        tableVIew.backgroundColor = .yellow
+        tableVIew.backgroundColor = .clear
         return tableVIew
         
     }()
@@ -92,17 +92,21 @@ class AccomoViewController: UIViewController {
         accomoTableView.dataSource = self
         accomoTableView.delegate = self
         
-        accomoTableView.register(AccomoViewCell.self, forCellReuseIdentifier: cellID)
+        accomoTableView.register(AccomoViewCell.classForCoder(), forCellReuseIdentifier: cellID)
     }
+    
 }
 
 
 extension AccomoViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return view.frame.height / 4
+    }
+
 }
 
 extension AccomoViewController: UITableViewDataSource {
-    // 큰 섹션수
+    // 큰 섹션수(Defalut 1)
     func numberOfSections(in tableView: UITableView) -> Int {
 
         return 1
@@ -126,4 +130,5 @@ extension AccomoViewController: UITableViewDataSource {
         return cell
     }
 }
+
 

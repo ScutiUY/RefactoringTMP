@@ -16,10 +16,15 @@ let photoID = "photoCell"
 class reviewWriteViewController: UIViewController, UINavigationControllerDelegate {
 
     // MARK: - Properties
+    var selectedAssets: [PHAsset] = []
+    var selectedImages: [UIImage] = []
+
+    
     let scrollView = UIScrollView()
     let contentView = UIView()
     
     let headerview = UIView()
+    
     
     lazy var headerTitle = UILabel().then({
         $0.text = "리뷰를 작성하여\n여행을 함께 공유해요!"
@@ -156,7 +161,7 @@ class reviewWriteViewController: UIViewController, UINavigationControllerDelegat
         flowlayout.scrollDirection = .horizontal
         flowlayout.minimumLineSpacing = 20
         flowlayout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        cv.backgroundColor = .red
+        cv.backgroundColor = UIColor(red: 243/255, green: 255/255, blue: 251/255, alpha: 1)
         return cv
     }()
     
@@ -337,29 +342,34 @@ class reviewWriteViewController: UIViewController, UINavigationControllerDelegat
     }
     func openLibrary()
     {
-        presentImagePicker(test,
+        self.presentImagePicker(test,
         select: {
             (asset) in
                 // 사진 하나 선택할 때마다 실행되는 내용 쓰기
+            print("==========selected==========")
             
         }, deselect: {
             (asset) in
                 // 선택했던 사진들 중 하나를 선택 해제할 때마다 실행되는 내용 쓰기
-            
+            print("==========didselect==========")
         }, cancel: {
             (assets) in
                 // Cancel 버튼 누르면 실행되는 내용
-            
-        }, finish: {
+            print("==========cancel==========")
+        }, finish: { [self]
             (assets) in
                 // Done 버튼 누르면 실행되는 내용
+            print("==========finish==========")
             print("Finished with selections: \(assets.count)")
             print("Finished with selections: \(self.test.selectedAssets.count)")
-            for i in 0..<assets.count
-            {
-//                self.test.selectedAssets.
+            
+            self.selectedAssets.removeAll()
+            for i in assets {
+                self.selectedAssets.append(i)
             }
             
+            self.converAssetToImages()
+            self.reviewPhotoCollectionView.reloadData()
         })
     }
     
@@ -382,6 +392,7 @@ class reviewWriteViewController: UIViewController, UINavigationControllerDelegat
                 
                 let data = thumbnail.jpegData(compressionQuality: 0.7)
                 let newImage = UIImage(data: data!)
+                self.selectedImages.append(newImage! as UIImage)
                 
             }
         }
@@ -436,7 +447,9 @@ extension reviewWriteViewController : UICollectionViewDelegateFlowLayout, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photoID, for: indexPath) as! ReviewPhotoCollectionViewCell
         
-        cell.backgroundColor = .red
+        cell.imageSelectedView.image = self.selectedImages[indexPath.row]
+        cell.imageSelectedView.contentMode = .scaleAspectFit
+        
         return cell
     }
     

@@ -22,7 +22,7 @@ class ReviewPhotoCollectionViewCell: UICollectionViewCell {
     
     func CellSetup()
     {
-        imageSelectedView.backgroundColor = .blue
+        imageSelectedView.backgroundColor = UIColor(red: 243/255, green: 255/255, blue: 251/255, alpha: 1)
         
         addSubview(imageSelectedView)
         

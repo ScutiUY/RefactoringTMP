@@ -18,7 +18,7 @@ class TabbarController: UITabBarController {
         // VC 선언 부분
         let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SampleViewController")
         
-        let journeyListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "JourneyListSB") // 여행 리스트 VC
+        let journeyListVC = UIStoryboard(name: "JourneyListSB", bundle: nil).instantiateViewController(withIdentifier: "JourneyListSB") // 여행 리스트 VC
         let sampleVC2 = SampleViewController() // 커뮤니티 VC
         let sampleVC3 = SampleViewController() // 마이페이지 VC
         

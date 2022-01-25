@@ -31,7 +31,7 @@ class JourneyListViewModel {
         api.getJourneyList(completed: { result in
             switch result {
             case .success(let str):
-                self.journeyList = str
+                //self.journeyList = str
                 self.journeyListUpdated()
                 self.loadingEnded()
                 self.isLoading = false

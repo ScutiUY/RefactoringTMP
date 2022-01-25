@@ -110,7 +110,7 @@ extension JourneyListDetailViewController {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView == journeyListDetailPageCollectionView {
             let currentIdx = Int(scrollView.contentOffset.x / view.frame.width)
-            journeyListDetailDateCollectionView.selectItem(at: IndexPath(item: currentIdx, section: 0), animated: false, scrollPosition: .centeredHorizontally)
+            journeyListDetailDateCollectionView.selectItem(at: IndexPath(item: currentIdx, section: 0), animated: true, scrollPosition: .centeredHorizontally)
         }
     }
 

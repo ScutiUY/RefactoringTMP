@@ -10,7 +10,7 @@ import SnapKit
 
 class JourneyListViewController: UIViewController {
     
-    var journeyListViewModel: JourneyListViewModel!
+    var journeyListViewModel = JourneyListViewModel()
     
     lazy var journeyTableView: UITableView = {
         var tableView = UITableView()
@@ -75,7 +75,7 @@ extension JourneyListViewController: UITableViewDelegate, UITableViewDataSource 
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailJourneyListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "JourneyListDetailSB") as! JourneyListDetailViewController
+        let detailJourneyListVC = UIStoryboard(name: "JourneyListSB", bundle: nil).instantiateViewController(withIdentifier: "JourneyListDetailSB") as! JourneyListDetailViewController
         detailJourneyListVC.title = "여행"
         self.navigationController?.pushViewController(detailJourneyListVC, animated: true)
         

@@ -45,7 +45,11 @@ extension JourneyListDetailPageCollectionView: UICollectionViewDelegate, UIColle
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = journeyListDetailCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! JourneyListDetailCollectionViewCell
-        cell.backgroundColor = .blue
+        if indexPath.row == 0 {
+            cell.backgroundColor = .blue
+        } else {
+            cell.backgroundColor = .red
+        }
         return cell
     }
     

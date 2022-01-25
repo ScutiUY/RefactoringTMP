@@ -9,15 +9,20 @@ import UIKit
 import SnapKit
 
 class JourneyListViewController: UIViewController {
-
+    
+    var journeyListViewModel: JourneyListViewModel!
+    
     lazy var journeyTableView: UITableView = {
         var tableView = UITableView()
         tableView.register(JourneyListTableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
     }()
     
+    let activity = UIActivityIndicatorView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        setObserver()
         setLayout()
         setDelegate()
     }
@@ -26,7 +31,9 @@ class JourneyListViewController: UIViewController {
         self.title = "여행 리스트"
         self.navigationController?.navigationItem.largeTitleDisplayMode = .always
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        
         view.addSubview(journeyTableView)
+        view.addSubview(activity)
         
         journeyTableView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
@@ -34,7 +41,20 @@ class JourneyListViewController: UIViewController {
             make.width.equalToSuperview()
             make.centerX.equalToSuperview()
         }
+        activity.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
         
+    }
+    func setObserver() {
+        journeyListViewModel.loadingStarted = { [weak activity] in
+            activity?.isHidden = false
+            activity?.startAnimating()
+        }
+        journeyListViewModel.loadingEnded = { [weak activity] in
+            activity?.stopAnimating()
+        }
     }
     func setDelegate() {
         journeyTableView.delegate = self

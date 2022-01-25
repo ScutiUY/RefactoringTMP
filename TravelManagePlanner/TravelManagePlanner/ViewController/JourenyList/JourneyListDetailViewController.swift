@@ -77,6 +77,12 @@ extension JourneyListDetailViewController: UICollectionViewDelegate, UICollectio
             let cell = journeyListDetailDateCollectionView.dequeueReusableCell(withReuseIdentifier: "dateCell", for: indexPath) as! JourneyListDetailDateCollectionViewCell
             cell.setLayout()
             cell.setLabelName(name: colN[indexPath.row])
+            
+            if !isDateCellSelected && indexPath.row == 0 {
+                isDateCellSelected.toggle()
+                
+                collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+            }
             return cell
         } else {
             let cell = journeyListDetailPageCollectionView.dequeueReusableCell(withReuseIdentifier: "pageCell", for: indexPath) as! JourneyListDetailPageCollectionView
@@ -94,53 +100,18 @@ extension JourneyListDetailViewController: UICollectionViewDelegate, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) { // item 선택시
-        
         if collectionView == journeyListDetailDateCollectionView {
             journeyListDetailPageCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-            let cell = journeyListDetailDateCollectionView.cellForItem(at: indexPath) as! JourneyListDetailDateCollectionViewCell
-            cell.selected()
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) { // item Deselected
-        if collectionView == journeyListDetailDateCollectionView {
-            let cell = journeyListDetailDateCollectionView.cellForItem(at: indexPath) as! JourneyListDetailDateCollectionViewCell
-            cell.deseleted()
-        }
-    }
-    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if !isDateCellSelected && indexPath.row == 0 {
-            isDateCellSelected.toggle()
-            let dell = collectionView.cellForItem(at: indexPath) as! JourneyListDetailDateCollectionViewCell
-            dell.selected()
         }
     }
 }
 
 extension JourneyListDetailViewController {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView == journeyListDetailPageCollectionView {
-            
+            let currentIdx = Int(scrollView.contentOffset.x / view.frame.width)
+            journeyListDetailDateCollectionView.selectItem(at: IndexPath(item: currentIdx, section: 0), animated: false, scrollPosition: .centeredHorizontally)
         }
     }
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        
-//        guard let seletedItemInDate = journeyListDetailDateCollectionView.indexPathsForSelectedItems else { return }
-//        guard let seletedItemInPage = journeyListDetailPageCollectionView.indexPathsForSelectedItems else { return }
-//        print(seletedItemInDate)
-//        print(seletedItemInPage)
-//        if scrollView == journeyListDetailPageCollectionView {
-//            journeyListDetailDateCollectionView.deselectItem(at: seletedItemInDate.first!, animated: true)
-//            print(journeyListDetailPageCollectionView.indexPathsForVisibleItems)
-//        }
-//        for cell in journeyListDetailPageCollectionView.visibleCells {
-//            let pageIdx = journeyListDetailPageCollectionView.indexPath(for: cell)
-//            print(pageIdx)
-//
-//            journeyListDetailDateCollectionView.selectItem(at: pageIdx, animated: true, scrollPosition: .centeredHorizontally)
-//
-//        }
 
-        
-    }
 }

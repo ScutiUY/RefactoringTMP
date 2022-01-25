@@ -9,7 +9,12 @@ import UIKit
 import SnapKit
 
 class JourneyListDetailDateCollectionViewCell: UICollectionViewCell {
- 
+    
+    override var isSelected: Bool {
+        willSet {
+            self.setSelected(newValue)
+        }
+    }
     private lazy var dateLabel: UILabel = {
         var label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15)
@@ -31,13 +36,12 @@ class JourneyListDetailDateCollectionViewCell: UICollectionViewCell {
     func setLabelName(name: String) {
         dateLabel.text = name
     }
-    func selected() {
-        dateLabel.backgroundColor = .red
-        self.isSelected = true
-    }
-    func deseleted() {
-        dateLabel.backgroundColor = .clear
-        self.isSelected = false
-    }
+    private func setSelected(_ selected: Bool) {
+            if selected {
+                self.backgroundColor = .red
+            } else {
+                self.backgroundColor = .clear
+            }
+        }
     
 }

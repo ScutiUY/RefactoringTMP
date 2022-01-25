@@ -11,26 +11,36 @@ class JourneyListViewModel {
     
     private var api = APIRequest()
     
-    var journeyList: JourneyList = JourneyList.shared {
-        didSet {
-            
-        }
+    private var journeyList: JourneyList = JourneyList.shared
+    private var isLoading = false
+    
+    var loadingStarted: (() -> ()) = { }
+    var loadingEnded: (() -> ()) = { }
+    var journeyListUpdated: (() -> ()) = { }
+    var failedJourneyListUpdate: (() -> ()) = { }
+    func journeyListCount() -> Int {
+        return journeyList.journeys.count
+    }
+    func journey(index: Int) -> Journey {
+        return journeyList.journeys[index]
     }
     
-    
-    var loadingStarted: Observable = Observable("")
-    var loadingEnded: Observable = Observable("")
-    var journeyListUpdated: Observable = Observable("")
-    
-    func getPlanDataFromAPI() {
-        api.getJourneyList { result in
+    func getList() {
+        isLoading = true
+        loadingStarted()
+        api.getJourneyList(completed: { result in
             switch result {
             case .success(let str):
-                self.journeyList
+                self.journeyList = str
+                self.journeyListUpdated()
+                self.loadingEnded()
+                self.isLoading = false
             case .failure(let error):
-                print("error: \(error)")
+                self.failedJourneyListUpdate()
+                self.loadingEnded()
+                self.isLoading = false
             }
-        }
+        })
     }
     func count() -> Int {
         return journeyList.journeys.count

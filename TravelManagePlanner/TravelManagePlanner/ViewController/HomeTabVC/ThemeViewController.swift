@@ -171,6 +171,9 @@ extension ThemeViewController: UICollectionViewDelegate {
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "AccomoViewSB") as! AccomoViewController
         
         navigationController!.pushViewController(nextView, animated: true)
+        
+        // 다음 뷰컨 넘어갈때 하단 탭바 숨기기
+        tabBarController?.tabBar.isHidden = true
     }
     
 }

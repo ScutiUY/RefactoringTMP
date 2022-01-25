@@ -11,14 +11,21 @@ class AccomoViewCell: UITableViewCell {
     
     lazy var accomoImgButton: UIButton = {
         let button = UIButton()
+//        button.contentMode = .scaleToFill
+        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+        button.imageView?.layer.cornerRadius = 10
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 4)
+        button.layer.shadowRadius = 5
+        button.layer.shadowOpacity = 0.3
+        
         
         return button
     }()
     
     lazy var accomoTitle: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 25)
-        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 22)
         label.textColor = UIColor(red: 94/255, green: 94/255, blue: 94/255, alpha: 1)
         
         return label
@@ -36,29 +43,15 @@ class AccomoViewCell: UITableViewCell {
     lazy var accomoTitleStack: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [accomoTitle, accomoSubTitle])
         stackView.axis = .vertical
-        stackView.spacing = 5
+        stackView.spacing = 2
         
         return stackView
     }()
     
-    lazy var accomoAllStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [accomoImgButton, accomoTitleStack])
-        stackView.axis = .vertical
-        stackView.spacing = 5
-        
-        return stackView
-    }()
-    
- 
     // 함수생성후 뷰컨에서 호출 이미지를 뷰컨에서 넘겨줌
     func cellLoadImage(_ imgData: String) {
         
         accomoImgButton.setImage(UIImage(named: imgData), for: .normal)
-        accomoImgButton.imageView?.layer.cornerRadius = 15
-        accomoImgButton.layer.shadowColor = UIColor.black.cgColor
-        accomoImgButton.layer.shadowOffset = CGSize(width: 0, height: 4)
-        accomoImgButton.layer.shadowRadius = 5
-        accomoImgButton.layer.shadowOpacity = 0.3
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -68,12 +61,17 @@ class AccomoViewCell: UITableViewCell {
     }
     
     func setUpView() {
-        addSubview(accomoAllStack)
+        addSubview(accomoImgButton)
+        addSubview(accomoTitleStack)
     }
     
     func setLayout() {
-//        accomoAllStack.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
-        accomoAllStack.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
+        accomoImgButton.frame = CGRect.init(x: 0, y: 0, width: contentView.frame.width, height: 160)
+        
+        accomoTitleStack.snp.makeConstraints {
+            $0.top.equalTo(accomoImgButton.snp.bottom).multipliedBy(1.0)
+        }
+        
         
     }
     
@@ -83,8 +81,6 @@ class AccomoViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-//        setUpView()
-//        setLayout()
         // Initialization code
     }
 

@@ -98,6 +98,7 @@ class AccomoViewController: UIViewController {
 }
 
 
+// cellHeight 지정
 extension AccomoViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return view.frame.height / 4

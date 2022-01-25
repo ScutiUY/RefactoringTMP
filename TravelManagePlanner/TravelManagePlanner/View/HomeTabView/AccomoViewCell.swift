@@ -40,10 +40,30 @@ class AccomoViewCell: UITableViewCell {
         return label
     }()
     
+    lazy var accomoSelectButton: UIButton = {
+       let  button = UIButton()
+        button.setTitle("선택", for: .normal)
+        button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 1), for: .normal)
+        button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 0.6), for: .highlighted)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 22)
+        button.backgroundColor = .clear
+        
+        return button
+    }()
+
+    
     lazy var accomoTitleStack: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [accomoTitle, accomoSubTitle])
         stackView.axis = .vertical
         stackView.spacing = 2
+        
+        return stackView
+    }()
+    
+    lazy var accomoAllTitleStack: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [accomoTitleStack, accomoSelectButton])
+        stackView.axis = .horizontal
+        stackView.spacing = 10
         
         return stackView
     }()
@@ -62,14 +82,17 @@ class AccomoViewCell: UITableViewCell {
     
     func setUpView() {
         addSubview(accomoImgButton)
-        addSubview(accomoTitleStack)
+        addSubview(accomoAllTitleStack)
     }
     
     func setLayout() {
-        accomoImgButton.frame = CGRect.init(x: 0, y: 0, width: contentView.frame.width, height: 160)
+//        accomoImgButton.frame = CGRect.init(x: 0, y: 0, width: contentView.frame.width, height: 160)
+        accomoImgButton.frame = CGRect.init(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height / 0.28)
         
-        accomoTitleStack.snp.makeConstraints {
+        accomoAllTitleStack.snp.makeConstraints {
             $0.top.equalTo(accomoImgButton.snp.bottom).multipliedBy(1.0)
+            $0.leading.equalToSuperview().offset(0)
+            $0.trailing.equalToSuperview().offset(0)
         }
         
         

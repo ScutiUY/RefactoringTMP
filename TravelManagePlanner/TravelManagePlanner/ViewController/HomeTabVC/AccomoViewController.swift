@@ -36,13 +36,16 @@ class AccomoViewController: UIViewController {
         return label
     }()
     
-    lazy var basket: UILabel = {
-        let label = UILabel()
-        label.text = "바구니"
-        label.font = UIFont.systemFont(ofSize: 22)
-        label.textColor = UIColor(red: 39/255, green: 174/255, blue: 96/255, alpha: 1)
+    lazy var basket: UIButton = {
+        let button = UIButton()
+        button.setTitle("바구니", for : .normal)
         
-        return label
+        button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 1), for: .normal)
+        button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 0.6), for: .highlighted)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 22)
+        button.backgroundColor = .clear
+        
+        return button
     }()
     
     lazy var accomoHeadStack: UIStackView = {
@@ -58,11 +61,11 @@ class AccomoViewController: UIViewController {
         let tableVIew = UITableView()
         tableVIew.backgroundColor = .clear
         return tableVIew
-        
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = GlobalConstants.Color.Background.themeColor
         setUpView()
         setLayout()
         setDelegate()
@@ -123,7 +126,7 @@ extension AccomoViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! AccomoViewCell
-        
+        cell.backgroundColor = .clear
         cell.cellLoadImage(imgDataName[indexPath.row])
         cell.accomoTitle.text = imgDataName[indexPath.row]
         cell.accomoSubTitle.text = "업소의 간단한 설명"

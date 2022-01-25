@@ -9,6 +9,7 @@ import UIKit
 
 // 커밋 테스트
 class ThemeViewController: UIViewController{
+    
     let cellID = "Cell"
     // Assets의 사진 출력
     lazy var imgDataName = ["커플", "가족", "우정", "기타"]
@@ -60,9 +61,8 @@ class ThemeViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // 배경색
-        self.view.backgroundColor = UIColor(red: 243/255, green: 255/255, blue: 251/255, alpha: 1)
+        self.view.backgroundColor = GlobalConstants.Color.Background.themeColor
         
         setUpView()
         setLayout()
@@ -171,11 +171,7 @@ extension ThemeViewController: UICollectionViewDelegate {
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "AccomoViewSB") as! AccomoViewController
         
         navigationController!.pushViewController(nextView, animated: true)
-        
-        // 다음 뷰컨 넘어갈때 하단 탭바 숨기기
-        tabBarController?.tabBar.isHidden = true
     }
-    
 }
 
 // cell 사이즈 정의

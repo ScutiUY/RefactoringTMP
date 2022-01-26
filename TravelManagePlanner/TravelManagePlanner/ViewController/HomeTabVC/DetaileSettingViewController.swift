@@ -361,6 +361,6 @@ class DetaileSettingViewController:UIViewController {
     }
     
     
-    // main에 있는 두번째화면 불러오기(스토리보드 활용)
-    let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "AccomoViewSB") as! AccomoViewController
+//    // main에 있는 두번째화면 불러오기(스토리보드 활용)
+//    let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "AccomoViewSB") as! AccomoViewController
 }

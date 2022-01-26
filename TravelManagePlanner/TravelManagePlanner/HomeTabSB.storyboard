@@ -51,7 +51,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IjG-38-8qV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2113" y="1"/>
+            <point key="canvasLocation" x="2083" y="1"/>
         </scene>
         <!--Desti Search View Controller-->
         <scene sceneID="n2x-Se-xLn">

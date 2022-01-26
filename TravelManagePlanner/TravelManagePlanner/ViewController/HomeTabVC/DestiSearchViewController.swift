@@ -32,7 +32,7 @@ class DestiSearchViewController: UIViewController, UISearchResultsUpdating, UITa
         return tableView
     }()
     
-    var data: DestiData = DestiData(place: "")
+    var data: DestiSearchModel = DestiSearchModel(place: "")
     
     var filterCheck: Bool {
         let searchController = self.navigationItem.searchController

@@ -275,7 +275,7 @@ class DetaileSettingViewController:UIViewController {
     func nextButtonAction(_ sender: UIButton) {
         
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil)
-            .instantiateViewController(withIdentifier: "AccomoViewSB") as! AccomoViewController
+            .instantiateViewController(withIdentifier: "DestiSearchViewSB") as! DestiSearchViewController
             navigationController?.pushViewController(nextView, animated: true)
     }
     

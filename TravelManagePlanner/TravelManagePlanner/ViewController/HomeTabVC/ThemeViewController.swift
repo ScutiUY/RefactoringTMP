@@ -61,14 +61,10 @@ class ThemeViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // 배경색
         self.view.backgroundColor = GlobalConstants.Color.Background.themeColor
-        
         setUpView()
         setLayout()
         setDelegate()
-        
-        
     }
     
     

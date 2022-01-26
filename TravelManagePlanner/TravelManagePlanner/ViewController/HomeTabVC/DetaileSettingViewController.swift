@@ -236,10 +236,10 @@ class DetaileSettingViewController:UIViewController {
     }()
     
     
-    // 확인 버튼
-    lazy var confirmButton: UIButton = {
+    // 다음 버튼
+    lazy var nextButton: UIButton = {
         let button = UIButton()
-        button.setTitle("확인", for : .normal)
+        button.setTitle("다음", for : .normal)
         button.setTitleColor(UIColor(red: 85/255, green: 185/255, blue: 188/255, alpha: 1), for: .normal)
         button.setTitleColor(UIColor(red: 85/255, green: 185/255, blue: 188/255, alpha: 0.6), for: .highlighted)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 21)
@@ -250,7 +250,7 @@ class DetaileSettingViewController:UIViewController {
     
     // 뒤로가기, 확인 바텀버튼 (stack View 사용)
     lazy var bottomButtonStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [cancleButton, confirmButton])
+        let stackView = UIStackView(arrangedSubviews: [cancleButton, nextButton])
         stackView.axis = .horizontal
         stackView.spacing = 120
         
@@ -267,6 +267,16 @@ class DetaileSettingViewController:UIViewController {
         setButtonAction()
         
         budgetSlider.addTarget(self, action: #selector(self.sliderAction(_:)), for: .valueChanged)
+        
+        nextButton.addTarget(self, action: #selector(self.nextButtonAction(_:)), for: .touchUpInside)
+    }
+    
+    @objc
+    func nextButtonAction(_ sender: UIButton) {
+        
+        let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil)
+            .instantiateViewController(withIdentifier: "AccomoViewSB") as! AccomoViewController
+            navigationController?.pushViewController(nextView, animated: true)
     }
     
     func setButtonAction() {
@@ -350,4 +360,7 @@ class DetaileSettingViewController:UIViewController {
         
     }
     
+    
+    // main에 있는 두번째화면 불러오기(스토리보드 활용)
+    let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "AccomoViewSB") as! AccomoViewController
 }

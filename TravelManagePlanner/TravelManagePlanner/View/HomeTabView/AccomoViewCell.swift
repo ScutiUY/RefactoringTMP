@@ -7,7 +7,18 @@
 
 import UIKit
 
+// 범용성을 위해 class가 아닌 AnyObject로 선언해준다.
+protocol ContentsMainTextDelegate: AnyObject {
+
+// 위임해줄 기능
+func categoryButtonTapped()
+    
+}
+
+
 class AccomoViewCell: UITableViewCell {
+        
+    var cellDelegate: ContentsMainTextDelegate?
     
     lazy var accomoImgButton: UIButton = {
         let button = UIButton()
@@ -50,7 +61,11 @@ class AccomoViewCell: UITableViewCell {
         
         return button
     }()
-
+    
+    @objc
+    func accomoSelectAction() {
+        cellDelegate?.categoryButtonTapped()
+    }
     
     lazy var accomoTitleStack: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [accomoTitle, accomoSubTitle])
@@ -78,11 +93,17 @@ class AccomoViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpView()
         setLayout()
+        
+        self.accomoSelectButton.addTarget(self, action: #selector(accomoSelectAction), for: .touchUpInside)
+
     }
     
     func setUpView() {
         addSubview(accomoImgButton)
         addSubview(accomoAllTitleStack)
+        
+//        contentView.addSubview(accomoImgButton)
+//        contentView.addSubview(accomoAllTitleStack)
     }
     
     func setLayout() {
@@ -114,3 +135,4 @@ class AccomoViewCell: UITableViewCell {
     }
     
 }
+

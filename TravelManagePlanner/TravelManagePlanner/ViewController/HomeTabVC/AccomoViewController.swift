@@ -130,8 +130,17 @@ extension AccomoViewController: UITableViewDataSource {
         cell.cellLoadImage(imgDataName[indexPath.row])
         cell.accomoTitle.text = imgDataName[indexPath.row]
         cell.accomoSubTitle.text = "업소의 간단한 설명"
+        cell.cellDelegate = self
+    
+//        cell.contentView.isUserInteractionEnabled = false
         
         return cell
+    }
+}
+
+extension AccomoViewController:ContentsMainTextDelegate {
+    func categoryButtonTapped() {
+        print("버튼 기능 구현")
     }
 }
 

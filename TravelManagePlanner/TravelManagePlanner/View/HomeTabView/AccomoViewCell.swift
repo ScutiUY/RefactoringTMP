@@ -99,11 +99,11 @@ class AccomoViewCell: UITableViewCell {
     }
     
     func setUpView() {
-        addSubview(accomoImgButton)
-        addSubview(accomoAllTitleStack)
+//        addSubview(accomoImgButton)
+//        addSubview(accomoAllTitleStack)
         
-//        contentView.addSubview(accomoImgButton)
-//        contentView.addSubview(accomoAllTitleStack)
+        contentView.addSubview(accomoImgButton)
+        contentView.addSubview(accomoAllTitleStack)
     }
     
     func setLayout() {

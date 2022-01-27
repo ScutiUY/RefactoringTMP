@@ -157,6 +157,6 @@ import Photos
     }
 
     func updateAlbumButton() {
-        albumButton.isHidden = albums.count < 2
+        albumButton.isHidden = albums.count < 1
     }
 }

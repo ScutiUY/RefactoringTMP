@@ -27,7 +27,7 @@ class ReviewPhotoCollectionViewCell: UICollectionViewCell {
         addSubview(imageSelectedView)
         
         imageSelectedView.snp.makeConstraints {
-            $0.top.bottom.trailing.leading.equalToSuperview().inset(20)
+            $0.top.bottom.trailing.leading.equalToSuperview()
         }
     }
 }

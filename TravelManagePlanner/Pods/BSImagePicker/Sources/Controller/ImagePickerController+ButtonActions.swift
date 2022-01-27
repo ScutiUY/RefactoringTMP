@@ -44,7 +44,10 @@ extension ImagePickerController {
 
     @objc func cancelButtonPressed(_ sender: UIBarButtonItem) {
         imagePickerDelegate?.imagePicker(self, didCancelWithAssets: assetStore.assets)
-        
+        // MARK: 내가 추가한 것
+        for i in assetStore.assets {
+            deselect(asset: i)
+        }
         if settings.dismiss.enabled {
             dismiss(animated: true)
         }

@@ -13,7 +13,7 @@ import Photos
 let photoID = "photoCell"
 
 
-class reviewWriteViewController: UIViewController, UINavigationControllerDelegate {
+class reviewWriteViewController: UIViewController {
 
     // MARK: - Properties
     var selectedAssets: [PHAsset] = []
@@ -178,8 +178,34 @@ class reviewWriteViewController: UIViewController, UINavigationControllerDelegat
         reviewPhotoCollectionView.dataSource = self
         reviewPhotoCollectionView.delegate = self
         reviewPhotoCollectionView.register(ReviewPhotoCollectionViewCell.self, forCellWithReuseIdentifier: photoID)
+        
+        // 사진 드레그 관련
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture(_:)))
+        reviewPhotoCollectionView.addGestureRecognizer(gesture)
+        
+        // 네비게이션 등록관련 
+        let finishedButton = UIBarButtonItem(title: "등록하기", style: .plain, target: nil, action: nil)
+        self.navigationItem.rightBarButtonItem = finishedButton
+        
     }
-    
+    @objc func handleLongPressGesture(_ gesture: UITapGestureRecognizer)
+    {
+        let collectionView = reviewPhotoCollectionView
+        
+        switch gesture.state {
+        case .began:
+            guard let targetIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)) else {
+                return
+            }
+            collectionView.beginInteractiveMovementForItem(at: targetIndexPath)
+        case .changed:
+            collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: collectionView))
+        case .ended:
+            collectionView.endInteractiveMovement()
+        default:
+            collectionView.cancelInteractiveMovement()
+        }
+    }
 
     // MARK: - Helpers
     
@@ -242,103 +268,101 @@ class reviewWriteViewController: UIViewController, UINavigationControllerDelegat
         contentView.addSubview(reviewTextField)
         contentView.addSubview(photoTitle)
         contentView.addSubview(photoButton)
-
+        contentView.addSubview(reviewPhotoCollectionView)
 
 
         travelTitle.snp.makeConstraints {
             $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
             $0.height.equalTo(50)
             $0.top.equalTo(headerview.snp.bottom).offset(10)
-            $0.left.equalTo(headerview.snp.left).offset(20)
+            $0.leading.equalTo(headerview.snp.leading).offset(20)
         }
         travelTextField.snp.makeConstraints {
             $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
             $0.height.equalTo(50)
             $0.top.equalTo(travelTitle.snp.bottom)
-            $0.left.equalTo(headerview.snp.left).offset(20)
+            $0.leading.equalTo(headerview.snp.leading).offset(20)
         }
         
         hashtagTitle.snp.makeConstraints {
             $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
             $0.height.equalTo(50)
             $0.top.equalTo(travelTextField.snp.bottom).offset(10)
-            $0.left.equalTo(headerview.snp.left).offset(20)
+            $0.leading.equalTo(headerview.snp.leading).offset(20)
         }
         
         hashtagTextField.snp.makeConstraints {
             $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
             $0.height.equalTo(50)
             $0.top.equalTo(hashtagTitle.snp.bottom)
-            $0.left.equalTo(headerview.snp.left).offset(20)
+            $0.leading.equalTo(headerview.snp.leading).offset(20)
         }
         
         foodTitle.snp.makeConstraints {
             $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
             $0.height.equalTo(50)
             $0.top.equalTo(hashtagTextField.snp.bottom).offset(10)
-            $0.left.equalTo(headerview.snp.left).offset(20)
+            $0.leading.equalTo(headerview.snp.leading).offset(20)
         }
         
         foodTextField.snp.makeConstraints {
             $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
             $0.height.equalTo(50)
             $0.top.equalTo(foodTitle.snp.bottom)
-            $0.left.equalTo(headerview.snp.left).offset(20)
+            $0.leading.equalTo(headerview.snp.leading).offset(20)
         }
         
         sleepTitle.snp.makeConstraints {
             $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
             $0.height.equalTo(50)
             $0.top.equalTo(foodTextField.snp.bottom).offset(10)
-            $0.left.equalTo(headerview.snp.left).offset(20)
+            $0.leading.equalTo(headerview.snp.leading).offset(20)
         }
         
         sleepTextField.snp.makeConstraints {
             $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
             $0.height.equalTo(50)
             $0.top.equalTo(sleepTitle.snp.bottom)
-            $0.left.equalTo(headerview.snp.left).offset(20)
+            $0.leading.equalTo(headerview.snp.leading).offset(20)
         }
         
         reviewTitle.snp.makeConstraints {
             $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
             $0.height.equalTo(50)
             $0.top.equalTo(sleepTextField.snp.bottom).offset(10)
-            $0.left.equalTo(headerview.snp.left).offset(20)
+            $0.leading.equalTo(headerview.snp.leading).offset(20)
         }
         
         reviewTextField.snp.makeConstraints {
             $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
             $0.height.equalTo(50)
             $0.top.equalTo(reviewTitle.snp.bottom)
-            $0.left.equalTo(headerview.snp.left).offset(20)
+            $0.leading.equalTo(headerview.snp.leading).offset(20)
         }
         
         photoTitle.snp.makeConstraints {
             $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
             $0.height.equalTo(50)
             $0.top.equalTo(reviewTextField.snp.bottom).offset(10)
-            $0.left.equalTo(headerview.snp.left).offset(20)
+            $0.leading.equalTo(headerview.snp.leading).offset(20)
         }
         
         photoButton.snp.makeConstraints {
             $0.top.equalTo(photoTitle.snp.bottom)
-            $0.left.equalTo(headerview.snp.left).offset(30)
+            $0.leading.equalTo(headerview.snp.leading).offset(30)
+            $0.height.equalTo(30)
         }
         
         
-        // MARK: -
-        
-        contentView.addSubview(reviewPhotoCollectionView)
         reviewPhotoCollectionView.snp.makeConstraints {
             $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
             $0.height.equalTo(200)
             $0.top.equalTo(photoButton.snp.bottom).offset(10)
-            $0.left.equalTo(headerview.snp.left).offset(20)
+            $0.leading.equalTo(headerview.snp.leading).offset(20)
             $0.bottom.equalToSuperview()
         }
+        
 
-        // MARK: -
     }
     func openLibrary()
     {
@@ -347,7 +371,6 @@ class reviewWriteViewController: UIViewController, UINavigationControllerDelegat
             (asset) in
                 // 사진 하나 선택할 때마다 실행되는 내용 쓰기
             print("==========selected==========")
-            
         }, deselect: {
             (asset) in
                 // 선택했던 사진들 중 하나를 선택 해제할 때마다 실행되는 내용 쓰기
@@ -359,17 +382,19 @@ class reviewWriteViewController: UIViewController, UINavigationControllerDelegat
         }, finish: { [self]
             (assets) in
                 // Done 버튼 누르면 실행되는 내용
-            print("==========finish==========")
-            print("Finished with selections: \(assets.count)")
-            print("Finished with selections: \(self.test.selectedAssets.count)")
-            
+            print("==========<finish>==========")
             self.selectedAssets.removeAll()
+            print("before : \(selectedAssets)")
+            print("before : \(selectedImages)")
+
             for i in assets {
                 self.selectedAssets.append(i)
             }
-            
             self.converAssetToImages()
             self.reviewPhotoCollectionView.reloadData()
+            print("After : \(selectedAssets)")
+            print("After : \(selectedImages)")
+            print("==========</finish>==========")
         })
     }
     
@@ -435,21 +460,15 @@ class reviewWriteViewController: UIViewController, UINavigationControllerDelegat
 extension reviewWriteViewController : UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.test.selectedAssets.count
+        print("==========numberOfItemsInSection==========")
+        return self.selectedAssets.count
     }
     
-//    func collectionview
-    
-    
-    
-    
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print("==========cellForItemAt==========")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photoID, for: indexPath) as! ReviewPhotoCollectionViewCell
-        
         cell.imageSelectedView.image = self.selectedImages[indexPath.row]
         cell.imageSelectedView.contentMode = .scaleAspectFit
-        
         return cell
     }
     
@@ -457,6 +476,14 @@ extension reviewWriteViewController : UICollectionViewDelegateFlowLayout, UIColl
         return CGSize(width: view.frame.width - 80, height: view.frame.height)
     }
     
+    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let item = selectedImages.remove(at: sourceIndexPath.row)
+        selectedImages.insert(item, at: destinationIndexPath.row)
+    }
     
 }
 //

@@ -129,10 +129,7 @@ class CommunityViewController: UIViewController {
     
     @objc func ButtonPressed(_: UIButton)
     {
-        print("HEY!")
         let reviewVC = reviewWriteViewController()
-        //let navigationController = UINavigationController(rootViewController: self)
-        //navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: revi)
         self.navigationController!.pushViewController(reviewVC, animated: true)
     }
 

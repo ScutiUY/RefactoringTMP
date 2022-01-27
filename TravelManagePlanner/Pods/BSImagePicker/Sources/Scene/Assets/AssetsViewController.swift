@@ -35,7 +35,7 @@ class AssetsViewController: UIViewController {
         didSet { dataSource.settings = settings }
     }
 
-    private let store: AssetStore
+    private var store: AssetStore
     private let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private var fetchResult: PHFetchResult<PHAsset> = PHFetchResult<PHAsset>() {
         didSet {
@@ -62,14 +62,14 @@ class AssetsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("WHEN DOES IT START?")
         PHPhotoLibrary.shared().register(self)
 
-        view = collectionView
 
         // Set an empty title to get < back button
         title = " "
-
+        
+        view.backgroundColor = .blue
         collectionView.allowsMultipleSelection = true
         collectionView.bounces = true
         collectionView.alwaysBounceVertical = true

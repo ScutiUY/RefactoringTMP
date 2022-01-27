@@ -107,7 +107,7 @@ class AccomoViewCell: UITableViewCell {
     }
     
     func setLayout() {
-//        accomoImgButton.frame = CGRect.init(x: 0, y: 0, width: contentView.frame.width, height: 160)
+//        accomoImgButton.frame = CGRect.init(x: 0, y: 0, widthㅇ: contentView.frame.width, height: 160)
         accomoImgButton.frame = CGRect.init(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height / 0.28)
         
         accomoAllTitleStack.snp.makeConstraints {

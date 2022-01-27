@@ -53,6 +53,7 @@ class DetaileSettingViewController:UIViewController {
         datePicker.datePickerMode = .date
         datePicker.locale = Locale(identifier: "ko-KR")
         datePicker.timeZone = .autoupdatingCurrent
+        datePicker.frame = CGRect(x: 50, y: 50, width: self.view.frame.width, height: 200)
         datePicker.addTarget(self, action: #selector(datePickerAction(_:)), for: .valueChanged)
         
         // 오늘이전날짜 선택비활성

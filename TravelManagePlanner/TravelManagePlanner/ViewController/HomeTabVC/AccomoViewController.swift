@@ -86,7 +86,7 @@ class AccomoViewController: UIViewController {
         accomoTableView.snp.makeConstraints {
             $0.top.equalTo(accomoHeadStack.snp.bottom).multipliedBy(1.1)
             $0.leading.equalTo(view.snp.centerX).multipliedBy(0.1)
-            $0.bottom.equalToSuperview().offset(-54)
+            $0.bottom.equalToSuperview().offset(-150)
             $0.trailing.equalToSuperview().offset(-24)
         }
     }
@@ -125,12 +125,14 @@ extension AccomoViewController: UITableViewDataSource {
     // 테이블 구성
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        print(indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! AccomoViewCell
         cell.backgroundColor = .clear
         cell.cellLoadImage(imgDataName[indexPath.row])
         cell.accomoTitle.text = imgDataName[indexPath.row]
         cell.accomoSubTitle.text = "업소의 간단한 설명"
         cell.cellDelegate = self
+        
     
 //        cell.contentView.isUserInteractionEnabled = false
         

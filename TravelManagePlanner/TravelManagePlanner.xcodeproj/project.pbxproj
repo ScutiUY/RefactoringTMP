@@ -8,12 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		106560FF1417B3240A9281FA /* Pods_TravelManagePlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7ABD5855A525E4DBDAD53D2 /* Pods_TravelManagePlanner.framework */; };
-		4A5CB1C6278FD627008AD7FF /* ReviewWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5CB1C5278FD627008AD7FF /* ReviewWriteViewController.swift */; };
-		4A8EB67D27998D5C0046228A /* ReviewPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8EB67C27998D5C0046228A /* ReviewPhotoCollectionViewCell.swift */; };
-		4A904EBF2783EB0400C0D493 /* DemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A904EBE2783EB0400C0D493 /* DemoCell.swift */; };
-		4A904EC327869B7700C0D493 /* CommunityFloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A904EC227869B7700C0D493 /* CommunityFloatingButton.swift */; };
-		4A904EC527869D5400C0D493 /* CommunitySearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A904EC427869D5300C0D493 /* CommunitySearchBar.swift */; };
-		4A904EC727869EB100C0D493 /* CommunityPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A904EC627869EB100C0D493 /* CommunityPickerView.swift */; };
+		6B1D27F3279B28C6004B24CB /* AccomoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1D27F2279B28C6004B24CB /* AccomoViewController.swift */; };
+		6B1D27F5279DA836004B24CB /* AccomoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1D27F4279DA836004B24CB /* AccomoViewCell.swift */; };
+		6B354795279B07B800B2924D /* DetaileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B354794279B07B800B2924D /* DetaileSettingViewController.swift */; };
 		6B7D8B2C27833D95003B2266 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7D8B2B27833D95003B2266 /* ThemeViewController.swift */; };
 		6B7D8B2E27833DC5003B2266 /* ThemeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7D8B2D27833DC5003B2266 /* ThemeViewCell.swift */; };
 		9C300F2632C124C2A9E86F66 /* Pods_TravelManagePlannerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8180EC9FCB4EA1CC087FC6 /* Pods_TravelManagePlannerTests.framework */; };

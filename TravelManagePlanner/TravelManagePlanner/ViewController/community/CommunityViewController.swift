@@ -71,7 +71,7 @@ class CommunityViewController: UIViewController {
         setCollectionView()
         setCommunityPickerView()
         setFloatingButton()
-        communityCollectionView.register(DemoCell.self, forCellWithReuseIdentifier: cellID)
+        communityCollectionView.register(DemoCell.self, forCellWithReuseIdentifier: cellId)
     }
     
     
@@ -143,7 +143,7 @@ extension CommunityViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! DemoCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! DemoCell
         
         cell.backgroundColor = .red
         return cell

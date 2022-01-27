@@ -19,7 +19,7 @@ class TabbarController: UITabBarController {
         let homeVC = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "ThemeViewSB")
         
         let sampleVC1 = SampleViewController() // 여행 리스트 VC
-        let sampleVC2 = SampleViewController() // 커뮤니티 VC
+        let commuityVC = CommunityViewController() // 커뮤니티 VC
         let sampleVC3 = SampleViewController() // 마이페이지 VC
         
         // 홈 탭
@@ -33,7 +33,7 @@ class TabbarController: UITabBarController {
         planTab.title = "journey"
         
         // 커뮤니티 탭
-        let commuTab = UINavigationController(rootViewController: sampleVC2)
+        let commuTab = UINavigationController(rootViewController: commuityVC)
         commuTab.tabBarItem.image = UIImage(named: "Community2")!.resizedImage(targetSize: CGSize(width: 25, height: 25))
         commuTab.title = "community"
         

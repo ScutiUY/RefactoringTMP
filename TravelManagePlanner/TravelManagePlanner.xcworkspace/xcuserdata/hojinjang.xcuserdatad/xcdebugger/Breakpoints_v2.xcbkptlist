@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "CFA09452-DB63-4E21-A04E-F54B28CF704B"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B605E9D1-A8EC-4913-9F7F-41F1DC8501EA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TravelManagePlanner/ViewController/review/reviewWriteViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "reviewWriteViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "B605E9D1-A8EC-4913-9F7F-41F1DC8501EA - 24e696ce19c87a6"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TravelManagePlanner.reviewWriteViewController.scrollView.getter : __C.UIScrollView"
+                  moduleName = "TravelManagePlanner"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hojinjang/TravelManagerPlanner/TravelManagePlanner/TravelManagePlanner/ViewController/review/reviewWriteViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "49">
+               </Location>
+               <Location
+                  uuid = "B605E9D1-A8EC-4913-9F7F-41F1DC8501EA - 1f0dbb5fd0e5d6d5"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TravelManagePlanner.reviewWriteViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; TravelManagePlanner.reviewWriteViewController"
+                  moduleName = "TravelManagePlanner"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hojinjang/TravelManagerPlanner/TravelManagePlanner/TravelManagePlanner/ViewController/review/reviewWriteViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "244">
+               </Location>
+               <Location
+                  uuid = "B605E9D1-A8EC-4913-9F7F-41F1DC8501EA - 7f64ce7e9ed44f92"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TravelManagePlanner.reviewWriteViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;TravelManagePlanner.reviewWriteViewController&gt;"
+                  moduleName = "TravelManagePlanner"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hojinjang/TravelManagerPlanner/TravelManagePlanner/TravelManagePlanner/ViewController/review/reviewWriteViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "201">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1686B431-F226-4C94-A956-70C60C4E6586"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TravelManagePlanner/ViewController/review/reviewWriteViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "reviewWriteViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

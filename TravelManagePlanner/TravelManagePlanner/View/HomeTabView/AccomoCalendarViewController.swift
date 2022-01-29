@@ -33,6 +33,7 @@ class CalendarModalViewController: UIViewController {
     lazy var fscCalendar: FSCalendar = {
         let calendar = FSCalendar()
         
+        
         //선택 버튼색상
         calendar.appearance.selectionColor = UIColor(red: 104/255, green: 209/255, blue: 148/255, alpha: 1)
         calendar.backgroundColor = UIColor(red: 228/255, green: 245/255, blue: 255/255, alpha: 1)
@@ -40,8 +41,7 @@ class CalendarModalViewController: UIViewController {
         calendar.allowsMultipleSelection = true
         calendar.scrollEnabled = true
         calendar.scrollDirection = .horizontal
-//        calendar.borderRadius = 1.2
-        
+        calendar.layer.cornerRadius = 20
         return calendar
     }()
     
@@ -67,8 +67,38 @@ class CalendarModalViewController: UIViewController {
         return label
     }()
     
+    // 다시선택 버튼
+    lazy var reSelectButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("다시 선택", for : .normal)
+        button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 1), for: .normal)
+        button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 0.6), for: .highlighted)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 21)
+        
+        return button
+    }()
+    
+    lazy var accomoAddButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("추가 하기", for : .normal)
+        button.setTitleColor(UIColor(red: 85/255, green: 185/255, blue: 188/255, alpha: 1), for: .normal)
+        button.setTitleColor(UIColor(red: 85/255, green: 185/255, blue: 188/255, alpha: 0.6), for: .highlighted)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 21)
+        
+        return button
+    }()
+    
+    
+    // 바텀 버튼 스택
+    lazy var bottomButtonStack: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [reSelectButton, accomoAddButton])
+        stackView.axis = .horizontal
+        stackView.spacing = 120
+        
+        return stackView
+    }()
     // BottomCalendar 높이
-    let defaultHeight: CGFloat = 420
+    let defaultHeight: CGFloat = 500
     
     var containerViewHeightConstraint: NSLayoutConstraint?
     var containerViewBottomConstraint: NSLayoutConstraint?
@@ -90,6 +120,7 @@ class CalendarModalViewController: UIViewController {
         view.addSubview(selectAccomName)
         view.addSubview(selectAccomoPlace)
         view.addSubview(fscCalendar)
+        view.addSubview(bottomButtonStack)
     }
     func setLayout() {
         dimmedView.snp.makeConstraints {
@@ -105,22 +136,27 @@ class CalendarModalViewController: UIViewController {
         }
         
         selectAccomName.snp.makeConstraints {
-            $0.top.equalTo(containerView.snp.top).offset(10)
+            $0.top.equalTo(containerView.snp.top).multipliedBy(1.03)
             $0.leading.equalToSuperview().inset(10)
             $0.trailing.equalToSuperview().inset(10)
         }
         
         selectAccomoPlace.snp.makeConstraints {
-            $0.top.equalTo(selectAccomName.snp.bottom).offset(10)
+            $0.top.equalTo(selectAccomName.snp.bottom).multipliedBy(1.02)
             $0.leading.equalToSuperview().inset(10)
             $0.trailing.equalToSuperview().inset(10)
         }
         
         fscCalendar.snp.makeConstraints {
-            $0.top.equalTo(selectAccomoPlace.snp.bottom).offset(10)
+            $0.top.equalTo(selectAccomoPlace.snp.bottom).multipliedBy(1.02)
             $0.leading.equalToSuperview().inset(10)
-            $0.bottom.equalToSuperview().inset(10)
+            $0.bottom.equalToSuperview().inset(80)
             $0.trailing.equalToSuperview().inset(10)
+        }
+        
+        bottomButtonStack.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(30)
+            $0.centerX.equalToSuperview()
         }
         
         // 6. Set container to default height

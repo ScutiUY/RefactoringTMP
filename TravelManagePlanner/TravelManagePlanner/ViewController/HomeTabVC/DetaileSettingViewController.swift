@@ -267,6 +267,8 @@ class DetaileSettingViewController:UIViewController {
         setDelegate()
         setButtonAction()
         
+        dayToGocalendar.locale = Locale(identifier: "ko-KR")
+        
         budgetSlider.addTarget(self, action: #selector(self.sliderAction(_:)), for: .valueChanged)
         
         nextButton.addTarget(self, action: #selector(self.nextButtonAction(_:)), for: .touchUpInside)

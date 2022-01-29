@@ -40,13 +40,35 @@ class CalendarModalViewController: UIViewController {
         calendar.allowsMultipleSelection = true
         calendar.scrollEnabled = true
         calendar.scrollDirection = .horizontal
-        
+//        calendar.borderRadius = 1.2
         
         return calendar
     }()
     
+    // 선택한 숙박업소 명
+    lazy var selectAccomName: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 21)
+//        label.textAlignment = .center
+        label.text = "숙박장소 명"
+        label.textColor = UIColor(red: 94/255, green: 94/255, blue: 94/255, alpha: 1)
+        
+        return label
+    }()
+    
+    // 선택한 숙박장소 지역명
+    lazy var selectAccomoPlace: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 18)
+//        label.textAlignment = .center
+        label.text = "지역 명"
+        label.textColor = UIColor(red: 94/255, green: 94/255, blue: 94/255, alpha: 1)
+        
+        return label
+    }()
+    
     // BottomCalendar 높이
-    let defaultHeight: CGFloat = 380
+    let defaultHeight: CGFloat = 420
     
     var containerViewHeightConstraint: NSLayoutConstraint?
     var containerViewBottomConstraint: NSLayoutConstraint?
@@ -65,15 +87,11 @@ class CalendarModalViewController: UIViewController {
     func setUpView() {
         view.addSubview(dimmedView)
         view.addSubview(containerView)
+        view.addSubview(selectAccomName)
+        view.addSubview(selectAccomoPlace)
         view.addSubview(fscCalendar)
     }
     func setLayout() {
-        // 4. Add subviews
-        
-//        dimmedView.translatesAutoresizingMaskIntoConstraints = false
-//        containerView.translatesAutoresizingMaskIntoConstraints = false
-        
-        
         dimmedView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview()
@@ -86,11 +104,23 @@ class CalendarModalViewController: UIViewController {
             $0.trailing.equalToSuperview()
         }
         
-        fscCalendar.snp.makeConstraints {
+        selectAccomName.snp.makeConstraints {
             $0.top.equalTo(containerView.snp.top).offset(10)
-            $0.leading.equalToSuperview().offset(30)
-            $0.bottom.equalToSuperview().offset(30)
-            $0.right.equalToSuperview().offset(30)
+            $0.leading.equalToSuperview().inset(10)
+            $0.trailing.equalToSuperview().inset(10)
+        }
+        
+        selectAccomoPlace.snp.makeConstraints {
+            $0.top.equalTo(selectAccomName.snp.bottom).offset(10)
+            $0.leading.equalToSuperview().inset(10)
+            $0.trailing.equalToSuperview().inset(10)
+        }
+        
+        fscCalendar.snp.makeConstraints {
+            $0.top.equalTo(selectAccomoPlace.snp.bottom).offset(10)
+            $0.leading.equalToSuperview().inset(10)
+            $0.bottom.equalToSuperview().inset(10)
+            $0.trailing.equalToSuperview().inset(10)
         }
         
         // 6. Set container to default height

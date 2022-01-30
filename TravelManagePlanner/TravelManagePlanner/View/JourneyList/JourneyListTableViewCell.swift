@@ -60,9 +60,16 @@ class JourneyListTableViewCell: UITableViewCell {
             make.trailing.equalToSuperview()
         }
     }
-    func setData(title: String, date: String, image: UIImage) {
-        self.journeyImage.image = image
-        self.journeyTitleLabel.text = title
-        self.journeyDate.text = date
+    func setData(_ journey: Journey) {
+        if let journeyThumnailUrl =
+            journey.journeyDetail.first?.thumnailUrl {
+            ImageLoader.loadImage(url: journeyThumnailUrl) { [weak self] image in
+                self?.journeyImage.image = image
+            }
+        } else {
+            self.journeyImage.backgroundColor = .gray
+        }
+        self.journeyTitleLabel.text = journey.name
+        self.journeyDate.text = journey.date
     }
 }

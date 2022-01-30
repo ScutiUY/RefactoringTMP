@@ -11,8 +11,7 @@ import SnapKit
 class JourneyListDetailViewController: UIViewController {
 
     var isDateCellSelected = false
-    let col: [UIColor] = [.red, .blue, .orange, .yellow, .green]
-    let colN = ["red", "blue", "orrange", "yellow", "green"]
+    let col = ["red", "blue", "orrange", "yellow", "green"]
     
     private lazy var journeyListDetailDateCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -73,10 +72,10 @@ extension JourneyListDetailViewController: UICollectionViewDelegate, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == journeyListDetailDateCollectionView {
+        if collectionView == journeyListDetailDateCollectionView { // dateCollectionView
             let cell = journeyListDetailDateCollectionView.dequeueReusableCell(withReuseIdentifier: "dateCell", for: indexPath) as! JourneyListDetailDateCollectionViewCell
             cell.setLayout()
-            cell.setLabelName(name: colN[indexPath.row])
+            cell.setLabelName(name: col[indexPath.row])
             
             if !isDateCellSelected && indexPath.row == 0 {
                 isDateCellSelected.toggle()
@@ -84,9 +83,9 @@ extension JourneyListDetailViewController: UICollectionViewDelegate, UICollectio
                 collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
             }
             return cell
-        } else {
+        } else { // pageCollectionView
             let cell = journeyListDetailPageCollectionView.dequeueReusableCell(withReuseIdentifier: "pageCell", for: indexPath) as! JourneyListDetailPageCollectionView
-            cell.backgroundColor = col[indexPath.row]
+            cell.parentViewSize = CGSize(width: view.frame.width, height: collectionView.frame.height)
             return cell
         }
     }
@@ -95,7 +94,7 @@ extension JourneyListDetailViewController: UICollectionViewDelegate, UICollectio
         if collectionView == journeyListDetailDateCollectionView {
             return CGSize(width: 80, height: 15)
         } else {
-            return CGSize(width: view.frame.width, height: 500)
+            return CGSize(width: view.frame.width, height: collectionView.frame.height)
         }
     }
     

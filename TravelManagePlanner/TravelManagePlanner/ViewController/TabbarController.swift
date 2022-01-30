@@ -16,7 +16,7 @@ class TabbarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // VC 선언 부분
-        let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SampleViewController")
+        let homeVC = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "ThemeViewSB")
         
         let journeyListVC = UIStoryboard(name: "JourneyListSB", bundle: nil).instantiateViewController(withIdentifier: "JourneyListSB") // 여행 리스트 VC
         let sampleVC2 = SampleViewController() // 커뮤니티 VC

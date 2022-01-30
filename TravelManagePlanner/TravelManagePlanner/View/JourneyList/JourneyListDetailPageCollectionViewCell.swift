@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 
 class JourneyListDetailPageCollectionView: UICollectionViewCell {
+    let col: [UIColor] = [.red, .blue, .orange, .yellow, .green]
+    var parentViewSize = CGSize(width: 0, height: 0)
     
     private lazy var journeyListDetailCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -38,21 +40,26 @@ class JourneyListDetailPageCollectionView: UICollectionViewCell {
     }
     
 }
+
 extension JourneyListDetailPageCollectionView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = journeyListDetailCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! JourneyListDetailCollectionViewCell
-        if indexPath.row == 0 {
-            cell.backgroundColor = .blue
-        } else {
-            cell.backgroundColor = .red
-        }
+        cell.setLayout()
+        cell.backgroundColor = col[indexPath.row]
         return cell
     }
-    
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let destinationDetailVC = UIStoryboard(name: "DestinationDetailSB", bundle: nil).instantiateViewController(withIdentifier: "DestinationDetailSB") as! DestinationDetailViewController
+        print("clicked")
+    }
+}
+
+extension JourneyListDetailPageCollectionView: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: parentViewSize.width * 0.9, height: 150)
+    }
 }
 

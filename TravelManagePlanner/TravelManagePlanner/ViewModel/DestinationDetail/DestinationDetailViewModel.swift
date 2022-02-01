@@ -17,7 +17,7 @@ class DestinationDetailViewModel {
     var destImages = [String]()
     
     func getDestinationData() {
-        repo.getDestinationDetail { data in
+        repo.getDestinationDetailInfo { data in
             print(data)
         }
     }

@@ -13,7 +13,7 @@ class DestinationInfoRepositories: NSObject {
     private let httpClient = HttpClient(baseUrl: "https://eunryuplaners.com:19624")
     private var params = ""
     
-    func getDestinationDetail(completed: @escaping (DestinationDetailData) -> Void) {
+    func getDestinationDetailInfo(completed: @escaping (DestinationDetailData) -> Void) {
         httpClient.getJson(path: "/plan/getAllShopList.tpi") { [self] result in
             
             if let json = try? result.get() {

@@ -131,8 +131,10 @@ extension DestinationDetailViewController: UITableViewDelegate, UITableViewDataS
 
 extension DestinationDetailViewController { // scrollview
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let idx = imageSliderCollectionView.visibleCells.last!
-        imagePageControl.currentPage = imageSliderCollectionView.indexPath(for: idx)!.row
+        if scrollView == imageSliderCollectionView {
+            let currentIdx = Int(scrollView.contentOffset.x / scrollView.frame.width)
+            imagePageControl.currentPage = currentIdx
+        }
     }
     
 }

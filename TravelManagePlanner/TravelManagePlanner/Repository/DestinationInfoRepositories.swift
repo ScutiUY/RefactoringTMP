@@ -17,10 +17,8 @@ class DestinationInfoRepositories: NSObject {
         httpClient.getJson(path: "/plan/getAllShopList.tpi") { [self] result in
             
             if let json = try? result.get() {
-                print(String(data: json, encoding: .utf8))
-                //completed(parseDestinationData(jsonObject: self.JSONObject(json)))
                 let d = try! JSONDecoder().decode(DestinationDetailData.self, from: json)
-                print(d)
+                completed(d)
             }
         }
     }

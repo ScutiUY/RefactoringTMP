@@ -28,7 +28,7 @@ class ImageLoader {
             if let data = try? Data(contentsOf: URL(string: url)!) {
                 let image = UIImage(data: data)
                 DispatchQueue.main.async {
-                    completed(image)
+                    completed(image) 
                 }
             } else {
                 DispatchQueue.main.async {

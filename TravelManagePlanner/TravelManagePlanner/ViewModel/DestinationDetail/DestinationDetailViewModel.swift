@@ -12,17 +12,36 @@ class DestinationDetailViewModel {
     
     var repo = DestinationInfoRepositories()
     
-    var destTitle = ""
-    var destDesc = ""
-    var destImages = [String]()
+    private var destinationInfo: DestinationDetailData.DestinationData = DestinationDetailData.shared.data {
+        didSet {
+            //self.updated()
+        }
+    }
+    
+    var loadingStarted: () -> Void = { }
+    var loadingEnded: () -> Void = { }
+    var dataUpdated: Observable = Observable(false)
     
     func getDestinationData() {
         repo.getDestinationDetailInfo { data in
-            print(data)
+            self.destinationInfo = data.data
+            self.dataUpdated.value = true
+            self.getImage()
         }
     }
-    func data() {
-        
+    var data: DestinationDetailData.DestinationData {
+        return destinationInfo
     }
-    
+    func imagesCount() -> Int {
+        return destinationInfo.imgUrl.count
+    }
+    func getImage(index: Int) -> String {
+        return destinationInfo.imgUrl[index]
+    }
+    func getImage(){
+        
+        for imageUrl in destinationInfo.imgUrl {
+            ImageLoader.loadImage(url: imageUrl) { _ in }
+        }
+    }
 }

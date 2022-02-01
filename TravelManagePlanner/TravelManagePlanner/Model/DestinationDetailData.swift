@@ -8,22 +8,23 @@
 import Foundation
 
 struct DestinationDetailData: Codable {
+    static var shared = DestinationDetailData(resCode: "", resMsg: "", data: DestinationData.shared)
     let resCode: String
     let resMsg: String
-    let data: String
-    init(resCode: String, resMsg: String, data: String) {
+    let data: DestinationData
+    init(resCode: String, resMsg: String, data: DestinationData) {
         self.resCode = resCode
         self.resMsg = resMsg
         self.data = data
     }
     struct DestinationData: Codable {
-        static var shared = DestinationData(imgUrl: "", address: "", name: "", idx: "", content: "")
-        let imgUrl: String
+        static var shared = DestinationData(imgUrl: [], address: "", name: "", idx: "", content: "")
+        let imgUrl: [String]
         let address: String
         let name: String
         let idx: String
         let content: String
-        init(imgUrl: String, address: String, name: String, idx: String, content: String) {
+        init(imgUrl: [String], address: String, name: String, idx: String, content: String) {
             self.imgUrl = imgUrl
             self.address = address
             self.name = name
@@ -33,10 +34,3 @@ struct DestinationDetailData: Codable {
     }
 }
 
-
-
-struct DestinationDetailImage: Codable {
-    static var shared = DestinationDetailImage(title: "", link: "")
-    let title: String
-    let link: String
-}

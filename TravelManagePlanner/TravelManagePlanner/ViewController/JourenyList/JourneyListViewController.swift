@@ -53,7 +53,6 @@ class JourneyListViewController: UIViewController {
         
     }
     func setObserver() {
-        print(#function)
         journeyListViewModel.loadingStarted = { [weak activity] in
             activity?.isHidden = false
             activity?.startAnimating()
@@ -62,7 +61,6 @@ class JourneyListViewController: UIViewController {
             activity?.stopAnimating()
         }
         journeyListViewModel.journeyListUpdated = { [weak self] in
-            print("진입")
             self?.journeyTableView.reloadData()
             self?.journeyTableView.refreshControl?.endRefreshing()
         }

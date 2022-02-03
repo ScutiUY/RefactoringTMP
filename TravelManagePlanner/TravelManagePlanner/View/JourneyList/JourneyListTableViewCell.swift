@@ -33,6 +33,11 @@ class JourneyListTableViewCell: UITableViewCell {
         return label
     }()
 
+    override func prepareForReuse() {
+        self.journeyImage.image = nil
+        
+    }
+    
     func setLayout() {
         self.contentView.addSubview(journeyImage)
         self.contentView.addSubview(labelAnchorView)

@@ -9,4 +9,13 @@ import Foundation
 
 class JourneyListDetailViewModel {
     
+    private var repo = JourneyListRepository()
+    private var detailList = Journey.shared
+    
+    var loadingStarted: (() -> ()) = { }
+    var loadingEnded: (() -> ()) = { }
+    var journeyListUpdated: (() -> ()) = { }
+    var failedJourneyListUpdate: (() -> ()) = { }
+    
+    
 }

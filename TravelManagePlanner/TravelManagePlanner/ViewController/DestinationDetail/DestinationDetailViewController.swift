@@ -12,7 +12,7 @@ class DestinationDetailViewController: UIViewController {
     
     var destinationDetailViewModel: DestinationDetailViewModel!
     
-    let images: [UIImage] = [UIImage(named: "Seoul1")!, UIImage(named: "Seoul2")!, UIImage(named: "Seoul3")!, UIImage(named: "Seoul4")!]
+    //private var fetchedImages: [UIImage] = [] 캐싱용 수정필요
     
     lazy var imageAnchorView: UIView = {
         var view = UIView()
@@ -50,7 +50,8 @@ class DestinationDetailViewController: UIViewController {
         destinationDetailViewModel.getDestinationData()
         setLayout()
         setDelegate()
-        // Do any additional setup after loading the view.
+        setObserver()
+        destinationDetailViewModel.getDestinationData()
     }
     
     func setLayout() {
@@ -76,35 +77,40 @@ class DestinationDetailViewController: UIViewController {
             make.bottom.equalToSuperview().offset(-30)
             make.width.equalToSuperview().multipliedBy(0.7)
         }
-        
         destinationDetailContentTableView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.centerY)
             make.bottom.equalTo(view.snp.bottom)
             make.centerX.equalTo(view.snp.centerX)
-            make.width.equalTo(view.snp.width).multipliedBy(0.9)
+            make.width.equalTo(view.snp.width)
             
         }
-        
     }
     
-    func setDelegate(){
+    func setDelegate() {
         imageSliderCollectionView.delegate = self
         imageSliderCollectionView.dataSource = self
         destinationDetailContentTableView.delegate = self
         destinationDetailContentTableView.dataSource = self
     }
+    func setObserver() {
+        destinationDetailViewModel.dataUpdated.bind {_ in
+            //self.fetchedImages = self.destinationDetailViewModel.getImage()
+            self.imageSliderCollectionView.reloadData()
+            self.destinationDetailContentTableView.reloadData()
+        }
+    }
     
 }
 extension DestinationDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        imagePageControl.numberOfPages = images.count
-        return images.count
+        imagePageControl.numberOfPages = destinationDetailViewModel.imagesCount()
+        return destinationDetailViewModel.imagesCount()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = imageSliderCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ImageSliderCollectionViewCell
-        let image = images[indexPath.row]
-        cell.setCollectionViewIngredient(image: image)
+        cell.setCollectionViewIngredient(imageUrl: destinationDetailViewModel.getImage(index: indexPath.row))
+       // cell.setImage(image: fetchedImages[indexPath.row])
         return cell
     }
     
@@ -123,6 +129,7 @@ extension DestinationDetailViewController: UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = destinationDetailContentTableView.dequeueReusableCell(withIdentifier: "JDCcell", for: indexPath) as! DestinationDetailContentTableViewCell
         cell.setLayout()
+        cell.fetchDestInfo(data: destinationDetailViewModel.data)
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -133,8 +140,10 @@ extension DestinationDetailViewController: UITableViewDelegate, UITableViewDataS
 
 extension DestinationDetailViewController { // scrollview
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let idx = imageSliderCollectionView.visibleCells.last!
-        imagePageControl.currentPage = imageSliderCollectionView.indexPath(for: idx)!.row
+        if scrollView == imageSliderCollectionView {
+            let currentIdx = Int(scrollView.contentOffset.x / scrollView.frame.width)
+            imagePageControl.currentPage = currentIdx
+        }
     }
     
 }

@@ -9,6 +9,10 @@ import Foundation
 import Alamofire
 import UIKit
 
+import Foundation
+import Alamofire
+import UIKit
+
 enum APIError: Int, Error {
     case unknown = -1
     case jsonError = -2
@@ -21,7 +25,7 @@ enum APIError: Int, Error {
 struct APIRequest {
     static let url: String = "https://eunryuplaners.com:19624"
     static let headerDic: [String: String] = ["appCode": "TMP_iOS"]
-    
+    /// - Post
     
     /// - Post
     func getJourneyDetailImage(completion: @escaping (DestinationDetailData) -> Void) {
@@ -73,12 +77,16 @@ struct APIRequest {
         AF.request(url, method: method, parameters: params, headers: HTTPHeaders(header)).responseString { (response) in
             switch response.result {
             case .success:
-                completed(Result.success("POST 성공"))
+                print(response.result)
+                print("POST 성공")
+                let re = String(data: response.data!, encoding: .utf16)
+                completed(Result.success(re!))
             case .failure(let error):
                 print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
                 completed(Result.failure(error))
             }
         }
     }
-
+    
 }
+

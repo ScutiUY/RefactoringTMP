@@ -9,7 +9,12 @@ import UIKit
 import SnapKit
 
 class DestinationDetailContentTableViewCell: UITableViewCell {
-
+    lazy var titleLabel: UILabel = {
+        var title = UILabel()
+        title.font = UIFont.systemFont(ofSize: 40)
+        title.textColor = .black
+        return title
+    }()
     lazy var contentTextView: UITextView = {
         var textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 30)
@@ -33,13 +38,24 @@ class DestinationDetailContentTableViewCell: UITableViewCell {
     }
     
     func setLayout() {
+        self.addSubview(titleLabel)
         self.addSubview(contentTextView)
-        contentTextView.snp.makeConstraints { make in
+        titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.height.equalTo(100)
+        }
+        contentTextView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
+    }
+    func fetchDestInfo(data: DestinationDetailData.DestinationData) {
+        titleLabel.text = data.name
+        contentTextView.text = data.content
     }
     
 

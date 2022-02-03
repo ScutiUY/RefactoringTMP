@@ -64,6 +64,7 @@ class SignUpViewModel {
     }
     
     func register() {
+        
         api.signUp(userData: userInfo) { result in
             switch result {
             case .success(let userData):

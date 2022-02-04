@@ -40,5 +40,8 @@ class HttpClient {
             completed(response.result)
         }
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 2656906c482cf69e1ed31b1a475bf8c7de1601fe
 }

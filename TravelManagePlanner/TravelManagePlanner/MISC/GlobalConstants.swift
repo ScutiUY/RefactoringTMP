@@ -14,6 +14,7 @@ enum GlobalConstants {
         enum Size {
             static var mainFontSize: CGFloat = 15
             static var descFontSize: CGFloat = 10
+            static var journeyListTableViewCellTitleSize: CGFloat = 30
             static var signUpLabelFontSize: CGFloat = 14
         }
     }

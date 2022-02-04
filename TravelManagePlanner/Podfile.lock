@@ -1,24 +1,52 @@
 PODS:
   - Alamofire (5.0.5)
+<<<<<<< HEAD
   - FSCalendar (2.8.2)
+=======
+  - BSImagePicker (3.3.1)
+  - JJFloatingActionButton (2.5.0)
+>>>>>>> 2656906c482cf69e1ed31b1a475bf8c7de1601fe
   - SnapKit (5.0.1)
+  - Then (2.7.0)
 
 DEPENDENCIES:
   - Alamofire
+<<<<<<< HEAD
   - FSCalendar
+=======
+  - BSImagePicker
+  - JJFloatingActionButton
+>>>>>>> 2656906c482cf69e1ed31b1a475bf8c7de1601fe
   - SnapKit
+  - Then
 
 SPEC REPOS:
   trunk:
     - Alamofire
+<<<<<<< HEAD
     - FSCalendar
+=======
+    - BSImagePicker
+    - JJFloatingActionButton
+>>>>>>> 2656906c482cf69e1ed31b1a475bf8c7de1601fe
     - SnapKit
+    - Then
 
 SPEC CHECKSUMS:
   Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
+<<<<<<< HEAD
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
+=======
+  BSImagePicker: 0fe04b574d4d6b81093785d2af6c26227efc8428
+  JJFloatingActionButton: fdc3aefb0f28f04d0f988fa25d5fac97028a9ea7
+>>>>>>> 2656906c482cf69e1ed31b1a475bf8c7de1601fe
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  Then: acfe0be7e98221c6204e12f8161459606d5d822d
 
+<<<<<<< HEAD
 PODFILE CHECKSUM: e8f5f74d079c4bc0d386d1ba7ddf88fe8da64e98
+=======
+PODFILE CHECKSUM: ad5c0f0843be83434006759160f529db1d9b8c8c
+>>>>>>> 2656906c482cf69e1ed31b1a475bf8c7de1601fe
 
 COCOAPODS: 1.11.2

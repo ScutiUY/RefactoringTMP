@@ -15,7 +15,7 @@ class DestinationInfoRepositories: NSObject {
 
 
     func getDestinationDetail(completed: @escaping (DestinationDetailData) -> Void) {
-        httpClient.getJson(path: "/plan/getAllShopList.tpi") { [self] result in
+        httpClient.postJson(path: "/plan/getAllShopList.tpi") { [self] result in
             
             if let json = try? result.get() {
                 //completed(parseDestinationData(jsonObjext: self.JSONObject(json)))

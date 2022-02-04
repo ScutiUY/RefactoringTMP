@@ -43,11 +43,7 @@ THE SOFTWARE.
 		</dict>
 		<dict>
 			<key>FooterText</key>
-<<<<<<< HEAD
-			<string>Copyright (c) 2013-2016 FSCalendar (https://github.com/WenchaoD/FSCalendar)
-=======
 			<string>Copyright (c) 2015 Joakim Gyllstrom &lt;joakim@backslashed.se&gt;
->>>>>>> 2656906c482cf69e1ed31b1a475bf8c7de1601fe
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -70,9 +66,6 @@ THE SOFTWARE.
 			<key>License</key>
 			<string>MIT</string>
 			<key>Title</key>
-<<<<<<< HEAD
-			<string>FSCalendar</string>
-=======
 			<string>BSImagePicker</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
@@ -105,7 +98,6 @@ THE SOFTWARE.
 			<string>MIT</string>
 			<key>Title</key>
 			<string>JJFloatingActionButton</string>
->>>>>>> 2656906c482cf69e1ed31b1a475bf8c7de1601fe
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>

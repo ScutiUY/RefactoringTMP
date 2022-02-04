@@ -1,11 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-TravelManagePlanner/Pods-TravelManagePlanner-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
-<<<<<<< HEAD
-${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework
-${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
-=======
 ${BUILT_PRODUCTS_DIR}/BSImagePicker/BSImagePicker.framework
 ${BUILT_PRODUCTS_DIR}/JJFloatingActionButton/JJFloatingActionButton.framework
 ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
 ${BUILT_PRODUCTS_DIR}/Then/Then.framework
->>>>>>> 2656906c482cf69e1ed31b1a475bf8c7de1601fe

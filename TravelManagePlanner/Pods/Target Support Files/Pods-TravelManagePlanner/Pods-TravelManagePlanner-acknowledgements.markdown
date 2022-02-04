@@ -24,11 +24,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
-<<<<<<< HEAD
-## FSCalendar
-
-Copyright (c) 2013-2016 FSCalendar (https://github.com/WenchaoD/FSCalendar)
-=======
 ## BSImagePicker
 
 Copyright (c) 2015 Joakim Gyllstrom <joakim@backslashed.se>
@@ -57,7 +52,6 @@ THE SOFTWARE.
 The MIT License (MIT)
 
 Copyright (c) 2017-Present Jochen Pfeiffer
->>>>>>> 2656906c482cf69e1ed31b1a475bf8c7de1601fe
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

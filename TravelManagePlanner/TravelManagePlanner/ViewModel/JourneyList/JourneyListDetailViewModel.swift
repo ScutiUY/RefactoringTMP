@@ -18,6 +18,6 @@ class JourneyListDetailViewModel {
     var failedJourneyListUpdate: (() -> ()) = { }
     
     func getData() {
-        
+     
     }
 }

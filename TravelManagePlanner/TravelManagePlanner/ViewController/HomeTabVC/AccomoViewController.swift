@@ -4,7 +4,6 @@
 //
 //  Created by YoonDaeSung on 2022/01/22.
 //
-
 import UIKit
 
 // 숙박업소 추천지노출
@@ -153,5 +152,3 @@ extension AccomoViewController:ContentsMainTextDelegate {
     
     
 }
-
-

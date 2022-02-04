@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Alamofire
+//import Alamofire
 
 struct JourneyListRepository {
     
@@ -24,6 +24,13 @@ struct JourneyListRepository {
                 }
             }
             
+        }
+    }
+    func getJourneyDetialList(completed: @escaping (JourneyDetail) -> Void) {
+        httpClient.getJsonData(path: "", params: [:]) { result in
+            let data = try! result.get()
+            let decodedData = try!  JSONDecoder().decode(JourneyDetail.self, from: data)
+            completed(decodedData)
         }
     }
 //    func getJourneys(completed: @escaping (JourneyList) -> Void) {

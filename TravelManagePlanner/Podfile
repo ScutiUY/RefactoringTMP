@@ -1,4 +1,4 @@
- # Uncomment the next line to define a global platform for your project
+# Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
 target 'TravelManagePlanner' do
@@ -7,16 +7,11 @@ target 'TravelManagePlanner' do
 
   # Pods for TravelManagePlanner
   pod 'SnapKit'
-<<<<<<< HEAD
-  pod 'Alamofire'
-  pod 'FSCalendar'  
-
-=======
   pod 'Alamofire'  
   pod 'JJFloatingActionButton'
   pod 'Then'
   pod 'BSImagePicker'
->>>>>>> 2656906c482cf69e1ed31b1a475bf8c7de1601fe
+  pod 'FSCalendar'
 
   target 'TravelManagePlannerTests' do
     inherit! :search_paths

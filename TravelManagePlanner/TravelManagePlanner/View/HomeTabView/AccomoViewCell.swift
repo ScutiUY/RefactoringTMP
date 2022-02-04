@@ -4,7 +4,6 @@
 //
 //  Created by YoonDaeSung on 2022/01/24.
 //
-
 import UIKit
 
 // 범용성을 위해 class가 아닌 AnyObject로 선언해준다.
@@ -138,4 +137,3 @@ class AccomoViewCell: UITableViewCell {
     }
     
 }
-

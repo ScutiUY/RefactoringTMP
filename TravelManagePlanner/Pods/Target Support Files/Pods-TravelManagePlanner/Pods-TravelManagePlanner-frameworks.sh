@@ -177,23 +177,17 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
-<<<<<<< HEAD
-  install_framework "${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework"
-=======
   install_framework "${BUILT_PRODUCTS_DIR}/BSImagePicker/BSImagePicker.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JJFloatingActionButton/JJFloatingActionButton.framework"
->>>>>>> 2656906c482cf69e1ed31b1a475bf8c7de1601fe
   install_framework "${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Then/Then.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
-<<<<<<< HEAD
-  install_framework "${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework"
-=======
   install_framework "${BUILT_PRODUCTS_DIR}/BSImagePicker/BSImagePicker.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JJFloatingActionButton/JJFloatingActionButton.framework"
->>>>>>> 2656906c482cf69e1ed31b1a475bf8c7de1601fe
   install_framework "${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Then/Then.framework"
 fi

@@ -89,7 +89,7 @@ extension JourneyListViewController: UITableViewDelegate, UITableViewDataSource 
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailJourneyListVC = UIStoryboard(name: "JourneyListSB", bundle: nil).instantiateViewController(withIdentifier: "JourneyListDetailSB") as! JourneyListDetailViewController
-        detailJourneyListVC.title = "여행"
+        detailJourneyListVC.title = journeyListViewModel.getTitle(idx: indexPath.row)
         self.navigationController?.pushViewController(detailJourneyListVC, animated: true)
         
     }

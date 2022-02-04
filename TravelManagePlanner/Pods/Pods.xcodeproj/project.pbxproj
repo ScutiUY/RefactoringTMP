@@ -298,12 +298,16 @@
 		50CC4D03F0DA798BEA5B86DB0E1D46D4 /* JJCircleView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JJCircleView.swift; path = Sources/JJCircleView.swift; sourceTree = "<group>"; };
 		51D22692BFDCE54692FE0E98B8A6C37F /* JJFloatingActionButton.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JJFloatingActionButton.debug.xcconfig; sourceTree = "<group>"; };
 		55B83F752233879FD55FF1BF88036ABB /* Pods-TravelManagePlanner-TravelManagePlannerUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TravelManagePlanner-TravelManagePlannerUITests.modulemap"; sourceTree = "<group>"; };
+<<<<<<< HEAD
+		5A78FCE167A08DF57666B5002E543F79 /* Pods_TravelManagePlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravelManagePlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+=======
 		56EC58F056909DF875CED286F60A2696 /* ConstraintLayoutGuideDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuideDSL.swift; path = Source/ConstraintLayoutGuideDSL.swift; sourceTree = "<group>"; };
 		571249FF6901A937E0BDCCFAF44D5D3E /* ConstraintInsets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintInsets.swift; path = Source/ConstraintInsets.swift; sourceTree = "<group>"; };
 		58B3C8D9CE1D76F493A6C07364459CD8 /* RequestInterceptor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestInterceptor.swift; path = Source/RequestInterceptor.swift; sourceTree = "<group>"; };
 		58C0CC7D7EFD78BE86CD378A304B3D1E /* ImagePickerControllerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImagePickerControllerDelegate.swift; path = Sources/Controller/ImagePickerControllerDelegate.swift; sourceTree = "<group>"; };
 		59E53FE717AF6DB87BB510949A6DBBBD /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
 		5A78FCE167A08DF57666B5002E543F79 /* Pods-TravelManagePlanner */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-TravelManagePlanner"; path = Pods_TravelManagePlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+>>>>>>> 2656906c482cf69e1ed31b1a475bf8c7de1601fe
 		5BB0DFEF6E01FD26D4D6F3BD497BA814 /* Pods-TravelManagePlannerTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TravelManagePlannerTests.modulemap"; sourceTree = "<group>"; };
 		5C48734A0F7FEC6A6FA5F1E03BD24847 /* Session.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Session.swift; path = Source/Session.swift; sourceTree = "<group>"; };
 		5D657BC68D572F3CAD3689F70DC6A7F4 /* JJFloatingActionButtonState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JJFloatingActionButtonState.swift; path = Sources/JJFloatingActionButtonState.swift; sourceTree = "<group>"; };
@@ -655,10 +659,15 @@
 		90759C2944D658958BEB8A86235DC345 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
+				5D797E9A5C5782CE845840781FA1CC81 /* Alamofire.framework */,
+				5A78FCE167A08DF57666B5002E543F79 /* Pods_TravelManagePlanner.framework */,
+=======
 				5D797E9A5C5782CE845840781FA1CC81 /* Alamofire */,
 				1F08AE4B81A4E4ECE65672A185E38F78 /* BSImagePicker */,
 				B39ECB203814E0B477049873DBEA123C /* JJFloatingActionButton */,
 				5A78FCE167A08DF57666B5002E543F79 /* Pods-TravelManagePlanner */,
+>>>>>>> 2656906c482cf69e1ed31b1a475bf8c7de1601fe
 				9C7DC11E01F41F33542D172D8023CBD5 /* Pods-TravelManagePlanner-TravelManagePlannerUITests */,
 				9A825DDFF06D99F7F4E69E0EACC080BD /* Pods-TravelManagePlannerTests */,
 				979486118B3E90C08386079D57962701 /* SnapKit */,
@@ -1037,7 +1046,7 @@
 			);
 			name = "Pods-TravelManagePlanner";
 			productName = Pods_TravelManagePlanner;
-			productReference = 5A78FCE167A08DF57666B5002E543F79 /* Pods-TravelManagePlanner */;
+			productReference = 5A78FCE167A08DF57666B5002E543F79 /* Pods_TravelManagePlanner.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		C17AEFC79E770A2906EFAAB1A3757406 /* Then */ = {

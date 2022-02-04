@@ -62,6 +62,7 @@ class AccomoViewCell: UITableViewCell {
         return button
     }()
     
+    
     @objc
     func accomoSelectAction() {
         cellDelegate?.categoryButtonTapped()
@@ -95,19 +96,21 @@ class AccomoViewCell: UITableViewCell {
         setLayout()
         
         self.accomoSelectButton.addTarget(self, action: #selector(accomoSelectAction), for: .touchUpInside)
-
+        
+        
     }
     
     func setUpView() {
-        addSubview(accomoImgButton)
-        addSubview(accomoAllTitleStack)
+//        addSubview(accomoImgButton)
+//        addSubview(accomoAllTitleStack)
         
-//        contentView.addSubview(accomoImgButton)
-//        contentView.addSubview(accomoAllTitleStack)
+        contentView.addSubview(accomoImgButton)
+        contentView.addSubview(accomoAllTitleStack)
+        
     }
     
     func setLayout() {
-//        accomoImgButton.frame = CGRect.init(x: 0, y: 0, width: contentView.frame.width, height: 160)
+//        accomoImgButton.frame = CGRect.init(x: 0, y: 0, widthㅇ: contentView.frame.width, height: 160)
         accomoImgButton.frame = CGRect.init(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height / 0.28)
         
         accomoAllTitleStack.snp.makeConstraints {

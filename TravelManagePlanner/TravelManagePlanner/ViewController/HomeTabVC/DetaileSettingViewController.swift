@@ -53,6 +53,7 @@ class DetaileSettingViewController:UIViewController {
         datePicker.datePickerMode = .date
         datePicker.locale = Locale(identifier: "ko-KR")
         datePicker.timeZone = .autoupdatingCurrent
+        datePicker.frame = CGRect(x: 50, y: 50, width: self.view.frame.width, height: 200)
         datePicker.addTarget(self, action: #selector(datePickerAction(_:)), for: .valueChanged)
         
         // 오늘이전날짜 선택비활성
@@ -266,6 +267,8 @@ class DetaileSettingViewController:UIViewController {
         setDelegate()
         setButtonAction()
         
+        dayToGocalendar.locale = Locale(identifier: "ko-KR")
+        
         budgetSlider.addTarget(self, action: #selector(self.sliderAction(_:)), for: .valueChanged)
         
         nextButton.addTarget(self, action: #selector(self.nextButtonAction(_:)), for: .touchUpInside)
@@ -361,6 +364,6 @@ class DetaileSettingViewController:UIViewController {
     }
     
     
-    // main에 있는 두번째화면 불러오기(스토리보드 활용)
-    let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "AccomoViewSB") as! AccomoViewController
+//    // main에 있는 두번째화면 불러오기(스토리보드 활용)
+//    let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "AccomoViewSB") as! AccomoViewController
 }

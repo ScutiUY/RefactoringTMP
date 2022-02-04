@@ -9,6 +9,7 @@ import UIKit
 
 // 커밋 테스트
 class ThemeViewController: UIViewController{
+    
     let cellID = "Cell"
     // Assets의 사진 출력
     lazy var imgDataName = ["커플", "가족", "우정", "기타"]
@@ -158,8 +159,7 @@ extension ThemeViewController: UICollectionViewDataSource {
 
 extension ThemeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("테마뷰 클릭")
-        print(indexPath)
+        
         // main에 있는 두번째화면 불러오기(스토리보드 활용)
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "DetaileSettingViewSB") as! DetaileSettingViewController
         

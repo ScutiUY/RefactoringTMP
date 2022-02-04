@@ -40,13 +40,8 @@ class TabbarController: UITabBarController {
         let myPageTab = UINavigationController(rootViewController: sampleVC3)
         myPageTab.tabBarItem.image = UIImage(named: "MyPage")!.resizedImage(targetSize: CGSize(width: 25, height: 25))
         myPageTab.title = "myPage"
-<<<<<<< HEAD
-         
-        self.viewControllers = [homeTab, planTab, commuTab, myPageTab]
-=======
         
         self.viewControllers = [homeTab, journeyListTab, commuTab, myPageTab]
->>>>>>> 2656906c482cf69e1ed31b1a475bf8c7de1601fe
         
     }
     

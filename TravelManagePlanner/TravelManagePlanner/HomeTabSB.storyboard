@@ -51,22 +51,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IjG-38-8qV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2083" y="1"/>
-        </scene>
-        <!--Calendar Modal View Controller-->
-        <scene sceneID="oc9-lj-iBX">
-            <objects>
-                <viewController storyboardIdentifier="CalendarModalViewSB" id="fSJ-GB-hAe" customClass="CalendarModalViewController" customModule="TravelManagePlanner" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6dN-fv-Qtd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="slo-JC-oqm"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gQr-Cc-zDq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2083" y="697"/>
+            <point key="canvasLocation" x="2113" y="1"/>
         </scene>
         <!--Desti Search View Controller-->
         <scene sceneID="n2x-Se-xLn">

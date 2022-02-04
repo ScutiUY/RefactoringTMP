@@ -14,8 +14,10 @@ class JourneyListDetailViewModel {
     
     var loadingStarted: (() -> ()) = { }
     var loadingEnded: (() -> ()) = { }
-    var journeyListUpdated: (() -> ()) = { }
+    var dataUpdated: (() -> ()) = { }
     var failedJourneyListUpdate: (() -> ()) = { }
     
-    
+    func getData() {
+        //repo.
+    }
 }

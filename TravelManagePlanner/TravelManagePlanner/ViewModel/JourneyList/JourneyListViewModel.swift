@@ -19,6 +19,10 @@ class JourneyListViewModel {
     var journeyListUpdated: (() -> ()) = { }
     var failedJourneyListUpdate: (() -> ()) = { }
     
+    func getTitle(idx: Int) -> String {
+        return journeyList.journeys[idx].name
+    }
+    
     func journeyListCount() -> Int {
         return journeyList.journeys.count
     }

@@ -26,6 +26,13 @@ struct JourneyListRepository {
             
         }
     }
+    func getDestinationData(completed: @escaping (JourneyDetail) -> Void) {
+        httpClient.getJsonData(path: "", params: [:]) { result in
+            let data = try! result.get()
+            let decodedData = try!  JSONDecoder().decode(JourneyDetail.self, from: data)
+            completed(decodedData)
+        }
+    }
 //    func getJourneys(completed: @escaping (JourneyList) -> Void) {
 //        httpClient.getJsonData(path: "") { result in
 //            if let json = try? result.get() {

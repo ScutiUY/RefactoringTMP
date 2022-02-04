@@ -14,6 +14,3 @@ struct JourneyList: Codable {
         self.journeys = jorneys
     }
 }
-
-
-

@@ -11,6 +11,7 @@ target 'TravelManagePlanner' do
   pod 'JJFloatingActionButton'
   pod 'Then'
   pod 'BSImagePicker'
+  pod 'FSCalendar'
 
   target 'TravelManagePlannerTests' do
     inherit! :search_paths

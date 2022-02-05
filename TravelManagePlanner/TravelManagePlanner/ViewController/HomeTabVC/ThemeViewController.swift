@@ -10,6 +10,9 @@ import UIKit
 // 커밋 테스트
 class ThemeViewController: UIViewController{
     
+    // 뷰모델 소지
+    var homeTabViewModel = HomeTabViewModel()
+    
     let cellID = "Cell"
     // Assets의 사진 출력
     lazy var imgDataName = ["커플", "가족", "우정", "기타"]
@@ -162,6 +165,8 @@ extension ThemeViewController: UICollectionViewDelegate {
         
         // main에 있는 두번째화면 불러오기(스토리보드 활용)
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "DetaileSettingViewSB") as! DetaileSettingViewController
+        
+        print(indexPath)
         
         // 다음화면에서 바텀탭 없애기
         nextView.hidesBottomBarWhenPushed = true

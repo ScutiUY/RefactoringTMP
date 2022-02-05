@@ -19,7 +19,8 @@
 		6B1D27F5279DA836004B24CB /* AccomoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1D27F4279DA836004B24CB /* AccomoViewCell.swift */; };
 		6B354795279B07B800B2924D /* DetaileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B354794279B07B800B2924D /* DetaileSettingViewController.swift */; };
 		6B4CD9BA27ACE4B30058124B /* CalendarModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4CD9B927ACE4B30058124B /* CalendarModalViewController.swift */; };
-		6B7569E527AE733B007F9E1D /* ThemeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7569E427AE733B007F9E1D /* ThemeViewModel.swift */; };
+		6B7569E527AE733B007F9E1D /* HomeTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7569E427AE733B007F9E1D /* HomeTabViewModel.swift */; };
+		6B7569E827AEB7DB007F9E1D /* HomeTabData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7569E727AEB7DB007F9E1D /* HomeTabData.swift */; };
 		6B7D8B2C27833D95003B2266 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7D8B2B27833D95003B2266 /* ThemeViewController.swift */; };
 		6B7D8B2E27833DC5003B2266 /* ThemeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7D8B2D27833DC5003B2266 /* ThemeViewCell.swift */; };
 		6BE2142E27A18682004B8816 /* DestiSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2142D27A18682004B8816 /* DestiSearchViewController.swift */; };
@@ -108,7 +109,8 @@
 		6B1D27F4279DA836004B24CB /* AccomoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomoViewCell.swift; sourceTree = "<group>"; };
 		6B354794279B07B800B2924D /* DetaileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaileSettingViewController.swift; sourceTree = "<group>"; };
 		6B4CD9B927ACE4B30058124B /* CalendarModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModalViewController.swift; sourceTree = "<group>"; };
-		6B7569E427AE733B007F9E1D /* ThemeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewModel.swift; sourceTree = "<group>"; };
+		6B7569E427AE733B007F9E1D /* HomeTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewModel.swift; sourceTree = "<group>"; };
+		6B7569E727AEB7DB007F9E1D /* HomeTabData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabData.swift; sourceTree = "<group>"; };
 		6B7D8B2B27833D95003B2266 /* ThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
 		6B7D8B2D27833DC5003B2266 /* ThemeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewCell.swift; sourceTree = "<group>"; };
 		6BE2142D27A18682004B8816 /* DestiSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestiSearchViewController.swift; sourceTree = "<group>"; };
@@ -233,9 +235,18 @@
 		6B7569E327AE72EB007F9E1D /* HomeTabVM */ = {
 			isa = PBXGroup;
 			children = (
-				6B7569E427AE733B007F9E1D /* ThemeViewModel.swift */,
+				6B7569E427AE733B007F9E1D /* HomeTabViewModel.swift */,
 			);
 			path = HomeTabVM;
+			sourceTree = "<group>";
+		};
+		6B7569E627AEB79A007F9E1D /* HomeTabModel */ = {
+			isa = PBXGroup;
+			children = (
+				6B7569E727AEB7DB007F9E1D /* HomeTabData.swift */,
+				6BE2142F27A186CC004B8816 /* DestiData.swift */,
+			);
+			path = HomeTabModel;
 			sourceTree = "<group>";
 		};
 		EE7E0A6B8C971B07A1BFD457 /* Pods */ = {
@@ -327,11 +338,11 @@
 		F00F182C277866C500211A8D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6B7569E627AEB79A007F9E1D /* HomeTabModel */,
 				F0C4E18D27A10A4F00E72BB7 /* JourneyList */,
 				F076BDDB27969DD200AF6FFD /* DestinationDetailData.swift */,
 				F0782692278FB4C300B9319F /* APIResponseData.swift */,
 				F0BE6F09279ABA720057111E /* UserData.swift */,
-				6BE2142F27A186CC004B8816 /* DestiData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -769,11 +780,12 @@
 				F076BDDC27969DD200AF6FFD /* DestinationDetailData.swift in Sources */,
 				F0CADCDF2781EF2D00DDC1CD /* GlobalConstants.swift in Sources */,
 				F0CADCCB2781AE5700DDC1CD /* SecondSampleViewController.swift in Sources */,
-				6B7569E527AE733B007F9E1D /* ThemeViewModel.swift in Sources */,
+				6B7569E527AE733B007F9E1D /* HomeTabViewModel.swift in Sources */,
 				F04FD8B5278B8F22007D8866 /* DateUtil.swift in Sources */,
 				F0CADCF7278230FC00DDC1CD /* JourneyListViewController.swift in Sources */,
 				F0CADD0127824F0000DDC1CD /* JourneyListDetailDateCollectionViewCell.swift in Sources */,
 				F06E496D2795F509008BB8A2 /* JourneyListDetailViewModel.swift in Sources */,
+				6B7569E827AEB7DB007F9E1D /* HomeTabData.swift in Sources */,
 				F0CADCC92781AAF400DDC1CD /* UIImage+extension.swift in Sources */,
 				F00F17F82778530200211A8D /* AppDelegate.swift in Sources */,
 				F04FD8B2278B8C72007D8866 /* JourneyListViewModel.swift in Sources */,

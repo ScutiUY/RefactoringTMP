@@ -19,6 +19,7 @@
 		6B1D27F5279DA836004B24CB /* AccomoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1D27F4279DA836004B24CB /* AccomoViewCell.swift */; };
 		6B354795279B07B800B2924D /* DetaileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B354794279B07B800B2924D /* DetaileSettingViewController.swift */; };
 		6B4CD9BA27ACE4B30058124B /* CalendarModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4CD9B927ACE4B30058124B /* CalendarModalViewController.swift */; };
+		6B7569E527AE733B007F9E1D /* ThemeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7569E427AE733B007F9E1D /* ThemeViewModel.swift */; };
 		6B7D8B2C27833D95003B2266 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7D8B2B27833D95003B2266 /* ThemeViewController.swift */; };
 		6B7D8B2E27833DC5003B2266 /* ThemeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7D8B2D27833DC5003B2266 /* ThemeViewCell.swift */; };
 		6BE2142E27A18682004B8816 /* DestiSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2142D27A18682004B8816 /* DestiSearchViewController.swift */; };
@@ -107,6 +108,7 @@
 		6B1D27F4279DA836004B24CB /* AccomoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomoViewCell.swift; sourceTree = "<group>"; };
 		6B354794279B07B800B2924D /* DetaileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaileSettingViewController.swift; sourceTree = "<group>"; };
 		6B4CD9B927ACE4B30058124B /* CalendarModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModalViewController.swift; sourceTree = "<group>"; };
+		6B7569E427AE733B007F9E1D /* ThemeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewModel.swift; sourceTree = "<group>"; };
 		6B7D8B2B27833D95003B2266 /* ThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
 		6B7D8B2D27833DC5003B2266 /* ThemeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewCell.swift; sourceTree = "<group>"; };
 		6BE2142D27A18682004B8816 /* DestiSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestiSearchViewController.swift; sourceTree = "<group>"; };
@@ -226,6 +228,14 @@
 				4A716B8A27A2706C00D15024 /* ReviewWriteViewController.swift */,
 			);
 			path = review;
+			sourceTree = "<group>";
+		};
+		6B7569E327AE72EB007F9E1D /* HomeTabVM */ = {
+			isa = PBXGroup;
+			children = (
+				6B7569E427AE733B007F9E1D /* ThemeViewModel.swift */,
+			);
+			path = HomeTabVM;
 			sourceTree = "<group>";
 		};
 		EE7E0A6B8C971B07A1BFD457 /* Pods */ = {
@@ -458,6 +468,7 @@
 		F0CADCE32781EF9200DDC1CD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				6B7569E327AE72EB007F9E1D /* HomeTabVM */,
 				F0FECF19279FAAD0007C135D /* JourneyList */,
 				F0AFB7742783D7E000FBA3FF /* DestinationDetail */,
 				F0AFB7762783D87C00FBA3FF /* SignIn+SignUpVM */,
@@ -758,6 +769,7 @@
 				F076BDDC27969DD200AF6FFD /* DestinationDetailData.swift in Sources */,
 				F0CADCDF2781EF2D00DDC1CD /* GlobalConstants.swift in Sources */,
 				F0CADCCB2781AE5700DDC1CD /* SecondSampleViewController.swift in Sources */,
+				6B7569E527AE733B007F9E1D /* ThemeViewModel.swift in Sources */,
 				F04FD8B5278B8F22007D8866 /* DateUtil.swift in Sources */,
 				F0CADCF7278230FC00DDC1CD /* JourneyListViewController.swift in Sources */,
 				F0CADD0127824F0000DDC1CD /* JourneyListDetailDateCollectionViewCell.swift in Sources */,

@@ -14,7 +14,7 @@ struct HomeTabData: Codable {
     var themeData: String
     
     // 인스턴스를 추가적으로 생성해주는것을 방지하기위해 private (ThreadSafe)
-    private init(themeData: String) {
+    init(themeData: String) {
         self.themeData = themeData 
     }
 }

@@ -7,14 +7,6 @@
 
 import Foundation
 
-enum HomeTabValidationResult {
-    case success
-    case invalidThemeData
-    case invalidDetailTitle // 제목 미입력
-    // 가는날이 현재 날짜보다 더뒤에있음
-    // 인원수가 너무 많음
-    // 예산설정을 하지 않음
-}
 
 
 class HomeTabViewModel {
@@ -24,22 +16,48 @@ class HomeTabViewModel {
     //    4 Repository내에 model데이터를 Encode하여 데이터 저장
     //    5 Encode된 데이터를 AF(Http Client)를 활용하여 서버에 전달
     
-    private var api =  APIRequest()
+    private var api = HomeTapAPIRequest()
     
-    // 싱글톤 데이터 공유
-    func updateThemeData(themeData: String) -> HomeTabValidationResult {
-        if (themeData == nil) || (themeData == "") {
-            // 알림창 띄우기
-            return .invalidThemeData
-        }else {
-            HomeTabData.shared.themeData = themeData
-            
-            return .success
+    // 모델 소유
+    private var homeTabData = HomeTabData(themeData: "") {
+        didSet {
+            themaData = homeTabData.themeData
+        }
+    }
+    
+    private var themaData = ""
+    
+    func updateThemeData() {
+        self.homeTabData.themeData = themaData
+    }
+    
+    
+    // VC애서 호출하게될 AF
+    func register() {
+        api.setThemeData(homeTabData: homeTabData) { result in
+            switch result {
+            case .success :
+                print("성공")
+                break
+                
+            case .failure :
+                print("실패")
+                break
+            }
         }
         
-        // 데이터가 비어있는 경우 alert창 띄우기
-        
-        
-        
-    }
+    } // class
 }
+    
+    extension HomeTabViewModel {
+        // 각 데이터 전달에 대한 정리
+        enum HomeTabValidationResult {
+            case success
+            case invalidThemeData
+            case invalidDetailTitle // 제목 미입력
+            // 가는날이 현재 날짜보다 더뒤에있음
+            // 인원수가 너무 많음
+            // 예산설정을 하지 않음
+        }
+    }
+    

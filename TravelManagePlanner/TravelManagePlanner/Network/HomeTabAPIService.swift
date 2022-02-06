@@ -21,24 +21,42 @@ enum HomeTapAPIError: Int, Error {
 struct HomeTapAPIRequest {
     static let url: String = "https://eunryuplaners.com:19624"
     static let headerDic: [String: String] = ["appCode": "TMP_iOS"]
-    // - Post
     
-    // 
-    
-    
-    // 숙박업소 추천지 get
-    func getAccomoData() {
+    // 테마 선택 데이터 세팅하기
+    func setThemeData(homeTabData: HomeTabData, completed: @escaping (Result<String, Error>) -> Void) {
         
+        let ThemeDataURL = "/plan/getAllShopList.tpi" // 추후 변경필요
+        let params: [String : String] = ["themeData":"\(homeTabData.themeData)"]
+        
+        AF.request(APIRequest.url + ThemeDataURL, method: .post, parameters: params, headers: HTTPHeaders(APIRequest.headerDic)).validate().responseString { response in
+            
+            // 통신결과
+            switch response.result {
+                case .success:
+                    print("AF 통신성공!")
+                    print(response.result)
+                    
+                case .failure:
+                    print("AF 통신에러!")
+                    print(response.result)
+                }
+        }
+        
+        
+        // 숙박업소 추천지 get
+        func getAccomoData() {
+            
+        }
+        
+        // 맛집 추천지 get
+        func getRestaurantData() {
+            
+        }
+        
+        // 놀거리 추천지 get
+        func getEntertainData() {
+            
+        }
     }
     
-    // 맛집 추천지 get
-    func getRestaurantData() {
-        
-    }
-    
-    // 놀거리 추천지 get
-    func getEntertainData() {
-        
-    }
 }
-

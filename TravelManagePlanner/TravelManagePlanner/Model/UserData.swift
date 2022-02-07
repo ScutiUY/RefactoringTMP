@@ -19,13 +19,6 @@ struct UserData: Codable {
     var name: String
 }
 
-struct TravelData: Codable {
-    static var shared = TravelData(title: "", desc: "", etc: "")
-    let title: String?
-    let desc: String?
-    let etc: String?
-}
-
 struct LoginData: Codable {
     static var shared = LoginData(email: "", pw: "")
     init(email: String, pw: String) {

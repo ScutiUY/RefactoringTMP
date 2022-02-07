@@ -9,10 +9,6 @@ import Foundation
 import Alamofire
 import UIKit
 
-import Foundation
-import Alamofire
-import UIKit
-
 enum APIError: Int, Error {
     case unknown = -1
     case jsonError = -2
@@ -22,20 +18,9 @@ enum APIError: Int, Error {
     case internalServerError = 500
 }
 
-struct APIRequest {
-    static let url: String = "https://eunryuplaners.com:19624"
-    static let headerDic: [String: String] = ["appCode": "TMP_iOS"]
-    /// - Post
+struct SignInUpRepository {
+    private let httpClient = HttpClient(baseUrl: "https://eunryuplaners.com:19624")
     
-    /// - Post
-    func getJourneyDetailImage(completion: @escaping (DestinationDetailData) -> Void) {
-        let destinationDataURL = "/plan/getAllShopList.tpi" // 임시
-        
-        AF.request(APIRequest.url + destinationDataURL, method: .post, headers: HTTPHeaders(APIRequest.headerDic)).validate().responseString { response in
-            print("",response.result)
-            
-        }
-    }
     func login(loginData: UserData, completed: @escaping (Result<String, Error>) -> Void) {
         let url = "https://eunryuplaners.com:19624/mmb/checkLogin.tpi"
         var request = URLRequest(url: URL(string: url)!)

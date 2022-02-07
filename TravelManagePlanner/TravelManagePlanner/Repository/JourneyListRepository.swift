@@ -6,11 +6,10 @@
 //
 
 import Foundation
-//import Alamofire
 
 struct JourneyListRepository {
     
-    private let httpClient = HttpClient(baseUrl: "https://scutiuy.github.io/testWebHosting/")
+    private let httpClient = HttpClient(baseUrl: "https://eunryuplaners.com:19624")
     
     func getJourneyList(completed: @escaping (JourneyList) -> Void) {
         httpClient.getJson { result in
@@ -23,9 +22,9 @@ struct JourneyListRepository {
                     print("getJourneyList error in JourneyList repository")
                 }
             }
-            
         }
     }
+    
     func getJourneyDetialList(completed: @escaping (JourneyDetail) -> Void) {
         httpClient.getJsonData(path: "", params: [:]) { result in
             let data = try! result.get()
@@ -33,13 +32,6 @@ struct JourneyListRepository {
             completed(decodedData)
         }
     }
-//    func getJourneys(completed: @escaping (JourneyList) -> Void) {
-//        httpClient.getJsonData(path: "") { result in
-//            if let json = try? result.get() {
-//                let decodedData = try? JSONDecoder().decode(Journey, from: json)
-//            }
-//        }
-//    }
 }
 
 

@@ -12,7 +12,7 @@ import UIKit
 class SignInViewModel {
     
     //private let signInData: UserData
-    private var api = APIRequest()
+    private var api = SignInUpRepository()
     
     private var userInfo = UserData(email: "", pw: "", name: "") {
         didSet {

@@ -14,7 +14,7 @@ enum SignInValidationResult {
 }
 
 class SignUpViewModel {
-    private var api = APIRequest()
+    private var api = SignInUpRepository()
     
     var userInfoInputErrorMessage: Observable<String> = Observable("")
     var registerSuccess: Observable = Observable(false)

@@ -16,62 +16,70 @@ enum APIError: Int, Error {
     case badRequest = 400
     case notFound = 404
     case internalServerError = 500
+    case omittedParams = 9992
+    case ommittedHeader = 4444
+    case notFoundInDB = 3001
+    case invalidPw = 4001
 }
 
 struct SignInUpRepository {
     private let httpClient = HttpClient(baseUrl: "https://eunryuplaners.com:19624")
     
-    func login(loginData: UserData, completed: @escaping (Result<String, Error>) -> Void) {
-        let url = "https://eunryuplaners.com:19624/mmb/checkLogin.tpi"
-        var request = URLRequest(url: URL(string: url)!)
-        let header = ["appCode": "TMP_iOS"]
-        request.timeoutInterval = 10
-        // POST 로 보낼 정보
-        
-        let params: [String: String] = ["loginId":"\(loginData.userEmail)", "loginPw":"\(loginData.userPw)"]
-        let method = HTTPMethod(rawValue: "POST")
-        // httpBody 에 parameters 추가
-        
-        AF.request(url, method: method, parameters: params, headers: HTTPHeaders(header)).responseString { (response) in
-            switch response.result {
-            case .success:
-                print(response.result)
-                print("POST 성공")
-                let re = String(data: response.data!, encoding: .utf16)
-                completed(Result.success(re!))
+    func login(inputId: String, inputPw: String, completed: @escaping (Result<LoginData, APIError>) -> Void) {
+        let path = "/mmb/checkLogin.tpi"
+        let params: [String: String] = ["loginId":"\(inputId)", "loginPw":"\(inputPw)"]
+        httpClient.getJsonData(path: path, params: params) { result in
+            switch result {
+            case .success(let data):
+                let decodedData = try? JSONDecoder().decode(LoginData.self, from: data)
+                if let userdata = decodedData {
+                    switch userdata.resCode {
+                    case "9992":
+                        completed(.failure(.omittedParams))
+                    case "4444":
+                        completed(.failure(.ommittedHeader))
+                    case "3001":
+                        completed(.failure(.notFoundInDB))
+                    case "4001":
+                        completed(.failure(.invalidPw))
+                    default:
+                        completed(.success(userdata))
+                    }
+                }
             case .failure(let error):
                 print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
-                completed(Result.failure(error))
+                completed(Result.failure(APIError.jsonError))
             }
         }
     }
     
-    func signUp(userData: UserData, completed: @escaping (Result<String, Error>) -> Void) {
-        let url = "https://eunryuplaners.com:19624/mmb/joinMember.tpi"
-        var request = URLRequest(url: URL(string: url)!)
-        let header = ["appCode": "TMP_iOS"]
-        request.timeoutInterval = 10
-        // POST 로 보낼 정보
-        
-        let params: [String: String] = ["userId":"\(userData.userEmail)", "userPw":"\(userData.userPw)", "name":"\(userData.name)"]
-        print(userData)
-        
-        let method = HTTPMethod(rawValue: "POST")
-        // httpBody 에 parameters 추가
-        
-        AF.request(url, method: method, parameters: params, headers: HTTPHeaders(header)).responseString { (response) in
-            switch response.result {
-            case .success:
-                print(response.result)
-                print("POST 성공")
-                let re = String(data: response.data!, encoding: .utf16)
-                completed(Result.success(re!))
+    func signUp(inputEmail: String, inputPw: String, inputName: String, completed: @escaping (Result<String, APIError>) -> Void) {
+        let path = "/mmb/joinMember.tpi"
+        let params: [String: String] = ["userId":"\(inputEmail)", "userPw":"\(inputPw)", "name":"\(inputName)"]
+        httpClient.getJsonData(path: path, params: params) { result in
+            switch result {
+            case .success(let data):
+                let decodedData = try? JSONDecoder().decode(LoginData.self, from: data)
+                if let userdata = decodedData {
+                    switch userdata.resCode {
+                    case "9992":
+                        completed(.failure(.omittedParams))
+                    case "4444":
+                        completed(.failure(.ommittedHeader))
+                    case "3001":
+                        completed(.failure(.notFoundInDB))
+                    case "4001":
+                        completed(.failure(.invalidPw))
+                    default:
+                        completed(.success(userdata.resMsg))
+                    }
+                }
             case .failure(let error):
                 print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
-                completed(Result.failure(error))
+                completed(.failure(.jsonError))
             }
+            
         }
     }
-    
 }
 

@@ -314,8 +314,8 @@
 		F00F182C277866C500211A8D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F0F0C9D927B0DCC600FDBD10 /* Destination */,
 				F0C4E18D27A10A4F00E72BB7 /* JourneyList */,
-				F076BDDB27969DD200AF6FFD /* DestinationDetailData.swift */,
 				F0BE6F09279ABA720057111E /* UserData.swift */,
 				6BE2142F27A186CC004B8816 /* DestiData.swift */,
 			);
@@ -480,6 +480,14 @@
 				F0782694278FE77D00B9319F /* JourneyListDetailCollectionViewCell.swift */,
 			);
 			path = JourneyList;
+			sourceTree = "<group>";
+		};
+		F0F0C9D927B0DCC600FDBD10 /* Destination */ = {
+			isa = PBXGroup;
+			children = (
+				F076BDDB27969DD200AF6FFD /* DestinationDetailData.swift */,
+			);
+			path = Destination;
 			sourceTree = "<group>";
 		};
 		F0FECF19279FAAD0007C135D /* JourneyList */ = {

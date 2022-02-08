@@ -19,26 +19,18 @@ class SignUpViewModel {
     var userInfoInputErrorMessage: Observable<String> = Observable("")
     var registerSuccess: Observable = Observable(false)
     
-    private var userInfo = UserData(email: "", pw: "", name: "") {
-        didSet {
-            email = userInfo.userEmail
-            password = userInfo.userPw
-            name = userInfo.name
-        }
-    }
-    
     private var email = ""
     private var password = ""
     private var name = ""
     
     func updateUserEmail(email: String) {
-        self.userInfo.userEmail = email
+        self.email = email
     }
     func updateUserPwd(password: String) {
-        self.userInfo.userPw = password
+        self.password = password
     }
     func updateUserName(name: String) {
-        self.userInfo.name = name
+        self.name = name
     }
     
     func validateUserInformation() -> ValidationResult {
@@ -64,11 +56,9 @@ class SignUpViewModel {
     }
     
     func register() {
-        
-        api.signUp(userData: userInfo) { result in
+        api.signUp(inputEmail: self.email, inputPw: self.password, inputName: self.name) { result in
             switch result {
-            case .success(let userData):
-                print("VM에서 되는",userData)
+            case .success(_):
                 self.registerSuccess.value = true
             case .failure(let error):
                 self.userInfoInputErrorMessage.value = "네트워크 오류"

@@ -246,16 +246,14 @@ class SignInViewController: UIViewController {
         signInViewModel.userInfoInputErrorMessage.bind { [weak self] in
             print("ErroMessage Bind ",$0)
             self?.invalidLabel.text = $0
+            self?.invalidLabel.alpha = 1.0
+            self?.view.layoutIfNeeded()
         }
         signInViewModel.loginSuccess.bind { [weak self] in
             print("login 성공여부: ", $0)
             if $0 {
-                let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SampleViewController")
-                
                 let tabbar = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabbarControllerSB") as! TabbarController
                 tabbar.modalPresentationStyle = .fullScreen
-                
-                //self?.navigationController?.pushViewController(tabbar, animated: true)
                 self!.present(tabbar, animated: true, completion: nil)
             }
         }

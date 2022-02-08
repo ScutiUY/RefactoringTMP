@@ -21,6 +21,7 @@
 		6B366F5627B23E7E006FF964 /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B366F5527B23E7E006FF964 /* RestaurantViewController.swift */; };
 		6B366F5827B23FD8006FF964 /* RestaurantViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B366F5727B23FD8006FF964 /* RestaurantViewCell.swift */; };
 		6B366F5A27B24380006FF964 /* RestaurantCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B366F5927B24380006FF964 /* RestaurantCalendarViewController.swift */; };
+		6B366F5E27B250E1006FF964 /* RecommendPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B366F5D27B250E1006FF964 /* RecommendPageViewController.swift */; };
 		6B4CD9BA27ACE4B30058124B /* AccomoCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4CD9B927ACE4B30058124B /* AccomoCalendarViewController.swift */; };
 		6B7569E527AE733B007F9E1D /* HomeTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7569E427AE733B007F9E1D /* HomeTabViewModel.swift */; };
 		6B7569E827AEB7DB007F9E1D /* HomeTabData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7569E727AEB7DB007F9E1D /* HomeTabData.swift */; };
@@ -116,6 +117,7 @@
 		6B366F5527B23E7E006FF964 /* RestaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewController.swift; sourceTree = "<group>"; };
 		6B366F5727B23FD8006FF964 /* RestaurantViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewCell.swift; sourceTree = "<group>"; };
 		6B366F5927B24380006FF964 /* RestaurantCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCalendarViewController.swift; sourceTree = "<group>"; };
+		6B366F5D27B250E1006FF964 /* RecommendPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendPageViewController.swift; sourceTree = "<group>"; };
 		6B4CD9B927ACE4B30058124B /* AccomoCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomoCalendarViewController.swift; sourceTree = "<group>"; };
 		6B7569E427AE733B007F9E1D /* HomeTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewModel.swift; sourceTree = "<group>"; };
 		6B7569E727AEB7DB007F9E1D /* HomeTabData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabData.swift; sourceTree = "<group>"; };
@@ -242,6 +244,22 @@
 			path = review;
 			sourceTree = "<group>";
 		};
+		6B366F5B27B24FE2006FF964 /* PageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6B366F5C27B2503F006FF964 /* HomeTabPVC */,
+			);
+			path = PageViewController;
+			sourceTree = "<group>";
+		};
+		6B366F5C27B2503F006FF964 /* HomeTabPVC */ = {
+			isa = PBXGroup;
+			children = (
+				6B366F5D27B250E1006FF964 /* RecommendPageViewController.swift */,
+			);
+			path = HomeTabPVC;
+			sourceTree = "<group>";
+		};
 		6B7569E327AE72EB007F9E1D /* HomeTabVM */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,6 +320,7 @@
 				F00F17F72778530200211A8D /* AppDelegate.swift */,
 				F00F17F92778530200211A8D /* SceneDelegate.swift */,
 				F0CADCE32781EF9200DDC1CD /* ViewModel */,
+				6B366F5B27B24FE2006FF964 /* PageViewController */,
 				F00F183027797A9D00211A8D /* ViewController */,
 				F00F182C277866C500211A8D /* Model */,
 				F00F182B277866B900211A8D /* Network */,
@@ -833,6 +852,7 @@
 				F0CADCE52781EFB500DDC1CD /* SignUpViewController.swift in Sources */,
 				6B7569EC27AED2E0007F9E1D /* DestiSearchData.swift in Sources */,
 				4A716B9127A2706C00D15024 /* ReviewWriteViewController.swift in Sources */,
+				6B366F5E27B250E1006FF964 /* RecommendPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

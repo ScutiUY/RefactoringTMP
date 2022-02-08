@@ -41,7 +41,7 @@
         <!--Accomo View Controller-->
         <scene sceneID="zHE-2f-XxI">
             <objects>
-                <viewController storyboardIdentifier="AccomoViewSB" id="cMc-Vc-d5a" customClass="AccomoViewController" customModule="TravelManagePlanner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="AccomoViewSB" storyboardIdentifier="AccomoViewSB" id="cMc-Vc-d5a" customClass="AccomoViewController" customModule="TravelManagePlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xzb-nZ-LPL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -51,12 +51,20 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IjG-38-8qV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2113" y="1"/>
+            <point key="canvasLocation" x="1810" y="699"/>
+        </scene>
+        <!--Recommend Page View Controller-->
+        <scene sceneID="Eiq-dt-gR6">
+            <objects>
+                <pageViewController storyboardIdentifier="RecommendPageViewSB" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="wcS-jK-2Bb" customClass="RecommendPageViewController" customModule="TravelManagePlanner" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IHV-Z2-DZy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2532" y="1"/>
         </scene>
         <!--Restaurant View Controller-->
         <scene sceneID="Fce-Np-bbY">
             <objects>
-                <viewController storyboardIdentifier="RestaurantViewSB" id="aic-py-dHX" customClass="RestaurantViewController" customModule="TravelManagePlanner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="RestaurantViewSB" storyboardIdentifier="RestaurantViewSB" id="aic-py-dHX" customClass="RestaurantViewController" customModule="TravelManagePlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="svt-55-ESL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -66,7 +74,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pyT-eo-bIo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2832" y="1"/>
+            <point key="canvasLocation" x="2532" y="699"/>
         </scene>
         <!--Restaurant Calendar View Controller-->
         <scene sceneID="sty-zT-VCh">
@@ -81,7 +89,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ExW-0u-due" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2832" y="650"/>
+            <point key="canvasLocation" x="2532" y="1348"/>
         </scene>
         <!--Desti Search View Controller-->
         <scene sceneID="n2x-Se-xLn">
@@ -111,7 +119,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zGR-nN-Huf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2112" y="650"/>
+            <point key="canvasLocation" x="1810" y="1347"/>
         </scene>
     </scenes>
     <resources>

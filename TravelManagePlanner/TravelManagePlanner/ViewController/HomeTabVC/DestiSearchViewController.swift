@@ -111,7 +111,7 @@ extension DestiSearchViewController: UITableViewDelegate {
         
         print("테이블뷰 클릭")
         // main에 있는 두번째화면 불러오기(스토리보드 활용)
-        let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "AccomoViewSB") as! AccomoViewController
+        let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "RestaurantViewSB") as! RestaurantViewController
         
         // 다음화면에서 바텀탭 없애기
 //        nextView.hidesBottomBarWhenPushed = true

@@ -53,6 +53,36 @@
             </objects>
             <point key="canvasLocation" x="2113" y="1"/>
         </scene>
+        <!--Restaurant View Controller-->
+        <scene sceneID="Fce-Np-bbY">
+            <objects>
+                <viewController storyboardIdentifier="RestaurantViewSB" id="aic-py-dHX" customClass="RestaurantViewController" customModule="TravelManagePlanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="svt-55-ESL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="hNl-LC-GMf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pyT-eo-bIo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2832" y="1"/>
+        </scene>
+        <!--Restaurant Calendar View Controller-->
+        <scene sceneID="sty-zT-VCh">
+            <objects>
+                <viewController storyboardIdentifier="RestaurantCalendarViewSB" id="aKT-vK-eoS" customClass="RestaurantCalendarViewController" customModule="TravelManagePlanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g47-y3-Aiv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="cfx-2X-QeO"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ExW-0u-due" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2832" y="650"/>
+        </scene>
         <!--Desti Search View Controller-->
         <scene sceneID="n2x-Se-xLn">
             <objects>
@@ -68,10 +98,10 @@
             </objects>
             <point key="canvasLocation" x="1357" y="1"/>
         </scene>
-        <!--Calendar Modal View Controller-->
+        <!--Accomo Calendar View Controller-->
         <scene sceneID="GoP-7B-LhI">
             <objects>
-                <viewController storyboardIdentifier="CalendarModalViewSB" id="Yde-2N-gR5" customClass="CalendarModalViewController" customModule="TravelManagePlanner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AccomoCalendarViewSB" id="Yde-2N-gR5" customClass="AccomoCalendarViewController" customModule="TravelManagePlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bRN-Ux-ivS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

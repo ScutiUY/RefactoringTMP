@@ -18,7 +18,10 @@
 		6B1D27F3279B28C6004B24CB /* AccomoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1D27F2279B28C6004B24CB /* AccomoViewController.swift */; };
 		6B1D27F5279DA836004B24CB /* AccomoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1D27F4279DA836004B24CB /* AccomoViewCell.swift */; };
 		6B354795279B07B800B2924D /* DetaileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B354794279B07B800B2924D /* DetaileSettingViewController.swift */; };
-		6B4CD9BA27ACE4B30058124B /* CalendarModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4CD9B927ACE4B30058124B /* CalendarModalViewController.swift */; };
+		6B366F5627B23E7E006FF964 /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B366F5527B23E7E006FF964 /* RestaurantViewController.swift */; };
+		6B366F5827B23FD8006FF964 /* RestaurantViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B366F5727B23FD8006FF964 /* RestaurantViewCell.swift */; };
+		6B366F5A27B24380006FF964 /* RestaurantCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B366F5927B24380006FF964 /* RestaurantCalendarViewController.swift */; };
+		6B4CD9BA27ACE4B30058124B /* AccomoCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4CD9B927ACE4B30058124B /* AccomoCalendarViewController.swift */; };
 		6B7569E527AE733B007F9E1D /* HomeTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7569E427AE733B007F9E1D /* HomeTabViewModel.swift */; };
 		6B7569E827AEB7DB007F9E1D /* HomeTabData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7569E727AEB7DB007F9E1D /* HomeTabData.swift */; };
 		6B7569EA27AECD80007F9E1D /* HomeTabAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7569E927AECD80007F9E1D /* HomeTabAPIService.swift */; };
@@ -110,7 +113,10 @@
 		6B1D27F2279B28C6004B24CB /* AccomoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomoViewController.swift; sourceTree = "<group>"; };
 		6B1D27F4279DA836004B24CB /* AccomoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomoViewCell.swift; sourceTree = "<group>"; };
 		6B354794279B07B800B2924D /* DetaileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaileSettingViewController.swift; sourceTree = "<group>"; };
-		6B4CD9B927ACE4B30058124B /* CalendarModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModalViewController.swift; sourceTree = "<group>"; };
+		6B366F5527B23E7E006FF964 /* RestaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewController.swift; sourceTree = "<group>"; };
+		6B366F5727B23FD8006FF964 /* RestaurantViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewCell.swift; sourceTree = "<group>"; };
+		6B366F5927B24380006FF964 /* RestaurantCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCalendarViewController.swift; sourceTree = "<group>"; };
+		6B4CD9B927ACE4B30058124B /* AccomoCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomoCalendarViewController.swift; sourceTree = "<group>"; };
 		6B7569E427AE733B007F9E1D /* HomeTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewModel.swift; sourceTree = "<group>"; };
 		6B7569E727AEB7DB007F9E1D /* HomeTabData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabData.swift; sourceTree = "<group>"; };
 		6B7569E927AECD80007F9E1D /* HomeTabAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabAPIService.swift; sourceTree = "<group>"; };
@@ -383,7 +389,9 @@
 			children = (
 				6B7D8B2D27833DC5003B2266 /* ThemeViewCell.swift */,
 				6B1D27F4279DA836004B24CB /* AccomoViewCell.swift */,
-				6B4CD9B927ACE4B30058124B /* CalendarModalViewController.swift */,
+				6B366F5727B23FD8006FF964 /* RestaurantViewCell.swift */,
+				6B4CD9B927ACE4B30058124B /* AccomoCalendarViewController.swift */,
+				6B366F5927B24380006FF964 /* RestaurantCalendarViewController.swift */,
 			);
 			path = HomeTabView;
 			sourceTree = "<group>";
@@ -393,8 +401,9 @@
 			children = (
 				6B7D8B2B27833D95003B2266 /* ThemeViewController.swift */,
 				6B354794279B07B800B2924D /* DetaileSettingViewController.swift */,
-				6B1D27F2279B28C6004B24CB /* AccomoViewController.swift */,
 				6BE2142D27A18682004B8816 /* DestiSearchViewController.swift */,
+				6B1D27F2279B28C6004B24CB /* AccomoViewController.swift */,
+				6B366F5527B23E7E006FF964 /* RestaurantViewController.swift */,
 			);
 			path = HomeTabVC;
 			sourceTree = "<group>";
@@ -765,6 +774,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0CADCF9278231BA00DDC1CD /* JourneyListTableViewCell.swift in Sources */,
+				6B366F5627B23E7E006FF964 /* RestaurantViewController.swift in Sources */,
 				F0782695278FE77D00B9319F /* JourneyListDetailCollectionViewCell.swift in Sources */,
 				6B7D8B2E27833DC5003B2266 /* ThemeViewCell.swift in Sources */,
 				F0CADCEB278212D500DDC1CD /* DestinationDetailViewController.swift in Sources */,
@@ -774,6 +784,7 @@
 				F00F17FC2778530200211A8D /* SampleViewController.swift in Sources */,
 				F0BE6F0A279ABA720057111E /* UserData.swift in Sources */,
 				4A716B9027A2706C00D15024 /* ReviewPhotoCollectionViewCell.swift in Sources */,
+				6B366F5827B23FD8006FF964 /* RestaurantViewCell.swift in Sources */,
 				6B1D27F3279B28C6004B24CB /* AccomoViewController.swift in Sources */,
 				F079D513278ADA9E004BF9F6 /* SignUpViewModel.swift in Sources */,
 				F02403A6279FD013005F209F /* JourneyListRepository.swift in Sources */,
@@ -799,12 +810,13 @@
 				4A716B8D27A2706C00D15024 /* CommunityPickerView.swift in Sources */,
 				6B7D8B2C27833D95003B2266 /* ThemeViewController.swift in Sources */,
 				F0782693278FB4C300B9319F /* APIResponseData.swift in Sources */,
-				6B4CD9BA27ACE4B30058124B /* CalendarModalViewController.swift in Sources */,
+				6B4CD9BA27ACE4B30058124B /* AccomoCalendarViewController.swift in Sources */,
 				F00F17FA2778530200211A8D /* SceneDelegate.swift in Sources */,
 				F0CADCE72781F63D00DDC1CD /* SignInViewModel.swift in Sources */,
 				6BE2142E27A18682004B8816 /* DestiSearchViewController.swift in Sources */,
 				F0A9C537277E7FEE009EE5FE /* ImageLoader.swift in Sources */,
 				F0CADCFF27824EF000DDC1CD /* JourneyListDetailPageCollectionViewCell.swift in Sources */,
+				6B366F5A27B24380006FF964 /* RestaurantCalendarViewController.swift in Sources */,
 				F0CADCFB2782478400DDC1CD /* JourneyListDetailViewController.swift in Sources */,
 				F04FD8B7278B9E72007D8866 /* Journey.swift in Sources */,
 				F00F182827785DE900211A8D /* JourneylList.swift in Sources */,

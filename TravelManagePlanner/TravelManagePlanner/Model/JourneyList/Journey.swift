@@ -9,22 +9,23 @@ import Foundation
 import UIKit
 
 struct Journey: Codable {
-
-    static var shared = Journey(name: "", desc: "", date: "", journeyDetail: [])
     
-    //let type: ContentType
-    let name: String
-    let desc: String
-    let date: String
-    let journeyDetail: [JourneyDetail]
-
-    init(name: String, desc: String, date: String, journeyDetail: [JourneyDetail]) {
-      
-        self.name = name
-        self.desc = desc
-        self.date = date
-        self.journeyDetail = journeyDetail
+    static var shared = Journey(idx: 0, title: "", imgUrl: "", sDate: "", eDate: "", theme: "")
+    
+    let imgUrl: String
+    let theme: String
+    let sDate: String
+    let idx: Int
+    let title: String
+    let eDate: String
+    
+    init(idx: Int, title: String, imgUrl: String, sDate: String, eDate: String, theme: String) {
+        self.idx = idx
+        self.title = title
+        self.imgUrl = imgUrl
+        self.sDate = sDate
+        self.eDate = eDate
+        self.theme = theme
     }
-    
     
 }

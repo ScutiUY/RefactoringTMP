@@ -9,6 +9,9 @@ import UIKit
 import SnapKit
 
 class JourneyListDetailPageCollectionView: UICollectionViewCell {
+    
+    var viewModel = JourneyListDetailPageViewModel()
+    
     let col: [UIColor] = [.red, .blue, .orange, .yellow, .green]
     var parentViewSize = CGSize(width: 0, height: 0)
     
@@ -48,6 +51,9 @@ extension JourneyListDetailPageCollectionView: UICollectionViewDelegate, UIColle
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = journeyListDetailCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! JourneyListDetailCollectionViewCell
         cell.setLayout()
+        cell.titleLabel.text = viewModel.title
+        cell.descLabel.text = viewModel.desc
+        cell.thumNailImage.image = viewModel.getImage()
         cell.backgroundColor = col[indexPath.row]
         return cell
     }

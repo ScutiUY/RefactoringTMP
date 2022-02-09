@@ -246,7 +246,7 @@ class DetaileSettingViewController: UIViewController {
         button.setTitleColor(UIColor(red: 85/255, green: 185/255, blue: 188/255, alpha: 0.6), for: .highlighted)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 21)
         button.backgroundColor = .clear
-        button.addTarget(self, action: #selector(dataSendButtonAction), for: .touchUpInside)
+//        button.addTarget(self, action: #selector(dataSendButtonAction), for: .touchUpInside)
         
         return button
     }()
@@ -273,9 +273,9 @@ class DetaileSettingViewController: UIViewController {
         nextButton.addTarget(self, action: #selector(self.nextButtonAction(_:)), for: .touchUpInside)
     }
     
-    @objc func dataSendButtonAction() {
-        themeViewModel.themeData = self.journeyTextField.text ?? "title is nil"
-    }
+//    @objc func dataSendButtonAction() {
+//        themeViewModel.themeData = self.journeyTextField.text ?? "title is nil"
+//    }
     
     
     @objc func nextButtonAction(_ sender: UIButton) {

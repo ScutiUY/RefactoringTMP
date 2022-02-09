@@ -8,17 +8,15 @@
 import Foundation
 
 class ThemeViewModel {
-    //    1 버튼클릭시 해당데이터를 뷰모델에 전달
-    //    2 뷰모델은 모델의 데이터를 소지 (Observer는 데이터를 가져오는것이 없기때문에 필요없음)
-    //    3 model 에 데이터 최신화
-    //    4 Repository내에 model데이터를 Encode하여 데이터 저장
-    //    5 Encode된 데이터를 AF(Http Client)를 활용하여 서버에 전달
+    
+    // 모델 소유
+    private var themeData = ThemeData.shared
     
     private var repo = HomeTabRepository()
     private var isLoading: Bool = false
     
 //    // 테마 설정 데이터
-    lazy var themeData = "" // 테마 데이터
+    lazy var usserThemeData = "" // 테마 데이터
 //
 //    // 디테일 설정 데이터
 //    lazy var journeyTextField = "" // 여행 제목
@@ -30,9 +28,7 @@ class ThemeViewModel {
     // 상태정의
     var loadingStarted: (() -> ()) = { }
     
-    
-    // 모델 소유
-    private var homeTabData = HomeTabData.shared
+  
     
     
     // 선택한 데이터 잘들어왔는지 확인용
@@ -41,9 +37,7 @@ class ThemeViewModel {
 //        print("journeyTextField : ", journeyTextField)
             
     }
-    func passData() -> HomeTabData {
-        return homeTabData
-    }
+    
     // VM에서 repository호출, repo에서 api통신 정의
     func register() {
         //        repo.setThemeRepository(homeTabData.themeData ,completed: { HomeTabData in
@@ -60,7 +54,7 @@ class ThemeViewModel {
         //                break
         //            }
         //        }
-        repo.setThemeRepository(homeTabData: homeTabData) { result in
+        repo.setThemeRepository(themeData: themeData) { result in
             
             self.isLoading = true
             

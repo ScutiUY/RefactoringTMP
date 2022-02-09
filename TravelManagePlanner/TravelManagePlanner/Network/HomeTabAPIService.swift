@@ -16,7 +16,7 @@ struct HomeTapAPIRequest {
     static let url: String = "https://eunryuplaners.com:19624"
     static let headerDic: [String: String] = ["appCode": "TMP_iOS"]
     
-    // 전달받은 json데이터를 인자로 담아서 테마 데이터 전송 (서버쪽에서 평문으로 받을것인지 논의 필요)
+    // 여행계획 최종입력
     func setThemeData(themeData: ThemeData, completed: @escaping (Result<String, Error>) -> Void) {
         
         let ThemeDataURL = "/plan/getAllShopList.tpi" // 추후 변경필요

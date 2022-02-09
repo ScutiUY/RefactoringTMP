@@ -11,7 +11,7 @@ import UIKit
 class ThemeViewController: UIViewController{
     
     // 뷰모델 소지
-    var homeTabViewModel = HomeTabViewModel()
+    var themeViewModel = ThemeViewModel()
     
     let cellID = "Cell"
     // Assets의 사진 출력
@@ -152,7 +152,7 @@ extension ThemeViewController: UICollectionViewDelegate {
         
         // main에 있는 두번째화면 불러오기(스토리보드 활용)
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "DetaileSettingViewSB") as! DetaileSettingViewController
-        homeTabViewModel.register()
+        themeViewModel.register()
         print("register 버튼 클릭")
         print(indexPath)
         
@@ -161,7 +161,7 @@ extension ThemeViewController: UICollectionViewDelegate {
         navigationController!.pushViewController(nextView, animated: true)
         
         let imgDataName = imgDataList[indexPath.row]
-        nextView.homeTabViewModel.themeData = imgDataName
+        nextView.themeViewModel.usserThemeData = imgDataName
         // 선택한 데이터 넘기기
        
 //        homeTabViewModel.themeData = imgDataName

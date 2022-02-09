@@ -54,7 +54,9 @@ class SignInViewModel {
         api.login(inputId: self.email, inputPw: self.password) { result in
             switch result {
             case .success(let userData):
-                print(userData)
+                if let userData = userData.data {
+                    UserData.shared = userData
+                }
                 self.loginSuccess.value = true
                 self.loadingEnded.value = true
             case .failure(let error):

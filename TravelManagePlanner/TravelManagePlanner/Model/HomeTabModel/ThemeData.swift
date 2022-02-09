@@ -7,15 +7,17 @@
 
 import Foundation
 
-struct HomeTabData: Codable {
+struct ThemeData: Codable {
     
     // 싱글톤 사용 (let을 선언함으로써 인스턴스가 1회생성되는것에 대한 보장을함)
-    static var shared = HomeTabData(themeData: "")
+    static var shared = ThemeData(themeData: "")
+    
+    // 테마설정
     var themeData: String
     
     // 인스턴스를 추가적으로 생성해주는것을 방지하기위해 private (ThreadSafe)
     init(themeData: String) {
-        self.themeData = themeData 
+        
+        self.themeData = themeData
     }
 }
-

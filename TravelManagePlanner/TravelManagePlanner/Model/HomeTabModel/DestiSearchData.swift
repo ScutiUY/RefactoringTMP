@@ -12,7 +12,7 @@ struct DestiSearchData: Codable {
     let place: String
     
     var filterValue: Array<String> = []
-    var placeData: Array<String> = ["강남", "강기도", "강원도", "서울시", "서강시"]
+    var placeData: Array<String> = ["서울", "경기도", "충청북도", "충청남도", "경상북도", "경상남도", "전라북도", "전라남도"]
 
     init(place: String) {
         self.place = place

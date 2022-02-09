@@ -10,6 +10,8 @@ import Alamofire
 // 검색기능
 class DestiSearchViewController: UIViewController {
     
+    // 이전화면 데이터 가저오기
+    
     // 테마 타이틀
     lazy var themeTitleLabel: UILabel = {
         let label = UILabel()

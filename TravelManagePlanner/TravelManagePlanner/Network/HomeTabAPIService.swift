@@ -17,10 +17,10 @@ struct HomeTapAPIRequest {
     static let headerDic: [String: String] = ["appCode": "TMP_iOS"]
     
     // 전달받은 json데이터를 인자로 담아서 테마 데이터 전송 (서버쪽에서 평문으로 받을것인지 논의 필요)
-    func setThemeData(homeTabData: HomeTabData, completed: @escaping (Result<String, Error>) -> Void) {
+    func setThemeData(themeData: ThemeData, completed: @escaping (Result<String, Error>) -> Void) {
         
         let ThemeDataURL = "/plan/getAllShopList.tpi" // 추후 변경필요
-        let params: [String : String] = ["themeData":"\(homeTabData.themeData)"]
+        let params: [String : String] = ["themeData":"\(themeData.themeData)"]
         
         AF.request(
             APIRequest.url + ThemeDataURL,

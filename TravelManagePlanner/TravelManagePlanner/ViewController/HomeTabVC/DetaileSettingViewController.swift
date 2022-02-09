@@ -7,10 +7,8 @@
 import UIKit
 import SnapKit
 
-class DetaileSettingViewController:UIViewController {
-    
-    // 테마에서 선택한 데이터 받기
-    var testLabel: String = ""
+class DetaileSettingViewController: UIViewController {
+    var themeViewModel = ThemeViewModel()
     
     //여행 제목 타이틀
     lazy var journeyTitle: UILabel = {
@@ -248,6 +246,7 @@ class DetaileSettingViewController:UIViewController {
         button.setTitleColor(UIColor(red: 85/255, green: 185/255, blue: 188/255, alpha: 0.6), for: .highlighted)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 21)
         button.backgroundColor = .clear
+        button.addTarget(self, action: #selector(dataSendButtonAction), for: .touchUpInside)
         
         return button
     }()
@@ -271,13 +270,16 @@ class DetaileSettingViewController:UIViewController {
         setButtonAction()
         
         budgetSlider.addTarget(self, action: #selector(self.sliderAction(_:)), for: .valueChanged)
-        
         nextButton.addTarget(self, action: #selector(self.nextButtonAction(_:)), for: .touchUpInside)
     }
     
-    @objc
-    func nextButtonAction(_ sender: UIButton) {
-        
+    @objc func dataSendButtonAction() {
+        themeViewModel.themeData = self.journeyTextField.text ?? "title is nil"
+    }
+    
+    
+    @objc func nextButtonAction(_ sender: UIButton) {
+        themeViewModel.DataCheck()
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil)
             .instantiateViewController(withIdentifier: "DestiSearchViewSB") as! DestiSearchViewController
             navigationController?.pushViewController(nextView, animated: true)

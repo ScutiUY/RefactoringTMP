@@ -15,15 +15,15 @@ struct HomeTabRepository {
     let api = HomeTapAPIRequest()
     
     // 테마 데이터 세팅하기(인코딩 변환 및 api통신 호출)
-    func setThemeRepository(homeTabData:HomeTabData, completed: @escaping (HomeTabData) -> Void) {
+    func setThemeRepository(themeData: ThemeData, completed: @escaping (ThemeData) -> Void) {
         let encoder = JSONEncoder()
         
         do {
-            let jsonData = try encoder.encode(homeTabData)
+            let jsonData = try encoder.encode(themeData)
             print(jsonData)
             
             // API호출하여 josn데이터 전달
-            api.setThemeData(homeTabData: homeTabData) { result in
+            api.setThemeData(themeData: themeData) { result in
                 switch result {
                     
                 case .success(let homeTabData) :

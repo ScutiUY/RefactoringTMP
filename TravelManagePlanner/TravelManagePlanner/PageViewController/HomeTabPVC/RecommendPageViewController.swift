@@ -20,19 +20,19 @@ class RecommendPageViewController: UIPageViewController {
         
         return [vc1, vc2, vc3]
     }()
-        
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegate()
-//        pageControl.backgroundStyle = .prominent
+        //        pageControl.backgroundStyle = .prominent
         if let firstVC = recommendVCArray.first {
             self.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
-//        self.recommendVCArray.backgroundStyle = .prominent
+        //        self.recommendVCArray.backgroundStyle = .prominent
     }
     
-//     백그라운드 블랙 없애기
+    //     백그라운드 블랙 없애기
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         for view in self.view.subviews {
@@ -44,22 +44,19 @@ class RecommendPageViewController: UIPageViewController {
         }
     }
     
-//    func setUpView() {
-//        view.addSubview(pageController)
-//    }
+    //    func setUpView() {
+    //        view.addSubview(pageController)
+    //    }
     
-//    func setLayout() {
-//    }
+    //    func setLayout() {
+    //    }
     
     func setDelegate() {
         self.dataSource = self
         self.delegate = self
     }
-        
-        
-        
-        
-        }
+    
+}
 
 extension RecommendPageViewController: UIPageViewControllerDelegate{
     

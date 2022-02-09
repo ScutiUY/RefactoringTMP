@@ -10,7 +10,6 @@ import UIKit
 // 커밋 테스트
 class ThemeViewController: UIViewController{
     
-    let themeViewCell = ThemeViewCell()
     // 뷰모델 소지
     var homeTabViewModel = HomeTabViewModel()
     
@@ -71,8 +70,6 @@ class ThemeViewController: UIViewController{
         setDelegate()
     }
     
-    
-    
     // 뷰 요소들 화면에 세팅하기
     func setUpView() {
         view.addSubview(themeTitleLabel)
@@ -128,7 +125,6 @@ class ThemeViewController: UIViewController{
     }
     
 } // class
-
 extension ThemeViewController: UICollectionViewDataSource {
     
     // 셀 갯수 설정(필수)
@@ -154,9 +150,6 @@ extension ThemeViewController: UICollectionViewDataSource {
 extension ThemeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        // 클릭한 이미지 테마
-        var imgDataName = imgDataList[indexPath.row]
-        
         // main에 있는 두번째화면 불러오기(스토리보드 활용)
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "DetaileSettingViewSB") as! DetaileSettingViewController
         homeTabViewModel.register()
@@ -167,9 +160,11 @@ extension ThemeViewController: UICollectionViewDelegate {
         nextView.hidesBottomBarWhenPushed = true
         navigationController!.pushViewController(nextView, animated: true)
         
-        
-        // 데이터 넘기기
-        nextView.testLabel = imgDataName
+        let imgDataName = imgDataList[indexPath.row]
+        nextView.homeTabViewModel.themeData = imgDataName
+        // 선택한 데이터 넘기기
+       
+//        homeTabViewModel.themeData = imgDataName
     }
 }
 

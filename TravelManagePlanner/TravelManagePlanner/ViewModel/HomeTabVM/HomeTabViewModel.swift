@@ -44,7 +44,11 @@ class HomeTabViewModel {
     
     func updateDestiSearchData(userDestiData: String) {
         destiSearchData.place = userDestiData
-        print("장소 잘받아옴 : ", destiSearchData.place)
+        
+        repo.getPlaceRepository(placeData: destiSearchData) {  result in
+            self.isLoading = true
+            print(result)
+        }
     }
     
     // 상태정의

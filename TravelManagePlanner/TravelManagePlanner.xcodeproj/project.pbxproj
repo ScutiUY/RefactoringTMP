@@ -15,6 +15,11 @@
 		4A716B8F27A2706C00D15024 /* CommunitySearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A716B8727A2706C00D15024 /* CommunitySearchBar.swift */; };
 		4A716B9027A2706C00D15024 /* ReviewPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A716B8927A2706C00D15024 /* ReviewPhotoCollectionViewCell.swift */; };
 		4A716B9127A2706C00D15024 /* ReviewWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A716B8A27A2706C00D15024 /* ReviewWriteViewController.swift */; };
+		4AC16C5A27B1EE53005F74FB /* CommunityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC16C5927B1EE53005F74FB /* CommunityData.swift */; };
+		4AC16C5C27B1F2EC005F74FB /* CommunityDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC16C5B27B1F2EC005F74FB /* CommunityDataRepository.swift */; };
+		4AC16C5F27B1F38B005F74FB /* CommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC16C5E27B1F38B005F74FB /* CommunityViewModel.swift */; };
+		4AC16C6127B1F9B0005F74FB /* CommunityDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC16C6027B1F9B0005F74FB /* CommunityDataList.swift */; };
+		4AC16C6427B2B42B005F74FB /* CommunityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC16C6327B2B42B005F74FB /* CommunityCollectionViewCell.swift */; };
 		6B1D27F3279B28C6004B24CB /* AccomoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1D27F2279B28C6004B24CB /* AccomoViewController.swift */; };
 		6B1D27F5279DA836004B24CB /* AccomoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1D27F4279DA836004B24CB /* AccomoViewCell.swift */; };
 		6B354795279B07B800B2924D /* DetaileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B354794279B07B800B2924D /* DetaileSettingViewController.swift */; };
@@ -102,6 +107,11 @@
 		4A716B8927A2706C00D15024 /* ReviewPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		4A716B8A27A2706C00D15024 /* ReviewWriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewWriteViewController.swift; sourceTree = "<group>"; };
 		4A7F8DA77B98DEBB1A3D4E76 /* Pods-TravelManagePlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelManagePlanner.release.xcconfig"; path = "Target Support Files/Pods-TravelManagePlanner/Pods-TravelManagePlanner.release.xcconfig"; sourceTree = "<group>"; };
+		4AC16C5927B1EE53005F74FB /* CommunityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityData.swift; sourceTree = "<group>"; };
+		4AC16C5B27B1F2EC005F74FB /* CommunityDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityDataRepository.swift; sourceTree = "<group>"; };
+		4AC16C5E27B1F38B005F74FB /* CommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewModel.swift; sourceTree = "<group>"; };
+		4AC16C6027B1F9B0005F74FB /* CommunityDataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityDataList.swift; sourceTree = "<group>"; };
+		4AC16C6327B2B42B005F74FB /* CommunityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCollectionViewCell.swift; sourceTree = "<group>"; };
 		60BFDC245ECCA557D0BD83F2 /* Pods_TravelManagePlanner_TravelManagePlannerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravelManagePlanner_TravelManagePlannerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B1D27F2279B28C6004B24CB /* AccomoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomoViewController.swift; sourceTree = "<group>"; };
 		6B1D27F4279DA836004B24CB /* AccomoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomoViewCell.swift; sourceTree = "<group>"; };
@@ -207,7 +217,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4A716B8227A2706C00D15024 /* community */ = {
+		4A716B8227A2706C00D15024 /* Community */ = {
 			isa = PBXGroup;
 			children = (
 				4A716B8327A2706C00D15024 /* DemoCell.swift */,
@@ -216,7 +226,7 @@
 				4A716B8627A2706C00D15024 /* CommunityFloatingButton.swift */,
 				4A716B8727A2706C00D15024 /* CommunitySearchBar.swift */,
 			);
-			path = community;
+			path = Community;
 			sourceTree = "<group>";
 		};
 		4A716B8827A2706C00D15024 /* review */ = {
@@ -226,6 +236,31 @@
 				4A716B8A27A2706C00D15024 /* ReviewWriteViewController.swift */,
 			);
 			path = review;
+			sourceTree = "<group>";
+		};
+		4AC16C5827B1EE1F005F74FB /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				4AC16C5927B1EE53005F74FB /* CommunityData.swift */,
+				4AC16C6027B1F9B0005F74FB /* CommunityDataList.swift */,
+			);
+			path = Community;
+			sourceTree = "<group>";
+		};
+		4AC16C5D27B1F353005F74FB /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				4AC16C5E27B1F38B005F74FB /* CommunityViewModel.swift */,
+			);
+			path = Community;
+			sourceTree = "<group>";
+		};
+		4AC16C6227B2B3E2005F74FB /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				4AC16C6327B2B42B005F74FB /* CommunityCollectionViewCell.swift */,
+			);
+			path = Community;
 			sourceTree = "<group>";
 		};
 		EE7E0A6B8C971B07A1BFD457 /* Pods */ = {
@@ -317,6 +352,7 @@
 		F00F182C277866C500211A8D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4AC16C5827B1EE1F005F74FB /* Community */,
 				F0C4E18D27A10A4F00E72BB7 /* JourneyList */,
 				F076BDDB27969DD200AF6FFD /* DestinationDetailData.swift */,
 				F0782692278FB4C300B9319F /* APIResponseData.swift */,
@@ -330,7 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				F0CADCFC2782478D00DDC1CD /* JourenyList */,
-				4A716B8227A2706C00D15024 /* community */,
+				4A716B8227A2706C00D15024 /* Community */,
 				4A716B8827A2706C00D15024 /* review */,
 				F080CF28279AE7D3007C1151 /* HomeTabVC */,
 				F00F17FB2778530200211A8D /* SampleViewController.swift */,
@@ -421,6 +457,7 @@
 			children = (
 				F02403A5279FD013005F209F /* JourneyListRepository.swift */,
 				F0B258582798FDFC0042771F /* DestinationInfoRepositories.swift */,
+				4AC16C5B27B1F2EC005F74FB /* CommunityDataRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -447,6 +484,7 @@
 		F0CADCE22781EF8700DDC1CD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4AC16C6227B2B3E2005F74FB /* Community */,
 				F0CADCFD2782479C00DDC1CD /* JourneyList */,
 				F080CF27279AE7C7007C1151 /* HomeTabView */,
 				F076BDD82796933100AF6FFD /* DestinationDetailView */,
@@ -458,6 +496,7 @@
 		F0CADCE32781EF9200DDC1CD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4AC16C5D27B1F353005F74FB /* Community */,
 				F0FECF19279FAAD0007C135D /* JourneyList */,
 				F0AFB7742783D7E000FBA3FF /* DestinationDetail */,
 				F0AFB7762783D87C00FBA3FF /* SignIn+SignUpVM */,
@@ -740,6 +779,7 @@
 				F0782695278FE77D00B9319F /* JourneyListDetailCollectionViewCell.swift in Sources */,
 				6B7D8B2E27833DC5003B2266 /* ThemeViewCell.swift in Sources */,
 				F0CADCEB278212D500DDC1CD /* DestinationDetailViewController.swift in Sources */,
+				4AC16C5F27B1F38B005F74FB /* CommunityViewModel.swift in Sources */,
 				F0AFB7722783D7AF00FBA3FF /* Observable.swift in Sources */,
 				F02403A4279FC3CD005F209F /* JourneyDetail.swift in Sources */,
 				F00F17FC2778530200211A8D /* SampleViewController.swift in Sources */,
@@ -747,6 +787,7 @@
 				4A716B9027A2706C00D15024 /* ReviewPhotoCollectionViewCell.swift in Sources */,
 				6B1D27F3279B28C6004B24CB /* AccomoViewController.swift in Sources */,
 				F079D513278ADA9E004BF9F6 /* SignUpViewModel.swift in Sources */,
+				4AC16C6427B2B42B005F74FB /* CommunityCollectionViewCell.swift in Sources */,
 				F02403A6279FD013005F209F /* JourneyListRepository.swift in Sources */,
 				F0CADCE12781EF5500DDC1CD /* LoadingButton.swift in Sources */,
 				F00F182A2778637D00211A8D /* APIService.swift in Sources */,
@@ -756,11 +797,13 @@
 				4A716B8F27A2706C00D15024 /* CommunitySearchBar.swift in Sources */,
 				4A716B8C27A2706C00D15024 /* CommunityViewController.swift in Sources */,
 				F076BDDC27969DD200AF6FFD /* DestinationDetailData.swift in Sources */,
+				4AC16C6127B1F9B0005F74FB /* CommunityDataList.swift in Sources */,
 				F0CADCDF2781EF2D00DDC1CD /* GlobalConstants.swift in Sources */,
 				F0CADCCB2781AE5700DDC1CD /* SecondSampleViewController.swift in Sources */,
 				F04FD8B5278B8F22007D8866 /* DateUtil.swift in Sources */,
 				F0CADCF7278230FC00DDC1CD /* JourneyListViewController.swift in Sources */,
 				F0CADD0127824F0000DDC1CD /* JourneyListDetailDateCollectionViewCell.swift in Sources */,
+				4AC16C5A27B1EE53005F74FB /* CommunityData.swift in Sources */,
 				F06E496D2795F509008BB8A2 /* JourneyListDetailViewModel.swift in Sources */,
 				F0CADCC92781AAF400DDC1CD /* UIImage+extension.swift in Sources */,
 				F00F17F82778530200211A8D /* AppDelegate.swift in Sources */,
@@ -783,6 +826,7 @@
 				F0CADCC62780DEB900DDC1CD /* TabbarController.swift in Sources */,
 				F0B258562798FA740042771F /* HttpClient.swift in Sources */,
 				6B1D27F5279DA836004B24CB /* AccomoViewCell.swift in Sources */,
+				4AC16C5C27B1F2EC005F74FB /* CommunityDataRepository.swift in Sources */,
 				F076BDD72796922A00AF6FFD /* DestinationDetailContentTableViewCell.swift in Sources */,
 				4A716B8B27A2706C00D15024 /* DemoCell.swift in Sources */,
 				6BE2143027A186CC004B8816 /* DestiData.swift in Sources */,

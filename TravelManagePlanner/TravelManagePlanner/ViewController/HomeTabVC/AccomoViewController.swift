@@ -85,7 +85,7 @@ class AccomoViewController: UIViewController {
         accomoTableView.snp.makeConstraints {
             $0.top.equalTo(accomoHeadStack.snp.bottom).multipliedBy(1.1)
             $0.leading.equalTo(view.snp.centerX).multipliedBy(0.1)
-            $0.bottom.equalToSuperview().offset(-130)
+            $0.bottom.equalToSuperview().offset(-150)
             $0.trailing.equalToSuperview().offset(-24)
         }
     }
@@ -143,7 +143,7 @@ extension AccomoViewController:ContentsMainTextDelegate {
     func categoryButtonTapped() {
         print("버튼 기능 구현")
         
-        let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "AccomoCalendarViewSB") as! AccomoCalendarViewController
+        let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "CalendarModalViewSB") as! CalendarModalViewController
         
         // 다음화면에서 바텀탭 없애기
         nextView.hidesBottomBarWhenPushed = true

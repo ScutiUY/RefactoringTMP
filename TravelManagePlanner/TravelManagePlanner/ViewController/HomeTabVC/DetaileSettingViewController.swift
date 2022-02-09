@@ -9,6 +9,8 @@ import SnapKit
 
 class DetaileSettingViewController:UIViewController {
     
+    // 테마에서 선택한 데이터 받기
+    var testLabel: String = ""
     
     //여행 제목 타이틀
     lazy var journeyTitle: UILabel = {
@@ -80,6 +82,8 @@ class DetaileSettingViewController:UIViewController {
         
         return label
     }()
+    
+    
     
     //    // 오는날 달력 구현부
     //    lazy var dayToComecalendar: UILabel = {
@@ -262,7 +266,7 @@ class DetaileSettingViewController:UIViewController {
         super.viewDidLoad()
         view.backgroundColor = GlobalConstants.Color.Background.themeColor
         setUpView()
-        setConstraints()
+        setLayout()
         setDelegate()
         setButtonAction()
         
@@ -293,6 +297,9 @@ class DetaileSettingViewController:UIViewController {
         view.addSubview(bottomButtonStack)
     }
     
+    
+    
+    
     func setDelegate(){
         
     }
@@ -308,7 +315,7 @@ class DetaileSettingViewController:UIViewController {
     //        print("들어오긴하니?")
     //    }
     
-    func setConstraints() {
+    func setLayout() {
         journeyTitle.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(30)
             $0.leading.equalTo(view.snp.centerX).multipliedBy(0.1)

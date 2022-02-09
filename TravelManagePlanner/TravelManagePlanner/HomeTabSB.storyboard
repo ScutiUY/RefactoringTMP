@@ -41,7 +41,7 @@
         <!--Accomo View Controller-->
         <scene sceneID="zHE-2f-XxI">
             <objects>
-                <viewController restorationIdentifier="AccomoViewSB" storyboardIdentifier="AccomoViewSB" id="cMc-Vc-d5a" customClass="AccomoViewController" customModule="TravelManagePlanner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AccomoViewSB" id="cMc-Vc-d5a" customClass="AccomoViewController" customModule="TravelManagePlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xzb-nZ-LPL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -64,7 +64,7 @@
         <!--Restaurant View Controller-->
         <scene sceneID="Fce-Np-bbY">
             <objects>
-                <viewController restorationIdentifier="RestaurantViewSB" storyboardIdentifier="RestaurantViewSB" id="aic-py-dHX" customClass="RestaurantViewController" customModule="TravelManagePlanner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RestaurantViewSB" id="aic-py-dHX" customClass="RestaurantViewController" customModule="TravelManagePlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="svt-55-ESL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -75,6 +75,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pyT-eo-bIo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2532" y="699"/>
+        </scene>
+        <!--Tour Area View Controller-->
+        <scene sceneID="WlL-bU-QbP">
+            <objects>
+                <viewController storyboardIdentifier="TourAreaViewSB" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aQK-qr-mtY" customClass="TourAreaViewController" customModule="TravelManagePlanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eMD-5U-KoN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="GIr-sp-GgV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F2N-P6-kIO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3267" y="698"/>
         </scene>
         <!--Restaurant Calendar View Controller-->
         <scene sceneID="sty-zT-VCh">
@@ -90,6 +105,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ExW-0u-due" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2532" y="1348"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="qtn-DR-Bx0">
+            <objects>
+                <viewController id="Ipp-iS-xmr" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="x4F-Ht-bLs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="8xM-cs-1rC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Zd-MX-V0N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3267" y="1348"/>
         </scene>
         <!--Desti Search View Controller-->
         <scene sceneID="n2x-Se-xLn">

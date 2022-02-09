@@ -58,17 +58,9 @@ class HomeTabViewModel {
         //    }
     }// class
     
-    // 오류처리 정리
-//    extension HomeTabViewModel {
-//        // 각 데이터 전달에 대한 정리
-//        enum HomeTabValidationResult {
-//            case success
-//            case invalidThemeData
-//            case invalidDetailTitle // 제목 미입력
-//            // 가는날이 현재 날짜보다 더뒤에있음
-//            // 인원수가 너무 많음
-//            // 예산설정을 하지 않음
-//        }
-//    }
+    // Date Picker 날짜 비교로직 이전날짜가 더 높으면 안됨
     
+    // 인원수 제한 로직
+    
+    //
 }

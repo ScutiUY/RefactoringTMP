@@ -1,5 +1,5 @@
 //
-//  RestaurantViewController.swift
+//  TourAreaViewController.swift
 //  TravelManagePlanner
 //
 //  Created by YoonDaeSung on 2022/02/08.
@@ -7,9 +7,11 @@
 
 import UIKit
 
-class RestaurantViewController: UIViewController {
-
+// 추천놀거리(관광지)
+class TourAreaViewController: UIViewController {
+    
     let cellID = "Cell"
+    
     
     lazy var imgDataName = ["accomoA", "accomoB", "accomoC","accomoA", "accomoB", "accomoC"]
     
@@ -27,9 +29,9 @@ class RestaurantViewController: UIViewController {
         return img
     }
     
-    lazy var restaurantTitleLabel: UILabel = {
+    lazy var tourAreaTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "식당"
+        label.text = "놀거리"
         label.font = UIFont.systemFont(ofSize: 40)
         label.textColor = UIColor(red: 85/255, green: 185/255, blue: 188/255, alpha: 1)
         
@@ -48,16 +50,16 @@ class RestaurantViewController: UIViewController {
         return button
     }()
     
-    lazy var restaurantHeadStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [restaurantTitleLabel, basket])
+    lazy var tourAreaHeadStack: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [tourAreaTitleLabel, basket])
         stackView.axis = .horizontal
-//        stackView.spacing = 5
+        //        stackView.spacing = 5
         
         return stackView
     }()
     
     // 테이블뷰를 활용하여 추천지 구현하기
-    lazy var restaurantTableView: UITableView = {
+    lazy var tourAreaTableView: UITableView = {
         let tableVIew = UITableView()
         tableVIew.backgroundColor = .clear
         return tableVIew
@@ -72,19 +74,19 @@ class RestaurantViewController: UIViewController {
     }
     
     func setUpView() {
-        view.addSubview(restaurantHeadStack)
-        view.addSubview(restaurantTableView)
+        view.addSubview(tourAreaHeadStack)
+        view.addSubview(tourAreaTableView)
     }
     
     func setLayout() {
-        restaurantHeadStack.snp.makeConstraints {
+        tourAreaHeadStack.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).multipliedBy(1.1)
             $0.leading.equalTo(view.snp.centerX).multipliedBy(0.1)
             $0.trailing.equalToSuperview().offset(-24)
         }
         
-        restaurantTableView.snp.makeConstraints {
-            $0.top.equalTo(restaurantHeadStack.snp.bottom).multipliedBy(1.1)
+        tourAreaTableView.snp.makeConstraints {
+            $0.top.equalTo(tourAreaHeadStack.snp.bottom).multipliedBy(1.1)
             $0.leading.equalTo(view.snp.centerX).multipliedBy(0.1)
             $0.bottom.equalToSuperview().offset(-30)
             $0.trailing.equalToSuperview().offset(-24)
@@ -92,33 +94,33 @@ class RestaurantViewController: UIViewController {
     }
     
     func setDelegate() {
-        restaurantTableView.dataSource = self
-        restaurantTableView.delegate = self
+        tourAreaTableView.dataSource = self
+        tourAreaTableView.delegate = self
         
-        restaurantTableView.register(RestaurantViewCell.classForCoder(), forCellReuseIdentifier: cellID)
+        tourAreaTableView.register(TourAreaViewCell.classForCoder(), forCellReuseIdentifier: cellID)
     }
     
 }
 
 
 // cellHeight 지정
-extension RestaurantViewController: UITableViewDelegate {
+extension TourAreaViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return view.frame.height / 4
     }
-
+    
 }
 
-extension RestaurantViewController: UITableViewDataSource {
+extension TourAreaViewController: UITableViewDataSource {
     // 큰 섹션수(Defalut 1)
     func numberOfSections(in tableView: UITableView) -> Int {
-
+        
         return 1
     }
     
     // cell 갯수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         imgDataName.count
     }
     
@@ -126,25 +128,25 @@ extension RestaurantViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         print(indexPath)
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! RestaurantViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! TourAreaViewCell
         cell.backgroundColor = .clear
         cell.cellLoadImage(imgDataName[indexPath.row])
-        cell.restaurantTitle.text = imgDataName[indexPath.row]
-        cell.restaurantSubTitle.text = "업소의 간단한 설명"
+        cell.tourAreaTitle.text = imgDataName[indexPath.row]
+        cell.tourAreaSubTitle.text = "업소의 간단한 설명"
         cell.cellDelegate = self
         
-    
-//        cell.contentView.isUserInteractionEnabled = false
+        
+        //        cell.contentView.isUserInteractionEnabled = false
         
         return cell
     }
 }
 
-extension RestaurantViewController:ContentsMainTextDelegate {
+extension TourAreaViewController:ContentsMainTextDelegate {
     func categoryButtonTapped() {
         print("버튼 기능 구현")
         
-        let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "RestaurantCalendarViewSB") as! RestaurantCalendarViewController
+        let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "TourAreaCalendarViewSB") as! TourAreaCalendarViewController
         
         // 다음화면에서 바텀탭 없애기
         nextView.hidesBottomBarWhenPushed = true

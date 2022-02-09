@@ -10,17 +10,18 @@ import UIKit
 // 커밋 테스트
 class ThemeViewController: UIViewController{
     
+    let themeViewCell = ThemeViewCell()
     // 뷰모델 소지
     var homeTabViewModel = HomeTabViewModel()
     
     let cellID = "Cell"
     // Assets의 사진 출력
-    lazy var imgDataName = ["커플", "가족", "우정", "기타"]
+    lazy var imgDataList = ["커플", "가족", "우정", "기타"]
     
     var imgArray: [UIImage] {
         var img:[UIImage] = []
         
-        for i in imgDataName {
+        for i in imgDataList {
             if let asImg = UIImage(named: i) {
                 
                 img.append(asImg)
@@ -133,7 +134,7 @@ extension ThemeViewController: UICollectionViewDataSource {
     // 셀 갯수 설정(필수)
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return imgDataName.count
+        return imgDataList.count
     }
     
     // 셀 데이터 내용 불러오기
@@ -142,26 +143,19 @@ extension ThemeViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ThemeViewCell
         
         //      cell.imageView.image = (imgArray[indexPath.row])
-        cell.cellLoadImage(imgDataName[indexPath.row])
-        cell.imgLabel.text = imgDataName[indexPath.row]
+        cell.cellLoadImage(imgDataList[indexPath.row])
+        cell.imgLabel.text = imgDataList[indexPath.row]
         
         return cell
-    }
-    
-    // 해당 셀 선택시에 액션
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
-        //해당 셀클릭시 디테일 버튼 추후 구현하기
-        //collectionView.cellForItemAtIndexPath(1)?.backgroundColor = UIColor.grayColor
-        
-        // 내가고른게 선택되는지 찍어보기
-        print("클릭됬니")
     }
 }
 
 
 extension ThemeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        // 클릭한 이미지 테마
+        var imgDataName = imgDataList[indexPath.row]
         
         // main에 있는 두번째화면 불러오기(스토리보드 활용)
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "DetaileSettingViewSB") as! DetaileSettingViewController
@@ -172,6 +166,10 @@ extension ThemeViewController: UICollectionViewDelegate {
         // 다음화면에서 바텀탭 없애기
         nextView.hidesBottomBarWhenPushed = true
         navigationController!.pushViewController(nextView, animated: true)
+        
+        
+        // 데이터 넘기기
+        nextView.testLabel = imgDataName
     }
 }
 

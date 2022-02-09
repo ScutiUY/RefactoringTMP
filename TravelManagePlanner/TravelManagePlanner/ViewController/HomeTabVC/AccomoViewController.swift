@@ -85,7 +85,7 @@ class AccomoViewController: UIViewController {
         accomoTableView.snp.makeConstraints {
             $0.top.equalTo(accomoHeadStack.snp.bottom).multipliedBy(1.1)
             $0.leading.equalTo(view.snp.centerX).multipliedBy(0.1)
-            $0.bottom.equalToSuperview().offset(-150)
+            $0.bottom.equalToSuperview().offset(-130)
             $0.trailing.equalToSuperview().offset(-24)
         }
     }

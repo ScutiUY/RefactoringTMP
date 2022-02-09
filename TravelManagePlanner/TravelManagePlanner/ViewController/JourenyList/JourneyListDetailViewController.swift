@@ -95,7 +95,7 @@ extension JourneyListDetailViewController: UICollectionViewDelegate, UICollectio
             
             if !isDateCellSelected && indexPath.row == 0 {
                 isDateCellSelected.toggle()
-                
+                cell.isSelected = true
                 collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
             }
             return cell
@@ -105,11 +105,9 @@ extension JourneyListDetailViewController: UICollectionViewDelegate, UICollectio
             
             
             //임시
-            let journeyData = viewModel.journey(idx: indexPath.row)
+            let journeyData = viewModel.journeyDetailList
             
-            cell.viewModel.title = journeyData.name
-            cell.viewModel.desc = journeyData.content
-            cell.viewModel.imgUrl = journeyData.imgUrl
+            cell.viewModel.journeyDetailList = journeyData
             ///
             return cell
         }

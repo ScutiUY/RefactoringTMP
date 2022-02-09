@@ -12,7 +12,6 @@ class JourneyListDetailPageCollectionView: UICollectionViewCell {
     
     var viewModel = JourneyListDetailPageViewModel()
     
-    let col: [UIColor] = [.red, .blue, .orange, .yellow, .green]
     var parentViewSize = CGSize(width: 0, height: 0)
     
     private lazy var journeyListDetailCollectionView: UICollectionView = {
@@ -46,15 +45,14 @@ class JourneyListDetailPageCollectionView: UICollectionViewCell {
 
 extension JourneyListDetailPageCollectionView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return viewModel.count()
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = journeyListDetailCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! JourneyListDetailCollectionViewCell
         cell.setLayout()
-        cell.titleLabel.text = viewModel.title
-        cell.descLabel.text = viewModel.desc
+        cell.titleLabel.text = viewModel.journey(idx: indexPath.row).name
+        cell.descLabel.text = viewModel.journey(idx: indexPath.row).content
         cell.thumNailImage.image = viewModel.getImage()
-        cell.backgroundColor = col[indexPath.row]
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

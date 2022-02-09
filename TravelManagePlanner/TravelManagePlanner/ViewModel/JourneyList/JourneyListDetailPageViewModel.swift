@@ -11,21 +11,23 @@ import UIKit
 
 class JourneyListDetailPageViewModel {
     
-    var title = ""
-    var imgUrl = ""
-    var desc = ""
+    private var journeyDetailList: [JourneyDetailData] = []
     
     var loadingStarted: (() -> ()) = { }
     var loadingEnded: (() -> ()) = { }
     var dataUpdated: (() -> ()) = { }
     var failedJourneyListUpdate: (() -> ()) = { }
     
+    func journey(idx: Int) -> JourneyDetailData {
+        return journeyDetailList[idx]
+    }
+    
     func count() -> Int {
-        return 0
+        return journeyDetailList.count
     }
     func getImage() -> UIImage {
         var img = UIImage(named: "Seoul1")!
-        ImageLoader.loadImage(url: self.imgUrl) { image in
+        ImageLoader.loadImage(url: self.journeyDetailList[0].imgUrl) { image in
             if let image = image {
                 img = image
             }

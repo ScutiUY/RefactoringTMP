@@ -21,11 +21,11 @@ enum GlobalConstants {
     
     enum Color {
         enum Text {
-            static var SignInButtonTextColor: UIColor = .white
-            static var SignUpButtonTextColor: UIColor = .blue
-            static var SignUpLabelTextColor: UIColor = UIColor(red: 85/255, green: 185/255, blue: 188/255, alpha: 1)
-            static var FindPasswordButtonTextColor: UIColor = .blue
-            static var SignUpResisterButtonTextColor: UIColor = .white
+            static var signInButtonTextColor: UIColor = .white
+            static var signUpButtonTextColor: UIColor = .blue
+            static var signUpLabelTextColor: UIColor = UIColor(red: 85/255, green: 185/255, blue: 188/255, alpha: 1)
+            static var findPasswordButtonTextColor: UIColor = .blue
+            static var signUpResisterButtonTextColor: UIColor = .white
             static var invalidateTextColor: UIColor = .red
         }
         

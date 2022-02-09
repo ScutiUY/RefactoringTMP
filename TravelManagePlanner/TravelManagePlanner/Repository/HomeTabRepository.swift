@@ -10,24 +10,23 @@ import Foundation
 
 // VM을 통해 담았던 model을 decoding, encoding하여 보관
 struct HomeTabRepository {
-    
     // api 소지
     let api = HomeTapAPIRequest()
     
-    // 테마 데이터 세팅하기(인코딩 변환 및 api통신 호출)
-    func setThemeRepository(themeData: ThemeData, completed: @escaping (ThemeData) -> Void) {
+    //
+    func setPlanRepository(homeTabData: HomeTabData, completed: @escaping (HomeTabData) -> Void) {
         let encoder = JSONEncoder()
         
         do {
-            let jsonData = try encoder.encode(themeData)
+            let jsonData = try encoder.encode(homeTabData)
             print(jsonData)
             
             // API호출하여 josn데이터 전달
-            api.setThemeData(themeData: themeData) { result in
+            api.setPlanRequest(homeTabData: homeTabData) { result in
                 switch result {
                     
-                case .success(let homeTabData) :
-                    print("api에 데이터 json전송 성공 : ", homeTabData)
+                case .success(let themeData) :
+                    print("api에 데이터 json전송 성공 : ", themeData)
                 
                 case .failure(let error):
                     print("api에 데이터 json전송 실패 : ", error)

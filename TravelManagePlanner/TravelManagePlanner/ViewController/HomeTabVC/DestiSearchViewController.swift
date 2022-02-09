@@ -10,7 +10,8 @@ import Alamofire
 // 검색기능
 class DestiSearchViewController: UIViewController {
     
-    // 이전화면 데이터 가저오기
+    //뷰모델 소유
+    var homeTabViewModel = HomeTabViewModel()
     
     // 테마 타이틀
     lazy var themeTitleLabel: UILabel = {
@@ -116,9 +117,12 @@ extension DestiSearchViewController: UITableViewDelegate {
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "RecommendPageViewSB") as! RecommendPageViewController
         
         // 다음화면에서 바텀탭 없애기
-//        nextView.hidesBottomBarWhenPushed = true
         navigationController!.pushViewController(nextView, animated: true)
+   
+        let placeData = self.data.placeData[indexPath.row]
+        homeTabViewModel.updateDestiSearchData(userDestiData: placeData)
         
+        print("선택된 장소 :", placeData)
     }
 }
 

@@ -8,7 +8,9 @@ import UIKit
 import SnapKit
 
 class DetaileSettingViewController: UIViewController {
-    var themeViewModel = ThemeViewModel()
+    
+    // 뷰모델
+    var homeTabViewModel = HomeTabViewModel()
     
     //여행 제목 타이틀
     lazy var journeyTitle: UILabel = {
@@ -279,7 +281,6 @@ class DetaileSettingViewController: UIViewController {
     
     
     @objc func nextButtonAction(_ sender: UIButton) {
-        themeViewModel.DataCheck()
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil)
             .instantiateViewController(withIdentifier: "DestiSearchViewSB") as! DestiSearchViewController
             navigationController?.pushViewController(nextView, animated: true)

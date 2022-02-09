@@ -17,10 +17,20 @@ struct HomeTapAPIRequest {
     static let headerDic: [String: String] = ["appCode": "TMP_iOS"]
     
     // 여행계획 최종입력
-    func setThemeData(themeData: ThemeData, completed: @escaping (Result<String, Error>) -> Void) {
+    func setPlanRequest(homeTabData: HomeTabData, completed: @escaping (Result<String, Error>) -> Void) {
         
-        let ThemeDataURL = "/plan/getAllShopList.tpi" // 추후 변경필요
-        let params: [String : String] = ["themeData":"\(themeData.themeData)"]
+        let ThemeDataURL = "/plan/inputTravelInfo.tpi" // 추후 변경필요
+        let params: [String : String] = [
+            "uKey":"\(homeTabData.themeData)",
+            "title":"\(homeTabData.themeData)",
+            "startDate":"\(homeTabData.themeData)",
+            "endDate":"\(homeTabData.themeData)",
+            "price":"\(homeTabData.themeData)",
+            "theme":"\(homeTabData.themeData)",
+            "shopList":"\(homeTabData.themeData)",
+            "vDate":"\(homeTabData.themeData)",
+        ]
+        print(params)
         
         AF.request(
             APIRequest.url + ThemeDataURL,

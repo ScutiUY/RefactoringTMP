@@ -33,10 +33,10 @@ struct HomeTapAPIRequest {
         print(params)
         
         AF.request(
-            APIRequest.url + ThemeDataURL,
+            HomeTapAPIRequest.url + ThemeDataURL,
             method: .post,
             parameters: params,
-            headers: HTTPHeaders(APIRequest.headerDic)).validate().responseString { response in
+            headers: HTTPHeaders(HomeTapAPIRequest.headerDic)).validate().responseString { response in
             
             // 통신결과(AF에서 제공)
             switch response.result {
@@ -60,10 +60,10 @@ struct HomeTapAPIRequest {
         print("params: ", params)
         
         AF.request(
-            APIRequest.url + placeShopListURL,
+            HomeTapAPIRequest.url + placeShopListURL,
             method: .post,
             parameters: params,
-            headers: HTTPHeaders(APIRequest.headerDic)).validate().responseString { response in
+            headers: HTTPHeaders(HomeTapAPIRequest.headerDic)).validate().responseString { response in
             
             // 통신결과(AF에서 제공)
             switch response.result {

@@ -48,4 +48,16 @@ class CommunityViewModel {
             self.isLoading = false
         })
     }
+    
+    func getPersonalList() {
+        isLoading = true
+        loadingStarted()
+        repo.getPersonalCommunityData(completed: { result in
+            self.communityDataList.communities = result.data
+            self.communityUpdated()
+            self.loadingEnded()
+            self.isLoading = false
+        })
+    }
+    
 }

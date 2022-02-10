@@ -60,31 +60,42 @@ class CommunityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = themeColor
-        communityFloatingButton.items[0].addTarget(self, action: #selector(ButtonPressed(_:)), for: .touchUpInside)
-        communityCollectionView.dataSource = self
-        communityCollectionView.delegate = self
-        communityFloatingButton.delegate = self
+        setDelegate()
+        communityFloatingButton.items[0].addTarget(self, action: #selector(ReviewButtonPressed(_:)), for: .touchUpInside)
+        communityFloatingButton.items[1].addTarget(self, action: #selector(PersonalReviewButtonPressed(_:)), for: .touchUpInside)
         communityViewModel = CommunityViewModel()
-        setObserver()
-    
-        view.addSubview(activity)
-
-        activity.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-        }
-
+        setRefresh()
         setNav()
         setCollectionView()
+        setObserver()
         setFloatingButton()
     }
     
     
     // MARK: - Methods
     
+    func setDelegate() {
+        communityCollectionView.dataSource = self
+        communityCollectionView.delegate = self
+        communityFloatingButton.delegate = self
+    }
+    
+    
+    // 새로고침 인디케이터
+    func setRefresh() {
+        view.addSubview(activity)
+        
+        activity.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview()
+        }
+        communityCollectionView.refreshControl = UIRefreshControl()
+        communityCollectionView.refreshControl?.addTarget(self, action: #selector(onRefresh), for: .valueChanged)
+    }
+    
+    
     // 커스텀 커뮤니티 네비게이션바
     func setNav() {
-        
         view.addSubview(communityNavigationBar)
         communityNavigationBar.layer.shadowColor = UIColor.black.cgColor
         communityNavigationBar.layer.shadowOffset = CGSize(width: 0, height: 2)
@@ -141,20 +152,28 @@ class CommunityViewController: UIViewController {
      }
 
     
-    @objc func ButtonPressed(_: UIButton)
+    @objc func ReviewButtonPressed(_: UIButton)
     {
         let reviewVC = ReviewWriteViewController()
         self.navigationController!.pushViewController(reviewVC, animated: true)
     }
 
+    @objc func PersonalReviewButtonPressed(_: UIButton)
+    {
+        communityViewModel.getPersonalList()
+        print("PersonalReviewButtonPressed")
+    }
+    
     @objc func onRefresh() {
         communityViewModel.getList()
     }
+    
+    
 }
 
 // MARK: - extensions
 
-extension CommunityViewController: UICollectionViewDataSource {
+extension CommunityViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return communityViewModel.communityDataListCount()
     }
@@ -167,13 +186,12 @@ extension CommunityViewController: UICollectionViewDataSource {
         return cell
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let communityDetailVC = DestinationDetailViewController()
+//        self.navigationController!.pushViewController(communityDetailVC, animated: true)
+        print("Clicked \(indexPath.row)")
+    }
 }
-
-extension CommunityViewController: UICollectionViewDelegate {
-    
-}
-
 
 extension CommunityViewController : UICollectionViewDelegateFlowLayout {
     
@@ -197,12 +215,6 @@ extension CommunityViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return sectionInsets.left
     }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 1
-//    }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 1
-//    }
 }
 
 // MARK: - Picker 관련

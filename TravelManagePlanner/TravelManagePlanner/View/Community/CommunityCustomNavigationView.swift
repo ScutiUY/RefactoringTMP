@@ -43,8 +43,6 @@ class CommunityCustomNavigationView: UIView {
         $0.backgroundColor = .white
     }
     
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setLayout()

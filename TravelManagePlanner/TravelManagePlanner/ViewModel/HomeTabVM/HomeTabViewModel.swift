@@ -29,18 +29,16 @@ class HomeTabViewModel {
     var failedJourneyListUpdate: (() -> ()) = { }
     
     
-//    테마 설정 데이터
-    private var userThemeData = "" // 테마 데이터
+////    테마 설정 데이터
+//    private var userThemeData = "" // 테마 데이터
+
     
-    // 디테일 설정 데이터
-    private var journeyTextField = "" // 여행 제목
-    private var dayToGocalendar = "" // 가는날
-    private var dayToComecalendar = "" // 오는날
-    private var numPeople = "" // 인원 수
-    private var budgetAmount = "" // 예산
-    
-    // 목적지
-    private var userDestiData = ""
+//    // 디테일 설정 데이터
+//    private var journeyTextField = "" // 여행 제목
+//    private var dayToGocalendar = "" // 가는날
+//    private var dayToComecalendar = "" // 오는날
+//    private var numPeople = "" // 인원 수
+//    private var budgetAmount = "" // 예산
     
     func updateThemeData(userThemeData: String) {
         HomeTabViewModel.globalHomeTabData.themeData = userThemeData
@@ -54,23 +52,29 @@ class HomeTabViewModel {
         HomeTabViewModel.globalHomeTabData.budgetAmount = budgetAmount
     }
     
+    static var serchData = ""
+    
     // 목적지 기반 추천지 불러오기
-    func updateDestiSearchData(userDestiData: String) {
-        self.isLoading = true
-        loadingStarted()
+    func getData(){
+        self.loadingStarted()
         
-        destiSearchRequest.place = userDestiData
-        repo.getPlaceRepository(placeData: destiSearchRequest, completed: { result in
+        destiSearchRequest.place = HomeTabViewModel.serchData
+        repo.getPlaceRepository(placeData: destiSearchRequest) { result in
             
             switch result {
             case .success(let responseData):
-                print("responseData!", responseData)
                 self.destiSearchResponse = responseData.data
+                print("destiSearchResponse!", self.destiSearchResponse)
+                print("destiSearchResponseCount", self.destiSearchResponse.count)
+
+                self.dataUpdated()
+                self.loadingEnded()
             case .failure(let error):
-                
+                self.loadingEnded()
                 switch error {
                 case .notFoundInDB:
                     self.destiSearchResponse = []
+                    self.dataUpdated()
                 case .unknown:
                     print("알수 없는 오류")
                 case .jsonError:
@@ -91,33 +95,23 @@ class HomeTabViewModel {
                     print("Pw error")
                 }
             }
-            
-            self.isLoading = false
-        })
+        }
     }
     
     func getDestiSearchCount() -> Int {
-        print("이름가져오니", self.destiSearchResponse.description)
-        print("모델",destiSearchResponse.count)
+        
+        print("카운트 세기", destiSearchResponse.count)
         return destiSearchResponse.count
-    }
-    
-    func getName(idx: Int) -> String {
-        
-        return destiSearchResponse[idx].name
-    }
-    
-    func getContent(idx: Int) -> String {
-        
-        return destiSearchResponse[idx].content
     }
     
     func getImg(idx: Int) -> String {
         return destiSearchResponse[idx].imgUrl
     }
     
-    
-    
+    func getShop(idx: Int) -> DestiSearchResponseData {
+        
+        return self.destiSearchResponse[idx]
+    }
 
     // VM에서 repository호출, repo에서 api통신 정의
     func register() {

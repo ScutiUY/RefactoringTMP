@@ -120,7 +120,8 @@ extension DestiSearchViewController: UITableViewDelegate {
         navigationController!.pushViewController(nextView, animated: true)
    
         let placeData = self.data.placeData[indexPath.row]
-        homeTabViewModel.updateDestiSearchData(userDestiData: placeData)
+//        homeTabViewModel.updateDestiSearchData(placeData)
+        HomeTabViewModel.serchData = placeData
         
         print("선택된 장소 :", placeData)
     }

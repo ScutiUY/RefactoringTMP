@@ -14,30 +14,6 @@ struct HomeTabRepository {
     let api = HomeTapAPIRequest()
     private let httpClient = HttpClient(baseUrl: "https://eunryuplaners.com:19624")
     
-    // 여행 최종결정
-    func setPlanRepository(homeTabData: HomeTabData, completed: @escaping (HomeTabData) -> Void) {
-        let encoder = JSONEncoder()
-        
-        do {
-            let jsonData = try encoder.encode(homeTabData)
-            print(jsonData)
-            
-            // API호출하여 josn데이터 전달
-            api.setPlanRequest(homeTabData: homeTabData) { result in
-                switch result {
-                    
-                case .success(let themeData) :
-                    print("api에 데이터 json전송 성공 : ", themeData)
-                    
-                case .failure(let error):
-                    print("api에 데이터 json전송 실패 : ", error)
-                }//switch
-            }
-            
-        } catch {
-            print("homeTabData error in homeTabData repository")
-        }
-    }
     
     // 목적지 기반 가게 불러오기
     func getPlaceRepository(placeData: DestiSearchRequest,completed: @escaping (Result <DestiSearchResponse, APIError>) -> Void) {
@@ -70,4 +46,32 @@ struct HomeTabRepository {
             }
         }
     }
+    
+    
+    // 여행 최종결정
+    func setPlanRepository(homeTabData: HomeTabData, completed: @escaping (HomeTabData) -> Void) {
+        let encoder = JSONEncoder()
+        
+        do {
+            let jsonData = try encoder.encode(homeTabData)
+            print(jsonData)
+            
+            // API호출하여 josn데이터 전달
+            api.setPlanRequest(homeTabData: homeTabData) { result in
+                switch result {
+                    
+                case .success(let themeData) :
+                    print("api에 데이터 json전송 성공 : ", themeData)
+                    
+                case .failure(let error):
+                    print("api에 데이터 json전송 실패 : ", error)
+                }//switch
+            }
+            
+        } catch {
+            print("homeTabData error in homeTabData repository")
+        }
+    }
+    
+
 }

@@ -22,6 +22,8 @@ class JourneyListDetailViewModel {
     var failedJourneyListUpdate: (() -> ()) = { }
     
     func count() -> Int {
+        
+        print("journeyDetailList.count", journeyDetailList.count)
         return journeyDetailList.count
     }
     func journey(idx: Int) -> JourneyDetailData {

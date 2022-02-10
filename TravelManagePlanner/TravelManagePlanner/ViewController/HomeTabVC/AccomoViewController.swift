@@ -68,9 +68,12 @@ class AccomoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = GlobalConstants.Color.Background.themeColor
+        
+        setObserver()
         setUpView()
         setLayout()
         setDelegate()
+       
     }
     
     func setUpView() {
@@ -100,6 +103,21 @@ class AccomoViewController: UIViewController {
         accomoTableView.register(AccomoViewCell.classForCoder(), forCellReuseIdentifier: cellID)
     }
     
+    func setObserver() {
+        homeTabViewModel.getData()
+        
+        homeTabViewModel.loadingStarted = {
+            
+        }
+        homeTabViewModel.loadingEnded = {
+            
+        }
+        homeTabViewModel.dataUpdated = {
+            self.accomoTableView.reloadData()
+        }
+        
+        
+    }
 }
 
 
@@ -122,6 +140,7 @@ extension AccomoViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
 //      return  imgDataName.count
+        
         return homeTabViewModel.getDestiSearchCount()
 //        return 5
     }
@@ -132,16 +151,23 @@ extension AccomoViewController: UITableViewDataSource {
         print(indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! AccomoViewCell
         cell.backgroundColor = .clear
-        cell.cellLoadImage(imgDataName[indexPath.row])
-        cell.accomoTitle.text = imgDataName[indexPath.row]
-        cell.accomoSubTitle.text = "업소의 간단한 설명"
         
-//        cell.accomoTitle.text = homeTabViewModel.getName(idx: indexPath.row)
-//        cell.accomoSubTitle.text = homeTabViewModel.getContent(idx: indexPath.row)
+        // 선택된 해당데이터 모델[배열]가져오기
+        let shopData = homeTabViewModel.getShop(idx: indexPath.row)
+        
+//        cell.cellLoadImage(imgDataName[indexPath.row])
+        
+//        cell.accomoTitle.text = imgDataName[indexPath.row]
+//        cell.accomoSubTitle.text = "업소의 간단한 설명"
+        let url = URL(string: shopData.imgUrl)
+        let data = try! Data(contentsOf: url!)
+        
+        cell.accomoImg.image = UIImage(data: data)
+        cell.accomoTitle.text = shopData.name
+        cell.accomoSubTitle.text = shopData.content
 //
-//        cell.cellDelegate = self
+        cell.cellDelegate = self
         
-    
 //        cell.contentView.isUserInteractionEnabled = false
         
         return cell

@@ -7,35 +7,33 @@
 
 import UIKit
 import SnapKit
+import Then
 import JJFloatingActionButton
 
 let communityFloatingButton = CommunityFloatingButtonClass().communityFloatingButton
-let communitySearchBar = CommunitySearchBarClass().communitySearchBar
 let cellId: String = "Cell"
 let commuinityCategorydata = ["전체", "연인", "가족", "친구", "기타"]
+let themeColor = GlobalConstants.Color.Background.themeColor
 
 class CommunityViewController: UIViewController {
+    
     // MARK: - Properties
-    
     var communityViewModel: CommunityViewModel!
-    
     lazy var communityNavigationBar = CommunityCustomNavigationView()
-    
+    let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     let activity = UIActivityIndicatorView()
     
-    lazy var communityCategorytextField : UITextField = {
-        let textfield = UITextField()
-        textfield.text = " 전체"
-        textfield.contentVerticalAlignment = .center
-        textfield.tintColor = .clear
-        textfield.layer.cornerRadius = 10
-        textfield.backgroundColor = .white
-        textfield.layer.shadowColor = UIColor.black.cgColor
-        textfield.layer.shadowOffset = CGSize(width: 0, height: 4)
-        textfield.layer.shadowRadius = 5
-        textfield.layer.shadowOpacity = 0.2
-        return textfield
-    }()
+    lazy var communityCategorytextField = UITextField().then({
+        $0.text = " 전체"
+        $0.contentVerticalAlignment = .center
+        $0.tintColor = .clear
+        $0.layer.cornerRadius = 10
+        $0.backgroundColor = .white
+        $0.layer.shadowColor = UIColor.black.cgColor
+        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
+        $0.layer.shadowRadius = 5
+        $0.layer.shadowOpacity = 0.2
+    })
         
     let communityCategoryPickerView = UIPickerView()
     let communityCategoryToolBarSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -52,7 +50,7 @@ class CommunityViewController: UIViewController {
     lazy var communityCollectionView: UICollectionView = {
         let flowlayout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowlayout)
-        cv.backgroundColor = UIColor(red: 243/255, green: 255/255, blue: 251/255, alpha: 1)
+        cv.backgroundColor = themeColor
         cv.register(CommunityCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         return cv
     }()
@@ -61,14 +59,11 @@ class CommunityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 243/255, green: 255/255, blue: 251/255, alpha: 1)
+        view.backgroundColor = themeColor
         communityFloatingButton.items[0].addTarget(self, action: #selector(ButtonPressed(_:)), for: .touchUpInside)
         communityCollectionView.dataSource = self
         communityCollectionView.delegate = self
         communityFloatingButton.delegate = self
-//        setCommunityPickerView()
-        
-//        setNav()
         communityViewModel = CommunityViewModel()
         setObserver()
     
@@ -78,9 +73,18 @@ class CommunityViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
         }
+
+        setNav()
+        setCollectionView()
+        setFloatingButton()
+    }
+    
+    
+    // MARK: - Methods
+    
+    // 커스텀 커뮤니티 네비게이션바
+    func setNav() {
         
-        
-        // Mark: 커스텀 커뮤니티 네비게이션바
         view.addSubview(communityNavigationBar)
         communityNavigationBar.layer.shadowColor = UIColor.black.cgColor
         communityNavigationBar.layer.shadowOffset = CGSize(width: 0, height: 2)
@@ -94,45 +98,7 @@ class CommunityViewController: UIViewController {
             $0.width.equalToSuperview()
             $0.height.equalToSuperview().multipliedBy(0.16)
         }
-        
-        setCollectionView()
-        setFloatingButton()
     }
-    
-    
-    // MARK: - Methods
-    
-//    func setNav() {
-////        let searchController = UISearchController(searchResultsController: nil)
-//        let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
-////        self.navigationItem.searchController = searchController
-//
-//        searchBar.placeholder = "여행지를 입력하세요."
-//        searchBar.searchTextField.backgroundColor = .white
-//        searchBar.searchTextField.layer.shadowColor = UIColor.black.cgColor
-//        searchBar.searchTextField.layer.shadowOffset = CGSize(width: 0, height: 2)
-//        searchBar.searchTextField.layer.shadowRadius = 3
-//        searchBar.searchTextField.layer.shadowOpacity = 0.1
-//        searchBar.setImage(UIImage(named: "icCaencel"), for: .clear, state: .normal)
-//        searchBar.layer.cornerRadius = 30
-//        searchBar.showsCancelButton = false
-////        self.navigationItem.titleView = searchBar
-//        self.navigationController?.navigationBar.topItem?.titleView = searchBar
-//        self.navigationController?.navigationBar.topItem?.prompt = "커뮤니티"
-//        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(customView: UIButton())
-//
-//        // Appearance에 저장을 해야 navigationbar 모두에 적용된다.
-//        let navigationBarAppearance = UINavigationBarAppearance()
-//        navigationBarAppearance.backgroundColor = GlobalConstants.Color.Background.themeColor
-//        navigationController?.navigationBar.standardAppearance = navigationBarAppearance
-//        navigationController?.navigationBar.scrollEdgeAppearance = navigationBarAppearance
-//    }
-    
-    
-    
-    
-    
-    
     
     func setObserver() {
         communityViewModel.loadingStarted = { [weak activity] in
@@ -148,52 +114,16 @@ class CommunityViewController: UIViewController {
         }
         communityViewModel.getList()
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-//    func setCommunityPickerView()
-//    {
-//        view.addSubview(communityCategorytextField)
-//        communityCategorytextField.addLeftPadding()
-//
-//        communityCategorytextField.snp.makeConstraints { make in
-//            make.trailing.equalTo(communitySearchBar.snp.trailing).offset(100)
-//            make.top.equalTo(communitySearchBar.snp.top).offset(10)
-//            make.width.equalTo(communitySearchBar).multipliedBy(0.3)
-//            make.height.equalTo(communitySearchBar).multipliedBy(0.6)
-//        }
-//        communityCategoryPickerView.delegate = self
-//        self.communityCategorytextField.inputView = communityCategoryPickerView
-//        self.communityCategorytextField.inputAccessoryView = communityCategoryToolBar
-//    }
-//
-    
-    
+
     func setCollectionView() {
         
         view.addSubview(communityCollectionView)
-//        view.addSubview(communitySearchBar)
-//
-//        communitySearchBar.snp.makeConstraints { make in
-//            make.width.equalTo(view.safeAreaLayoutGuide).multipliedBy(0.55)
-//            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
-//            make.left.equalTo(view.safeAreaLayoutGuide).offset(20)
-//
-//        }
-        communityCollectionView.snp.makeConstraints { make in
-            make.width.equalTo(view.safeAreaLayoutGuide)
-            make.top.equalTo(communityNavigationBar.snp.bottom).offset(10) // 수정
-            make.centerX.equalTo(view.snp.centerX)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+
+        communityCollectionView.snp.makeConstraints {
+            $0.top.equalTo(communityNavigationBar.snp.bottom).offset(10) // 수정
+            $0.width.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
     }
     
@@ -232,7 +162,7 @@ extension CommunityViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CommunityCollectionViewCell
         let communityDataInfo = communityViewModel.community(index: indexPath.row)
-        cell.backgroundColor = .red
+        cell.backgroundColor = themeColor
         cell.setData(communityDataInfo)
         return cell
     }
@@ -248,11 +178,31 @@ extension CommunityViewController: UICollectionViewDelegate {
 extension CommunityViewController : UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width / 3 , height: communityCollectionView.frame.height / 3)
+        let width = communityCollectionView.frame.width
+        let height = communityCollectionView.frame.height
+        let itemsPerRow: CGFloat = 2
+        let widthPadding = sectionInsets.left * (itemsPerRow + 1)
+        let itemsPerColumn: CGFloat = 3
+        let heightPadding = sectionInsets.top * (itemsPerColumn + 1)
+        let cellWidth = (width - widthPadding) / itemsPerRow
+        let cellHeight = (height - heightPadding) / itemsPerColumn
+        
+        return CGSize(width: cellWidth, height: cellHeight)
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 5, bottom: 5, right: 5)
+        return sectionInsets
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.left
+    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 1
+//    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//        return 1
+//    }
 }
 
 // MARK: - Picker 관련

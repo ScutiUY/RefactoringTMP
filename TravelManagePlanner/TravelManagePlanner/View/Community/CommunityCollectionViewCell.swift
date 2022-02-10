@@ -31,8 +31,8 @@ class CommunityCollectionViewCell: UICollectionViewCell {
     }
     
     lazy var communityCollectionViewHashtags = UILabel().then {
-        $0.textColor = .lightGray
-        $0.font = .boldSystemFont(ofSize: 10)
+        $0.textColor = .gray
+        $0.font = .boldSystemFont(ofSize: 12)
         $0.backgroundColor = GlobalConstants.Color.Background.themeColor
     }
     
@@ -57,23 +57,22 @@ class CommunityCollectionViewCell: UICollectionViewCell {
         
         communityCollectionViewImage.snp.makeConstraints {
             $0.top.equalToSuperview().offset(5)
-            $0.left.equalToSuperview().offset(5)
-//            $0.centerX.equalTo(self.snp.centerX)
-            $0.width.equalToSuperview().multipliedBy(0.9)
+            $0.centerX.equalTo(self.snp.centerX)
+            $0.width.equalToSuperview()
             $0.height.equalToSuperview().multipliedBy(0.7)
         }
         
         communityCollectionViewTitle.snp.makeConstraints {
             $0.top.equalTo(communityCollectionViewImage.snp.bottom).offset(10)
-//            $0.centerX.equalTo(self.snp.centerX)
+            $0.centerX.equalTo(self.snp.centerX)
             $0.width.equalToSuperview()
             $0.height.equalTo(20)
         }
         
         communityCollectionViewHashtags.snp.makeConstraints {
-            $0.top.equalTo(communityCollectionViewTitle.snp.bottom).offset(10)
-//            $0.centerX.equalTo(self.snp.centerX)
-            $0.width.equalToSuperview()
+            $0.top.equalTo(communityCollectionViewTitle.snp.bottom)
+            $0.centerX.equalTo(self.snp.centerX)
+            $0.width.equalToSuperview().multipliedBy(0.9)
             $0.height.equalTo(20)
         }
     }

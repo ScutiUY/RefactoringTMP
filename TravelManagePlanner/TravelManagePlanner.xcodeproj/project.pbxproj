@@ -11,7 +11,6 @@
 		4A716B8C27A2706C00D15024 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A716B8427A2706C00D15024 /* CommunityViewController.swift */; };
 		4A716B8D27A2706C00D15024 /* CommunityPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A716B8527A2706C00D15024 /* CommunityPickerView.swift */; };
 		4A716B8E27A2706C00D15024 /* CommunityFloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A716B8627A2706C00D15024 /* CommunityFloatingButton.swift */; };
-		4A716B8F27A2706C00D15024 /* CommunitySearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A716B8727A2706C00D15024 /* CommunitySearchBar.swift */; };
 		4A716B9027A2706C00D15024 /* ReviewPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A716B8927A2706C00D15024 /* ReviewPhotoCollectionViewCell.swift */; };
 		4A716B9127A2706C00D15024 /* ReviewWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A716B8A27A2706C00D15024 /* ReviewWriteViewController.swift */; };
 		4AC16C5A27B1EE53005F74FB /* CommunityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC16C5927B1EE53005F74FB /* CommunityData.swift */; };
@@ -102,7 +101,6 @@
 		4A716B8427A2706C00D15024 /* CommunityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		4A716B8527A2706C00D15024 /* CommunityPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityPickerView.swift; sourceTree = "<group>"; };
 		4A716B8627A2706C00D15024 /* CommunityFloatingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityFloatingButton.swift; sourceTree = "<group>"; };
-		4A716B8727A2706C00D15024 /* CommunitySearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunitySearchBar.swift; sourceTree = "<group>"; };
 		4A716B8927A2706C00D15024 /* ReviewPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		4A716B8A27A2706C00D15024 /* ReviewWriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewWriteViewController.swift; sourceTree = "<group>"; };
 		4A7F8DA77B98DEBB1A3D4E76 /* Pods-TravelManagePlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelManagePlanner.release.xcconfig"; path = "Target Support Files/Pods-TravelManagePlanner/Pods-TravelManagePlanner.release.xcconfig"; sourceTree = "<group>"; };
@@ -221,9 +219,6 @@
 			isa = PBXGroup;
 			children = (
 				4A716B8427A2706C00D15024 /* CommunityViewController.swift */,
-				4A716B8527A2706C00D15024 /* CommunityPickerView.swift */,
-				4A716B8627A2706C00D15024 /* CommunityFloatingButton.swift */,
-				4A716B8727A2706C00D15024 /* CommunitySearchBar.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -259,6 +254,8 @@
 			children = (
 				4AC16C8D27B4FA52005F74FB /* CommunityCollectionViewCell.swift */,
 				4AC16C8B27B4AB8B005F74FB /* CommunityCustomNavigationView.swift */,
+				4A716B8627A2706C00D15024 /* CommunityFloatingButton.swift */,
+				4A716B8527A2706C00D15024 /* CommunityPickerView.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -795,7 +792,6 @@
 				4AC16C8C27B4AB8B005F74FB /* CommunityCustomNavigationView.swift in Sources */,
 				F076BDDA2796941000AF6FFD /* DestinationDetailContentTableViewHeader.swift in Sources */,
 				F0CADCEE2782139500DDC1CD /* ImageSliderCollectionViewCell.swift in Sources */,
-				4A716B8F27A2706C00D15024 /* CommunitySearchBar.swift in Sources */,
 				4A716B8C27A2706C00D15024 /* CommunityViewController.swift in Sources */,
 				F076BDDC27969DD200AF6FFD /* DestinationDetailData.swift in Sources */,
 				4AC16C6127B1F9B0005F74FB /* CommunityDataList.swift in Sources */,

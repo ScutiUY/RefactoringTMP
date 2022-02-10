@@ -26,7 +26,7 @@ struct SignInUpRepository {
     private let httpClient = HttpClient(baseUrl: "https://eunryuplaners.com:19624")
     
     func login(inputId: String, inputPw: String, completed: @escaping (Result<LoginData, APIError>) -> Void) {
-        let path = "/mmb/checkLogin.tpi"
+        let path = URLManager.Member.login
         let params: [String: String] = ["loginId":"\(inputId)", "loginPw":"\(inputPw)"]
         httpClient.getJsonData(path: path, params: params) { result in
             switch result {
@@ -54,7 +54,7 @@ struct SignInUpRepository {
     }
     
     func signUp(inputEmail: String, inputPw: String, inputName: String, completed: @escaping (Result<String, APIError>) -> Void) {
-        let path = "/mmb/joinMember.tpi"
+        let path = URLManager.Member.joinMember
         let params: [String: String] = ["userId":"\(inputEmail)", "userPw":"\(inputPw)", "name":"\(inputName)"]
         httpClient.getJsonData(path: path, params: params) { result in
             switch result {

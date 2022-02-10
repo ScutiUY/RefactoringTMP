@@ -23,8 +23,10 @@ class HomeTabViewModel {
     
     // 상태 정의
     private var isLoading: Bool = false
-    var loadingStarted: (() -> ()) = {}
+    var loadingStarted: (() -> ()) = { }
     var loadingEnded: (() -> ()) = { }
+    var dataUpdated: (() -> ()) = { }
+    var failedJourneyListUpdate: (() -> ()) = { }
     
     
 //    테마 설정 데이터

@@ -53,17 +53,9 @@ class CommunityViewController: UIViewController {
         let flowlayout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowlayout)
         cv.backgroundColor = UIColor(red: 243/255, green: 255/255, blue: 251/255, alpha: 1)
-        cv.register(DemoCell.self, forCellWithReuseIdentifier: cellId)
+        cv.register(CommunityCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         return cv
     }()
-
-//    lazy var communityCollectionViewCellImage : UIImage = {
-//
-//    }()
-
-//    lazy var communityCollectionViewCellHashTag : UITextView = {
-//
-//    }()
 
     // MARK: - Lifecyle
     
@@ -234,13 +226,14 @@ class CommunityViewController: UIViewController {
 
 extension CommunityViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return communityViewModel.communityDataListCount() + 10
+        return communityViewModel.communityDataListCount()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! DemoCell
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CommunityCollectionViewCell
+        let communityDataInfo = communityViewModel.community(index: indexPath.row)
         cell.backgroundColor = .red
+        cell.setData(communityDataInfo)
         return cell
     }
     
@@ -255,13 +248,14 @@ extension CommunityViewController: UICollectionViewDelegate {
 extension CommunityViewController : UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width / 4 , height: communityCollectionView.frame.height / 3)
+        return CGSize(width: view.frame.width / 3 , height: communityCollectionView.frame.height / 3)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 5, bottom: 5, right: 5)
     }
 }
 
+// MARK: - Picker 관련
 extension CommunityViewController : UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -285,6 +279,7 @@ extension CommunityViewController : UIPickerViewDelegate, UIPickerViewDataSource
     }
 }
 
+// MARK: - TextField 왼쪽 공백 없애기
 extension UITextField {
     func addLeftPadding() {
       let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.frame.height))
@@ -293,6 +288,7 @@ extension UITextField {
     }
 }
 
+// MARK: - FloatingButton 관련
 extension CommunityViewController : JJFloatingActionButtonDelegate
 {
     func floatingActionButtonWillOpen(_ button: JJFloatingActionButton) {

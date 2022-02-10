@@ -2,60 +2,88 @@
 //  CommunityCollectionViewCell.swift
 //  TravelManagePlanner
 //
-//  Created by Hojin Jang on 2022/02/08.
+//  Created by Hojin Jang on 2022/02/10.
 //
 
 import UIKit
+import Then
 import SnapKit
 
 class CommunityCollectionViewCell: UICollectionViewCell {
     
-    lazy var anchorStackView: UIStackView = {
-        var stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.alignment = .leading
-        return stackView
-    }()
+    // MARK: Properties
     
-    lazy var thumNailImage: UIImageView = {
-        var imageView = UIImageView()
-        imageView.backgroundColor = .gray
-        return imageView
-    }()
+    var communityViewModel: CommunityViewModel!
     
-    lazy var titleLabel: UILabel = {
-        var label = UILabel()
-        label.text = "Title"
-        return label
-    }()
+    lazy var communityCollectionViewImage = UIImageView().then {
+        $0.layer.shadowColor = UIColor.black.cgColor
+        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
+        $0.layer.shadowRadius = 5
+        $0.layer.shadowOpacity = 0.2
+        $0.backgroundColor = .lightGray
+    }
     
-    lazy var hashtagLabel: UILabel = {
-        var label = UILabel()
-        label.text = "hashTags"
-        return label
-    }()
+    lazy var communityCollectionViewTitle = UILabel().then {
+        $0.textColor = .black
+        $0.textAlignment = .center
+        $0.font = .boldSystemFont(ofSize: 20)
+        $0.backgroundColor = GlobalConstants.Color.Background.themeColor
+    }
     
-    func setLayout() {
+    lazy var communityCollectionViewHashtags = UILabel().then {
+        $0.textColor = .lightGray
+        $0.font = .boldSystemFont(ofSize: 10)
+        $0.backgroundColor = GlobalConstants.Color.Background.themeColor
+    }
+    
+    // MARK: functions
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = GlobalConstants.Color.Background.themeColor
+        communityViewModel = CommunityViewModel()
+        setLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setLayout()
+    }
+    
+    // MARK: functions
+    private func setLayout() {
+        self.addSubview(communityCollectionViewImage)
+        self.addSubview(communityCollectionViewTitle)
+        self.addSubview(communityCollectionViewHashtags)
         
-        self.addSubview(anchorStackView)
-        anchorStackView.addArrangedSubview(thumNailImage)
-        anchorStackView.addArrangedSubview(titleLabel)
-        anchorStackView.addArrangedSubview(hashtagLabel)
+        communityCollectionViewImage.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(5)
+            $0.left.equalToSuperview().offset(5)
+//            $0.centerX.equalTo(self.snp.centerX)
+            $0.width.equalToSuperview().multipliedBy(0.9)
+            $0.height.equalToSuperview().multipliedBy(0.7)
+        }
         
-        anchorStackView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.width.equalToSuperview()
+        communityCollectionViewTitle.snp.makeConstraints {
+            $0.top.equalTo(communityCollectionViewImage.snp.bottom).offset(10)
+//            $0.centerX.equalTo(self.snp.centerX)
+            $0.width.equalToSuperview()
+            $0.height.equalTo(20)
         }
-        thumNailImage.snp.makeConstraints { make in
-            make.width.equalToSuperview()
-            make.height.equalTo(100)
-        }
-        titleLabel.snp.makeConstraints { make in
-            make.width.equalToSuperview()
-        }
-        hashtagLabel.snp.makeConstraints { make in
-            make.width.equalToSuperview()
+        
+        communityCollectionViewHashtags.snp.makeConstraints {
+            $0.top.equalTo(communityCollectionViewTitle.snp.bottom).offset(10)
+//            $0.centerX.equalTo(self.snp.centerX)
+            $0.width.equalToSuperview()
+            $0.height.equalTo(20)
         }
     }
     
+    func setData(_ communityDataDetail: CommunityData.CommunityDataDetail) {
+            
+        ImageLoader.loadImage(url: communityDataDetail.imgUrl) { [weak self] image in
+                self?.communityCollectionViewImage.image = image
+            }
+        self.communityCollectionViewTitle.text = communityDataDetail.title
+            self.communityCollectionViewHashtags.text = communityDataDetail.tags
+    }
 }

@@ -18,16 +18,18 @@ struct CommunityData : Codable {
         self.data = data
     }
     struct CommunityDataDetail: Codable {
-        static var shared = CommunityDataDetail(imgUrl: "", title: "", tags: "", theme: "")
+        static var shared = CommunityDataDetail(imgUrl: "", title: "", tags: "", theme: "", idx: 0)
         let imgUrl: String
         let title: String
         let tags: String
         let theme: String
-        init(imgUrl: String, title: String, tags: String, theme: String) {
+        let idx: Int
+        init(imgUrl: String, title: String, tags: String, theme: String, idx: Int) {
             self.imgUrl = imgUrl
             self.title = title
             self.tags = tags
             self.theme = theme
+            self.idx = idx
         }
     }
 }

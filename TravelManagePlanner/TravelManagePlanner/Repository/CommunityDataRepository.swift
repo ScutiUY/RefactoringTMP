@@ -14,6 +14,7 @@ class CommunityDataRepository {
     private var params = ""
     
     func getCommunityData(completed: @escaping (CommunityData) -> Void) { httpClient.getJsonData(path: "/rvw/getReviewList.tpi") { result in
+        print("\(result) <- API잘 들어오는 지 확인")
         let data = try! result.get()
         let decodedData = try? JSONDecoder().decode(CommunityData.self, from: data)
         if let communityList = decodedData {

@@ -19,6 +19,8 @@ class CommunityViewController: UIViewController {
     
     var communityViewModel: CommunityViewModel!
     
+    lazy var communityNavigationBar = CommunityCustomNavigationView()
+    
     let activity = UIActivityIndicatorView()
     
     lazy var communityCategorytextField : UITextField = {
@@ -72,10 +74,9 @@ class CommunityViewController: UIViewController {
         communityCollectionView.dataSource = self
         communityCollectionView.delegate = self
         communityFloatingButton.delegate = self
-        setCollectionView()
 //        setCommunityPickerView()
-        setFloatingButton()
-        setNav()
+        
+//        setNav()
         communityViewModel = CommunityViewModel()
         setObserver()
     
@@ -85,50 +86,55 @@ class CommunityViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
         }
+        
+        
+        // Mark: 커스텀 커뮤니티 네비게이션바
+        view.addSubview(communityNavigationBar)
+        communityNavigationBar.layer.shadowColor = UIColor.black.cgColor
+        communityNavigationBar.layer.shadowOffset = CGSize(width: 0, height: 2)
+        communityNavigationBar.layer.shadowOpacity = 0.1
+        communityCategoryPickerView.delegate = self
+        self.communityNavigationBar.NavTheme.inputView = communityCategoryPickerView
+        self.communityNavigationBar.NavTheme.inputAccessoryView = communityCategoryToolBar
+        communityNavigationBar.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.left.equalToSuperview()
+            $0.width.equalToSuperview()
+            $0.height.equalToSuperview().multipliedBy(0.16)
+        }
+        
+        setCollectionView()
+        setFloatingButton()
     }
     
     
     // MARK: - Methods
     
-    
-    func setNav() {
-        
-
-        
-        
-//        let searchController = UISearchController(searchResultsController: nil)
-        let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
-//        self.navigationItem.searchController = searchController
-        self.navigationItem.title = "커뮤니티"
-
-        searchBar.placeholder = "여행지를 입력하세요."
-        searchBar.searchTextField.backgroundColor = .white
-        searchBar.searchTextField.layer.shadowColor = UIColor.black.cgColor
-        searchBar.searchTextField.layer.shadowOffset = CGSize(width: 0, height: 2)
-        searchBar.searchTextField.layer.shadowRadius = 3
-        searchBar.searchTextField.layer.shadowOpacity = 0.1
-        searchBar.setImage(UIImage(named: "icCaencel"), for: .clear, state: .normal)
-        searchBar.layer.cornerRadius = 30
-//        hidesNavigationBarDuringPresentation = false
-        searchBar.showsCancelButton = false
-        self.navigationItem.titleView = searchBar
-//        self.navigationItem.titleView?.frame
-        
-        
-        
-        
-        
-        
-        // Appearance에 저장을 해야 navigationbar 모두에 적용된다.
-        let navigationBarAppearance = UINavigationBarAppearance()
-        navigationBarAppearance.backgroundColor = GlobalConstants.Color.Background.themeColor
-        navigationController?.navigationBar.standardAppearance = navigationBarAppearance
-        navigationController?.navigationBar.scrollEdgeAppearance = navigationBarAppearance
-        
-
-        
-
-    }
+//    func setNav() {
+////        let searchController = UISearchController(searchResultsController: nil)
+//        let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
+////        self.navigationItem.searchController = searchController
+//
+//        searchBar.placeholder = "여행지를 입력하세요."
+//        searchBar.searchTextField.backgroundColor = .white
+//        searchBar.searchTextField.layer.shadowColor = UIColor.black.cgColor
+//        searchBar.searchTextField.layer.shadowOffset = CGSize(width: 0, height: 2)
+//        searchBar.searchTextField.layer.shadowRadius = 3
+//        searchBar.searchTextField.layer.shadowOpacity = 0.1
+//        searchBar.setImage(UIImage(named: "icCaencel"), for: .clear, state: .normal)
+//        searchBar.layer.cornerRadius = 30
+//        searchBar.showsCancelButton = false
+////        self.navigationItem.titleView = searchBar
+//        self.navigationController?.navigationBar.topItem?.titleView = searchBar
+//        self.navigationController?.navigationBar.topItem?.prompt = "커뮤니티"
+//        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(customView: UIButton())
+//
+//        // Appearance에 저장을 해야 navigationbar 모두에 적용된다.
+//        let navigationBarAppearance = UINavigationBarAppearance()
+//        navigationBarAppearance.backgroundColor = GlobalConstants.Color.Background.themeColor
+//        navigationController?.navigationBar.standardAppearance = navigationBarAppearance
+//        navigationController?.navigationBar.scrollEdgeAppearance = navigationBarAppearance
+//    }
     
     
     
@@ -192,8 +198,8 @@ class CommunityViewController: UIViewController {
 //
 //        }
         communityCollectionView.snp.makeConstraints { make in
-            make.width.equalTo(view.safeAreaLayoutGuide).multipliedBy(0.9)
-            make.top.equalTo(view.snp.top).offset(20) // 수정
+            make.width.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(communityNavigationBar.snp.bottom).offset(10) // 수정
             make.centerX.equalTo(view.snp.centerX)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
@@ -209,7 +215,7 @@ class CommunityViewController: UIViewController {
     }
     
     @objc func onPickDone() {
-        communityCategorytextField.resignFirstResponder()
+        communityNavigationBar.NavTheme.resignFirstResponder()
      }
 
     
@@ -266,8 +272,8 @@ extension CommunityViewController : UIPickerViewDelegate, UIPickerViewDataSource
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        communityCategorytextField.text = "\(commuinityCategorydata[row])"
-        communityCategorytextField.sizeToFit()
+        communityNavigationBar.NavTheme.text = "\(commuinityCategorydata[row])"
+        communityNavigationBar.NavTheme.sizeToFit()
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {

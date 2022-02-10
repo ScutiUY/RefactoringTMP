@@ -20,6 +20,7 @@
 		4AC16C5F27B1F38B005F74FB /* CommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC16C5E27B1F38B005F74FB /* CommunityViewModel.swift */; };
 		4AC16C6127B1F9B0005F74FB /* CommunityDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC16C6027B1F9B0005F74FB /* CommunityDataList.swift */; };
 		4AC16C6427B2B42B005F74FB /* CommunityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC16C6327B2B42B005F74FB /* CommunityCollectionViewCell.swift */; };
+		4AC16C8C27B4AB8B005F74FB /* CommunityCustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC16C8B27B4AB8B005F74FB /* CommunityCustomNavigationView.swift */; };
 		6B1D27F3279B28C6004B24CB /* AccomoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1D27F2279B28C6004B24CB /* AccomoViewController.swift */; };
 		6B1D27F5279DA836004B24CB /* AccomoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1D27F4279DA836004B24CB /* AccomoViewCell.swift */; };
 		6B354795279B07B800B2924D /* DetaileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B354794279B07B800B2924D /* DetaileSettingViewController.swift */; };
@@ -112,6 +113,7 @@
 		4AC16C5E27B1F38B005F74FB /* CommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewModel.swift; sourceTree = "<group>"; };
 		4AC16C6027B1F9B0005F74FB /* CommunityDataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityDataList.swift; sourceTree = "<group>"; };
 		4AC16C6327B2B42B005F74FB /* CommunityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCollectionViewCell.swift; sourceTree = "<group>"; };
+		4AC16C8B27B4AB8B005F74FB /* CommunityCustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCustomNavigationView.swift; sourceTree = "<group>"; };
 		60BFDC245ECCA557D0BD83F2 /* Pods_TravelManagePlanner_TravelManagePlannerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravelManagePlanner_TravelManagePlannerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B1D27F2279B28C6004B24CB /* AccomoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomoViewController.swift; sourceTree = "<group>"; };
 		6B1D27F4279DA836004B24CB /* AccomoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomoViewCell.swift; sourceTree = "<group>"; };
@@ -229,13 +231,13 @@
 			path = Community;
 			sourceTree = "<group>";
 		};
-		4A716B8827A2706C00D15024 /* review */ = {
+		4A716B8827A2706C00D15024 /* Review */ = {
 			isa = PBXGroup;
 			children = (
 				4A716B8927A2706C00D15024 /* ReviewPhotoCollectionViewCell.swift */,
 				4A716B8A27A2706C00D15024 /* ReviewWriteViewController.swift */,
 			);
-			path = review;
+			path = Review;
 			sourceTree = "<group>";
 		};
 		4AC16C5827B1EE1F005F74FB /* Community */ = {
@@ -259,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				4AC16C6327B2B42B005F74FB /* CommunityCollectionViewCell.swift */,
+				4AC16C8B27B4AB8B005F74FB /* CommunityCustomNavigationView.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -367,7 +370,7 @@
 			children = (
 				F0CADCFC2782478D00DDC1CD /* JourenyList */,
 				4A716B8227A2706C00D15024 /* Community */,
-				4A716B8827A2706C00D15024 /* review */,
+				4A716B8827A2706C00D15024 /* Review */,
 				F080CF28279AE7D3007C1151 /* HomeTabVC */,
 				F00F17FB2778530200211A8D /* SampleViewController.swift */,
 				F0CADCC52780DEB900DDC1CD /* TabbarController.swift */,
@@ -792,6 +795,7 @@
 				F0CADCE12781EF5500DDC1CD /* LoadingButton.swift in Sources */,
 				F00F182A2778637D00211A8D /* APIService.swift in Sources */,
 				F0B258592798FDFC0042771F /* DestinationInfoRepositories.swift in Sources */,
+				4AC16C8C27B4AB8B005F74FB /* CommunityCustomNavigationView.swift in Sources */,
 				F076BDDA2796941000AF6FFD /* DestinationDetailContentTableViewHeader.swift in Sources */,
 				F0CADCEE2782139500DDC1CD /* ImageSliderCollectionViewCell.swift in Sources */,
 				4A716B8F27A2706C00D15024 /* CommunitySearchBar.swift in Sources */,

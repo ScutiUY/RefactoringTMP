@@ -66,15 +66,10 @@ class JourneyListTableViewCell: UITableViewCell {
         }
     }
     func setData(_ journey: Journey) {
-        if let journeyThumnailUrl =
-            journey.journeyDetail.first?.thumnailUrl {
-            ImageLoader.loadImage(url: journeyThumnailUrl) { [weak self] image in
-                self?.journeyImage.image = image
-            }
-        } else {
-            self.journeyImage.backgroundColor = .gray
+        ImageLoader.loadImage(url: journey.imgUrl) { [weak self] image in
+            self?.journeyImage.image = image
         }
-        self.journeyTitleLabel.text = journey.name
-        self.journeyDate.text = journey.date
+        self.journeyTitleLabel.text = journey.title
+        self.journeyDate.text = journey.sDate + " - " + journey.eDate
     }
 }

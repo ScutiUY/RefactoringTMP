@@ -10,8 +10,8 @@ import SnapKit
 
 class JourneyListDetailViewController: UIViewController {
 
+    var viewModel = JourneyListDetailViewModel()
     var isDateCellSelected = false
-    let col = ["red", "blue", "orrange", "yellow", "green"]
     
     private lazy var journeyListDetailDateCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -35,6 +35,7 @@ class JourneyListDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setObserver()
         setLayout()
         setDelegate()
     }
@@ -63,19 +64,34 @@ class JourneyListDetailViewController: UIViewController {
         // 페이지 컬렉션뷰
         journeyListDetailPageCollectionView.delegate = self
         journeyListDetailPageCollectionView.dataSource = self
+        viewModel.getData()
+    }
+    private func setObserver() {
+        viewModel.loadingStarted = {
+            
+        }
+        viewModel.loadingEnded = {
+            
+        }
+        viewModel.dataUpdated = {
+            self.journeyListDetailDateCollectionView.reloadData()
+            self.journeyListDetailPageCollectionView.reloadData()
+        }
+        viewModel.getData()
     }
 }
 extension JourneyListDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return col.count
+        print("count",viewModel.count())
+        return viewModel.count()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == journeyListDetailDateCollectionView { // dateCollectionView
             let cell = journeyListDetailDateCollectionView.dequeueReusableCell(withReuseIdentifier: "dateCell", for: indexPath) as! JourneyListDetailDateCollectionViewCell
             cell.setLayout()
-            cell.setLabelName(name: col[indexPath.row])
+            cell.setLabelName(name: "임시데이터")
             
             if !isDateCellSelected && indexPath.row == 0 {
                 isDateCellSelected.toggle()
@@ -86,6 +102,15 @@ extension JourneyListDetailViewController: UICollectionViewDelegate, UICollectio
         } else { // pageCollectionView
             let cell = journeyListDetailPageCollectionView.dequeueReusableCell(withReuseIdentifier: "pageCell", for: indexPath) as! JourneyListDetailPageCollectionView
             cell.parentViewSize = CGSize(width: view.frame.width, height: collectionView.frame.height)
+            
+            
+            //임시
+            let journeyData = viewModel.journey(idx: indexPath.row)
+            
+            cell.viewModel.title = journeyData.name
+            cell.viewModel.desc = journeyData.content
+            cell.viewModel.imgUrl = journeyData.imgUrl
+            ///
             return cell
         }
     }

@@ -8,7 +8,6 @@ import UIKit
 
 
 
-
 class AccomoViewCell: UITableViewCell {
         
     var cellDelegate: ContentsMainTextDelegate?

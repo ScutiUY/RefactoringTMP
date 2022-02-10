@@ -6,9 +6,9 @@
 //
 import Foundation
 
-// 목적지 설정
-struct DestiSearchData: Codable {
-    static var shared = DestiSearchData(place: "")
+// 목적지 설정 Request
+struct DestiSearchRequest: Codable {
+    static var shared = DestiSearchRequest(place: "")
     var place: String
     
     var filterValue: Array<String> = []
@@ -17,4 +17,45 @@ struct DestiSearchData: Codable {
     init(place: String) {
         self.place = place
     }
+}
+
+// 목적지 응답
+struct DestiSearchResponse: Codable {
+    static var shared = DestiSearchResponse(resCode: "", resMsg: "", data: [])
+    
+    var resCode: String
+    var resMsg: String
+    var data: [DestiSearchResponseData]
+    
+    init (resCode: String, resMsg: String, data: [DestiSearchResponseData]) {
+        self.resCode = resCode
+        self.resMsg = resMsg
+        self.data = data
+    }
+}
+
+// 목적지 응답 데이터 구조체
+struct DestiSearchResponseData: Codable {
+    
+    static var shared = DestiSearchResponseData(area: "", imgUrl: "", address: "", name: "", idx: 0, category: "", content: "")
+    
+    let area: String
+    let imgUrl: String
+    let address: String
+    let name: String
+    let idx: Int
+    let category: String
+    let content: String
+    
+    init(area: String, imgUrl: String, address: String, name: String, idx: Int, category: String, content: String) {
+        
+        self.area = area
+        self.imgUrl = imgUrl
+        self.address = address
+        self.name = name
+        self.idx = idx
+        self.category = category
+        self.content = content
+    }
+    
 }

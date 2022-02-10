@@ -45,7 +45,7 @@ class DestiSearchViewController: UIViewController {
         return tableView
     }()
     
-    var data: DestiSearchData = DestiSearchData(place: "")
+    var data: DestiSearchRequest = DestiSearchRequest(place: "")
     
     var filterCheck: Bool {
         let searchController = self.navigationItem.searchController

@@ -11,8 +11,12 @@ class HomeTabViewModel {
     
     // 모델 소유
     static var globalHomeTabData = HomeTabData(themeData: "", dayToGocalendar: "", dayToComecalendar: "", numPeople:"", budgetAmount: "")
-    // 목적지 모델 소유
-    var destiSearchData = DestiSearchData(place: "")
+    
+    // 목적지 요청 모델 소유
+    var destiSearchData = DestiSearchRequest(place: "")
+    
+    // 목적지 응답 모델 소유
+    var destiSearchResponse = DestiSearchResponse.shared.data
     
     private var repo = HomeTabRepository()
     private var isLoading: Bool = false
@@ -42,6 +46,7 @@ class HomeTabViewModel {
         HomeTabViewModel.globalHomeTabData.budgetAmount = budgetAmount
     }
     
+    // 목적지 기반 추천지 불러오기
     func updateDestiSearchData(userDestiData: String) {
         destiSearchData.place = userDestiData
         

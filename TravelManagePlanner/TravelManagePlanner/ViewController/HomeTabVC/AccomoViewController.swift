@@ -8,6 +8,9 @@ import UIKit
 
 // 숙박업소 추천지노출
 class AccomoViewController: UIViewController {
+    
+    //  뷰모델 소유
+    let homeTabViewModel = HomeTabViewModel()
     let cellID = "Cell"
     
     lazy var imgDataName = ["accomoA", "accomoB", "accomoC","accomoA", "accomoB", "accomoC"]
@@ -118,7 +121,9 @@ extension AccomoViewController: UITableViewDataSource {
     // cell 갯수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        imgDataName.count
+//      return  imgDataName.count
+        return homeTabViewModel.getDestiSearchCount()
+//        return 5
     }
     
     // 테이블 구성
@@ -130,7 +135,11 @@ extension AccomoViewController: UITableViewDataSource {
         cell.cellLoadImage(imgDataName[indexPath.row])
         cell.accomoTitle.text = imgDataName[indexPath.row]
         cell.accomoSubTitle.text = "업소의 간단한 설명"
-        cell.cellDelegate = self
+        
+//        cell.accomoTitle.text = homeTabViewModel.getName(idx: indexPath.row)
+//        cell.accomoSubTitle.text = homeTabViewModel.getContent(idx: indexPath.row)
+//
+//        cell.cellDelegate = self
         
     
 //        cell.contentView.isUserInteractionEnabled = false
@@ -141,8 +150,6 @@ extension AccomoViewController: UITableViewDataSource {
 
 extension AccomoViewController:ContentsMainTextDelegate {
     func categoryButtonTapped() {
-        print("버튼 기능 구현")
-        
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "AccomoCalendarViewSB") as! AccomoCalendarViewController
         
         // 다음화면에서 바텀탭 없애기

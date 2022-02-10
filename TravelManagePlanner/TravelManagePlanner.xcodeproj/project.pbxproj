@@ -276,18 +276,10 @@
 				6BA7898327B4E53A003CFE82 /* DetaileSettingViewController.swift */,
 				6BA7898427B4E53A003CFE82 /* AccomoViewController.swift */,
 				6BA7898527B4E53A003CFE82 /* DestiSearchViewController.swift */,
-				6BA7898627B4E53A003CFE82 /* BottomCalendar */,
 				6BA7898727B4E53A003CFE82 /* RestaurantViewController.swift */,
 				6BA7898827B4E53A003CFE82 /* TouristAreaViewController.swift */,
 			);
 			path = HomeTabVC;
-			sourceTree = "<group>";
-		};
-		6BA7898627B4E53A003CFE82 /* BottomCalendar */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = BottomCalendar;
 			sourceTree = "<group>";
 		};
 		6BA7898F27B4E7A2003CFE82 /* PageViewController */ = {

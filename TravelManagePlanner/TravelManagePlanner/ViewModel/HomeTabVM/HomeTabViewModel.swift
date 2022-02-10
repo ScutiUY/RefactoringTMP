@@ -13,13 +13,19 @@ class HomeTabViewModel {
     static var globalHomeTabData = HomeTabData(themeData: "", dayToGocalendar: "", dayToComecalendar: "", numPeople:"", budgetAmount: "")
     
     // 목적지 요청 모델 소유
-    var destiSearchData = DestiSearchRequest(place: "")
+    var destiSearchRequest = DestiSearchRequest(place: "")
     
     // 목적지 응답 모델 소유
     var destiSearchResponse = DestiSearchResponse.shared.data
     
+    // repository 소유
     private var repo = HomeTabRepository()
+    
+    // 상태 정의
     private var isLoading: Bool = false
+    var loadingStarted: (() -> ()) = {}
+    var loadingEnded: (() -> ()) = { }
+    
     
 //    테마 설정 데이터
     private var userThemeData = "" // 테마 데이터
@@ -48,16 +54,66 @@ class HomeTabViewModel {
     
     // 목적지 기반 추천지 불러오기
     func updateDestiSearchData(userDestiData: String) {
-        destiSearchData.place = userDestiData
+        self.isLoading = true
+        loadingStarted()
         
-        repo.getPlaceRepository(placeData: destiSearchData) {  result in
-            self.isLoading = true
-            print(result)
-        }
+        destiSearchRequest.place = userDestiData
+        repo.getPlaceRepository(placeData: destiSearchRequest, completed: { result in
+            
+            switch result {
+            case .success(let responseData):
+                print("responseData!", responseData)
+                self.destiSearchResponse = responseData.data
+            case .failure(let error):
+                
+                switch error {
+                case .notFoundInDB:
+                    self.destiSearchResponse = []
+                case .unknown:
+                    print("알수 없는 오류")
+                case .jsonError:
+                    print("Json 오류")
+                case .invalidArgument:
+                    print("매개변수 오류")
+                case .badRequest:
+                    print("400")
+                case .notFound:
+                    print("404")
+                case .internalServerError:
+                    print("repo error")
+                case .omittedParams:
+                    print("params error")
+                case .ommittedHeader:
+                    print("header error")
+                case .invalidPw:
+                    print("Pw error")
+                }
+            }
+            
+            self.isLoading = false
+        })
     }
     
-    // 상태정의
-    var loadingStarted: (() -> ()) = { }
+    func getDestiSearchCount() -> Int {
+        print("이름가져오니", self.destiSearchResponse.description)
+        print("모델",destiSearchResponse.count)
+        return destiSearchResponse.count
+    }
+    
+    func getName(idx: Int) -> String {
+        
+        return destiSearchResponse[idx].name
+    }
+    
+    func getContent(idx: Int) -> String {
+        
+        return destiSearchResponse[idx].content
+    }
+    
+    func getImg(idx: Int) -> String {
+        return destiSearchResponse[idx].imgUrl
+    }
+    
     
     
 

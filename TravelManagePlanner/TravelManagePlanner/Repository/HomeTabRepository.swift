@@ -45,27 +45,14 @@ struct HomeTabRepository {
         let params = ["area":"\(placeData.place)"]
         
         print("getPlaceRepository")
-        //        do {
-        //            api.getPlaceRequest(placeData: placeData) { result in
-        //                switch result {
-        //                case .success(let responseData) :
-        //                    print("api에 목적지 데이터 전송, 응답 성공 : ", responseData)
-        //                let decodedData = try? JSONDecoder().decode([DestiSearchResponse].self, from: responseData)
-        //
-        //                case .failure(let error):
-        //                    print("api에 목적지 데이터 전송 실패 : ", error)
-        //                }//switch
-        //
-        //            }
-        //        } catch {
-        //            print("getPlace error in getPlaceRepository")
-        //        }
         httpClient.getJsonData(path: path, params: params) { result in
             switch result {
             case.success(let data) :
                 let decodedData = try? JSONDecoder().decode(DestiSearchResponse.self, from: data)
-                if let destiSearchResponse = decodedData {
-                    switch destiSearchResponse.resCode {
+               
+                if let destiSearchResponseData = decodedData {
+                    print("destiSearchResponse :", destiSearchResponseData)
+                    switch destiSearchResponseData.resCode {
                     case "9992":
                         completed(.failure(.omittedParams))
                     case "4444":
@@ -75,7 +62,7 @@ struct HomeTabRepository {
                     case "4001":
                         completed(.failure(.invalidPw))
                     default:
-                        completed(.success(destiSearchResponse))
+                        completed(.success(destiSearchResponseData))
                     }
                 }
             case .failure(let error):

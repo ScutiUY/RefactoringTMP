@@ -10,7 +10,7 @@ import Foundation
 enum URLManager {
     
     enum Member {
-        static var checkLogin = "/mmb/checkLogin.tpi"
+        static var login = "/mmb/checkLogin.tpi"
         static var joinMember = "/mmb/joinMember.tpi"
         static var setUserName = "/mmb/setUserName.tpi"
         static var exitMember = "/mmb/exitMember.tpi"

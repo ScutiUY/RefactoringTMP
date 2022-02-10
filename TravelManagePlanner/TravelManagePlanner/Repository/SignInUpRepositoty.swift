@@ -31,9 +31,10 @@ struct SignInUpRepository {
         httpClient.getJsonData(path: path, params: params) { result in
             switch result {
             case .success(let data):
-                let decodedData = try? JSONDecoder().decode(LoginData.self, from: data)
-                if let userdata = decodedData {
-                    switch userdata.resCode {
+                do {
+                    let decodedData = try JSONDecoder().decode(LoginData.self, from: data)
+                    
+                    switch decodedData.resCode {
                     case "9992":
                         completed(.failure(.omittedParams))
                     case "4444":
@@ -43,9 +44,14 @@ struct SignInUpRepository {
                     case "4001":
                         completed(.failure(.invalidPw))
                     default:
-                        completed(.success(userdata))
+                        completed(.success(decodedData))
                     }
+                } catch {
+                    #if DEBUG
+                    print(error.localizedDescription, #function)
+                    #endif
                 }
+                
             case .failure(let error):
                 print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
                 completed(Result.failure(APIError.jsonError))
@@ -58,10 +64,12 @@ struct SignInUpRepository {
         let params: [String: String] = ["userId":"\(inputEmail)", "userPw":"\(inputPw)", "name":"\(inputName)"]
         httpClient.getJsonData(path: path, params: params) { result in
             switch result {
+                
             case .success(let data):
-                let decodedData = try? JSONDecoder().decode(LoginData.self, from: data)
-                if let userdata = decodedData {
-                    switch userdata.resCode {
+                do {
+                    let decodedData = try JSONDecoder().decode(LoginData.self, from: data)
+                    
+                    switch decodedData.resCode {
                     case "9992":
                         completed(.failure(.omittedParams))
                     case "4444":
@@ -71,14 +79,19 @@ struct SignInUpRepository {
                     case "4001":
                         completed(.failure(.invalidPw))
                     default:
-                        completed(.success(userdata.resMsg))
+                        completed(.success(decodedData.resMsg))
                     }
+                    
+                } catch {
+                    #if DEBUG
+                    print(error.localizedDescription, #function)
+                    #endif
                 }
+                
             case .failure(let error):
                 print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
                 completed(.failure(.jsonError))
             }
-            
         }
     }
 }

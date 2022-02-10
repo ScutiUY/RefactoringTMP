@@ -12,7 +12,7 @@ struct JourneyListRepository {
     private let httpClient = HttpClient(baseUrl: "https://eunryuplaners.com:19624")
     
     func getJourneyList(completed: @escaping ([Journey]) -> Void) {
-        let path = "/plan/getMyTravelList.tpi"
+        let path = URLManager.Plan.getMyTravelList
         let params = ["uKey": "10000001"]
         // uKey test용임 UserData.shared로 가져와야 함.
         httpClient.getJsonData(path: path, params: params) { result in
@@ -31,7 +31,7 @@ struct JourneyListRepository {
     }
     
     func getJourneyDetialList(travelId: Int, completed: @escaping (Result<JourneyDetail, APIError>) -> Void) {
-        let path = "/plan/getTravelDetailInfo.tpi"
+        let path = URLManager.Plan.getTravelDetailinfo
         let params = ["travelId": "1"] // test용 id travelId로 바꿔야함
         httpClient.getJsonData(path: path, params: params) { result in
             switch result {

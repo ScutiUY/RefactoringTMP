@@ -22,6 +22,7 @@ class CommunityViewController: UIViewController {
     lazy var communityNavigationBar = CommunityCustomNavigationView()
     let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     let activity = UIActivityIndicatorView()
+    var filterTheme : String = ""
     
     lazy var communityCategorytextField = UITextField().then({
         $0.text = " 전체"
@@ -56,6 +57,10 @@ class CommunityViewController: UIViewController {
     }()
 
     // MARK: - Lifecyle
+    // 키보드나 pickerview올라가 있을 시, 다른 곳을 누르면 내려가게 해주는 것
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        self.view.endEditing(true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -149,6 +154,11 @@ class CommunityViewController: UIViewController {
     
     @objc func onPickDone() {
         communityNavigationBar.NavTheme.resignFirstResponder()
+        
+        communityViewModel.getFilterList(pickerData: filterTheme)
+        
+        
+//        commuinityCategorydata[row]
      }
 
     
@@ -180,7 +190,7 @@ extension CommunityViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CommunityCollectionViewCell
-        let communityDataInfo = communityViewModel.community(index: indexPath.row)
+        let communityDataInfo = communityViewModel.getCommunity(index: indexPath.row)
         cell.backgroundColor = themeColor
         cell.setData(communityDataInfo)
         return cell
@@ -230,6 +240,8 @@ extension CommunityViewController : UIPickerViewDelegate, UIPickerViewDataSource
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         communityNavigationBar.NavTheme.text = "\(commuinityCategorydata[row])"
         communityNavigationBar.NavTheme.sizeToFit()
+        filterTheme = commuinityCategorydata[row]
+        print(commuinityCategorydata[row])
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {

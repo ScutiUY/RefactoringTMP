@@ -18,13 +18,25 @@ class ReviewWriteViewController: UIViewController {
     // MARK: - Properties
     var selectedAssets: [PHAsset] = []
     var selectedImages: [UIImage] = []
-
-    
     let scrollView = UIScrollView()
     let contentView = UIView()
-    
     let headerview = UIView()
     
+    var titleSendFromCommunity : String
+    var sDateSendFromCommunity : String
+    var eDateSendFromCommunity : String
+    
+    init(title titleSendFromCommunity: String, sDate sDateSendFromCommunity: String, eDate eDateSendFromCommunity: String) {
+        self.titleSendFromCommunity = titleSendFromCommunity
+        self.eDateSendFromCommunity = eDateSendFromCommunity
+        self.sDateSendFromCommunity = sDateSendFromCommunity
+        super.init(nibName: nil, bundle: nil)
+
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     lazy var headerTitle = UILabel().then({
         $0.text = "리뷰를 작성하여\n여행을 함께 공유해요!"
@@ -40,7 +52,7 @@ class ReviewWriteViewController: UIViewController {
     }
     
     lazy var travelTextField = UITextField().then {
-        $0.placeholder = "민수와 제주도 우정여행"
+        $0.text = titleSendFromCommunity
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 5
         $0.addLeftPadding()
@@ -67,31 +79,14 @@ class ReviewWriteViewController: UIViewController {
         $0.layer.shadowOpacity = 0.2
     }
     
-    lazy var foodTitle = UILabel().then {
-        $0.text = "다녀온 맛집이 어디인가요?"
+    lazy var dateTitle = UILabel().then {
+        $0.text = "몇일부터 몇일까지 다녀오셨나요?"
         $0.font = UIFont.boldSystemFont(ofSize: 20)
         $0.textColor = #colorLiteral(red: 0.5095663667, green: 0.5823678374, blue: 0.5935699344, alpha: 1)
     }
     
-    lazy var foodTextField = UITextField().then {
-        $0.placeholder = "#돌하르방삼겹살 #장독김치국수"
-        $0.backgroundColor = .white
-        $0.layer.cornerRadius = 5
-        $0.addLeftPadding()
-        $0.layer.shadowColor = UIColor.black.cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
-        $0.layer.shadowRadius = 5
-        $0.layer.shadowOpacity = 0.2
-    }
-
-    lazy var sleepTitle = UILabel().then {
-        $0.text = "어떤 숙소에서 머무르셨나요?"
-        $0.font = UIFont.boldSystemFont(ofSize: 20)
-        $0.textColor = #colorLiteral(red: 0.5095663667, green: 0.5823678374, blue: 0.5935699344, alpha: 1)
-    }
-    
-    lazy var sleepTextField = UITextField().then {
-        $0.placeholder = "#델리호텔 #예스호텔"
+    lazy var dateTextField = UITextField().then {
+        $0.text = sDateSendFromCommunity + " ~ " + eDateSendFromCommunity
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 5
         $0.addLeftPadding()
@@ -110,8 +105,6 @@ class ReviewWriteViewController: UIViewController {
     lazy var reviewTextField = UITextField().then {
         $0.placeholder = "리뷰를 등록해주세요."
         $0.backgroundColor = .white
-        $0.frame.size.height = 100
-        $0.frame.size.width = 200
         $0.layer.cornerRadius = 5
         $0.addLeftPadding()
         $0.layer.shadowColor = UIColor.black.cgColor
@@ -186,6 +179,9 @@ class ReviewWriteViewController: UIViewController {
         // 네비게이션 등록관련 
         let finishedButton = UIBarButtonItem(title: "등록하기", style: .plain, target: nil, action: nil)
         self.navigationItem.rightBarButtonItem = finishedButton
+//        print(titleSendFromCommunity)
+//        print(sDateSendFromCommunity)
+//        print(eDateSendFromCommunity)
         
     }
     @objc func handleLongPressGesture(_ gesture: UITapGestureRecognizer)
@@ -260,10 +256,8 @@ class ReviewWriteViewController: UIViewController {
         contentView.addSubview(travelTextField)
         contentView.addSubview(hashtagTitle)
         contentView.addSubview(hashtagTextField)
-        contentView.addSubview(foodTitle)
-        contentView.addSubview(foodTextField)
-        contentView.addSubview(sleepTitle)
-        contentView.addSubview(sleepTextField)
+        contentView.addSubview(dateTitle)
+        contentView.addSubview(dateTextField)
         contentView.addSubview(reviewTitle)
         contentView.addSubview(reviewTextField)
         contentView.addSubview(photoTitle)
@@ -298,44 +292,30 @@ class ReviewWriteViewController: UIViewController {
             $0.leading.equalTo(headerview.snp.leading).offset(20)
         }
         
-        foodTitle.snp.makeConstraints {
+        dateTitle.snp.makeConstraints {
             $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
             $0.height.equalTo(50)
             $0.top.equalTo(hashtagTextField.snp.bottom).offset(10)
             $0.leading.equalTo(headerview.snp.leading).offset(20)
         }
         
-        foodTextField.snp.makeConstraints {
+        dateTextField.snp.makeConstraints {
             $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
             $0.height.equalTo(50)
-            $0.top.equalTo(foodTitle.snp.bottom)
-            $0.leading.equalTo(headerview.snp.leading).offset(20)
-        }
-        
-        sleepTitle.snp.makeConstraints {
-            $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
-            $0.height.equalTo(50)
-            $0.top.equalTo(foodTextField.snp.bottom).offset(10)
-            $0.leading.equalTo(headerview.snp.leading).offset(20)
-        }
-        
-        sleepTextField.snp.makeConstraints {
-            $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
-            $0.height.equalTo(50)
-            $0.top.equalTo(sleepTitle.snp.bottom)
+            $0.top.equalTo(dateTitle.snp.bottom)
             $0.leading.equalTo(headerview.snp.leading).offset(20)
         }
         
         reviewTitle.snp.makeConstraints {
             $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
             $0.height.equalTo(50)
-            $0.top.equalTo(sleepTextField.snp.bottom).offset(10)
+            $0.top.equalTo(dateTextField.snp.bottom).offset(10)
             $0.leading.equalTo(headerview.snp.leading).offset(20)
         }
         
         reviewTextField.snp.makeConstraints {
             $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
-            $0.height.equalTo(50)
+            $0.height.equalTo(200)
             $0.top.equalTo(reviewTitle.snp.bottom)
             $0.leading.equalTo(headerview.snp.leading).offset(20)
         }
@@ -501,3 +481,18 @@ extension ReviewWriteViewController : UICollectionViewDelegateFlowLayout, UIColl
 //
 //
 //
+
+
+// 검색창 하다가 만 것
+//extension ReviewWriteViewController : UITextViewDelegate {
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+//        self.view.endEditing(true)
+//    }
+//
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//
+//        textField.resignFirstResponder()
+//        self.dismiss(animated: true, completion: nil)
+//        return true
+//        }
+//}

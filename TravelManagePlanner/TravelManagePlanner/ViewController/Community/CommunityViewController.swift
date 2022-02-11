@@ -23,6 +23,12 @@ class CommunityViewController: UIViewController {
     let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     let activity = UIActivityIndicatorView()
     var filterTheme : String = ""
+    private var journeyList = JourneyList.shared.data
+    var titleSendToReview : [String] = []
+    var sDateSendToReview : [String] = []
+    var eDateSendToReview : [String] = []
+
+
     
     lazy var communityCategorytextField = UITextField().then({
         $0.text = " 전체"
@@ -38,7 +44,7 @@ class CommunityViewController: UIViewController {
         
     let communityCategoryPickerView = UIPickerView()
     let communityCategoryToolBarSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-    let communityCategoryToolBarButton = UIBarButtonItem(title: "확인", style: .done, target: self, action: #selector(onPickDone))
+    let communityCategoryToolBarButton = UIBarButtonItem(title: "확인", style: .done, target: self, action: #selector(themeFiltering))
     
     lazy var communityCategoryToolBar : UIToolbar = {
         let toolbar = UIToolbar()
@@ -65,9 +71,8 @@ class CommunityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = themeColor
+        getJourneyData()
         setDelegate()
-        communityFloatingButton.items[0].addTarget(self, action: #selector(ReviewButtonPressed(_:)), for: .touchUpInside)
-        communityFloatingButton.items[1].addTarget(self, action: #selector(PersonalReviewButtonPressed(_:)), for: .touchUpInside)
         communityViewModel = CommunityViewModel()
         setRefresh()
         setNav()
@@ -79,6 +84,11 @@ class CommunityViewController: UIViewController {
     
     // MARK: - Methods
     
+    func getJourneyData() {
+        JourneyListRepository().getJourneyList(completed: { result in
+            self.journeyList = result
+        })
+    }
     func setDelegate() {
         communityCollectionView.dataSource = self
         communityCollectionView.delegate = self
@@ -144,28 +154,50 @@ class CommunityViewController: UIViewController {
     }
     
     func setFloatingButton() {
+        
         view.addSubview(communityFloatingButton)
         
+        communityFloatingButton.items[0].addTarget(self, action: #selector(ReviewButtonPressed(_:)), for: .touchUpInside)
+        communityFloatingButton.items[1].addTarget(self, action: #selector(PersonalReviewButtonPressed(_:)), for: .touchUpInside)
+
         communityFloatingButton.snp.makeConstraints { make in
             make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-16)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-16)
         }
     }
     
-    @objc func onPickDone() {
+    
+    @objc func themeFiltering() {
         communityNavigationBar.NavTheme.resignFirstResponder()
-        
         communityViewModel.getFilterList(pickerData: filterTheme)
-        
-        
-//        commuinityCategorydata[row]
      }
 
     
     @objc func ReviewButtonPressed(_: UIButton)
     {
-        let reviewVC = ReviewWriteViewController()
-        self.navigationController!.pushViewController(reviewVC, animated: true)
+        var alertData : [UIAlertAction] = []
+        let alert = UIAlertController(title: "리뷰를 작성하세요.", message: "작성할 여행 리스트 제목을 클릭해주세요.", preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        for idx in 0..<journeyList.count {
+            alertData.append(UIAlertAction(title: journeyList[idx].title, style: .default, handler: { UIAlertAction in
+                let reviewVC = ReviewWriteViewController(title: self.journeyList[idx].title, sDate: self.journeyList[idx].sDate, eDate: self.journeyList[idx].eDate)
+                self.navigationController!.pushViewController(reviewVC, animated: true)
+                print(UIAlertAction)
+                print(idx)
+            }))
+            alert.addAction(alertData[idx])
+            titleSendToReview.append(journeyList[idx].title)
+            eDateSendToReview.append(journeyList[idx].eDate)
+            sDateSendToReview.append(journeyList[idx].sDate)
+        }
+        
+        alert.addAction(cancel)
+        self.present(alert, animated: true, completion: nil)
+        
+        print(titleSendToReview)
+        print(eDateSendToReview)
+        print(sDateSendToReview)
     }
 
     @objc func PersonalReviewButtonPressed(_: UIButton)
@@ -176,9 +208,8 @@ class CommunityViewController: UIViewController {
     
     @objc func onRefresh() {
         communityViewModel.getList()
+        getJourneyData()
     }
-    
-    
 }
 
 // MARK: - extensions

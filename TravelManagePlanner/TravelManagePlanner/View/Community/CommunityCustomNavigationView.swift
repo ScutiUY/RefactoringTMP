@@ -9,7 +9,7 @@ import UIKit
 import Then
 import SnapKit
 
-class CommunityCustomNavigationView: UIView {
+class CommunityCustomNavigationView: UIView, UISearchBarDelegate {
 
     // MARK: Properties
     lazy var NavTitle = UITextView().then {
@@ -27,6 +27,7 @@ class CommunityCustomNavigationView: UIView {
         $0.setImage(UIImage(named: "icCaencel"), for: .clear, state: .normal)
         $0.frame = CGRect(x: 0, y: 0, width: 85, height: 0)
         $0.backgroundImage = UIImage()
+        $0.tintColor = .clear
         $0.backgroundColor = GlobalConstants.Color.Background.themeColor
         $0.barTintColor = GlobalConstants.Color.Background.themeColor
     }

@@ -42,10 +42,8 @@ struct JourneyListRepository {
         httpClient.getJsonData(path: path, params: params) { result in
             switch result {
             case .success(let data):
-                
                 do {
                     let decodedData = try JSONDecoder().decode(JourneyDetail.self, from: data)
-                    print(decodedData)
                     switch decodedData.resCode {
                     case "9992":
                         completed(.failure(.omittedParams))

@@ -142,7 +142,6 @@ extension RestaurantViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! RestaurantViewCell
         cell.backgroundColor = .clear
    
-        
         // 카테고리가 식당 인것만  == 2
         let shopData = destiSearchViewModel.getShopData(idx: indexPath.row, categoryIdx: "2")
         let url = URL(string: shopData.imgUrl)

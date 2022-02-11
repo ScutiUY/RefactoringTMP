@@ -122,7 +122,17 @@ extension TourAreaViewController: UITableViewDataSource {
     // cell 갯수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        imgDataName.count
+        let tableCount = destiSearchViewModel.getDestiSearchCount()
+        print("tableCount", tableCount)
+        // 카테고리가 놀거리 인것만  == 3
+        var cnt = 0
+        for i in 0..<tableCount {
+            if destiSearchViewModel.destiSearchResponse[i].category == "3" {
+                cnt += 1
+            }
+        }
+        
+        return cnt
     }
     
     // 테이블 구성
@@ -138,9 +148,9 @@ extension TourAreaViewController: UITableViewDataSource {
         let url = URL(string: shopData.imgUrl)
         let data = try! Data(contentsOf: url!)
         
-        cell.restaurantImg.image = UIImage(data: data)
-        cell.restaurantTitle.text = shopData.name
-        cell.restaurantSubTitle.text = shopData.content
+        cell.tourAreaImg.image = UIImage(data: data)
+        cell.tourAreaTitle.text = shopData.name
+        cell.tourAreaSubTitle.text = shopData.content
         cell.cellDelegate = self
         
         
@@ -160,6 +170,4 @@ extension TourAreaViewController:ContentsMainTextDelegate {
         nextView.hidesBottomBarWhenPushed = true
         self.present(nextView, animated: true)
     }
-    
-    
 }

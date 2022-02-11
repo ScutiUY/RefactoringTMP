@@ -49,12 +49,12 @@ class AccomoCalendarViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 21)
 //        label.textAlignment = .center
-        label.text = "숙박장소 명"
+//        label.text
         label.textColor = UIColor(red: 94/255, green: 94/255, blue: 94/255, alpha: 1)
         
         return label
     }()
-    
+
     // 선택한 숙박장소 지역명
     lazy var selectAccomoPlace: UILabel = {
         let label = UILabel()

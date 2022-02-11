@@ -28,6 +28,7 @@ class JourneyListDetailPageCollectionView: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setLayout()
+        setObserver()
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -42,6 +43,17 @@ class JourneyListDetailPageCollectionView: UICollectionViewCell {
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
+        }
+    }
+    func setObserver() {
+        viewModel.loadingStarted = {
+            
+        }
+        viewModel.loadingEnded = {
+            
+        }
+        viewModel.dataUpdated = {
+            self.journeyListDetailCollectionView.reloadData()
         }
     }
     

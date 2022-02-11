@@ -18,6 +18,7 @@ class JourneyListDetailPageViewModel {
     var dataUpdated: (() -> ()) = { }
     var failedJourneyListUpdate: (() -> ()) = { }
     
+    var dateDic = [String]()
     var dateIdx = 0
     
     func journey(idx: Int) -> JourneyDetailData {
@@ -25,8 +26,9 @@ class JourneyListDetailPageViewModel {
     }
     
     func count() -> Int {
-        //journeyDetailList.forEach {  }
-        return journeyDetailList.count
+        var arr = [JourneyDetailData]()
+        journeyDetailList.forEach{ arr.append($0) }
+        return arr.filter{ $0.visitDate == dateDic[dateIdx]}.count
     }
     
     func getImage() -> UIImage {
@@ -41,6 +43,7 @@ class JourneyListDetailPageViewModel {
     
     func getList(journeyDetailDataFromPageCollectionView: [JourneyDetailData]) {
         self.journeyDetailList = journeyDetailDataFromPageCollectionView
+        self.dataUpdated()
     }
 }
 

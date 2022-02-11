@@ -29,14 +29,15 @@ class JourneyListDetailViewModel {
     func dateCount() -> Int {
         journeyDetailList.forEach { self.dateDic[$0.visitDate] = true
             self.dateDic[$0.leaveDate] = true
-            
         }
         return dateDic.count
     }
     func journey(idx: Int) -> JourneyDetailData {
         return journeyDetailList[idx]
     }
-    
+    func passDateDic() -> [String] {
+        return dateDic.sorted{ $0.key < $1.key }.map{ $0.key }
+    }
     func passJourneyData() -> [JourneyDetailData] {
         return journeyDetailList
     }

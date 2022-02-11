@@ -111,9 +111,8 @@ extension JourneyListDetailViewController: UICollectionViewDelegate, UICollectio
             
             cell.parentViewSize = CGSize(width: view.frame.width, height: collectionView.frame.height)
             
-            let journeyData = viewModel.passJourneyData()
-
-            cell.viewModel.getList(journeyDetailDataFromPageCollectionView: journeyData)
+            cell.viewModel.getList(journeyDetailDataFromPageCollectionView: viewModel.passJourneyData())
+            cell.viewModel.dateDic = viewModel.passDateDic()
             cell.viewModel.dateIdx = indexPath.row
             return cell
         }

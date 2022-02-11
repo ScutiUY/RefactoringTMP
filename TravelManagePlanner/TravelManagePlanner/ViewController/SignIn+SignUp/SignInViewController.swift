@@ -71,7 +71,7 @@ class SignInViewController: UIViewController {
     lazy var loginButton: LoadingButton = {
         var button = LoadingButton()
         button.setTitle("로그인", for: .normal)
-        button.setTitleColor(GlobalConstants.Color.Text.SignInButtonTextColor, for: .normal)
+        button.setTitleColor(GlobalConstants.Color.Text.signInButtonTextColor, for: .normal)
         button.backgroundColor = GlobalConstants.Color.Background.loginButtonbackgroundColor
         button.titleLabel?.font = UIFont.systemFont(ofSize: GlobalConstants.Font.Size.mainFontSize)
         return button
@@ -101,21 +101,21 @@ class SignInViewController: UIViewController {
     lazy var signUpLabel: UILabel = {
         var label = UILabel()
         label.text = "회원이 아니신가요?"
-        label.textColor = GlobalConstants.Color.Text.SignUpLabelTextColor
+        label.textColor = GlobalConstants.Color.Text.signUpLabelTextColor
         label.font = UIFont.systemFont(ofSize: 15)
         return label
     }()
     lazy var signUpButton: UIButton = {
         var button = UIButton()
         button.setTitle("새 계정 만들기", for: .normal)
-        button.setTitleColor(GlobalConstants.Color.Text.SignUpButtonTextColor, for: .normal)
+        button.setTitleColor(GlobalConstants.Color.Text.signUpButtonTextColor, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         return button
     }()
     lazy var findPwdButton: UIButton = {
         var button = UIButton()
         button.setTitle("비밀번호 찾기", for: .normal)
-        button.setTitleColor(GlobalConstants.Color.Text.FindPasswordButtonTextColor, for: .normal)
+        button.setTitleColor(GlobalConstants.Color.Text.findPasswordButtonTextColor, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 10)
         return button
     }()
@@ -246,16 +246,14 @@ class SignInViewController: UIViewController {
         signInViewModel.userInfoInputErrorMessage.bind { [weak self] in
             print("ErroMessage Bind ",$0)
             self?.invalidLabel.text = $0
+            self?.invalidLabel.alpha = 1.0
+            self?.view.layoutIfNeeded()
         }
         signInViewModel.loginSuccess.bind { [weak self] in
             print("login 성공여부: ", $0)
             if $0 {
-                let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SampleViewController")
-                
                 let tabbar = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabbarControllerSB") as! TabbarController
                 tabbar.modalPresentationStyle = .fullScreen
-                
-                //self?.navigationController?.pushViewController(tabbar, animated: true)
                 self!.present(tabbar, animated: true, completion: nil)
             }
         }

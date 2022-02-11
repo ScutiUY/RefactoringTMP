@@ -25,7 +25,7 @@ class ImageLoader {
             DispatchQueue.global(qos: .background).async {
                 if let data = try? Data(contentsOf: URL(string: url)!) {
                     let image = UIImage(data: data)
-                    imageCache[url] = image
+                    //imageCache[url] = image
                     DispatchQueue.main.async {
                         completed(image)
                     }

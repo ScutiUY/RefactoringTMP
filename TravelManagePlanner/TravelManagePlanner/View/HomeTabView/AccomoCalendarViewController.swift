@@ -8,7 +8,7 @@ import UIKit
 import SnapKit
 import FSCalendar
 
-class CalendarModalViewController: UIViewController {
+class AccomoCalendarViewController: UIViewController {
     let fscCalendarDateFormat = DateFormatter()
    
     
@@ -168,15 +168,15 @@ class CalendarModalViewController: UIViewController {
     }
 }
 
-extension CalendarModalViewController:FSCalendarDataSource {
+extension AccomoCalendarViewController:FSCalendarDataSource {
     
 }
 
-extension CalendarModalViewController:FSCalendarDelegate {
+extension AccomoCalendarViewController:FSCalendarDelegate {
   
 }
 
-extension CalendarModalViewController:FSCalendarDelegateAppearance {
+extension AccomoCalendarViewController:FSCalendarDelegateAppearance {
     // 날짜 선택 시 콜백 메소드
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         print(fscCalendarDateFormat.string(from: date) + " 선택됨")

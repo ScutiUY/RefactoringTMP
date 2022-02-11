@@ -8,8 +8,14 @@
 import UIKit
 import SnapKit
 
+protocol passDestinationData {
+    
+}
+
 class JourneyListDetailPageCollectionView: UICollectionViewCell {
-    let col: [UIColor] = [.red, .blue, .orange, .yellow, .green]
+    
+    var viewModel = JourneyListDetailPageViewModel()
+    
     var parentViewSize = CGSize(width: 0, height: 0)
     
     private lazy var journeyListDetailCollectionView: UICollectionView = {
@@ -22,6 +28,7 @@ class JourneyListDetailPageCollectionView: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setLayout()
+        setObserver()
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -38,23 +45,41 @@ class JourneyListDetailPageCollectionView: UICollectionViewCell {
             make.bottom.equalToSuperview()
         }
     }
+    func setObserver() {
+        viewModel.loadingStarted = {
+            
+        }
+        viewModel.loadingEnded = {
+            
+        }
+        viewModel.dataUpdated = {
+            self.journeyListDetailCollectionView.reloadData()
+        }
+    }
     
 }
 
 extension JourneyListDetailPageCollectionView: UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return viewModel.count()
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = journeyListDetailCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! JourneyListDetailCollectionViewCell
         cell.setLayout()
-        cell.backgroundColor = col[indexPath.row]
+        cell.titleLabel.text = viewModel.journey(idx: indexPath.row).name
+        cell.descLabel.text = viewModel.journey(idx: indexPath.row).content
+        cell.thumNailImage.image = viewModel.getImage()
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         let destinationDetailVC = UIStoryboard(name: "DestinationDetailSB", bundle: nil).instantiateViewController(withIdentifier: "DestinationDetailSB") as! DestinationDetailViewController
-        print("clicked")
+        
     }
+    
 }
 
 extension JourneyListDetailPageCollectionView: UICollectionViewDelegateFlowLayout {

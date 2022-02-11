@@ -10,8 +10,7 @@ import SnapKit
 
 class JourneyListDetailViewController: UIViewController {
 
-    var isDateCellSelected = false
-    let col = ["red", "blue", "orrange", "yellow", "green"]
+    var viewModel = JourneyListDetailViewModel()
     
     private lazy var journeyListDetailDateCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -35,6 +34,7 @@ class JourneyListDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setObserver()
         setLayout()
         setDelegate()
     }
@@ -63,31 +63,61 @@ class JourneyListDetailViewController: UIViewController {
         // 페이지 컬렉션뷰
         journeyListDetailPageCollectionView.delegate = self
         journeyListDetailPageCollectionView.dataSource = self
+        viewModel.getData()
+    }
+    private func setObserver() {
+        viewModel.loadingStarted = {
+            
+        }
+        viewModel.loadingEnded = {
+            
+        }
+        viewModel.dataUpdated = {
+            self.journeyListDetailDateCollectionView.reloadData()
+            self.journeyListDetailPageCollectionView.reloadData()
+        }
+        viewModel.getData()
     }
 }
 extension JourneyListDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return col.count
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { // 날짜의 일수 리턴
+        return viewModel.dateCount()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == journeyListDetailDateCollectionView { // dateCollectionView
+        
+        ///dateCollectionView 상단 날짜별 정렬을 위한 collectionView
+        ///VM에서 journeyDetailList: [JourneyDetailData]의 dataDic에 들어있는 날짜를 cell에 담아 리턴해준다
+        if collectionView == journeyListDetailDateCollectionView {
+            
             let cell = journeyListDetailDateCollectionView.dequeueReusableCell(withReuseIdentifier: "dateCell", for: indexPath) as! JourneyListDetailDateCollectionViewCell
             cell.setLayout()
-            cell.setLabelName(name: col[indexPath.row])
+            cell.setLabelName(name: viewModel.journey(idx: indexPath.row).visitDate)
             
-            if !isDateCellSelected && indexPath.row == 0 {
-                isDateCellSelected.toggle()
-                
+            if indexPath.row == 0 {
+                cell.isSelected = true
                 collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
             }
             return cell
-        } else { // pageCollectionView
+            
+            
+        } else {
+            /// 옆으로 넘길수 있는 pageCollectionView - 여행지 데이터는 이 collectionView안의 detailCollectionView에 존재
+            /// 현재 날짜에 맞는 데이터만 datailCollectionView로 넘김
+            /// 아님 날짜를 정렬한 배열을 보내고 현재 인덱스를 넘겨서 detailCollectionView에서 처리
+            
             let cell = journeyListDetailPageCollectionView.dequeueReusableCell(withReuseIdentifier: "pageCell", for: indexPath) as! JourneyListDetailPageCollectionView
+            
             cell.parentViewSize = CGSize(width: view.frame.width, height: collectionView.frame.height)
+            
+            cell.viewModel.getList(journeyDetailDataFromPageCollectionView: viewModel.passJourneyData())
+            cell.viewModel.dateDic = viewModel.passDateDic()
+            cell.viewModel.dateIdx = indexPath.row
             return cell
         }
+        
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize { // collectionView 셀 사이즈

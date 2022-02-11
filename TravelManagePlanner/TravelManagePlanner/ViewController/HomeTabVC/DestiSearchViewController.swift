@@ -10,6 +10,9 @@ import Alamofire
 // 검색기능
 class DestiSearchViewController: UIViewController {
     
+    //뷰모델 소유
+    var homeTabViewModel = HomeTabViewModel()
+    
     // 테마 타이틀
     lazy var themeTitleLabel: UILabel = {
         let label = UILabel()
@@ -111,12 +114,15 @@ extension DestiSearchViewController: UITableViewDelegate {
         
         print("테이블뷰 클릭")
         // main에 있는 두번째화면 불러오기(스토리보드 활용)
-        let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "AccomoViewSB") as! AccomoViewController
+        let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "RecommendPageViewSB") as! RecommendPageViewController
         
         // 다음화면에서 바텀탭 없애기
-//        nextView.hidesBottomBarWhenPushed = true
         navigationController!.pushViewController(nextView, animated: true)
+   
+        let placeData = self.data.placeData[indexPath.row]
+        homeTabViewModel.updateDestiSearchData(userDestiData: placeData)
         
+        print("선택된 장소 :", placeData)
     }
 }
 

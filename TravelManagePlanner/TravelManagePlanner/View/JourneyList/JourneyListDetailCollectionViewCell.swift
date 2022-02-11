@@ -57,7 +57,12 @@ class JourneyListDetailCollectionViewCell: UICollectionViewCell {
             make.width.equalToSuperview()
         }
     }
-    func setData() {
-        
+    
+    func fetchData(idx: Int) {
+        self.titleLabel.text = JourneyDetail.shared.data[idx].name
+        self.descLabel.text = JourneyDetail.shared.data[idx].address
+         ImageLoader.loadImage(url: JourneyDetail.shared.data[idx].imgUrl, completed: { image in
+             self.thumNailImage.image = image
+        })
     }
 }

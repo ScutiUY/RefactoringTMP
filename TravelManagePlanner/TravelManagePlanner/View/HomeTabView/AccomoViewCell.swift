@@ -6,13 +6,6 @@
 //
 import UIKit
 
-// 범용성을 위해 class가 아닌 AnyObject로 선언해준다.
-protocol ContentsMainTextDelegate: AnyObject {
-
-// 위임해줄 기능
-func categoryButtonTapped()
-    
-}
 
 
 class AccomoViewCell: UITableViewCell {
@@ -100,9 +93,6 @@ class AccomoViewCell: UITableViewCell {
     }
     
     func setUpView() {
-//        addSubview(accomoImgButton)
-//        addSubview(accomoAllTitleStack)
-        
         contentView.addSubview(accomoImgButton)
         contentView.addSubview(accomoAllTitleStack)
         

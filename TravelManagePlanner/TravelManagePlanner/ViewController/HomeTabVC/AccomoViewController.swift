@@ -10,24 +10,8 @@ import UIKit
 class AccomoViewController: UIViewController {
     
     //  뷰모델 소유
-    let homeTabViewModel = HomeTabViewModel()
+    let destiSearchViewModel = DestiSearchViewModel()
     let cellID = "Cell"
-    
-    lazy var imgDataName = ["accomoA", "accomoB", "accomoC","accomoA", "accomoB", "accomoC"]
-    
-    var imgArray: [UIImage] {
-        var img:[UIImage] = []
-        
-        for i in imgDataName {
-            if let asImg = UIImage(named: i) {
-                
-                img.append(asImg)
-            }else {
-                print("Accomo imgData is nil")
-            }
-        }
-        return img
-    }
     
     lazy var accomoTitleLabel: UILabel = {
         let label = UILabel()
@@ -91,7 +75,7 @@ class AccomoViewController: UIViewController {
         accomoTableView.snp.makeConstraints {
             $0.top.equalTo(accomoHeadStack.snp.bottom).multipliedBy(1.1)
             $0.leading.equalTo(view.snp.centerX).multipliedBy(0.1)
-            $0.bottom.equalToSuperview().offset(-130)
+            $0.bottom.equalToSuperview().offset(-30)
             $0.trailing.equalToSuperview().offset(-24)
         }
     }
@@ -104,19 +88,17 @@ class AccomoViewController: UIViewController {
     }
     
     func setObserver() {
-        homeTabViewModel.getData()
+        destiSearchViewModel.getData()
         
-        homeTabViewModel.loadingStarted = {
+        destiSearchViewModel.loadingStarted = {
             
         }
-        homeTabViewModel.loadingEnded = {
+        destiSearchViewModel.loadingEnded = {
             
         }
-        homeTabViewModel.dataUpdated = {
+        destiSearchViewModel.dataUpdated = {
             self.accomoTableView.reloadData()
         }
-        
-        
     }
 }
 
@@ -138,14 +120,21 @@ extension AccomoViewController: UITableViewDataSource {
     
     // cell 갯수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-//      return  imgDataName.count
         
-        return homeTabViewModel.getDestiSearchCount()
-//        return 5
+        let tableCount = destiSearchViewModel.getDestiSearchCount()
+        print("tableCount Accomo", tableCount)
+        // 카테고리가 숙박업소 인것만 세기 == 1
+        var cnt = 0
+        for i in 0..<tableCount {
+            if destiSearchViewModel.destiSearchResponse[i].category == "1" {
+                cnt += 1
+            }
+        }
+        
+        return cnt
     }
     
-    // 테이블 구성
+    // 테이블 화면데이터구성
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         print(indexPath)
@@ -153,22 +142,24 @@ extension AccomoViewController: UITableViewDataSource {
         cell.backgroundColor = .clear
         
         // 선택된 해당데이터 모델[배열]가져오기
-        let shopData = homeTabViewModel.getShop(idx: indexPath.row)
+        let shopData = destiSearchViewModel.getShopData(idx: indexPath.row, categoryIdx: "1")
+       
         
-//        cell.cellLoadImage(imgDataName[indexPath.row])
+//        if shopData.category == "1" {
+//
+//            shopArray =
+//        }
+        // 카테코리가 숙박업소인것만 == 1
+       
         
-//        cell.accomoTitle.text = imgDataName[indexPath.row]
-//        cell.accomoSubTitle.text = "업소의 간단한 설명"
         let url = URL(string: shopData.imgUrl)
         let data = try! Data(contentsOf: url!)
         
         cell.accomoImg.image = UIImage(data: data)
         cell.accomoTitle.text = shopData.name
         cell.accomoSubTitle.text = shopData.content
-//
         cell.cellDelegate = self
         
-//        cell.contentView.isUserInteractionEnabled = false
         
         return cell
     }

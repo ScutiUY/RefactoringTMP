@@ -76,11 +76,6 @@ class AccomoViewCell: UITableViewCell {
         return stackView
     }()
     
-//    // 함수생성후 뷰컨에서 호출 이미지를 뷰컨에서 넘겨줌
-//    func cellLoadImage(_ imgData: String) {
-//
-//        accomoImgButton.setImage(UIImage(named: imgData), for: .normal)
-//    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

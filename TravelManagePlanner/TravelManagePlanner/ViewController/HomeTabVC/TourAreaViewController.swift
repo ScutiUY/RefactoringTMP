@@ -10,24 +10,9 @@ import UIKit
 // 추천놀거리(관광지)
 class TourAreaViewController: UIViewController {
     
+    // 뷰모델 소유
+    let destiSearchViewModel = DestiSearchViewModel()
     let cellID = "Cell"
-    
-    
-    lazy var imgDataName = ["accomoA", "accomoB", "accomoC","accomoA", "accomoB", "accomoC"]
-    
-    var imgArray: [UIImage] {
-        var img:[UIImage] = []
-        
-        for i in imgDataName {
-            if let asImg = UIImage(named: i) {
-                
-                img.append(asImg)
-            }else {
-                print("Restaurant imgData is nil")
-            }
-        }
-        return img
-    }
     
     lazy var tourAreaTitleLabel: UILabel = {
         let label = UILabel()
@@ -68,6 +53,8 @@ class TourAreaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = GlobalConstants.Color.Background.themeColor
+        
+        setObserver()
         setUpView()
         setLayout()
         setDelegate()
@@ -100,6 +87,20 @@ class TourAreaViewController: UIViewController {
         tourAreaTableView.register(TourAreaViewCell.classForCoder(), forCellReuseIdentifier: cellID)
     }
     
+    func setObserver() {
+        destiSearchViewModel.getData()
+        
+        destiSearchViewModel.loadingStarted = {
+            
+        }
+        destiSearchViewModel.loadingEnded = {
+            
+        }
+        destiSearchViewModel.dataUpdated = {
+            self.tourAreaTableView.reloadData()
+        }
+    }
+    
 }
 
 
@@ -130,9 +131,16 @@ extension TourAreaViewController: UITableViewDataSource {
         print(indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! TourAreaViewCell
         cell.backgroundColor = .clear
-        cell.cellLoadImage(imgDataName[indexPath.row])
-        cell.tourAreaTitle.text = imgDataName[indexPath.row]
-        cell.tourAreaSubTitle.text = "업소의 간단한 설명"
+        
+        
+        // 카테고리가 놀거리 인것만  == 3
+        let shopData = destiSearchViewModel.getShopData(idx: indexPath.row, categoryIdx: "3")
+        let url = URL(string: shopData.imgUrl)
+        let data = try! Data(contentsOf: url!)
+        
+        cell.restaurantImg.image = UIImage(data: data)
+        cell.restaurantTitle.text = shopData.name
+        cell.restaurantSubTitle.text = shopData.content
         cell.cellDelegate = self
         
         

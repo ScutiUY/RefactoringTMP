@@ -8,6 +8,10 @@
 import UIKit
 import SnapKit
 
+protocol passDestinationData {
+    
+}
+
 class JourneyListDetailPageCollectionView: UICollectionViewCell {
     
     var viewModel = JourneyListDetailPageViewModel()
@@ -44,9 +48,11 @@ class JourneyListDetailPageCollectionView: UICollectionViewCell {
 }
 
 extension JourneyListDetailPageCollectionView: UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.count()
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = journeyListDetailCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! JourneyListDetailCollectionViewCell
         cell.setLayout()
@@ -55,10 +61,12 @@ extension JourneyListDetailPageCollectionView: UICollectionViewDelegate, UIColle
         cell.thumNailImage.image = viewModel.getImage()
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let destinationDetailVC = UIStoryboard(name: "DestinationDetailSB", bundle: nil).instantiateViewController(withIdentifier: "DestinationDetailSB") as! DestinationDetailViewController
-        print("clicked")
+        
     }
+    
 }
 
 extension JourneyListDetailPageCollectionView: UICollectionViewDelegateFlowLayout {

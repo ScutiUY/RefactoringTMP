@@ -18,13 +18,19 @@ struct JourneyListRepository {
         httpClient.getJsonData(path: path, params: params) { result in
             switch result {
             case .success(let data):
-                let decodedData = try? JSONDecoder().decode(JourneyList.self, from: data)
-                if let journeyData = decodedData {
-                    completed(journeyData.data)
+                do {
+                    let decodedData = try JSONDecoder().decode(JourneyList.self, from: data)
+                    completed(decodedData.data)
+                } catch {
+                    #if DEBUG
+                    print("getJourneyList Decoidng error in \(#function)")
+                    #endif
                 }
                 
             case .failure(_):
-                break
+                #if DEBUG
+                print("getJourneyList getJsonerro in \(#function) error")
+                #endif
             }
             
         }
@@ -36,23 +42,27 @@ struct JourneyListRepository {
         httpClient.getJsonData(path: path, params: params) { result in
             switch result {
             case .success(let data):
-                let decodedData = try? JSONDecoder().decode(JourneyDetail.self, from: data)
-                if let journeyDetailData = decodedData {
-                    switch journeyDetailData.resCode {
-                        case "9992":
-                            completed(.failure(.omittedParams))
-                        case "4444":
-                            completed(.failure(.ommittedHeader))
-                        case "3001":
-                            completed(.failure(.notFoundInDB))
-                        case "4001":
-                            completed(.failure(.invalidPw))
-                        default:
-                        completed(.success(journeyDetailData))
-                        }
+                
+                do {
+                    let decodedData = try JSONDecoder().decode(JourneyDetail.self, from: data)
+                    print(decodedData)
+                    switch decodedData.resCode {
+                    case "9992":
+                        completed(.failure(.omittedParams))
+                    case "4444":
+                        completed(.failure(.ommittedHeader))
+                    case "3001":
+                        completed(.failure(.notFoundInDB))
+                    case "4001":
+                        completed(.failure(.invalidPw))
+                    default:
+                        completed(.success(decodedData))
                     }
-                    
-                    
+                } catch let error as DecodingError {
+                    print(error)
+                } catch {
+                    print("known error in JourneyReop \(#function)")
+                }
             case .failure(let error):
                 print(error)
             }

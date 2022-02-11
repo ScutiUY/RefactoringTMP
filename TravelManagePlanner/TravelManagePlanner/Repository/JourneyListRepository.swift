@@ -69,5 +69,5 @@ struct JourneyListRepository {
         }
     }
 }
-
+       
 

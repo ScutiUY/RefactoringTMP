@@ -65,7 +65,7 @@ class SignUpViewController: UIViewController {
         var button = UIButton.init(type: .system)
         button.setTitle("등록", for: .normal)
         button.backgroundColor = GlobalConstants.Color.Background.loginButtonbackgroundColor
-        button.setTitleColor(GlobalConstants.Color.Text.SignUpResisterButtonTextColor, for: .normal)
+        button.setTitleColor(GlobalConstants.Color.Text.signUpResisterButtonTextColor, for: .normal)
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 10
         button.addTarget(self, action: #selector(registerAction), for: .touchUpInside)

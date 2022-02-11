@@ -8,12 +8,12 @@
 import UIKit
 import SnapKit
 
-protocol passDestinationData {
-    
+protocol PassDestinationData {
+    func journeyListDetailCV(destinationIdx: Int)
 }
 
 class JourneyListDetailPageCollectionView: UICollectionViewCell {
-    
+    var delegate: PassDestinationData!
     var viewModel = JourneyListDetailPageViewModel()
     
     var parentViewSize = CGSize(width: 0, height: 0)
@@ -74,10 +74,9 @@ extension JourneyListDetailPageCollectionView: UICollectionViewDelegate, UIColle
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) { // 선택시 delegate를 통해  JourneyListDetailViewController로 destination idx를 넘긴다
         
-        let destinationDetailVC = UIStoryboard(name: "DestinationDetailSB", bundle: nil).instantiateViewController(withIdentifier: "DestinationDetailSB") as! DestinationDetailViewController
-        
+        delegate.journeyListDetailCV(destinationIdx: viewModel.destination(idx: indexPath.row))
     }
     
 }

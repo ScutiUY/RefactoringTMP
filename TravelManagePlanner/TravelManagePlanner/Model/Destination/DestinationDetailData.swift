@@ -17,20 +17,25 @@ struct DestinationDetailData: Codable {
         self.resMsg = resMsg
         self.data = data
     }
-    struct DestinationData: Codable {
-        static var shared = DestinationData(imgUrl: [], address: "", name: "", idx: "", content: "")
-        let imgUrl: [String]
-        let address: String
-        let name: String
-        let idx: String
-        let content: String
-        init(imgUrl: [String], address: String, name: String, idx: String, content: String) {
-            self.imgUrl = imgUrl
-            self.address = address
-            self.name = name
-            self.idx = idx
-            self.content = content
-        }
+    
+}
+struct DestinationData: Codable {
+    static var shared = DestinationData(imgUrl: "", address: "", name: "", idx: "", content: "", category: "", images: [])
+    let imgUrl: String
+    let address: String
+    let name: String
+    let category: String
+    let idx: String
+    let content: String
+    let images: [String]
+    init(imgUrl: String, address: String, name: String, idx: String, content: String, category: String, images: [String]) {
+        self.imgUrl = imgUrl
+        self.address = address
+        self.name = name
+        self.idx = idx
+        self.content = content
+        self.category = category
+        self.images = images
     }
 }
 

@@ -24,7 +24,9 @@ class JourneyListDetailPageViewModel {
     func journey(idx: Int) -> JourneyDetailData {
         return journeyDetailList[idx]
     }
-    
+    func destination(idx: Int) -> Int {
+        return journeyDetailList[idx].idx
+    }
     func count() -> Int {
         var arr = [JourneyDetailData]()
         journeyDetailList.forEach{ arr.append($0) }

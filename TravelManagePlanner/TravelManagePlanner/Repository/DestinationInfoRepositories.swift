@@ -10,7 +10,7 @@ import Alamofire
 
 class DestinationInfoRepositories: NSObject {
 
-    private let httpClient = HttpClient(baseUrl: "https://scutiuy.github.io/testWebHosting/Detail.json")
+    private let httpClient = HttpClient(baseUrl: "")
     private var params = ""
     
     func getDestinationDetailInfo(completed: @escaping (DestinationDetailData) -> Void) {

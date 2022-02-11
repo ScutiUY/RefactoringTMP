@@ -9,34 +9,52 @@ import Foundation
 import Alamofire
 
 class DestinationInfoRepositories: NSObject {
-
-    private let httpClient = HttpClient(baseUrl: "")
-    private var params = ""
     
-    func getDestinationDetailInfo(completed: @escaping (DestinationDetailData) -> Void) {
-        httpClient.getJsonData(path: "/plan/getAllShopList.tpi") { [self] result in
-            
-            if let json = try? result.get() {
-                let d = try! JSONDecoder().decode(DestinationDetailData.self, from: json)
-                completed(d)
+    private let httpClient = HttpClient(baseUrl: "https://eunryuplaners.com:19624")
+    
+    func getDestinationDetailInfo(shopID: String, completed: @escaping (DestinationData) -> Void) {
+        
+        let path = URLManager.Plan.getTravelDetailinfo
+        let params = ["shopId": shopID]
+        httpClient.getJsonData(path: path, params: params) { result in
+            switch result {
+            case .success(let data):
+                do {
+                    let decodedData = try JSONDecoder().decode(DestinationDetailData.self, from: data)
+                    switch decodedData.resCode {
+                    case "9992":
+                        print(#function, APIError.omittedParams)
+                    case "4444":
+                        print(#function, APIError.ommittedHeader)
+                    case "3001":
+                        print(#function, APIError.notFoundInDB)
+                    case "4001":
+                        print(#function, APIError.invalidPw)
+                    default:
+                        completed(decodedData.data)
+                    }
+                    
+                } catch let error as DecodingError {
+                    
+                    #if DEBUG
+                    print("Decoidng \(error) in \(#function)")
+                    #endif
+                    
+                }catch {
+                    
+                    #if DEBUG
+                    print("known error in \(#function)")
+                    #endif
+                    
+                }
+                
+            case .failure(_):
+                #if DEBUG
+                print("getJson error in \(#function)")
+                #endif
             }
+            
         }
     }
-
-    private func JSONObject(_ json: String) -> [String: Any] {
-        let data = json.data(using: .utf8)!
-        let jsonObject = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-        
-        return jsonObject
-    }
     
-//    private func parseDestinationData(jsonObject: [String: Any]) -> DestinationDetailData {
-//        print("jsonObject",jsonObject)
-//
-//        let destData = JSONObject(jsonObject["data"] as! String)
-//
-//
-//        return DestinationDetailData(resCode: "", resMsg: "", data: [DestinationDetailData.DestinationData(imgUrl: destData["imgUrl"] as! String, address: destData["address"] as! String, name: destData["name"] as! String, idx: destData["idx"] as! String, content: destData["content"] as! String)])
-//        //[DestinationDetailData.DestinationData(imgUrl: destData["imgUrl"] as! String, address: destData["address"] as! String, name: destData["name"] as! String, idx: destData["idx"] as! String, content: destData["content"] as! String)]
-//    }
 }

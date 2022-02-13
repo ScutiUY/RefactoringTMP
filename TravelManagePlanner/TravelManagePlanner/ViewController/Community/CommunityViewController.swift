@@ -167,6 +167,7 @@ class CommunityViewController: UIViewController {
     @objc func themeFiltering() {
         communityNavigationBar.NavTheme.resignFirstResponder()
         communityViewModel.getFilterList(pickerData: filterTheme)
+        communityNavigationBar.NavSearchBar.text = nil
      }
 
     
@@ -189,12 +190,14 @@ class CommunityViewController: UIViewController {
     @objc func personalReviewButtonPressed(_: UIButton) {
         communityViewModel.getPersonalList()
         communityNavigationBar.NavTheme.text = "나의 리뷰"
+        communityNavigationBar.NavSearchBar.text = nil
     }
     
     @objc func onRefresh() {
         communityViewModel.getList()
         getJourneyData()
         communityNavigationBar.NavTheme.text = "\(commuinityCategorydata[0])"
+        communityNavigationBar.NavSearchBar.text = nil
     }
 }
 

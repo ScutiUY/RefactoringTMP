@@ -23,8 +23,6 @@ class JourneyListDetailViewModel {
     var failedJourneyListUpdate: (() -> ()) = { }
     
     func count() -> Int {
-        
-        print("journeyDetailList.count", journeyDetailList.count)
         return journeyDetailList.count
     }
     // 날짜별 정렬 알고리즘 좋은거 써야 함

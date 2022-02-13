@@ -12,18 +12,18 @@ class AccomoViewCell: UITableViewCell {
         
     var cellDelegate: ContentsMainTextDelegate?
     
-    lazy var accomoImg: UIImageView = {
-        let imageView = UIImageView()
+    lazy var accomoImgButton: UIButton = {
+        let button = UIButton()
 //        button.contentMode = .scaleToFill
-//        imageView.imageEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
-        imageView.layer.cornerRadius = 10
-        imageView.layer.shadowColor = UIColor.black.cgColor
-        imageView.layer.shadowOffset = CGSize(width: 0, height: 4)
-        imageView.layer.shadowRadius = 5
-        imageView.layer.shadowOpacity = 0.3
+        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+        button.imageView?.layer.cornerRadius = 10
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 4)
+        button.layer.shadowRadius = 5
+        button.layer.shadowOpacity = 0.3
         
         
-        return imageView
+        return button
     }()
     
     lazy var accomoTitle: UILabel = {
@@ -76,26 +76,34 @@ class AccomoViewCell: UITableViewCell {
         return stackView
     }()
     
+    // 함수생성후 뷰컨에서 호출 이미지를 뷰컨에서 넘겨줌
+    func cellLoadImage(_ imgData: String) {
+        
+        accomoImgButton.setImage(UIImage(named: imgData), for: .normal)
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpView()
         setLayout()
         
         self.accomoSelectButton.addTarget(self, action: #selector(accomoSelectAction), for: .touchUpInside)
+        
+        
     }
     
     func setUpView() {
-        contentView.addSubview(accomoImg)
+        contentView.addSubview(accomoImgButton)
         contentView.addSubview(accomoAllTitleStack)
         
     }
     
     func setLayout() {
 //        accomoImgButton.frame = CGRect.init(x: 0, y: 0, widthㅇ: contentView.frame.width, height: 160)
-        accomoImg.frame = CGRect.init(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height / 0.28)
+        accomoImgButton.frame = CGRect.init(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height / 0.28)
         
         accomoAllTitleStack.snp.makeConstraints {
-            $0.top.equalTo(accomoImg.snp.bottom).multipliedBy(1.0)
+            $0.top.equalTo(accomoImgButton.snp.bottom).multipliedBy(1.0)
             $0.leading.equalToSuperview().offset(0)
             $0.trailing.equalToSuperview().offset(0)
         }

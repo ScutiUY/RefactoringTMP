@@ -12,43 +12,8 @@ import Foundation
 struct HomeTabRepository {
     // api 소지
     let api = HomeTapAPIRequest()
-    private let httpClient = HttpClient(baseUrl: "https://eunryuplaners.com:19624")
     
-    
-    // 목적지 기반 가게 불러오기
-    func getPlaceRepository(placeData: DestiSearchRequest,completed: @escaping (Result <DestiSearchResponse, APIError>) -> Void) {
-        let path = "/plan/getSearchAreaShopList.tpi"
-        let params = ["area":"\(placeData.place)"]
-        
-        print("getPlaceRepository")
-        httpClient.getJsonData(path: path, params: params) { result in
-            switch result {
-            case.success(let data) :
-                let decodedData = try? JSONDecoder().decode(DestiSearchResponse.self, from: data)
-               
-                if let destiSearchResponseData = decodedData {
-                    print("destiSearchResponse :", destiSearchResponseData)
-                    switch destiSearchResponseData.resCode {
-                    case "9992":
-                        completed(.failure(.omittedParams))
-                    case "4444":
-                        completed(.failure(.ommittedHeader))
-                    case "3001":
-                        completed(.failure(.notFoundInDB))
-                    case "4001":
-                        completed(.failure(.invalidPw))
-                    default:
-                        completed(.success(destiSearchResponseData))
-                    }
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    
-    // 여행 최종결정
+    //
     func setPlanRepository(homeTabData: HomeTabData, completed: @escaping (HomeTabData) -> Void) {
         let encoder = JSONEncoder()
         
@@ -62,7 +27,7 @@ struct HomeTabRepository {
                     
                 case .success(let themeData) :
                     print("api에 데이터 json전송 성공 : ", themeData)
-                    
+                
                 case .failure(let error):
                     print("api에 데이터 json전송 실패 : ", error)
                 }//switch
@@ -73,5 +38,51 @@ struct HomeTabRepository {
         }
     }
     
+    // 목적지 기반 가게 불러오기
+    func getPlaceRepository(placeData: DestiSearchData,completed: @escaping (DestiSearchData) -> Void) {
+        
+        // encoding
+        let encoder = JSONEncoder()
+        
+        do {
+            let jsonData = try encoder.encode(placeData)
+            print("placeJson: ", jsonData)
+            
+            // API로 목적지장소 전달
+            api.getPlaceRequest(placeData: placeData) { result in
+                switch result {
+                    
+                case .success(let themeData) :
+                    print("api에 데이터 json전송 성공 : ", themeData)
+                
+                case .failure(let error):
+                    print("api에 데이터 json전송 실패 : ", error)
+                }//switch
+                
+            }
+        } catch {
+            print("getPlace error in getPlaceRepository")
+        }
+        
+    }
+}
 
+// 오류에 대한 정의
+extension HomeTabRepository {
+    enum repositoryError: Error {
+        case basic
+        case error(Error)
+        case code(Int)
+        
+        var msg: String {
+            switch self {
+                   case .basic:
+                       return "DEFAULT Error"
+                   case .error(let err):
+                       return err.localizedDescription
+                   case .code(let code):
+                       return "\(code) Error"
+                   }
+        }
+    }
 }

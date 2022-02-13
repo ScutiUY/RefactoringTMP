@@ -14,7 +14,7 @@
 		<key>Alamofire.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>6</integer>
 		</dict>
 		<key>BSImagePicker.xcscheme</key>
 		<dict>
@@ -26,7 +26,7 @@
 		<key>BSImagePicker.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>0</integer>
 		</dict>
 		<key>FSCalendar.xcscheme</key>
 		<dict>
@@ -38,7 +38,7 @@
 		<key>FSCalendar.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<key>JJFloatingActionButton.xcscheme</key>
 		<dict>
@@ -50,7 +50,7 @@
 		<key>JJFloatingActionButton.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>3</integer>
 		</dict>
 		<key>Pods-TravelManagePlanner-TravelManagePlannerUITests.xcscheme</key>
 		<dict>
@@ -62,7 +62,7 @@
 		<key>Pods-TravelManagePlanner-TravelManagePlannerUITests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>4</integer>
 		</dict>
 		<key>Pods-TravelManagePlanner.xcscheme</key>
 		<dict>
@@ -74,7 +74,7 @@
 		<key>Pods-TravelManagePlanner.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>7</integer>
+			<integer>5</integer>
 		</dict>
 		<key>Pods-TravelManagePlannerTests.xcscheme</key>
 		<dict>
@@ -98,7 +98,7 @@
 		<key>SnapKit.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<key>Then.xcscheme</key>
 		<dict>
@@ -110,7 +110,7 @@
 		<key>Then.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>9</integer>
+			<integer>7</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

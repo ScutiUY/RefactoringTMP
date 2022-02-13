@@ -10,7 +10,7 @@ import SnapKit
 
 class DestinationDetailViewController: UIViewController {
     
-    var destinationDetailViewModel: DestinationDetailViewModel!
+    var destinationDetailViewModel = DestinationDetailViewModel()
     
     //private var fetchedImages: [UIImage] = [] 캐싱용 수정필요
     
@@ -46,8 +46,6 @@ class DestinationDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        destinationDetailViewModel = DestinationDetailViewModel()
-        destinationDetailViewModel.getDestinationData()
         setLayout()
         setDelegate()
         setObserver()

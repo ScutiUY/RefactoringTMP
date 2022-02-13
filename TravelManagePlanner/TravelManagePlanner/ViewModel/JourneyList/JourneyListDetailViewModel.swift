@@ -12,9 +12,10 @@ class JourneyListDetailViewModel {
     private var journeyDetailList = JourneyDetail.shared.data
     
     private var repo = JourneyListRepository()
-    var detailListIdx = 0
     
-    private var dateDic = [String: String]()
+    var detailListIdx = Int.max
+    
+    private var dateDic = [String: Bool]()
     
     var loadingStarted: (() -> ()) = { }
     var loadingEnded: (() -> ()) = { }
@@ -24,8 +25,21 @@ class JourneyListDetailViewModel {
     func count() -> Int {
         return journeyDetailList.count
     }
+    // 날짜별 정렬 알고리즘 좋은거 써야 함
+    func dateCount() -> Int {
+        journeyDetailList.forEach { self.dateDic[$0.visitDate] = true
+            self.dateDic[$0.leaveDate] = true
+        }
+        return dateDic.count
+    }
     func journey(idx: Int) -> JourneyDetailData {
         return journeyDetailList[idx]
+    }
+    func passDateDic() -> [String] {
+        return dateDic.sorted{ $0.key < $1.key }.map{ $0.key }
+    }
+    func passJourneyData() -> [JourneyDetailData] {
+        return journeyDetailList
     }
     func getData() {
         self.loadingStarted()

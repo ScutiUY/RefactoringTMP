@@ -19,16 +19,17 @@ class CommunityViewController: UIViewController {
     
     // MARK: - Properties
     var communityViewModel: CommunityViewModel!
-    lazy var communityNavigationBar = CommunityCustomNavigationView()
-    let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+
     let activity = UIActivityIndicatorView()
+    let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     var filterTheme : String = ""
+    
+    lazy var communityNavigationBar = CommunityCustomNavigationView()
     private var journeyList = JourneyList.shared.data
-    var titleSendToReview : [String] = []
-    var sDateSendToReview : [String] = []
-    var eDateSendToReview : [String] = []
 
-
+    let communityCategoryPickerView = UIPickerView()
+    let communityCategoryToolBarSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+    let communityCategoryToolBarButton = UIBarButtonItem(title: "확인", style: .done, target: self, action: #selector(themeFiltering))
     
     lazy var communityCategorytextField = UITextField().then({
         $0.text = " 전체"
@@ -41,11 +42,7 @@ class CommunityViewController: UIViewController {
         $0.layer.shadowRadius = 5
         $0.layer.shadowOpacity = 0.2
     })
-        
-    let communityCategoryPickerView = UIPickerView()
-    let communityCategoryToolBarSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-    let communityCategoryToolBarButton = UIBarButtonItem(title: "확인", style: .done, target: self, action: #selector(themeFiltering))
-    
+            
     lazy var communityCategoryToolBar : UIToolbar = {
         let toolbar = UIToolbar()
         toolbar.frame = CGRect(x: 0, y: 0, width: 0, height: 40)
@@ -63,7 +60,7 @@ class CommunityViewController: UIViewController {
     }()
 
     // MARK: - Lifecyle
-    // 키보드나 pickerview올라가 있을 시, 다른 곳을 누르면 내려가게 해주는 것
+//    // 키보드나 pickerview올라가 있을 시, 다른 곳을 누르면 내려가게 해주는 것
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         self.view.endEditing(true)
     }
@@ -71,9 +68,9 @@ class CommunityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = themeColor
+        communityViewModel = CommunityViewModel()
         getJourneyData()
         setDelegate()
-        communityViewModel = CommunityViewModel()
         setRefresh()
         setNav()
         setCollectionView()
@@ -83,18 +80,17 @@ class CommunityViewController: UIViewController {
     
     
     // MARK: - Methods
-    
     func getJourneyData() {
         JourneyListRepository().getJourneyList(completed: { result in
             self.journeyList = result
         })
     }
     func setDelegate() {
+        communityNavigationBar.NavSearchBar.delegate = self
         communityCollectionView.dataSource = self
         communityCollectionView.delegate = self
         communityFloatingButton.delegate = self
     }
-    
     
     // 새로고침 인디케이터
     func setRefresh() {
@@ -107,7 +103,6 @@ class CommunityViewController: UIViewController {
         communityCollectionView.refreshControl = UIRefreshControl()
         communityCollectionView.refreshControl?.addTarget(self, action: #selector(onRefresh), for: .valueChanged)
     }
-    
     
     // 커스텀 커뮤니티 네비게이션바
     func setNav() {
@@ -142,7 +137,6 @@ class CommunityViewController: UIViewController {
     }
 
     func setCollectionView() {
-        
         view.addSubview(communityCollectionView)
 
         communityCollectionView.snp.makeConstraints {
@@ -154,7 +148,6 @@ class CommunityViewController: UIViewController {
     }
     
     func setFloatingButton() {
-        
         view.addSubview(communityFloatingButton)
         
         communityFloatingButton.items[0].addTarget(self, action: #selector(ReviewButtonPressed(_:)), for: .touchUpInside)
@@ -183,27 +176,16 @@ class CommunityViewController: UIViewController {
             alertData.append(UIAlertAction(title: journeyList[idx].title, style: .default, handler: { UIAlertAction in
                 let reviewVC = ReviewWriteViewController(title: self.journeyList[idx].title, sDate: self.journeyList[idx].sDate, eDate: self.journeyList[idx].eDate)
                 self.navigationController!.pushViewController(reviewVC, animated: true)
-                print(UIAlertAction)
-                print(idx)
             }))
             alert.addAction(alertData[idx])
-            titleSendToReview.append(journeyList[idx].title)
-            eDateSendToReview.append(journeyList[idx].eDate)
-            sDateSendToReview.append(journeyList[idx].sDate)
         }
-        
         alert.addAction(cancel)
         self.present(alert, animated: true, completion: nil)
-        
-        print(titleSendToReview)
-        print(eDateSendToReview)
-        print(sDateSendToReview)
     }
 
     @objc func PersonalReviewButtonPressed(_: UIButton)
     {
         communityViewModel.getPersonalList()
-        print("PersonalReviewButtonPressed")
     }
     
     @objc func onRefresh() {
@@ -272,7 +254,6 @@ extension CommunityViewController : UIPickerViewDelegate, UIPickerViewDataSource
         communityNavigationBar.NavTheme.text = "\(commuinityCategorydata[row])"
         communityNavigationBar.NavTheme.sizeToFit()
         filterTheme = commuinityCategorydata[row]
-        print(commuinityCategorydata[row])
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
@@ -285,13 +266,13 @@ extension CommunityViewController : UIPickerViewDelegate, UIPickerViewDataSource
 }
 
 // MARK: - TextField 왼쪽 공백 없애기
-extension UITextField {
-    func addLeftPadding() {
-      let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.frame.height))
-      self.leftView = paddingView
-      self.leftViewMode = ViewMode.always
-    }
-}
+//extension UITextField {
+//    func addLeftPadding() {
+//      let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.frame.height))
+//      self.leftView = paddingView
+//      self.leftViewMode = ViewMode.always
+//    }
+//}
 
 // MARK: - FloatingButton 관련
 extension CommunityViewController : JJFloatingActionButtonDelegate
@@ -303,5 +284,13 @@ extension CommunityViewController : JJFloatingActionButtonDelegate
     func floatingActionButtonWillClose(_ button: JJFloatingActionButton) {
         communityFloatingButton.buttonColor =  #colorLiteral(red: 0.2039215686, green: 0.5960784314, blue: 0.8588235294, alpha: 1)
         communityFloatingButton.buttonImageColor = .white
+    }
+}
+
+
+extension CommunityViewController : UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        communityViewModel.putSearWord(word: communityNavigationBar.NavSearchBar.text!)
+        communityViewModel.getSearchList()
     }
 }

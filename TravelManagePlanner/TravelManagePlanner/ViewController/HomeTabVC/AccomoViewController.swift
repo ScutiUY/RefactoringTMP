@@ -8,23 +8,12 @@ import UIKit
 
 // 숙박업소 추천지노출
 class AccomoViewController: UIViewController {
+    
+    //  뷰모델 소유
+    let destiSearchViewModel = DestiSearchViewModel()
     let cellID = "Cell"
     
-    lazy var imgDataName = ["accomoA", "accomoB", "accomoC","accomoA", "accomoB", "accomoC"]
-    
-    var imgArray: [UIImage] {
-        var img:[UIImage] = []
-        
-        for i in imgDataName {
-            if let asImg = UIImage(named: i) {
-                
-                img.append(asImg)
-            }else {
-                print("Accomo imgData is nil")
-            }
-        }
-        return img
-    }
+    var firstaccomName: String = ""
     
     lazy var accomoTitleLabel: UILabel = {
         let label = UILabel()
@@ -65,9 +54,12 @@ class AccomoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = GlobalConstants.Color.Background.themeColor
+        
+        setObserver()
         setUpView()
         setLayout()
         setDelegate()
+       
     }
     
     func setUpView() {
@@ -85,7 +77,7 @@ class AccomoViewController: UIViewController {
         accomoTableView.snp.makeConstraints {
             $0.top.equalTo(accomoHeadStack.snp.bottom).multipliedBy(1.1)
             $0.leading.equalTo(view.snp.centerX).multipliedBy(0.1)
-            $0.bottom.equalToSuperview().offset(-130)
+            $0.bottom.equalToSuperview().offset(-30)
             $0.trailing.equalToSuperview().offset(-24)
         }
     }
@@ -97,6 +89,19 @@ class AccomoViewController: UIViewController {
         accomoTableView.register(AccomoViewCell.classForCoder(), forCellReuseIdentifier: cellID)
     }
     
+    func setObserver() {
+        destiSearchViewModel.getData()
+        
+        destiSearchViewModel.loadingStarted = {
+            
+        }
+        destiSearchViewModel.loadingEnded = {
+            
+        }
+        destiSearchViewModel.dataUpdated = {
+            self.accomoTableView.reloadData()
+        }
+    }
 }
 
 
@@ -104,6 +109,17 @@ class AccomoViewController: UIViewController {
 extension AccomoViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return view.frame.height / 4
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "AccomoCalendarViewSB") as! AccomoCalendarViewController
+        
+        nextView.accomoName = destiSearchViewModel.getTitle(idx: indexPath.row)
+        nextView.accomoPlace = destiSearchViewModel.getContent(idx: indexPath.row)
+        
+        // 다음화면에서 바텀탭 없애기
+        nextView.hidesBottomBarWhenPushed = true
+        self.present(nextView, animated: true)
     }
 
 }
@@ -117,38 +133,59 @@ extension AccomoViewController: UITableViewDataSource {
     
     // cell 갯수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        imgDataName.count
+        
+        // 뷰모델에서 정의 필요
+        let tableCount = destiSearchViewModel.getDestiSearchCount()
+        print("tableCount Accomo", tableCount)
+        // 카테고리가 숙박업소 인것만 세기 == 1
+        var cnt = 0
+        for i in 0..<tableCount {
+            if destiSearchViewModel.destiSearchResponse[i].category == "1" {
+                cnt += 1
+            }
+        }
+        
+        return cnt
     }
     
-    // 테이블 구성
+    // 테이블 화면데이터구성
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         print(indexPath)
+        
+        // 1. 가게Index 정보 를 cell안의 변수로 넘기고
+        // 2. 선택 버튼 달력안에(
+    
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! AccomoViewCell
         cell.backgroundColor = .clear
-        cell.cellLoadImage(imgDataName[indexPath.row])
-        cell.accomoTitle.text = imgDataName[indexPath.row]
-        cell.accomoSubTitle.text = "업소의 간단한 설명"
+        
+        // 선택된 해당데이터 모델[배열]가져오기
+        let shopData = destiSearchViewModel.getShopData(idx: indexPath.row, categoryIdx: "1")
+        
+        self.firstaccomName = shopData.name
+        
+        let url = URL(string: shopData.imgUrl)
+        let data = try! Data(contentsOf: url!)
+        
+        cell.accomoImg.image = UIImage(data: data)
+        cell.accomoTitle.text = shopData.name
+        cell.accomoSubTitle.text = shopData.content
         cell.cellDelegate = self
         
-    
-//        cell.contentView.isUserInteractionEnabled = false
         
         return cell
     }
 }
 
 extension AccomoViewController:ContentsMainTextDelegate {
+    //달력 이동
     func categoryButtonTapped() {
-        print("버튼 기능 구현")
-        
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "AccomoCalendarViewSB") as! AccomoCalendarViewController
+        
+        nextView.accomoName = self.firstaccomName
         
         // 다음화면에서 바텀탭 없애기
         nextView.hidesBottomBarWhenPushed = true
         self.present(nextView, animated: true)
     }
-    
-    
 }

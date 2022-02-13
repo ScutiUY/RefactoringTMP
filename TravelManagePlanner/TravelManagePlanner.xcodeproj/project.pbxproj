@@ -20,6 +20,7 @@
 		4AC16C8C27B4AB8B005F74FB /* CommunityCustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC16C8B27B4AB8B005F74FB /* CommunityCustomNavigationView.swift */; };
 		4AC16C8E27B4FA52005F74FB /* CommunityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC16C8D27B4FA52005F74FB /* CommunityCollectionViewCell.swift */; };
 		6B1D27F5279DA836004B24CB /* (null) in Sources */ = {isa = PBXBuildFile; };
+		6B6D772027B58F4A000CF8EA /* DestiSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6D771F27B58F4A000CF8EA /* DestiSearchViewModel.swift */; };
 		6BA7894627B4E27D003CFE82 /* HomeTabSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BA7894527B4E27D003CFE82 /* HomeTabSB.storyboard */; };
 		6BA7894927B4E2BD003CFE82 /* DestiSearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA7894727B4E2BD003CFE82 /* DestiSearchData.swift */; };
 		6BA7894A27B4E2BD003CFE82 /* HomeTabData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA7894827B4E2BD003CFE82 /* HomeTabData.swift */; };
@@ -39,7 +40,7 @@
 		6BA7898B27B4E53A003CFE82 /* AccomoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA7898427B4E53A003CFE82 /* AccomoViewController.swift */; };
 		6BA7898C27B4E53A003CFE82 /* DestiSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA7898527B4E53A003CFE82 /* DestiSearchViewController.swift */; };
 		6BA7898D27B4E53A003CFE82 /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA7898727B4E53A003CFE82 /* RestaurantViewController.swift */; };
-		6BA7898E27B4E53A003CFE82 /* TouristAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA7898827B4E53A003CFE82 /* TouristAreaViewController.swift */; };
+		6BA7898E27B4E53A003CFE82 /* TourAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA7898827B4E53A003CFE82 /* TourAreaViewController.swift */; };
 		6BA7899227B4E7A2003CFE82 /* RecommendPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA7899127B4E7A2003CFE82 /* RecommendPageViewController.swift */; };
 		6BE2143027A186CC004B8816 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		9C300F2632C124C2A9E86F66 /* Pods_TravelManagePlannerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8180EC9FCB4EA1CC087FC6 /* Pods_TravelManagePlannerTests.framework */; };
@@ -126,6 +127,7 @@
 		4AC16C8B27B4AB8B005F74FB /* CommunityCustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCustomNavigationView.swift; sourceTree = "<group>"; };
 		4AC16C8D27B4FA52005F74FB /* CommunityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCollectionViewCell.swift; sourceTree = "<group>"; };
 		60BFDC245ECCA557D0BD83F2 /* Pods_TravelManagePlanner_TravelManagePlannerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravelManagePlanner_TravelManagePlannerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B6D771F27B58F4A000CF8EA /* DestiSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestiSearchViewModel.swift; sourceTree = "<group>"; };
 		6BA7894527B4E27D003CFE82 /* HomeTabSB.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeTabSB.storyboard; sourceTree = "<group>"; };
 		6BA7894727B4E2BD003CFE82 /* DestiSearchData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestiSearchData.swift; sourceTree = "<group>"; };
 		6BA7894827B4E2BD003CFE82 /* HomeTabData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabData.swift; sourceTree = "<group>"; };
@@ -145,7 +147,7 @@
 		6BA7898427B4E53A003CFE82 /* AccomoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccomoViewController.swift; sourceTree = "<group>"; };
 		6BA7898527B4E53A003CFE82 /* DestiSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestiSearchViewController.swift; sourceTree = "<group>"; };
 		6BA7898727B4E53A003CFE82 /* RestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantViewController.swift; sourceTree = "<group>"; };
-		6BA7898827B4E53A003CFE82 /* TouristAreaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouristAreaViewController.swift; sourceTree = "<group>"; };
+		6BA7898827B4E53A003CFE82 /* TourAreaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourAreaViewController.swift; sourceTree = "<group>"; };
 		6BA7899127B4E7A2003CFE82 /* RecommendPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendPageViewController.swift; sourceTree = "<group>"; };
 		77C2426C42FF74194A815543 /* Pods-TravelManagePlannerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelManagePlannerTests.debug.xcconfig"; path = "Target Support Files/Pods-TravelManagePlannerTests/Pods-TravelManagePlannerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8D8180EC9FCB4EA1CC087FC6 /* Pods_TravelManagePlannerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravelManagePlannerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -288,19 +290,20 @@
 			path = Community;
 			sourceTree = "<group>";
 		};
-		6BA7894427B4E24D003CFE82 /* HomTab */ = {
+		6BA7894427B4E24D003CFE82 /* HomTabModel */ = {
 			isa = PBXGroup;
 			children = (
 				6BA7894727B4E2BD003CFE82 /* DestiSearchData.swift */,
 				6BA7894827B4E2BD003CFE82 /* HomeTabData.swift */,
 			);
-			path = HomTab;
+			path = HomTabModel;
 			sourceTree = "<group>";
 		};
 		6BA7896C27B4E3A6003CFE82 /* HomeTabVM */ = {
 			isa = PBXGroup;
 			children = (
 				6BA7896D27B4E3A6003CFE82 /* HomeTabViewModel.swift */,
+				6B6D771F27B58F4A000CF8EA /* DestiSearchViewModel.swift */,
 			);
 			path = HomeTabVM;
 			sourceTree = "<group>";
@@ -310,20 +313,12 @@
 			children = (
 				6BA7898227B4E53A003CFE82 /* ThemeViewController.swift */,
 				6BA7898327B4E53A003CFE82 /* DetaileSettingViewController.swift */,
-				6BA7898427B4E53A003CFE82 /* AccomoViewController.swift */,
 				6BA7898527B4E53A003CFE82 /* DestiSearchViewController.swift */,
-				6BA7898627B4E53A003CFE82 /* BottomCalendar */,
+				6BA7898427B4E53A003CFE82 /* AccomoViewController.swift */,
 				6BA7898727B4E53A003CFE82 /* RestaurantViewController.swift */,
-				6BA7898827B4E53A003CFE82 /* TouristAreaViewController.swift */,
+				6BA7898827B4E53A003CFE82 /* TourAreaViewController.swift */,
 			);
 			path = HomeTabVC;
-			sourceTree = "<group>";
-		};
-		6BA7898627B4E53A003CFE82 /* BottomCalendar */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = BottomCalendar;
 			sourceTree = "<group>";
 		};
 		6BA7898F27B4E7A2003CFE82 /* PageViewController */ = {
@@ -434,7 +429,7 @@
 			isa = PBXGroup;
 			children = (
 				4AC16C5827B1EE1F005F74FB /* Community */,
-				6BA7894427B4E24D003CFE82 /* HomTab */,
+				6BA7894427B4E24D003CFE82 /* HomTabModel */,
 				F0F0C9DA27B24AB100FDBD10 /* SignIn+Up */,
 				F0F0C9D927B0DCC600FDBD10 /* Destination */,
 				F0C4E18D27A10A4F00E72BB7 /* JourneyList */,
@@ -891,6 +886,7 @@
 				F0CADCEE2782139500DDC1CD /* ImageSliderCollectionViewCell.swift in Sources */,
 				6BA7897A27B4E457003CFE82 /* ThemeViewCell.swift in Sources */,
 				4A716B8C27A2706C00D15024 /* CommunityViewController.swift in Sources */,
+				6B6D772027B58F4A000CF8EA /* DestiSearchViewModel.swift in Sources */,
 				F076BDDC27969DD200AF6FFD /* DestinationDetailData.swift in Sources */,
 				4AC16C6127B1F9B0005F74FB /* CommunityDataList.swift in Sources */,
 				F0CADCDF2781EF2D00DDC1CD /* GlobalConstants.swift in Sources */,
@@ -918,11 +914,11 @@
 				F0CADCFB2782478400DDC1CD /* JourneyListDetailViewController.swift in Sources */,
 				6BA7897F27B4E457003CFE82 /* TourAreaCalendarViewController.swift in Sources */,
 				F04FD8B7278B9E72007D8866 /* Journey.swift in Sources */,
-				6BA7898E27B4E53A003CFE82 /* TouristAreaViewController.swift in Sources */,
+				6BA7898E27B4E53A003CFE82 /* TourAreaViewController.swift in Sources */,
 				6BA7897B27B4E457003CFE82 /* RestaurantCalendarViewController.swift in Sources */,
 				F00F182827785DE900211A8D /* JourneylList.swift in Sources */,
 				4A716B8E27A2706C00D15024 /* CommunityFloatingButton.swift in Sources */,
-				6BA7897C27B4E457003CFE82 /* AccomoViewCell.swift in Sources */,
+				6B1D27F5279DA836004B24CB /* AccomoViewCell.swift in Sources */,
 				6BA7896E27B4E3A6003CFE82 /* HomeTabViewModel.swift in Sources */,
 				F0CADCF1278217F700DDC1CD /* DestinationDetailViewModel.swift in Sources */,
 				6BA7898927B4E53A003CFE82 /* ThemeViewController.swift in Sources */,
@@ -931,7 +927,6 @@
 				F0CADCC62780DEB900DDC1CD /* TabbarController.swift in Sources */,
 				F0B258562798FA740042771F /* HttpClient.swift in Sources */,
 				6B1D27F5279DA836004B24CB /* (null) in Sources */,
-				6B1D27F5279DA836004B24CB /* AccomoViewCell.swift in Sources */,
 				F0F0C9DE27B4838100FDBD10 /* URLManager.swift in Sources */,
 				4AC16C5C27B1F2EC005F74FB /* CommunityDataRepository.swift in Sources */,
 				F076BDD72796922A00AF6FFD /* DestinationDetailContentTableViewCell.swift in Sources */,

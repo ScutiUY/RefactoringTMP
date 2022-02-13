@@ -72,6 +72,14 @@ class DestiSearchViewModel {
         }
     }
     
+    func getTitle(idx: Int) -> String {
+        return destiSearchResponse[idx].name
+    }
+    
+    func getContent(idx: Int) -> String {
+        return destiSearchResponse[idx].content
+    }
+    
     func getDestiSearchCount() -> Int {
         
         return destiSearchResponse.count

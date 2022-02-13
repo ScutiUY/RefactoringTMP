@@ -10,7 +10,9 @@ import FSCalendar
 
 class AccomoCalendarViewController: UIViewController {
     let fscCalendarDateFormat = DateFormatter()
-   
+    
+    var accomoName: String = ""
+    var accomoPlace: String = ""
     
     lazy var containerView: UIView = {
         let view = UIView()
@@ -49,7 +51,7 @@ class AccomoCalendarViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 21)
 //        label.textAlignment = .center
-//        label.text
+        label.text = accomoName
         label.textColor = UIColor(red: 94/255, green: 94/255, blue: 94/255, alpha: 1)
         
         return label
@@ -60,7 +62,7 @@ class AccomoCalendarViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
 //        label.textAlignment = .center
-        label.text = "지역 명"
+        label.text = accomoPlace
         label.textColor = UIColor(red: 94/255, green: 94/255, blue: 94/255, alpha: 1)
         
         return label

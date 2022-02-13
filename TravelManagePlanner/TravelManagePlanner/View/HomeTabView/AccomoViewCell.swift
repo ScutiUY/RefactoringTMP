@@ -76,15 +76,12 @@ class AccomoViewCell: UITableViewCell {
         return stackView
     }()
     
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpView()
         setLayout()
         
         self.accomoSelectButton.addTarget(self, action: #selector(accomoSelectAction), for: .touchUpInside)
-        
-        
     }
     
     func setUpView() {

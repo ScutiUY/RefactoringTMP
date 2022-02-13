@@ -288,13 +288,13 @@
 			path = Community;
 			sourceTree = "<group>";
 		};
-		6BA7894427B4E24D003CFE82 /* HomTab */ = {
+		6BA7894427B4E24D003CFE82 /* HomTabModel */ = {
 			isa = PBXGroup;
 			children = (
 				6BA7894727B4E2BD003CFE82 /* DestiSearchData.swift */,
 				6BA7894827B4E2BD003CFE82 /* HomeTabData.swift */,
 			);
-			path = HomTab;
+			path = HomTabModel;
 			sourceTree = "<group>";
 		};
 		6BA7896C27B4E3A6003CFE82 /* HomeTabVM */ = {
@@ -426,7 +426,7 @@
 			isa = PBXGroup;
 			children = (
 				4AC16C5827B1EE1F005F74FB /* Community */,
-				6BA7894427B4E24D003CFE82 /* HomTab */,
+				6BA7894427B4E24D003CFE82 /* HomTabModel */,
 				F0F0C9DA27B24AB100FDBD10 /* SignIn+Up */,
 				F0F0C9D927B0DCC600FDBD10 /* Destination */,
 				F0C4E18D27A10A4F00E72BB7 /* JourneyList */,

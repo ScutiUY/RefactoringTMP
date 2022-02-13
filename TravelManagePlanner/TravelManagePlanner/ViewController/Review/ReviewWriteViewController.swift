@@ -53,7 +53,6 @@ class ReviewWriteViewController: UIViewController {
     
     lazy var travelTitleTextView = UITextView().then {
         $0.text = titleSendFromCommunity
-//        $0.textAlignment = .natural
         $0.font = .systemFont(ofSize: 16)
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.lightGray.cgColor

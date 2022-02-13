@@ -9,11 +9,13 @@ import Foundation
 
 class CommunityViewModel {
     
-    var repo = CommunityDataRepository()
+    private var repo = CommunityDataRepository()
     
-    var communityDataList: CommunityDataList = CommunityDataList.shared
+    private var communityDataList: CommunityDataList = CommunityDataList.shared
+    private var tmpCommunityDataList : CommunityDataList = CommunityDataList.shared
+    private var filterCommunityDataList : CommunityDataList = CommunityDataList.shared
+    
     var isLoading = false
-    var filterCommunityDataList : CommunityDataList = CommunityDataList.shared
 
     
     var loadingStarted: (() -> ()) = { }
@@ -44,30 +46,30 @@ class CommunityViewModel {
 
         var theme : String
         
-        repo.getCommunityData(completed: { result in
-            self.communityDataList.communities = result.data
-        })
+        if tmpCommunityDataList.communities.isEmpty {
+            self.tmpCommunityDataList = self.communityDataList
+        }
         switch data {
         case "연인":
                 isLoading = true
                 loadingStarted()
                 theme = "couple"
-            self.filterCommunityDataList.communities = self.communityDataList.communities.filter {$0.theme == theme};
+            self.filterCommunityDataList.communities = self.tmpCommunityDataList.communities.filter {$0.theme == theme};
         case "친구":
                 isLoading = true
                 loadingStarted()
                 theme = "friend"
-            self.filterCommunityDataList.communities = self.communityDataList.communities.filter {$0.theme == theme};
+            self.filterCommunityDataList.communities = self.tmpCommunityDataList.communities.filter {$0.theme == theme};
         case "가족":
                 isLoading = true
                 loadingStarted()
                 theme = "family"
-            self.filterCommunityDataList.communities = self.communityDataList.communities.filter {$0.theme == theme};
+            self.filterCommunityDataList.communities = self.tmpCommunityDataList.communities.filter {$0.theme == theme};
         case "기타":
                 isLoading = true
                 loadingStarted()
                 theme = "etc"
-            self.filterCommunityDataList.communities = self.communityDataList.communities.filter {$0.theme == theme};
+            self.filterCommunityDataList.communities = self.tmpCommunityDataList.communities.filter {$0.theme == theme};
             default :
                 self.getList()
                 return;
@@ -78,7 +80,6 @@ class CommunityViewModel {
         self.loadingEnded()
         self.isLoading = false
     }
-    
     
     func getList() {
         isLoading = true

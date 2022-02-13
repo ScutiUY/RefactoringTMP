@@ -50,7 +50,7 @@ struct HomeTapAPIRequest {
     }
     
     // 목적지 검색으로 샵 가져오기
-    func getPlaceRequest(placeData: DestiSearchRequest, completed: @escaping (Result<String, Error>) -> Void) {
+    func getPlaceRequest(placeData: DestiSearchData, completed: @escaping (Result<String, Error>) -> Void) {
         
         let placeShopListURL = "/plan/getSearchAreaShopList.tpi"
         let params: [String : String] = [

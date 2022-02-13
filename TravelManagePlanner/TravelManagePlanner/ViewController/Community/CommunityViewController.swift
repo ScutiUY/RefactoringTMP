@@ -188,6 +188,7 @@ class CommunityViewController: UIViewController {
 
     @objc func personalReviewButtonPressed(_: UIButton) {
         communityViewModel.getPersonalList()
+        communityNavigationBar.NavTheme.text = "나의 리뷰"
     }
     
     @objc func onRefresh() {
@@ -286,5 +287,6 @@ extension CommunityViewController : UISearchBarDelegate {
         communityViewModel.putSearWord(word: communityNavigationBar.NavSearchBar.text!)
         communityViewModel.getSearchList()
         communityNavigationBar.NavSearchBar.resignFirstResponder()
+        communityNavigationBar.NavTheme.text = "\(commuinityCategorydata[0])"
     }
 }

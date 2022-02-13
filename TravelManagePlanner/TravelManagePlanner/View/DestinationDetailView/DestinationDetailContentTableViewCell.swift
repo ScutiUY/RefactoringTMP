@@ -53,7 +53,7 @@ class DestinationDetailContentTableViewCell: UITableViewCell {
             make.bottom.equalToSuperview()
         }
     }
-    func fetchDestInfo(data: DestinationDetailData.DestinationData) {
+    func fetchDestInfo(data: DestinationData) {
         titleLabel.text = data.name
         contentTextView.text = data.content
     }

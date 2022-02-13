@@ -26,14 +26,15 @@ struct SignInUpRepository {
     private let httpClient = HttpClient(baseUrl: "https://eunryuplaners.com:19624")
     
     func login(inputId: String, inputPw: String, completed: @escaping (Result<LoginData, APIError>) -> Void) {
-        let path = "/mmb/checkLogin.tpi"
+        let path = URLManager.Member.login
         let params: [String: String] = ["loginId":"\(inputId)", "loginPw":"\(inputPw)"]
         httpClient.getJsonData(path: path, params: params) { result in
             switch result {
             case .success(let data):
-                let decodedData = try? JSONDecoder().decode(LoginData.self, from: data)
-                if let userdata = decodedData {
-                    switch userdata.resCode {
+                do {
+                    let decodedData = try JSONDecoder().decode(LoginData.self, from: data)
+                    
+                    switch decodedData.resCode {
                     case "9992":
                         completed(.failure(.omittedParams))
                     case "4444":
@@ -43,9 +44,14 @@ struct SignInUpRepository {
                     case "4001":
                         completed(.failure(.invalidPw))
                     default:
-                        completed(.success(userdata))
+                        completed(.success(decodedData))
                     }
+                } catch {
+                    #if DEBUG
+                    print(error.localizedDescription, #function)
+                    #endif
                 }
+                
             case .failure(let error):
                 print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
                 completed(Result.failure(APIError.jsonError))
@@ -54,14 +60,16 @@ struct SignInUpRepository {
     }
     
     func signUp(inputEmail: String, inputPw: String, inputName: String, completed: @escaping (Result<String, APIError>) -> Void) {
-        let path = "/mmb/joinMember.tpi"
+        let path = URLManager.Member.joinMember
         let params: [String: String] = ["userId":"\(inputEmail)", "userPw":"\(inputPw)", "name":"\(inputName)"]
         httpClient.getJsonData(path: path, params: params) { result in
             switch result {
+                
             case .success(let data):
-                let decodedData = try? JSONDecoder().decode(LoginData.self, from: data)
-                if let userdata = decodedData {
-                    switch userdata.resCode {
+                do {
+                    let decodedData = try JSONDecoder().decode(LoginData.self, from: data)
+                    
+                    switch decodedData.resCode {
                     case "9992":
                         completed(.failure(.omittedParams))
                     case "4444":
@@ -71,14 +79,19 @@ struct SignInUpRepository {
                     case "4001":
                         completed(.failure(.invalidPw))
                     default:
-                        completed(.success(userdata.resMsg))
+                        completed(.success(decodedData.resMsg))
                     }
+                    
+                } catch {
+                    #if DEBUG
+                    print(error.localizedDescription, #function)
+                    #endif
                 }
+                
             case .failure(let error):
                 print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
                 completed(.failure(.jsonError))
             }
-            
         }
     }
 }

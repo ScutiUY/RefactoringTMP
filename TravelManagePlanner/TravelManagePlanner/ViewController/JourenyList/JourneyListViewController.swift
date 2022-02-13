@@ -52,7 +52,9 @@ class JourneyListViewController: UIViewController {
         }
         
     }
+    
     func setObserver() {
+        
         journeyListViewModel.loadingStarted = { [weak activity] in
             activity?.isHidden = false
             activity?.startAnimating()
@@ -65,17 +67,22 @@ class JourneyListViewController: UIViewController {
             self?.journeyTableView.refreshControl?.endRefreshing()
         }
         journeyListViewModel.getList()
+        
     }
+    
     func setDelegate() {
         journeyTableView.delegate = self
         journeyTableView.dataSource = self
     }
+    
     @objc func onRefresh() {
         journeyListViewModel.getList()
     }
 }
 
+
 extension JourneyListViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return journeyListViewModel.journeyListCount()
     }
@@ -87,13 +94,14 @@ extension JourneyListViewController: UITableViewDelegate, UITableViewDataSource 
         cell.setData(journeyListInfo)
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailJourneyListVC = UIStoryboard(name: "JourneyListSB", bundle: nil).instantiateViewController(withIdentifier: "JourneyListDetailSB") as! JourneyListDetailViewController
         detailJourneyListVC.title = journeyListViewModel.getTitle(idx: indexPath.row)
         detailJourneyListVC.viewModel.detailListIdx = journeyListViewModel.journey(index: indexPath.row).idx
         self.navigationController?.pushViewController(detailJourneyListVC, animated: true)
-        
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }

@@ -54,15 +54,16 @@ class HomeTabViewModel {
         HomeTabViewModel.globalHomeTabData.endDate = endDate
         HomeTabViewModel.globalHomeTabData.inviteNum = inviteNum
         HomeTabViewModel.globalHomeTabData.price = price
-        
-        print(HomeTabViewModel.globalHomeTabData)
     }
     
     // 숙박, 맛집, 놀거리 설정 업데이트
     func updateRecommendData(shopList: [HomeTabRequestData]) {
-        HomeTabViewModel.globalHomeTabData.shopList = shopList
+        HomeTabViewModel.globalHomeTabData.shopList.append(contentsOf: shopList)
+#if DEBUG
+        print("accomoShopData", shopList)
+        print("all Data: ", HomeTabViewModel.globalHomeTabData)
+#endif
         
-        print(HomeTabViewModel.globalHomeTabData)
     }
     
 }// class

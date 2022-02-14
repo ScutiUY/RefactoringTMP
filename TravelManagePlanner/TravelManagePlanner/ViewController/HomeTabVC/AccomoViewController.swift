@@ -115,7 +115,7 @@ extension AccomoViewController: UITableViewDelegate {
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "AccomoCalendarViewSB") as! AccomoCalendarViewController
         
         nextView.accomoName = destiSearchViewModel.getTitle(idx: indexPath.row)
-        nextView.accomoPlace = destiSearchViewModel.getContent(idx: indexPath.row)
+        nextView.accomoPlace = destiSearchViewModel.getArea(idx: indexPath.row)
         nextView.accomoSIdx = destiSearchViewModel.getSIdx(idx: indexPath.row)
         
         // 다음화면에서 바텀탭 없애기

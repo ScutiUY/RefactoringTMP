@@ -9,6 +9,10 @@ import SnapKit
 import FSCalendar
 
 class AccomoCalendarViewController: UIViewController {
+    
+    // 뷰모델 소지
+    let homeTabViewModel = HomeTabViewModel()
+    
     let fscCalendarDateFormat = DateFormatter()
     
     let dateFormatter = DateFormatter()
@@ -190,19 +194,12 @@ class AccomoCalendarViewController: UIViewController {
         
         let sIdx = String(accomoSIdx)
         let vDate = self.selectCheckIn
-        let leaveDate = ""
+        let leaveDate = "20220227" // 테스트 데이터 수정필요
         
         let accomoShopData = HomeTabRequestData(sIdx: sIdx, vDate: vDate, leaveDate: leaveDate)
         
-        HomeTabViewModel.globalHomeTabData.shopList = [accomoShopData]
+        homeTabViewModel.updateRecommendData(shopList: [accomoShopData])
         
-#if DEBUG
-        print("accomoShopData", accomoShopData)
-        
-        print("all Data: ", HomeTabViewModel.globalHomeTabData)
-#endif
-        
-       
     }
 }
 

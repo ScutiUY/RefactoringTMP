@@ -76,8 +76,8 @@ class DestiSearchViewModel {
         return destiSearchResponse[idx].name
     }
     
-    func getContent(idx: Int) -> String {
-        return destiSearchResponse[idx].content
+    func getArea(idx: Int) -> String {
+        return destiSearchResponse[idx].area
     }
     
     func getSIdx(idx: Int) -> Int {

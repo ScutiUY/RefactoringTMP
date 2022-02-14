@@ -43,6 +43,12 @@ struct HomeTabRequestData: Codable {
     var sIdx: String // 가게 인덱스
     var vDate: String // 가게 체크인 날짜 (방문일)
     var leaveDate: String // 가게 체크아웃 날짜, 식당과 놀거리는 방문일과 동일한 날짜 전달
+    
+    init(sIdx: String, vDate: String, leaveDate: String) {
+        self.sIdx = sIdx
+        self.vDate = vDate
+        self.leaveDate = leaveDate
+    }
 }
 
 

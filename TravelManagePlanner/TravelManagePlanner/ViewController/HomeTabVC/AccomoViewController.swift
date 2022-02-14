@@ -116,6 +116,7 @@ extension AccomoViewController: UITableViewDelegate {
         
         nextView.accomoName = destiSearchViewModel.getTitle(idx: indexPath.row)
         nextView.accomoPlace = destiSearchViewModel.getContent(idx: indexPath.row)
+        nextView.accomoSIdx = destiSearchViewModel.getSIdx(idx: indexPath.row)
         
         // 다음화면에서 바텀탭 없애기
         nextView.hidesBottomBarWhenPushed = true

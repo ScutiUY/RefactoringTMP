@@ -11,6 +11,7 @@ class DetaileSettingViewController: UIViewController {
     
     // 뷰모델
     var homeTabViewModel = HomeTabViewModel()
+    
     let dateFormatter = DateFormatter()
     
     
@@ -93,7 +94,6 @@ class DetaileSettingViewController: UIViewController {
     //        label.text = "오는 날(달력)"
     //        label.font = UIFont.systemFont(ofSize: 22)
     //        label.textColor = .black
-    //
     //        return label
     //    }()
     

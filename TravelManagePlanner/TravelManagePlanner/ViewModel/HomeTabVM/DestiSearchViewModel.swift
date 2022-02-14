@@ -80,6 +80,10 @@ class DestiSearchViewModel {
         return destiSearchResponse[idx].content
     }
     
+    func getSIdx(idx: Int) -> Int {
+        return destiSearchResponse[idx].idx
+    }
+    
     func getDestiSearchCount() -> Int {
         
         return destiSearchResponse.count

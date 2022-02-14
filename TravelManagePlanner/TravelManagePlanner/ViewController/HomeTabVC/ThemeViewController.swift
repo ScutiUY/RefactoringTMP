@@ -152,7 +152,6 @@ extension ThemeViewController: UICollectionViewDelegate {
         
         // main에 있는 두번째화면 불러오기(스토리보드 활용)
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "DetaileSettingViewSB") as! DetaileSettingViewController
-        homeTabViewModel.update()
         print("register 버튼 클릭")
         print(indexPath)
         

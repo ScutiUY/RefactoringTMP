@@ -22,18 +22,6 @@ class HomeTabViewModel {
     var dataUpdated: (() -> ()) = { }
     var failedJourneyListUpdate: (() -> ()) = { }
     
-    
-    ////    테마 설정 데이터
-    //    private var userThemeData = "" // 테마 데이터
-    
-    
-    //    // 디테일 설정 데이터
-    //    private var journeyTextField = "" // 여행 제목
-    //    private var dayToGocalendar = "" // 가는날
-    //    private var dayToComecalendar = "" // 오는날
-    //    private var numPeople = "" // 인원 수
-    //    private var budgetAmount = "" // 예산
-    
     // 테마 데이터 업데이트
     func updateThemeData(theme: String, uKey: String) {
         // 디비에 넣을 데이터로변경
@@ -55,9 +43,9 @@ class HomeTabViewModel {
     
     // 디테일설정 데이터 업데이트
     func updateDetailSettingData(title: String, startDate: String, endDate: String, inviteNum: String, price: String) {
-            
+        
         if title == "" || title.count < 6 {
-//            print("제목을 6글자 이상 입력해주세요")
+            //            print("제목을 6글자 이상 입력해주세요")
         }else {
             HomeTabViewModel.globalHomeTabData.title = title
         }
@@ -77,17 +65,4 @@ class HomeTabViewModel {
         print(HomeTabViewModel.globalHomeTabData)
     }
     
-    // 숙 등록
-    func update() {
-        //        repo.setPlanRepository(homeTabData: HomeTabViewModel.globalHomeTabData) { result in
-        //
-        //            self.isLoading = true
-        //
-        //            print(result)
-        //        }
-        //
-        //        func getDestiPlace() {
-        //
-        //        }
-    }// class
-}
+}// class

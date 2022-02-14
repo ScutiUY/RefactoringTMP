@@ -111,6 +111,8 @@ class RestaurantCalendarViewController: UIViewController {
         
         fscCalendar.delegate = self
         fscCalendar.dataSource = self
+        
+        restaurantAddButton.addTarget(self, action: #selector(addButtonAction), for: .touchUpInside)
     }
     
     func setUpView() {
@@ -165,6 +167,11 @@ class RestaurantCalendarViewController: UIViewController {
         // Activate constraints
         containerViewHeightConstraint?.isActive = true
         containerViewBottomConstraint?.isActive = true
+    }
+    
+    // 식당 추가하기
+    @objc func addButtonAction() {
+        
     }
 }
 

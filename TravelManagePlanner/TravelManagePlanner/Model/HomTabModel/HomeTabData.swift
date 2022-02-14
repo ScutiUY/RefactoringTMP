@@ -49,13 +49,13 @@ struct HomeTabRequestData: Codable {
 // 여행계획 최종입력 응답
 struct HomeTabResponse: Codable {
     
-    static var shared = HomeTabResponse(resCode: "", resMsg: "", data: [])
+    static var shared = HomeTabResponse(resCode: "", resMsg: "", data: "")
     
     var resCode: String
     var resMsg: String
-    var data: [HomeTabRequest]
+    var data: String?
     
-    init(resCode: String, resMsg: String, data: [HomeTabRequest]) {
+    init(resCode: String, resMsg: String, data: String) {
         self.resCode = resCode
         self.resMsg = resMsg
         self.data = data

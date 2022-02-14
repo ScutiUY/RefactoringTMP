@@ -11,6 +11,8 @@ class DetaileSettingViewController: UIViewController {
     
     // 뷰모델
     var homeTabViewModel = HomeTabViewModel()
+    let dateFormatter = DateFormatter()
+    
     
     //여행 제목 타이틀
     lazy var journeyTitle: UILabel = {
@@ -239,7 +241,6 @@ class DetaileSettingViewController: UIViewController {
         return button
     }()
     
-    
     // 다음 버튼
     lazy var nextButton: UIButton = {
         let button = UIButton()
@@ -248,7 +249,6 @@ class DetaileSettingViewController: UIViewController {
         button.setTitleColor(UIColor(red: 85/255, green: 185/255, blue: 188/255, alpha: 0.6), for: .highlighted)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 21)
         button.backgroundColor = .clear
-//        button.addTarget(self, action: #selector(dataSendButtonAction), for: .touchUpInside)
         
         return button
     }()
@@ -261,7 +261,6 @@ class DetaileSettingViewController: UIViewController {
         
         return stackView
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -281,6 +280,21 @@ class DetaileSettingViewController: UIViewController {
     
     
     @objc func nextButtonAction(_ sender: UIButton) {
+        dateFormatter.dateFormat = "yyyyMMdd"
+        
+        // 날짜 date to String 변환
+        let startDateStr = dateFormatter.string(from: dayToGocalendar.date)
+        let endDateStr = dateFormatter.string(from: dayToComecalendar.date)
+        
+        
+        guard let title = journeyTextField.text else {return}
+        let startDate = startDateStr
+        let endDate = endDateStr
+        guard let inviteNum = numPeopleTextField.text else {return}
+        guard let price = budgetAmount.text else {return}
+        
+        homeTabViewModel.updateDetailSettingData(title: title, startDate: startDate, endDate: endDate, inviteNum: inviteNum, price: price)
+        
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil)
             .instantiateViewController(withIdentifier: "DestiSearchViewSB") as! DestiSearchViewController
             navigationController?.pushViewController(nextView, animated: true)
@@ -299,9 +313,6 @@ class DetaileSettingViewController: UIViewController {
         view.addSubview(budgetAllStack)
         view.addSubview(bottomButtonStack)
     }
-    
-    
-    
     
     func setDelegate(){
         

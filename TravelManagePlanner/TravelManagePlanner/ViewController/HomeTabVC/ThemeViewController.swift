@@ -15,12 +15,12 @@ class ThemeViewController: UIViewController{
     
     let cellID = "Cell"
     // Assets의 사진 출력
-    lazy var imgDataList = ["커플", "가족", "우정", "기타"]
+    lazy var themeDataList = ["커플", "가족", "우정", "기타"]
     
     var imgArray: [UIImage] {
         var img:[UIImage] = []
         
-        for i in imgDataList {
+        for i in themeDataList {
             if let asImg = UIImage(named: i) {
                 
                 img.append(asImg)
@@ -130,7 +130,7 @@ extension ThemeViewController: UICollectionViewDataSource {
     // 셀 갯수 설정(필수)
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return imgDataList.count
+        return themeDataList.count
     }
     
     // 셀 데이터 내용 불러오기
@@ -139,8 +139,8 @@ extension ThemeViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ThemeViewCell
         
         //      cell.imageView.image = (imgArray[indexPath.row])
-        cell.cellLoadImage(imgDataList[indexPath.row])
-        cell.imgLabel.text = imgDataList[indexPath.row]
+        cell.cellLoadImage(themeDataList[indexPath.row])
+        cell.imgLabel.text = themeDataList[indexPath.row]
         
         return cell
     }
@@ -152,7 +152,7 @@ extension ThemeViewController: UICollectionViewDelegate {
         
         // main에 있는 두번째화면 불러오기(스토리보드 활용)
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "DetaileSettingViewSB") as! DetaileSettingViewController
-        homeTabViewModel.register()
+        homeTabViewModel.update()
         print("register 버튼 클릭")
         print(indexPath)
         
@@ -160,11 +160,10 @@ extension ThemeViewController: UICollectionViewDelegate {
         nextView.hidesBottomBarWhenPushed = true
         navigationController!.pushViewController(nextView, animated: true)
         
-        let imgDataName = imgDataList[indexPath.row]
+        let themeName = themeDataList[indexPath.row]
         
         // 선택한 테마 데이터 넘기기
-        homeTabViewModel.updateThemeData(userThemeData: imgDataName)
-//        nextView.homeTabViewModel.userThemeData = imgDataName
+        homeTabViewModel.updateThemeData(theme: themeName, uKey: "10000001") // UKey 10000001 테스트 코드
         // 선택한 데이터 넘기기
        
 //        homeTabViewModel.themeData = imgDataName

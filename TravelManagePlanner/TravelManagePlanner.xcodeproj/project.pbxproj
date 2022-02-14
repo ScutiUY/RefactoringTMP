@@ -13,6 +13,10 @@
 		4A716B8E27A2706C00D15024 /* CommunityFloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A716B8627A2706C00D15024 /* CommunityFloatingButton.swift */; };
 		4A716B9027A2706C00D15024 /* ReviewPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A716B8927A2706C00D15024 /* ReviewPhotoCollectionViewCell.swift */; };
 		4A716B9127A2706C00D15024 /* ReviewWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A716B8A27A2706C00D15024 /* ReviewWriteViewController.swift */; };
+		4AAABC3327B8D5EA0086B3FD /* ReviewScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAABC3227B8D5EA0086B3FD /* ReviewScrollView.swift */; };
+		4AAABC3627B8F11F0086B3FD /* ReviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAABC3527B8F11F0086B3FD /* ReviewData.swift */; };
+		4AAABC3827B8F34C0086B3FD /* ReviewDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAABC3727B8F34C0086B3FD /* ReviewDataRepository.swift */; };
+		4AAABC3E27B914980086B3FD /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAABC3D27B914980086B3FD /* ReviewViewModel.swift */; };
 		4AC16C5A27B1EE53005F74FB /* CommunityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC16C5927B1EE53005F74FB /* CommunityData.swift */; };
 		4AC16C5C27B1F2EC005F74FB /* CommunityDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC16C5B27B1F2EC005F74FB /* CommunityDataRepository.swift */; };
 		4AC16C5F27B1F38B005F74FB /* CommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC16C5E27B1F38B005F74FB /* CommunityViewModel.swift */; };
@@ -119,6 +123,10 @@
 		4A716B8927A2706C00D15024 /* ReviewPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		4A716B8A27A2706C00D15024 /* ReviewWriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewWriteViewController.swift; sourceTree = "<group>"; };
 		4A7F8DA77B98DEBB1A3D4E76 /* Pods-TravelManagePlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelManagePlanner.release.xcconfig"; path = "Target Support Files/Pods-TravelManagePlanner/Pods-TravelManagePlanner.release.xcconfig"; sourceTree = "<group>"; };
+		4AAABC3227B8D5EA0086B3FD /* ReviewScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewScrollView.swift; sourceTree = "<group>"; };
+		4AAABC3527B8F11F0086B3FD /* ReviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewData.swift; sourceTree = "<group>"; };
+		4AAABC3727B8F34C0086B3FD /* ReviewDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDataRepository.swift; sourceTree = "<group>"; };
+		4AAABC3D27B914980086B3FD /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
 		4AC16C5927B1EE53005F74FB /* CommunityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityData.swift; sourceTree = "<group>"; };
 		4AC16C5B27B1F2EC005F74FB /* CommunityDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityDataRepository.swift; sourceTree = "<group>"; };
 		4AC16C5E27B1F38B005F74FB /* CommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewModel.swift; sourceTree = "<group>"; };
@@ -254,8 +262,32 @@
 		4A716B8827A2706C00D15024 /* Review */ = {
 			isa = PBXGroup;
 			children = (
-				4A716B8927A2706C00D15024 /* ReviewPhotoCollectionViewCell.swift */,
 				4A716B8A27A2706C00D15024 /* ReviewWriteViewController.swift */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
+		4AAABC2D27B8D1920086B3FD /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				4A716B8927A2706C00D15024 /* ReviewPhotoCollectionViewCell.swift */,
+				4AAABC3227B8D5EA0086B3FD /* ReviewScrollView.swift */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
+		4AAABC3427B8F10D0086B3FD /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				4AAABC3527B8F11F0086B3FD /* ReviewData.swift */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
+		4AAABC3B27B914790086B3FD /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				4AAABC3D27B914980086B3FD /* ReviewViewModel.swift */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -433,6 +465,7 @@
 		F00F182C277866C500211A8D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4AAABC3427B8F10D0086B3FD /* Review */,
 				4AC16C5827B1EE1F005F74FB /* Community */,
 				6BA7894427B4E24D003CFE82 /* HomTab */,
 				F0F0C9DA27B24AB100FDBD10 /* SignIn+Up */,
@@ -533,6 +566,7 @@
 				F02403A5279FD013005F209F /* JourneyListRepository.swift */,
 				F0B258582798FDFC0042771F /* DestinationInfoRepositories.swift */,
 				4AC16C5B27B1F2EC005F74FB /* CommunityDataRepository.swift */,
+				4AAABC3727B8F34C0086B3FD /* ReviewDataRepository.swift */,
 				6BA7897127B4E3D1003CFE82 /* HomeTabRepository.swift */,
 			);
 			path = Repository;
@@ -560,6 +594,7 @@
 		F0CADCE22781EF8700DDC1CD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4AAABC2D27B8D1920086B3FD /* Review */,
 				4AC16C6227B2B3E2005F74FB /* Community */,
 				F0CADCFD2782479C00DDC1CD /* JourneyList */,
 				F080CF27279AE7C7007C1151 /* HomeTabView */,
@@ -572,6 +607,7 @@
 		F0CADCE32781EF9200DDC1CD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4AAABC3B27B914790086B3FD /* Review */,
 				4AC16C5D27B1F353005F74FB /* Community */,
 				6BA7896C27B4E3A6003CFE82 /* HomeTabVM */,
 				F0FECF19279FAAD0007C135D /* JourneyList */,
@@ -884,6 +920,7 @@
 				F079D513278ADA9E004BF9F6 /* SignUpViewModel.swift in Sources */,
 				F02403A6279FD013005F209F /* JourneyListRepository.swift in Sources */,
 				F0CADCE12781EF5500DDC1CD /* LoadingButton.swift in Sources */,
+				4AAABC3627B8F11F0086B3FD /* ReviewData.swift in Sources */,
 				F00F182A2778637D00211A8D /* SignInUpRepositoty.swift in Sources */,
 				F0B258592798FDFC0042771F /* DestinationInfoRepositories.swift in Sources */,
 				4AC16C8C27B4AB8B005F74FB /* CommunityCustomNavigationView.swift in Sources */,
@@ -917,6 +954,7 @@
 				F0CADCFF27824EF000DDC1CD /* JourneyListDetailPageCollectionViewCell.swift in Sources */,
 				F0CADCFB2782478400DDC1CD /* JourneyListDetailViewController.swift in Sources */,
 				6BA7897F27B4E457003CFE82 /* TourAreaCalendarViewController.swift in Sources */,
+				4AAABC3327B8D5EA0086B3FD /* ReviewScrollView.swift in Sources */,
 				F04FD8B7278B9E72007D8866 /* Journey.swift in Sources */,
 				6BA7898E27B4E53A003CFE82 /* TouristAreaViewController.swift in Sources */,
 				6BA7897B27B4E457003CFE82 /* RestaurantCalendarViewController.swift in Sources */,
@@ -925,15 +963,17 @@
 				6BA7897C27B4E457003CFE82 /* AccomoViewCell.swift in Sources */,
 				6BA7896E27B4E3A6003CFE82 /* HomeTabViewModel.swift in Sources */,
 				F0CADCF1278217F700DDC1CD /* DestinationDetailViewModel.swift in Sources */,
+				4AAABC3E27B914980086B3FD /* ReviewViewModel.swift in Sources */,
 				6BA7898927B4E53A003CFE82 /* ThemeViewController.swift in Sources */,
 				6BA7897227B4E3D1003CFE82 /* HomeTabRepository.swift in Sources */,
 				6BA7898C27B4E53A003CFE82 /* DestiSearchViewController.swift in Sources */,
 				F0CADCC62780DEB900DDC1CD /* TabbarController.swift in Sources */,
 				F0B258562798FA740042771F /* HttpClient.swift in Sources */,
 				6B1D27F5279DA836004B24CB /* (null) in Sources */,
-				6B1D27F5279DA836004B24CB /* AccomoViewCell.swift in Sources */,
+				6B1D27F5279DA836004B24CB /* (null) in Sources */,
 				F0F0C9DE27B4838100FDBD10 /* URLManager.swift in Sources */,
 				4AC16C5C27B1F2EC005F74FB /* CommunityDataRepository.swift in Sources */,
+				4AAABC3827B8F34C0086B3FD /* ReviewDataRepository.swift in Sources */,
 				F076BDD72796922A00AF6FFD /* DestinationDetailContentTableViewCell.swift in Sources */,
 				6BE2143027A186CC004B8816 /* (null) in Sources */,
 				F076BDD72796922A00AF6FFD /* DestinationDetailContentTableViewCell.swift in Sources */,

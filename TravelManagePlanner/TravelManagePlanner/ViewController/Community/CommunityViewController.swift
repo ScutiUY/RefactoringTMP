@@ -178,8 +178,20 @@ class CommunityViewController: UIViewController {
         
         for idx in 0..<journeyList.count {
             alertData.append(UIAlertAction(title: journeyList[idx].title, style: .default, handler: { UIAlertAction in
-                let reviewVC = ReviewWriteViewController(title: self.journeyList[idx].title, sDate: self.journeyList[idx].sDate, eDate: self.journeyList[idx].eDate)
+                
+//                var journeyDetailData: [[], []]
+                
+                var reviewShopList : [ReviewData.ShopListDetail] = []
+                let journeyDetailData = JourneyListDetailViewModel().passJourneyData()
+                print(journeyDetailData)
+                for i in 0..<JourneyListDetailViewModel().count() {
+                    reviewShopList.append(ReviewData.ShopListDetail(sIdx:"\(journeyDetailData[i].idx)" , vDate: journeyDetailData[i].visitDate))
+                }
+
+                let reviewVC = ReviewWriteViewController(title: self.journeyList[idx].title, sDate: self.journeyList[idx].sDate, eDate: self.journeyList[idx].eDate, theme: self.journeyList[idx].theme, journeydetail: reviewShopList)
                 self.navigationController!.pushViewController(reviewVC, animated: true)
+                
+
             }))
             alert.addAction(alertData[idx])
         }

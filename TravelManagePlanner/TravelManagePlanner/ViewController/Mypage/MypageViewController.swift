@@ -9,7 +9,9 @@ import UIKit
 import SnapKit
 
 class MypageViewController: UIViewController {
+    
     let mypageList = ["개인정보", "환경설정"]
+    
     lazy var mypageTableview: UITableView = {
         var tableView = UITableView()
         tableView.register(MypageTableViewCell.self, forCellReuseIdentifier: "myPageCell")
@@ -20,9 +22,10 @@ class MypageViewController: UIViewController {
         super.viewDidLoad()
         mypageTableview.delegate = self
         mypageTableview.dataSource = self
-        self.title = "마이 페이지"
+        self.title = "My Page".localized
         setLayout()
     }
+    
     func setLayout() {
         self.navigationController?.navigationItem.largeTitleDisplayMode = .always
         self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -38,8 +41,8 @@ class MypageViewController: UIViewController {
             make.trailing.equalToSuperview()
         }
     }
-
 }
+
 extension MypageViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mypageList.count
@@ -51,6 +54,15 @@ extension MypageViewController: UITableViewDelegate, UITableViewDataSource {
         cell.fetchData(title: mypageList[indexPath.row])
         return cell
     }
-    
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let personalDataVC = PersonalDataViewController()
+        let settingsVC = SettingsViewController()
+        
+        if indexPath.row == 0 {
+            self.navigationController?.pushViewController(personalDataVC, animated: true)
+        } else {
+            self.navigationController?.pushViewController(settingsVC, animated: true)
+        }
+    }
 }

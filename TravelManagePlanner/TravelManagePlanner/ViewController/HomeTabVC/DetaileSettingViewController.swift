@@ -7,8 +7,10 @@
 import UIKit
 import SnapKit
 
-class DetaileSettingViewController:UIViewController {
+class DetaileSettingViewController: UIViewController {
     
+    // 뷰모델
+    var homeTabViewModel = HomeTabViewModel()
     
     //여행 제목 타이틀
     lazy var journeyTitle: UILabel = {
@@ -80,6 +82,8 @@ class DetaileSettingViewController:UIViewController {
         
         return label
     }()
+    
+    
     
     //    // 오는날 달력 구현부
     //    lazy var dayToComecalendar: UILabel = {
@@ -244,6 +248,7 @@ class DetaileSettingViewController:UIViewController {
         button.setTitleColor(UIColor(red: 85/255, green: 185/255, blue: 188/255, alpha: 0.6), for: .highlighted)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 21)
         button.backgroundColor = .clear
+//        button.addTarget(self, action: #selector(dataSendButtonAction), for: .touchUpInside)
         
         return button
     }()
@@ -262,18 +267,20 @@ class DetaileSettingViewController:UIViewController {
         super.viewDidLoad()
         view.backgroundColor = GlobalConstants.Color.Background.themeColor
         setUpView()
-        setConstraints()
+        setLayout()
         setDelegate()
         setButtonAction()
         
         budgetSlider.addTarget(self, action: #selector(self.sliderAction(_:)), for: .valueChanged)
-        
         nextButton.addTarget(self, action: #selector(self.nextButtonAction(_:)), for: .touchUpInside)
     }
     
-    @objc
-    func nextButtonAction(_ sender: UIButton) {
-        
+//    @objc func dataSendButtonAction() {
+//        themeViewModel.themeData = self.journeyTextField.text ?? "title is nil"
+//    }
+    
+    
+    @objc func nextButtonAction(_ sender: UIButton) {
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil)
             .instantiateViewController(withIdentifier: "DestiSearchViewSB") as! DestiSearchViewController
             navigationController?.pushViewController(nextView, animated: true)
@@ -293,6 +300,9 @@ class DetaileSettingViewController:UIViewController {
         view.addSubview(bottomButtonStack)
     }
     
+    
+    
+    
     func setDelegate(){
         
     }
@@ -308,7 +318,7 @@ class DetaileSettingViewController:UIViewController {
     //        print("들어오긴하니?")
     //    }
     
-    func setConstraints() {
+    func setLayout() {
         journeyTitle.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(30)
             $0.leading.equalTo(view.snp.centerX).multipliedBy(0.1)

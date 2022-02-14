@@ -11,7 +11,7 @@ class JourneyListViewModel {
     
     private var repo = JourneyListRepository()
     
-    private var journeyList: JourneyList = JourneyList.shared
+    private var journeyList = JourneyList.shared.data
     private var isLoading = false
     
     var loadingStarted: (() -> ()) = { }
@@ -20,14 +20,14 @@ class JourneyListViewModel {
     var failedJourneyListUpdate: (() -> ()) = { }
     
     func getTitle(idx: Int) -> String {
-        return journeyList.journeys[idx].name
+        return journeyList[idx].title
     }
     
     func journeyListCount() -> Int {
-        return journeyList.journeys.count
+        return journeyList.count
     }
     func journey(index: Int) -> Journey {
-        return journeyList.journeys[index]
+        return journeyList[index]
     }
     
     func getList() {

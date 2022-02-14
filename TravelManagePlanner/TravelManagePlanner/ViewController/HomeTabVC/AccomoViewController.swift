@@ -4,7 +4,6 @@
 //
 //  Created by YoonDaeSung on 2022/01/22.
 //
-
 import UIKit
 
 // 숙박업소 추천지노출
@@ -78,7 +77,7 @@ class AccomoViewController: UIViewController {
     
     func setLayout() {
         accomoHeadStack.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(30)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).multipliedBy(1.1)
             $0.leading.equalTo(view.snp.centerX).multipliedBy(0.1)
             $0.trailing.equalToSuperview().offset(-24)
         }
@@ -86,7 +85,7 @@ class AccomoViewController: UIViewController {
         accomoTableView.snp.makeConstraints {
             $0.top.equalTo(accomoHeadStack.snp.bottom).multipliedBy(1.1)
             $0.leading.equalTo(view.snp.centerX).multipliedBy(0.1)
-            $0.bottom.equalToSuperview().offset(-54)
+            $0.bottom.equalToSuperview().offset(-130)
             $0.trailing.equalToSuperview().offset(-24)
         }
     }
@@ -125,12 +124,14 @@ extension AccomoViewController: UITableViewDataSource {
     // 테이블 구성
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        print(indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! AccomoViewCell
         cell.backgroundColor = .clear
         cell.cellLoadImage(imgDataName[indexPath.row])
         cell.accomoTitle.text = imgDataName[indexPath.row]
         cell.accomoSubTitle.text = "업소의 간단한 설명"
         cell.cellDelegate = self
+        
     
 //        cell.contentView.isUserInteractionEnabled = false
         
@@ -141,7 +142,13 @@ extension AccomoViewController: UITableViewDataSource {
 extension AccomoViewController:ContentsMainTextDelegate {
     func categoryButtonTapped() {
         print("버튼 기능 구현")
+        
+        let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "AccomoCalendarViewSB") as! AccomoCalendarViewController
+        
+        // 다음화면에서 바텀탭 없애기
+        nextView.hidesBottomBarWhenPushed = true
+        self.present(nextView, animated: true)
     }
+    
+    
 }
-
-

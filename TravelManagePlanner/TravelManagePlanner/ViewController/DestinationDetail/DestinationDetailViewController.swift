@@ -10,9 +10,7 @@ import SnapKit
 
 class DestinationDetailViewController: UIViewController {
     
-    var destinationDetailViewModel: DestinationDetailViewModel!
-    
-    //private var fetchedImages: [UIImage] = [] 캐싱용 수정필요
+    var destinationDetailViewModel = DestinationDetailViewModel()
     
     lazy var imageAnchorView: UIView = {
         var view = UIView()
@@ -46,8 +44,6 @@ class DestinationDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        destinationDetailViewModel = DestinationDetailViewModel()
-        destinationDetailViewModel.getDestinationData()
         setLayout()
         setDelegate()
         setObserver()
@@ -102,6 +98,7 @@ class DestinationDetailViewController: UIViewController {
     
 }
 extension DestinationDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    // ImageCollectionView Delegate
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         imagePageControl.numberOfPages = destinationDetailViewModel.imagesCount()
         return destinationDetailViewModel.imagesCount()
@@ -122,6 +119,7 @@ extension DestinationDetailViewController: UICollectionViewDelegateFlowLayout {
     
 }
 extension DestinationDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    // Content TableView Delegate and DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }

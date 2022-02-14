@@ -10,7 +10,7 @@ import SnapKit
 
 class MypageViewController: UIViewController {
     
-    let mypageList = ["개인정보", "환경설정"]
+    let mypageList = ["Personal Information".localized, "Previous Travel".localized, "Settings".localized]
     
     lazy var mypageTableview: UITableView = {
         var tableView = UITableView()
@@ -57,10 +57,13 @@ extension MypageViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let personalDataVC = PersonalDataViewController()
+        let previousTravelVC = PreviousTravelViewController()
         let settingsVC = SettingsViewController()
         
         if indexPath.row == 0 {
             self.navigationController?.pushViewController(personalDataVC, animated: true)
+        } else if indexPath.row == 1 {
+            self.navigationController?.pushViewController(previousTravelVC, animated: true)
         } else {
             self.navigationController?.pushViewController(settingsVC, animated: true)
         }

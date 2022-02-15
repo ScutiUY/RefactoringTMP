@@ -11,8 +11,15 @@ class JourneyListViewModel {
     
     private var repo = JourneyListRepository()
     
-    private var journeyList = JourneyList.shared.data
+    private var journeyList = [Journey]()
     private var isLoading = false
+    
+    
+    var currentDate: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        return formatter.string(from: Date())
+    }
     
     var loadingStarted: (() -> ()) = { }
     var loadingEnded: (() -> ()) = { }
@@ -31,10 +38,36 @@ class JourneyListViewModel {
     }
     
     func getList() {
+        var list = [Journey]()
         isLoading = true
         loadingStarted()
         repo.getJourneyList(completed: { result in
-            self.journeyList = result
+            result.forEach {
+                if Int($0.eDate)! >= Int(self.currentDate)! {
+                    list.append($0)
+                }
+            }
+            self.journeyList = list
+            print(#function, self.journeyList.count)
+            self.journeyListUpdated()
+            self.loadingEnded()
+            self.isLoading = false
+        })
+    }
+    
+    // mypage의 지난 여행 불러오기
+    
+    func getPreviousList() {
+        var list = [Journey]()
+        isLoading = true
+        loadingStarted()
+        repo.getJourneyList(completed: { result in
+            result.forEach {
+                if Int($0.eDate)! < Int(self.currentDate)! {
+                    list.append($0)
+                }
+            }
+            self.journeyList = list
             self.journeyListUpdated()
             self.loadingEnded()
             self.isLoading = false

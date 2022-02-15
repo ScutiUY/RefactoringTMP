@@ -6,11 +6,13 @@
 //
 
 import UIKit
-import SnapKit
 
 
 // 숙박, 식당, 놀거리 추천지 Page
 class RecommendPageViewController: UIPageViewController {
+    
+    // 뷰모델 선언
+    
     var recommendVCArray: [UIViewController] = {
         let storyBoard = UIStoryboard(name: "HomeTabSB", bundle: nil)
         

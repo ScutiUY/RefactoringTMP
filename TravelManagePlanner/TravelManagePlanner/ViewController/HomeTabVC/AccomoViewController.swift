@@ -152,7 +152,7 @@ extension AccomoViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! AccomoViewCell
         cell.backgroundColor = .clear
         
-        // 1: 숙박, 2: 식당, 3: 놀거리
+        // 선택된 해당데이터 모델[배열]가져오기
         let shopData = destiSearchViewModel.getShopData(idx: indexPath.row, categoryIdx: "1")
         
         self.firstaccomName = shopData.name

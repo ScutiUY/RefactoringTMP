@@ -18,6 +18,8 @@ class DestiSearchViewModel {
     // repository 소유
     private var repo = HomeTabRepository()
     
+    // 모델을 static
+    
     // 유저입력 목적지
     static var serchData = ""
     
@@ -38,8 +40,10 @@ class DestiSearchViewModel {
             switch result {
             case .success(let responseData):
                 self.destiSearchResponse = responseData.data
+#if DEBUG
                 print("destiSearchResponse!", self.destiSearchResponse)
                 print("destiSearchResponseCount", self.destiSearchResponse.count)
+#endif
                 
                 self.dataUpdated()
                 self.loadingEnded()
@@ -84,7 +88,7 @@ class DestiSearchViewModel {
         return destiSearchResponse[idx].idx
     }
     
-    // 테마별 생설될 cell갯수 카운트
+    // 카테고리별 생설될 cell갯수 카운트
     func getDestiSearchCount(categoryIdx: String) -> Int {
         var cnt = 0
         for i in 0..<destiSearchResponse.count {
@@ -93,25 +97,17 @@ class DestiSearchViewModel {
             }
         }
         
-        print("테마별 생성데이터: ", cnt)
         return cnt
     }
     
-    // 선택한 카테고리의 뷰만 뿌려주기
+    // 카테고리별 뷰 담아주기
     func getShopData(idx: Int, categoryIdx: String) -> DestiSearchResponseData {
-            
+        var filterShopData = DestiSearchResponseData(area: "", imgUrl: "", address: "", name: "", idx: 0, category: "", content: "")
         
-        // 1.필터데이터를
-//        var filterShopData:[destiSearchResponse] = []
-        
-        for i in 0..<destiSearchResponse.count {
-//            if filterShopData.
-            #if DEBUG
-            print("i값은? : ", i)
-            #endif
+            if destiSearchResponse[idx].category == categoryIdx{
+                filterShopData = destiSearchResponse[idx]
         }
-       
-       
-        return self.destiSearchResponse[idx]
+//        return self.destiSearchResponse[idx]
+        return filterShopData
     }
 }

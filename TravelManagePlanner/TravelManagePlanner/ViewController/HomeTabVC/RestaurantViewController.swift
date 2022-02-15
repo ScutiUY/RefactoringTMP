@@ -8,24 +8,10 @@
 import UIKit
 
 class RestaurantViewController: UIViewController {
-
+    
+    // 뷰모델 소유
+    let destiSearchViewModel = DestiSearchViewModel()
     let cellID = "Cell"
-    
-    lazy var imgDataName = ["accomoA", "accomoB", "accomoC","accomoA", "accomoB", "accomoC"]
-    
-    var imgArray: [UIImage] {
-        var img:[UIImage] = []
-        
-        for i in imgDataName {
-            if let asImg = UIImage(named: i) {
-                
-                img.append(asImg)
-            }else {
-                print("Restaurant imgData is nil")
-            }
-        }
-        return img
-    }
     
     lazy var restaurantTitleLabel: UILabel = {
         let label = UILabel()
@@ -66,6 +52,8 @@ class RestaurantViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = GlobalConstants.Color.Background.themeColor
+        
+        setObserver()
         setUpView()
         setLayout()
         setDelegate()
@@ -98,7 +86,22 @@ class RestaurantViewController: UIViewController {
         restaurantTableView.register(RestaurantViewCell.classForCoder(), forCellReuseIdentifier: cellID)
     }
     
+    func setObserver() {
+        destiSearchViewModel.getData()
+        
+        destiSearchViewModel.loadingStarted = {
+            
+        }
+        destiSearchViewModel.loadingEnded = {
+            
+        }
+        destiSearchViewModel.dataUpdated = {
+            self.restaurantTableView.reloadData()
+        }
+    }
+    
 }
+    
 
 
 // cellHeight 지정
@@ -118,8 +121,11 @@ extension RestaurantViewController: UITableViewDataSource {
     
     // cell 갯수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        imgDataName.count
+        
+        // 1: 숙박, 2: 식당, 3: 놀거리
+        let tableCount = destiSearchViewModel.getDestiSearchCount(categoryIdx: "2")
+        
+        return tableCount
     }
     
     // 테이블 구성
@@ -128,10 +134,17 @@ extension RestaurantViewController: UITableViewDataSource {
         print(indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! RestaurantViewCell
         cell.backgroundColor = .clear
-        cell.cellLoadImage(imgDataName[indexPath.row])
-        cell.restaurantTitle.text = imgDataName[indexPath.row]
-        cell.restaurantSubTitle.text = "업소의 간단한 설명"
+   
+        // 카테고리가 식당 인것만  == 2
+        let shopData = destiSearchViewModel.getShopData(idx: indexPath.row, categoryIdx: "2")
+        let url = URL(string: shopData.imgUrl)
+        let data = try! Data(contentsOf: url!)
+        
+        cell.restaurantImg.image = UIImage(data: data)
+        cell.restaurantTitle.text = shopData.name
+        cell.restaurantSubTitle.text = shopData.content
         cell.cellDelegate = self
+        
         
     
 //        cell.contentView.isUserInteractionEnabled = false

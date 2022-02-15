@@ -10,77 +10,60 @@ import Foundation
 class HomeTabViewModel {
     
     // 모델 소유
-    static var globalHomeTabData = HomeTabData(themeData: "", dayToGocalendar: "", dayToComecalendar: "", numPeople:"", budgetAmount: "")
-    // 목적지 모델 소유
-    var destiSearchData = DestiSearchData(place: "")
+    static var globalHomeTabData = HomeTabRequest(uKey: "", title: "", startDate: "", endDate: "", inviteNum:"", price: "", theme: "", shopList: [])
     
+    // repository 소유
     private var repo = HomeTabRepository()
+    
+    // 상태 정의
     private var isLoading: Bool = false
-    
-//    테마 설정 데이터
-    private var userThemeData = "" // 테마 데이터
-    
-    // 디테일 설정 데이터
-    private var journeyTextField = "" // 여행 제목
-    private var dayToGocalendar = "" // 가는날
-    private var dayToComecalendar = "" // 오는날
-    private var numPeople = "" // 인원 수
-    private var budgetAmount = "" // 예산
-    
-    // 목적지
-    private var userDestiData = ""
-    
-    func updateThemeData(userThemeData: String) {
-        HomeTabViewModel.globalHomeTabData.themeData = userThemeData
-    }
-    
-    func updateDetailSettingData(journeyTextField: String, dayToGocalendar: String, dayToComecalendar: String, numPeople: String, budgetAmount: String) {
-        HomeTabViewModel.globalHomeTabData.themeData = journeyTextField
-        HomeTabViewModel.globalHomeTabData.dayToGocalendar = dayToGocalendar
-        HomeTabViewModel.globalHomeTabData.dayToComecalendar = dayToComecalendar
-        HomeTabViewModel.globalHomeTabData.numPeople = numPeople
-        HomeTabViewModel.globalHomeTabData.budgetAmount = budgetAmount
-    }
-    
-    func updateDestiSearchData(userDestiData: String) {
-        destiSearchData.place = userDestiData
-        
-        repo.getPlaceRepository(placeData: destiSearchData) {  result in
-            self.isLoading = true
-            print(result)
-        }
-    }
-    
-    // 상태정의
     var loadingStarted: (() -> ()) = { }
+    var loadingEnded: (() -> ()) = { }
+    var dataUpdated: (() -> ()) = { }
+    var failedJourneyListUpdate: (() -> ()) = { }
     
-    
-
-    // VM에서 repository호출, repo에서 api통신 정의
-    func register() {
-        repo.setPlanRepository(homeTabData: HomeTabViewModel.globalHomeTabData) { result in
-            
-            self.isLoading = true
-            
-            print(result)
+    // 테마 데이터 업데이트
+    func updateThemeData(theme: String, uKey: String) {
+        // 디비에 넣을 데이터로변경
+        var changeTheme = theme
+        switch theme {
+        case "커플":
+            changeTheme = "couple"
+        case "가족":
+            changeTheme = "family"
+        case "우정":
+            changeTheme = "friend"
+        default:
+            changeTheme = "etc"
         }
         
-        func getDestiPlace() {
-            
+        HomeTabViewModel.globalHomeTabData.theme = changeTheme
+        HomeTabViewModel.globalHomeTabData.uKey = uKey // 유저키 받는부분 추후 설정필요
+    }
+    
+    // 디테일설정 데이터 업데이트
+    func updateDetailSettingData(title: String, startDate: String, endDate: String, inviteNum: String, price: String) {
+        
+        if title == "" || title.count < 6 {
+            //            print("제목을 6글자 이상 입력해주세요")
+        }else {
+            HomeTabViewModel.globalHomeTabData.title = title
         }
         
-        //    func setThemeData() {
-        //        // 테마 데이터 담을시에 로딩 활성화
-        //        isLoading = true
-        //        loadingStarted()
-        //
-        //        repo.setThemeData(completed: (homeTabData))
-        //    }
-    }// class
+        HomeTabViewModel.globalHomeTabData.startDate = startDate
+        HomeTabViewModel.globalHomeTabData.endDate = endDate
+        HomeTabViewModel.globalHomeTabData.inviteNum = inviteNum
+        HomeTabViewModel.globalHomeTabData.price = price
+    }
     
-    // Date Picker 날짜 비교로직 이전날짜가 더 높으면 안됨
+    // 숙박, 맛집, 놀거리 설정 업데이트
+    func updateRecommendData(shopList: [HomeTabRequestData]) {
+        HomeTabViewModel.globalHomeTabData.shopList.append(contentsOf: shopList)
+#if DEBUG
+        print("accomoShopData", shopList)
+        print("all Data: ", HomeTabViewModel.globalHomeTabData)
+#endif
+        
+    }
     
-    // 인원수 제한 로직
-    
-    //
-}
+}// class

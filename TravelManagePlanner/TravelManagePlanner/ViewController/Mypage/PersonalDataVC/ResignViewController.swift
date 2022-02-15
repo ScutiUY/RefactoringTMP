@@ -1,13 +1,13 @@
 //
-//  SettingsViewController.swift
+//  ResignViewController.swift
 //  TravelManagePlanner
 //
-//  Created by UY on 2022/02/13.
+//  Created by UY on 2022/02/15.
 //
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class ResignViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

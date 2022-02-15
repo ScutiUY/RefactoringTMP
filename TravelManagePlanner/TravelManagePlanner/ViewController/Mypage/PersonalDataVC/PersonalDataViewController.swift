@@ -25,6 +25,7 @@ class PersonalDataViewController: UIViewController {
         setLayout()
         // Do any additional setup after loading the view.
     }
+    
     func setLayout() {
         self.navigationController?.navigationItem.largeTitleDisplayMode = .always
         self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -40,8 +41,10 @@ class PersonalDataViewController: UIViewController {
             make.trailing.equalToSuperview()
         }
     }
+    
 }
 extension PersonalDataViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return personalDataList.count
     }
@@ -52,5 +55,14 @@ extension PersonalDataViewController: UITableViewDelegate, UITableViewDataSource
         cell.fetchData(title: personalDataList[indexPath.row])
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.row == 0 {
+            
+        } else if indexPath.row == 1 {
+            
+        } else {
+            
+        }
+    }
 }

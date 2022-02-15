@@ -14,10 +14,16 @@
 
 //My page
 
-"Personal Information" == "개인정보"
-"Previous Travel" == "지난여행"
-"Settings" == "설정"
+"Personal Information" = "개인정보";
+"Previous Travel" = "지난여행";
+"Settings" = "설정";
 
 "Change Nickname" = "닉네임 변경";
 "Resign" = "회원 탈퇴";
 "Logout" = "로그아웃";
+
+"Version Information" = "버전 정보";
+
+"Are you sure resign?" = "정말 탈퇴 하시겠습니까?";
+
+"Confirm" = "확인";

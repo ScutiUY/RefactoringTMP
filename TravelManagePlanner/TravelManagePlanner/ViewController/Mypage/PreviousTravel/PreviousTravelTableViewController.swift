@@ -14,4 +14,9 @@ class PreviousTravelViewController: UIViewController {
         
     }
     
+    func setLayout() {
+        
+        view.backgroundColor = GlobalConstants.Color.Background.themeColor
+        
+    }
 }

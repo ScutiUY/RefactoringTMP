@@ -15,10 +15,17 @@
 
 // My page
 
-"Personal Information" == "Personal Information"
-"Previous Travel" == "Previous Travel"
-"Settings" == "Settings"
+"Personal Information" = "Personal Information";
+"Previous Travel" = "Previous Travel";
+"Settings" = "Settings";
 
 "Change Nickname" = "Change Nickname";
 "Resign" = "Resign";
 "Logout" = "Logout";
+
+"Version Information" = "Version Information";
+
+"Are you sure resign?" = "Are you sure resign?";
+
+"Confirm" = "Confirm";
+

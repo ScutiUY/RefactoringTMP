@@ -84,20 +84,34 @@ class DestiSearchViewModel {
         return destiSearchResponse[idx].idx
     }
     
-    func getDestiSearchCount() -> Int {
+    // 테마별 생설될 cell갯수 카운트
+    func getDestiSearchCount(categoryIdx: String) -> Int {
+        var cnt = 0
+        for i in 0..<destiSearchResponse.count {
+            if destiSearchResponse[i].category == categoryIdx {
+                cnt += 1
+            }
+        }
         
-        return destiSearchResponse.count
+        print("테마별 생성데이터: ", cnt)
+        return cnt
     }
     
+    // 선택한 카테고리의 뷰만 뿌려주기
     func getShopData(idx: Int, categoryIdx: String) -> DestiSearchResponseData {
+            
         
-        //        var shopArray: [DestiSearchResponse]
-        //
-        //        if destiSearchResponse[idx].category == categoryIdx {
-        //            for i in 0..<destiSearchResponse.count{
-        //                shopArray += destiSearchResponse[i]
-        //            }
-        //        }
+        // 1.필터데이터를
+//        var filterShopData:[destiSearchResponse] = []
+        
+        for i in 0..<destiSearchResponse.count {
+//            if filterShopData.
+            #if DEBUG
+            print("i값은? : ", i)
+            #endif
+        }
+       
+       
         return self.destiSearchResponse[idx]
     }
 }

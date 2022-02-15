@@ -48,7 +48,7 @@ class SignUpViewModel {
             userInfoInputErrorMessage.value = "이름을 확인 해주세요"
             return .invalidPwd
         } else if name.count < 2 {
-            userInfoInputErrorMessage.value = "이름을 2글자 이상 이"
+            userInfoInputErrorMessage.value = "이름을 2글자 이상 입력해주세요"
             return .invalidName
         } else {
             return .success

@@ -122,17 +122,10 @@ extension RestaurantViewController: UITableViewDataSource {
     // cell 갯수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let tableCount = destiSearchViewModel.getDestiSearchCount()
-        print("tableCount", tableCount)
-        // 카테고리가 식당 인것만  == 2
-        var cnt = 0
-        for i in 0..<tableCount {
-            if destiSearchViewModel.destiSearchResponse[i].category == "2" {
-                cnt += 1
-            }
-        }
+        // 1: 숙박, 2: 식당, 3: 놀거리
+        let tableCount = destiSearchViewModel.getDestiSearchCount(categoryIdx: "2")
         
-        return cnt
+        return tableCount
     }
     
     // 테이블 구성

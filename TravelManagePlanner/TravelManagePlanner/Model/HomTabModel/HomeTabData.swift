@@ -43,19 +43,25 @@ struct HomeTabRequestData: Codable {
     var sIdx: String // 가게 인덱스
     var vDate: String // 가게 체크인 날짜 (방문일)
     var leaveDate: String // 가게 체크아웃 날짜, 식당과 놀거리는 방문일과 동일한 날짜 전달
+    
+    init(sIdx: String, vDate: String, leaveDate: String) {
+        self.sIdx = sIdx
+        self.vDate = vDate
+        self.leaveDate = leaveDate
+    }
 }
 
 
 // 여행계획 최종입력 응답
 struct HomeTabResponse: Codable {
     
-    static var shared = HomeTabResponse(resCode: "", resMsg: "", data: [])
+    static var shared = HomeTabResponse(resCode: "", resMsg: "", data: "")
     
     var resCode: String
     var resMsg: String
-    var data: [HomeTabRequest]
+    var data: String?
     
-    init(resCode: String, resMsg: String, data: [HomeTabRequest]) {
+    init(resCode: String, resMsg: String, data: String) {
         self.resCode = resCode
         self.resMsg = resMsg
         self.data = data

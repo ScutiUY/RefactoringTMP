@@ -115,7 +115,8 @@ extension AccomoViewController: UITableViewDelegate {
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "AccomoCalendarViewSB") as! AccomoCalendarViewController
         
         nextView.accomoName = destiSearchViewModel.getTitle(idx: indexPath.row)
-        nextView.accomoPlace = destiSearchViewModel.getContent(idx: indexPath.row)
+        nextView.accomoPlace = destiSearchViewModel.getArea(idx: indexPath.row)
+        nextView.accomoSIdx = destiSearchViewModel.getSIdx(idx: indexPath.row)
         
         // 다음화면에서 바텀탭 없애기
         nextView.hidesBottomBarWhenPushed = true
@@ -134,18 +135,10 @@ extension AccomoViewController: UITableViewDataSource {
     // cell 갯수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        // 뷰모델에서 정의 필요
-        let tableCount = destiSearchViewModel.getDestiSearchCount()
-        print("tableCount Accomo", tableCount)
-        // 카테고리가 숙박업소 인것만 세기 == 1
-        var cnt = 0
-        for i in 0..<tableCount {
-            if destiSearchViewModel.destiSearchResponse[i].category == "1" {
-                cnt += 1
-            }
-        }
+        // 1: 숙박, 2: 식당, 3: 놀거리
+        let tableCount = destiSearchViewModel.getDestiSearchCount(categoryIdx: "1")
         
-        return cnt
+        return tableCount
     }
     
     // 테이블 화면데이터구성
@@ -159,7 +152,7 @@ extension AccomoViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! AccomoViewCell
         cell.backgroundColor = .clear
         
-        // 선택된 해당데이터 모델[배열]가져오기
+        // 1: 숙박, 2: 식당, 3: 놀거리
         let shopData = destiSearchViewModel.getShopData(idx: indexPath.row, categoryIdx: "1")
         
         self.firstaccomName = shopData.name

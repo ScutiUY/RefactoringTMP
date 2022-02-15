@@ -9,10 +9,20 @@ import SnapKit
 import FSCalendar
 
 class AccomoCalendarViewController: UIViewController {
+    
+    // 뷰모델 소지
+    let homeTabViewModel = HomeTabViewModel()
+    
     let fscCalendarDateFormat = DateFormatter()
+    
+    let dateFormatter = DateFormatter()
     
     var accomoName: String = ""
     var accomoPlace: String = ""
+    var accomoSIdx: Int = 0
+    
+    var selectCheckIn = ""
+    var selectCheckOut = ""
     
     lazy var containerView: UIView = {
         let view = UIView()
@@ -34,7 +44,6 @@ class AccomoCalendarViewController: UIViewController {
     lazy var fscCalendar: FSCalendar = {
         let calendar = FSCalendar()
         
-        
         //선택 버튼색상
         calendar.appearance.selectionColor = UIColor(red: 104/255, green: 209/255, blue: 148/255, alpha: 1)
         calendar.backgroundColor = UIColor(red: 228/255, green: 245/255, blue: 255/255, alpha: 1)
@@ -42,6 +51,14 @@ class AccomoCalendarViewController: UIViewController {
         calendar.allowsMultipleSelection = true
         calendar.scrollEnabled = true
         calendar.scrollDirection = .horizontal
+        calendar.appearance.headerDateFormat = "YYYY년 M월"
+        calendar.calendarWeekdayView.weekdayLabels[0].text = "일"
+        calendar.calendarWeekdayView.weekdayLabels[1].text = "월"
+        calendar.calendarWeekdayView.weekdayLabels[2].text = "화"
+        calendar.calendarWeekdayView.weekdayLabels[3].text = "수"
+        calendar.calendarWeekdayView.weekdayLabels[4].text = "목"
+        calendar.calendarWeekdayView.weekdayLabels[5].text = "금"
+        calendar.calendarWeekdayView.weekdayLabels[6].text = "토"
         calendar.layer.cornerRadius = 20
         return calendar
     }()
@@ -50,18 +67,18 @@ class AccomoCalendarViewController: UIViewController {
     lazy var selectAccomName: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 21)
-//        label.textAlignment = .center
+        //        label.textAlignment = .center
         label.text = accomoName
         label.textColor = UIColor(red: 94/255, green: 94/255, blue: 94/255, alpha: 1)
         
         return label
     }()
-
+    
     // 선택한 숙박장소 지역명
     lazy var selectAccomoPlace: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
-//        label.textAlignment = .center
+        //        label.textAlignment = .center
         label.text = accomoPlace
         label.textColor = UIColor(red: 94/255, green: 94/255, blue: 94/255, alpha: 1)
         
@@ -113,6 +130,8 @@ class AccomoCalendarViewController: UIViewController {
         
         fscCalendar.delegate = self
         fscCalendar.dataSource = self
+        
+        accomoAddButton.addTarget(self, action: #selector(addButtonAction), for:  .touchUpInside)
     }
     
     func setUpView() {
@@ -168,6 +187,20 @@ class AccomoCalendarViewController: UIViewController {
         containerViewHeightConstraint?.isActive = true
         containerViewBottomConstraint?.isActive = true
     }
+    
+    // 장바구니에 담기
+    @objc func addButtonAction() {
+        // 추가시에 present화면 dismiss설정하기
+        
+        let sIdx = String(accomoSIdx)
+        let vDate = self.selectCheckIn
+        let leaveDate = "20220227" // 테스트 데이터 수정필요
+        
+        let accomoShopData = HomeTabRequestData(sIdx: sIdx, vDate: vDate, leaveDate: leaveDate)
+        
+        homeTabViewModel.updateRecommendData(shopList: [accomoShopData])
+        
+    }
 }
 
 extension AccomoCalendarViewController:FSCalendarDataSource {
@@ -175,13 +208,15 @@ extension AccomoCalendarViewController:FSCalendarDataSource {
 }
 
 extension AccomoCalendarViewController:FSCalendarDelegate {
-  
+    
 }
 
 extension AccomoCalendarViewController:FSCalendarDelegateAppearance {
     // 날짜 선택 시 콜백 메소드
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        dateFormatter.dateFormat = "yyyyMMdd"
         print(fscCalendarDateFormat.string(from: date) + " 선택됨")
+        self.selectCheckIn = dateFormatter.string(from: date)
     }
     // 날짜 선택 해제 시 콜백 메소드
     public func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {

@@ -124,17 +124,10 @@ extension TourAreaViewController: UITableViewDataSource {
     // cell 갯수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let tableCount = destiSearchViewModel.getDestiSearchCount()
-        print("tableCount", tableCount)
-        // 카테고리가 놀거리 인것만  == 3
-        var cnt = 0
-        for i in 0..<tableCount {
-            if destiSearchViewModel.destiSearchResponse[i].category == "3" {
-                cnt += 1
-            }
-        }
+        // 1: 숙박, 2: 식당, 3: 놀거리
+        let tableCount = destiSearchViewModel.getDestiSearchCount(categoryIdx: "3")
         
-        return cnt
+        return tableCount
     }
     
     // 테이블 구성
@@ -144,11 +137,8 @@ extension TourAreaViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! TourAreaViewCell
         cell.backgroundColor = .clear
         
-        
         // 카테고리가 놀거리 인것만  == 3
         let shopData = destiSearchViewModel.getShopData(idx: indexPath.row, categoryIdx: "3")
-        
-       
         
         let url = URL(string: shopData.imgUrl)
         let data = try! Data(contentsOf: url!)

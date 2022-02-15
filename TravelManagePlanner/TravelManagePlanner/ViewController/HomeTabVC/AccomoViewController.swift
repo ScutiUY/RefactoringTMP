@@ -152,7 +152,6 @@ extension AccomoViewController: UITableViewDataSource {
         // 선택된 해당데이터 모델[배열]가져오기
         let shopData = destiSearchViewModel.getShopData(idx: indexPath.row, categoryIdx: "1")
         
-        
         print("shopData", shopData)
         
         self.firstaccomName = shopData.name

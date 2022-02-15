@@ -272,12 +272,15 @@ class DetaileSettingViewController: UIViewController {
         
         budgetSlider.addTarget(self, action: #selector(self.sliderAction(_:)), for: .valueChanged)
         nextButton.addTarget(self, action: #selector(self.nextButtonAction(_:)), for: .touchUpInside)
+        cancleButton.addTarget(self, action: #selector(self.privousButtonAction(_:)), for: .touchUpInside)
     }
     
 //    @objc func dataSendButtonAction() {
 //        themeViewModel.themeData = self.journeyTextField.text ?? "title is nil"
 //    }
-    
+    @objc func privousButtonAction(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     @objc func nextButtonAction(_ sender: UIButton) {
         dateFormatter.dateFormat = "yyyyMMdd"

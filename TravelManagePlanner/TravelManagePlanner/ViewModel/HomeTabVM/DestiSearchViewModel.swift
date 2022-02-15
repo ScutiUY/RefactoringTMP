@@ -103,16 +103,15 @@ class DestiSearchViewModel {
     
     // 카테고리별 뷰 담아주기
     func getShopData(idx: Int, categoryIdx: String) -> DestiSearchResponseData {
-        
         var filterShopData = DestiSearchResponseData(area: "", imgUrl: "", address: "", name: "", idx: 0, category: "", content: "")
         
             if destiSearchResponse[idx].category == categoryIdx{
                
                 filterShopData = destiSearchResponse[idx]
-                
-            }
+                print("destiSearchResponse[idx]", destiSearchResponse[idx])
+        }
         
-//        return self.destiSearchResponse[idx]
-        return filterShopData
+        return destiSearchResponse[idx]
+//        return filterShopData
     }
 }

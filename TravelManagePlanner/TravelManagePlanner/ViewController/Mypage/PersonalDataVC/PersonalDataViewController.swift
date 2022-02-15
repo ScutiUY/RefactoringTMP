@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class PersonalDataViewController: UIViewController {
 
@@ -21,12 +22,15 @@ class PersonalDataViewController: UIViewController {
         super.viewDidLoad()
         personalDataTableView.delegate = self
         personalDataTableView.dataSource = self
-        self.title = "Change Nickname".localized
+        self.title = "Personal Information".localized
         setLayout()
         // Do any additional setup after loading the view.
     }
     
     func setLayout() {
+        
+        view.backgroundColor = GlobalConstants.Color.Background.themeColor
+        
         self.navigationController?.navigationItem.largeTitleDisplayMode = .always
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
@@ -58,11 +62,14 @@ extension PersonalDataViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row == 0 {
-            
+            let changeNameVC = ChangeNameViewController()
+            self.navigationController?.pushViewController(changeNameVC, animated: true)
         } else if indexPath.row == 1 {
-            
+            let resignVC = ResignViewController()
+            self.navigationController?.pushViewController(resignVC, animated: true)
         } else {
-            
+            let logoutVC = LogoutViewController()
+            self.navigationController?.pushViewController(logoutVC, animated: true)
         }
     }
 }

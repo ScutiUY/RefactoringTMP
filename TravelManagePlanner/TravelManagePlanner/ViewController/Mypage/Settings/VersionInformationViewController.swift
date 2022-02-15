@@ -7,7 +7,7 @@
 
 import UIKit
 
-class VersionCheckViewController: UIViewController {
+class VersionInformationViewController: UIViewController {
 
     var viewModel = SettingsViewModel()
     
@@ -37,8 +37,9 @@ class VersionCheckViewController: UIViewController {
     
     func setObserver() {
         viewModel.dataFetchCompleted.bind { [weak self] in
+            print($0)
             if $0 {
-                self?.versionLabel.text = "v \(self?.viewModel.getVersionText())"
+                self?.versionLabel.text = "v \(self!.viewModel.getVersionText())"
             }
         }
         viewModel.getVersionData()

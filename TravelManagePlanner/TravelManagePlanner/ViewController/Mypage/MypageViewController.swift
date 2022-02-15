@@ -27,6 +27,9 @@ class MypageViewController: UIViewController {
     }
     
     func setLayout() {
+        
+        view.backgroundColor = GlobalConstants.Color.Background.themeColor
+        
         self.navigationController?.navigationItem.largeTitleDisplayMode = .always
         self.navigationController?.navigationBar.prefersLargeTitles = true
         

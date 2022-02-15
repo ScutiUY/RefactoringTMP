@@ -15,6 +15,7 @@ class DestiSearchViewModel {
     // 목적지 응답 모델 소유
     var destiSearchResponse = DestiSearchResponse.shared.data
     
+    
     // repository 소유
     private var repo = HomeTabRepository()
     
@@ -102,11 +103,15 @@ class DestiSearchViewModel {
     
     // 카테고리별 뷰 담아주기
     func getShopData(idx: Int, categoryIdx: String) -> DestiSearchResponseData {
+        
         var filterShopData = DestiSearchResponseData(area: "", imgUrl: "", address: "", name: "", idx: 0, category: "", content: "")
         
             if destiSearchResponse[idx].category == categoryIdx{
+               
                 filterShopData = destiSearchResponse[idx]
-        }
+                
+            }
+        
 //        return self.destiSearchResponse[idx]
         return filterShopData
     }

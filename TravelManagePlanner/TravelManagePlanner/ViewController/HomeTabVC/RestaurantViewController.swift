@@ -124,7 +124,7 @@ extension RestaurantViewController: UITableViewDataSource {
         
         // 1: 숙박, 2: 식당, 3: 놀거리
         let tableCount = destiSearchViewModel.getDestiSearchCount(categoryIdx: "2")
-        
+        print("tableCount", tableCount)
         return tableCount
     }
     
@@ -137,6 +137,8 @@ extension RestaurantViewController: UITableViewDataSource {
    
         // 카테고리가 식당 인것만  == 2
         let shopData = destiSearchViewModel.getShopData(idx: indexPath.row, categoryIdx: "2")
+        print("shopData", shopData)
+        
         let url = URL(string: shopData.imgUrl)
         let data = try! Data(contentsOf: url!)
         

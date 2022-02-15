@@ -199,7 +199,8 @@ class ReviewWriteViewController: UIViewController {
                 self.selectedAssets.append(i)
             }
             self.converAssetToImages()
-            reviewView.reviewPhotoCollectionView.reloadData()
+//            reviewView.reviewPhotoCollectionView.reloadData()
+            
             print("After : \(selectedAssets)")
             print("After : \(selectedImages)")
             print("==========</finish>==========")
@@ -265,6 +266,7 @@ extension ReviewWriteViewController : UICollectionViewDelegateFlowLayout, UIColl
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photoID, for: indexPath) as! ReviewPhotoCollectionViewCell
+        print(indexPath.row)
         cell.imageSelectedView.image = self.selectedImages[indexPath.row]
         cell.imageSelectedView.contentMode = .scaleAspectFit
         return cell
@@ -290,13 +292,12 @@ extension ReviewWriteViewController : UITextViewDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         self.view.endEditing(true)
     }
-
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if "#제주 #우정 #10년지기" == reviewView.hashtagTextView.text {
+        if "#제주 #우정 #10년지기" == textView.text {
             reviewView.hashtagTextView.text = nil
         }
         
-        if "리뷰를 등록해주세요." == reviewView.reviewTextView.text {
+        if "리뷰를 등록해주세요." == textView.text {
             reviewView.reviewTextView.text = nil
         }
         textView.textColor = .black
@@ -304,10 +305,16 @@ extension ReviewWriteViewController : UITextViewDelegate {
     }
     func textViewDidEndEditing(_ textView: UITextView) {
         textView.layer.borderColor = UIColor.lightGray.cgColor
+        if textView.text == reviewView.hashtagTextView.text, reviewView.hashtagTextView.text == "" {
+            reviewView.hashtagTextView.text = "#제주 #우정 #10년지기"
+            reviewView.hashtagTextView.textColor = .lightGray
+        } else if textView.text == reviewView.reviewTextView.text, reviewView.reviewTextView.text == "" {
+            reviewView.reviewTextView.text = "리뷰를 등록해주세요."
+            reviewView.reviewTextView.textColor = .lightGray
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-
         textField.resignFirstResponder()
         self.dismiss(animated: true, completion: nil)
         return true

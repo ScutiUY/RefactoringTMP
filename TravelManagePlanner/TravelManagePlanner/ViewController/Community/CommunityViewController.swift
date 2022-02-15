@@ -20,6 +20,12 @@ class CommunityViewController: UIViewController {
     // MARK: - Properties
     var communityViewModel: CommunityViewModel!
     private var journeyList = JourneyList.shared.data
+    private var journeyDetailListRepo : JourneyListRepository!
+    var reviewShopList : [ShopListDetail] = []
+    var journeyDetailData : [JourneyDetailData] = []
+    var shopListData : [Dictionary<String, String>] = [Dictionary<String, String>()]
+    
+    
 
     let activity = UIActivityIndicatorView()
     let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
@@ -69,6 +75,7 @@ class CommunityViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = themeColor
         communityViewModel = CommunityViewModel()
+        journeyDetailListRepo = JourneyListRepository()
         setUp()
     }
     
@@ -176,23 +183,28 @@ class CommunityViewController: UIViewController {
         let alert = UIAlertController(title: "리뷰를 작성하세요.", message: "작성할 여행 리스트 제목을 클릭해주세요.", preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         
+        
+
+        journeyDetailListRepo.getJourneyDetialList(travelId: Int.max) { result in
+            switch result {
+                case .success(let datailData):
+                self.journeyDetailData = datailData.data
+                for i in 0..<self.journeyDetailData.count {
+                    self.reviewShopList.append(ShopListDetail(sIdx: String(self.journeyDetailData[i].sIdx), vDate: self.journeyDetailData[i].visitDate))
+                    }
+                case .failure(let error):
+                    print(error);
+            }
+        }
+        
         for idx in 0..<journeyList.count {
             alertData.append(UIAlertAction(title: journeyList[idx].title, style: .default, handler: { UIAlertAction in
                 
-//                var journeyDetailData: [[], []]
-                
-                var reviewShopList : [ReviewData.ShopListDetail] = []
-                let journeyDetailData = JourneyListDetailViewModel().passJourneyData()
-                print(journeyDetailData)
-                for i in 0..<JourneyListDetailViewModel().count() {
-                    reviewShopList.append(ReviewData.ShopListDetail(sIdx:"\(journeyDetailData[i].idx)" , vDate: journeyDetailData[i].visitDate))
-                }
-
-                let reviewVC = ReviewWriteViewController(title: self.journeyList[idx].title, sDate: self.journeyList[idx].sDate, eDate: self.journeyList[idx].eDate, theme: self.journeyList[idx].theme, journeydetail: reviewShopList)
+                let reviewVC = ReviewWriteViewController(title: self.journeyList[idx].title, sDate: self.journeyList[idx].sDate, eDate: self.journeyList[idx].eDate, theme: self.journeyList[idx].theme, shopList: self.reviewShopList)
                 self.navigationController!.pushViewController(reviewVC, animated: true)
-                
-
             }))
+            
+            
             alert.addAction(alertData[idx])
         }
         alert.addAction(cancel)

@@ -23,21 +23,22 @@ class ReviewWriteViewController: UIViewController {
     var sDateSendFromCommunity: String
     var eDateSendFromCommunity: String
     var themeSendFromCommunity: String
-    var journeyDetailDataSendFromCommunity: [ReviewData.ShopListDetail]
     
     var reviewView : ReviewScrollView!
     var reviewViewModel: ReviewViewModel!
     private var reviewDataWillSendToVM: ReviewData = ReviewData.shared
+    var shopListSendFromCommunity: [ShopListDetail]
 
+    
     let picker = UIImagePickerController()
     let activity = UIActivityIndicatorView()
     
-    init(title titleSendFromCommunity: String, sDate sDateSendFromCommunity: String, eDate eDateSendFromCommunity: String, theme themeSendFromCommunity: String, journeydetail journeyDetailDataSendFromCommunity: [ReviewData.ShopListDetail]) {
+    init(title titleSendFromCommunity: String, sDate sDateSendFromCommunity: String, eDate eDateSendFromCommunity: String, theme themeSendFromCommunity: String, shopList shopListSendFromCommunity: [ShopListDetail]) {
         self.titleSendFromCommunity = titleSendFromCommunity
         self.eDateSendFromCommunity = eDateSendFromCommunity
         self.sDateSendFromCommunity = sDateSendFromCommunity
         self.themeSendFromCommunity = themeSendFromCommunity
-        self.journeyDetailDataSendFromCommunity = journeyDetailDataSendFromCommunity
+        self.shopListSendFromCommunity = shopListSendFromCommunity
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -132,7 +133,6 @@ class ReviewWriteViewController: UIViewController {
     }
     
     @objc func finishedButtonClicked(_ sender: Any) {
-        print(reviewDataWillSendToVM.shopList)
         reviewDataWillSendToVM.title = titleSendFromCommunity
         reviewDataWillSendToVM.startDate =
         sDateSendFromCommunity
@@ -140,14 +140,13 @@ class ReviewWriteViewController: UIViewController {
         reviewDataWillSendToVM.content = reviewView.reviewTextView.text
         reviewDataWillSendToVM.tags = reviewView.hashtagTextView.text
         reviewDataWillSendToVM.theme = themeSendFromCommunity
-        reviewDataWillSendToVM.shopList = journeyDetailDataSendFromCommunity
-        reviewViewModel.setReviewParams(reviewData: reviewDataWillSendToVM)
+        reviewDataWillSendToVM.shopList = shopListSendFromCommunity
+        
+        reviewViewModel.setReviewParams(reviewData: reviewDataWillSendToVM, idx: shopListSendFromCommunity.count)
         reviewViewModel.setReviewData()
         
         self.navigationController?.popViewController(animated: true)
     }
-    
-    
     
     @objc func keyboardWillShow(_ sender: Notification) {
         self.view.frame.origin.y = -150

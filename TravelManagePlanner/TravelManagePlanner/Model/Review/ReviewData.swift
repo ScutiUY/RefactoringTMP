@@ -27,15 +27,15 @@ struct ReviewData: Codable {
         self.theme = theme
         self.shopList = shopList
     }
-    struct ShopListDetail: Codable {
-        static var shared = ShopListDetail(sIdx: "", vDate: "")
+}
+struct ShopListDetail: Codable {
+    static var shared = ShopListDetail(sIdx: "", vDate: "")
 
-        var sIdx: String
-        var vDate: String
-        init(sIdx: String, vDate: String) {
-            self.sIdx = sIdx
-            self.vDate = vDate
-        }
+    var sIdx: String
+    var vDate: String
+    init(sIdx: String, vDate: String) {
+        self.sIdx = sIdx
+        self.vDate = vDate
     }
 }
 

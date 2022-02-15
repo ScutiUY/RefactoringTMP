@@ -10,6 +10,7 @@ import Foundation
 class ReviewViewModel {
     
     private var repo = ReviewDataRepository()
+    private var makeItJSON : Dictionary<String, String> = [:]
     
     var isLoading = false
     var loadingStarted: (() -> ()) = { }
@@ -25,8 +26,8 @@ class ReviewViewModel {
         })
     }
 
-    func setReviewParams(reviewData: ReviewData) {
-        repo.setReviewParams(reviewData: reviewData)
+    func setReviewParams(reviewData: ReviewData, idx : Int) {
+        repo.setReviewParams(reviewData: reviewData, idx: idx)
     }
     
     

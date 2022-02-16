@@ -192,18 +192,22 @@ class ReviewWriteViewController: UIViewController {
             print("==========<finish>==========")
             #endif
             self.selectedAssets.removeAll()
-            print("before : \(selectedAssets)")
-            print("before : \(selectedImages)")
+            self.selectedImages.removeAll()
+//            print("before : \(selectedAssets)")
+//            print("before : \(selectedImages)")
+            print("====================<extension Asset>====================")
+            print(assets)
+            print("====================</extension Asset>====================")
 
             for i in assets {
                 self.selectedAssets.append(i)
             }
             self.converAssetToImages()
-//            reviewView.reviewPhotoCollectionView.reloadData()
+            reviewView.reviewPhotoCollectionView.reloadData()
             
-            print("After : \(selectedAssets)")
-            print("After : \(selectedImages)")
-            print("==========</finish>==========")
+//            print("After : \(selectedAssets)")
+//            print("After : \(selectedImages)")
+//            print("==========</finish>==========")
         })
     }
     

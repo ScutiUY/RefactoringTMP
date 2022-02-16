@@ -43,6 +43,8 @@ import Photos
             imagePicker.onSelection = select
             imagePicker.onDeselection = deselect
             imagePicker.onCancel = cancel
+            print("==========<presentImagePicker in ImagePicker+Closure>==========")
+
             imagePicker.onFinish = finish
 
             // And since we are using the blocks api. Set ourselfs as delegate
@@ -82,6 +84,10 @@ extension ImagePickerController: ImagePickerControllerDelegate {
     }
 
     public func imagePicker(_ imagePicker: ImagePickerController, didFinishWithAssets assets: [PHAsset]) {
+        print("==========extension+Imagepicker(didFinishWithAssets in ImagePickerController+Closure==========")
+        print("====================<extension Asset>====================")
+        print(assets)
+        print("====================</extension Asset>====================")
         onFinish?(assets)
     }
 

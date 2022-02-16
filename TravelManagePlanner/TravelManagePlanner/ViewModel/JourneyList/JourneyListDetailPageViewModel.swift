@@ -13,12 +13,13 @@ class JourneyListDetailPageViewModel {
     
     private var journeyDetailList = [JourneyDetailData]() {
         didSet{
-            journeyDetailList.forEach{
+            journeyDetailList.forEach {
                 if categoryDic[$0.category] == nil {
                     categoryDic[$0.category] = [$0]
                 } else {
                     var journetList = categoryDic[$0.category]!
                     journetList.append($0)
+                    categoryDic[$0.category] = journetList
                 }
             }
         }

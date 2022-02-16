@@ -10,6 +10,11 @@ import FSCalendar
 
 class AccomoCalendarViewController: UIViewController {
     
+    // 알림창 구현
+    let alert = UIAlertController(title: "", message: "장바구니에 추가 되었습니다.", preferredStyle: UIAlertController.Style.alert)
+    
+    let addAlert = UIAlertAction(title: "확인", style: UIAlertAction.Style.cancel, handler: nil)
+    
     // 뷰모델 소지
     let homeTabViewModel = HomeTabViewModel()
     
@@ -115,8 +120,10 @@ class AccomoCalendarViewController: UIViewController {
         
         return stackView
     }()
+    
     // BottomCalendar 높이
     let defaultHeight: CGFloat = 500
+    let cancelHeight: CGFloat = 0
     
     var containerViewHeightConstraint: NSLayoutConstraint?
     var containerViewBottomConstraint: NSLayoutConstraint?
@@ -132,6 +139,7 @@ class AccomoCalendarViewController: UIViewController {
         fscCalendar.dataSource = self
         
         accomoAddButton.addTarget(self, action: #selector(addButtonAction), for:  .touchUpInside)
+        alert.addAction(addAlert)
     }
     
     func setUpView() {
@@ -188,16 +196,38 @@ class AccomoCalendarViewController: UIViewController {
         containerViewBottomConstraint?.isActive = true
     }
     
+    func animateDismissView() {
+        // hide main container view by updating bottom constraint in animation block
+        UIView.animate(withDuration: 0.5) {
+            self.containerViewBottomConstraint?.constant = self.defaultHeight
+            // call this to trigger refresh constraint
+            self.view.layoutIfNeeded()
+        }
+        
+        // hide blur view
+        dimmedView.alpha = maxDimmedAlpha
+        UIView.animate(withDuration: 0.5) {
+            self.dimmedView.alpha = 0
+        } completion: { _ in
+            // once done, dismiss without animation
+            self.dismiss(animated: true)
+        }
+    }
+    
     // 장바구니에 담기
     @objc func addButtonAction() {
         // 추가시에 present화면 dismiss설정하기
-        
         let sIdx = String(accomoSIdx)
         let vDate = self.selectCheckIn
         let leaveDate = "20220227" // 테스트 데이터 수정필요
+       
+//        animateDismissView()
+        self.dismiss(animated: true)
+        self.present(alert, animated: true)
+        
         
         let accomoShopData = HomeTabRequestData(sIdx: sIdx, vDate: vDate, leaveDate: leaveDate)
-        
+       
         homeTabViewModel.updateRecommendData(shopList: [accomoShopData])
         
     }

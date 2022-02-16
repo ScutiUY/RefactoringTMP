@@ -137,7 +137,7 @@ extension AccomoViewController: UITableViewDataSource {
         
         // 1: 숙박, 2: 식당, 3: 놀거리
         let tableCount = destiSearchViewModel.getDestiSearchCount(categoryIdx: "1")
-        
+        print("tableCount",tableCount)
         return tableCount
     }
     
@@ -146,14 +146,13 @@ extension AccomoViewController: UITableViewDataSource {
         
         print(indexPath)
         
-        // 1. 가게Index 정보 를 cell안의 변수로 넘기고
-        // 2. 선택 버튼 달력안에(
-    
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! AccomoViewCell
         cell.backgroundColor = .clear
         
-        // 1: 숙박, 2: 식당, 3: 놀거리
+        // 선택된 해당데이터 모델[배열]가져오기
         let shopData = destiSearchViewModel.getShopData(idx: indexPath.row, categoryIdx: "1")
+        
+        print("shopData", shopData)
         
         self.firstaccomName = shopData.name
         

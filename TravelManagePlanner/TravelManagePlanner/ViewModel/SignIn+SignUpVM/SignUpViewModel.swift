@@ -68,6 +68,7 @@ class SignUpViewModel {
     }
     
 }
+
 extension SignUpViewModel {
     enum ValidationResult {
         case success

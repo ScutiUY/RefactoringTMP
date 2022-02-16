@@ -137,8 +137,10 @@ extension TourAreaViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! TourAreaViewCell
         cell.backgroundColor = .clear
         
+        
         // 카테고리가 놀거리 인것만  == 3
         let shopData = destiSearchViewModel.getShopData(idx: indexPath.row, categoryIdx: "3")
+       
         
         let url = URL(string: shopData.imgUrl)
         let data = try! Data(contentsOf: url!)

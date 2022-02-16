@@ -123,17 +123,15 @@ extension DestiSearchViewController: UITableViewDelegate {
         DestiSearchViewModel.serchData = placeData
         #if DEBUG
         print("선택된 장소 :", placeData)
-        #endif 
+        #endif
     }
 }
 
 extension DestiSearchViewController: UISearchResultsUpdating {
     // 서치바에서 타이핑시마다 해당 메소드 실행
     func updateSearchResults(for placeSearch: UISearchController) {
-        guard let userText = placeSearch.searchBar.text
-        else {
-            return
-        }
+        guard let userText = placeSearch.searchBar.text else { return }
+        
         print("사용자 입력 : ", userText )
         self.data.filterValue = self.data.placeData.filter{ $0.localizedCaseInsensitiveContains(userText)}
         self.placeDataTable.reloadData()

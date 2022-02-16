@@ -41,6 +41,7 @@
 		6B6D773E27B924BE000CF8EA /* DestiSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6D773827B924BE000CF8EA /* DestiSearchViewController.swift */; };
 		6B6D774127B924D3000CF8EA /* DestiSearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6D773F27B924D3000CF8EA /* DestiSearchData.swift */; };
 		6B6D774227B924D3000CF8EA /* HomeTabData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6D774027B924D3000CF8EA /* HomeTabData.swift */; };
+		6B6D774427BC3D60000CF8EA /* DetaileSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6D774327BC3D60000CF8EA /* DetaileSettingViewModel.swift */; };
 		6BA7894627B4E27D003CFE82 /* HomeTabSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BA7894527B4E27D003CFE82 /* HomeTabSB.storyboard */; };
 		6BA7894C27B4E2D6003CFE82 /* HomeTabAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA7894B27B4E2D6003CFE82 /* HomeTabAPIService.swift */; };
 		6BA7897027B4E3C0003CFE82 /* HomeTabProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA7896F27B4E3C0003CFE82 /* HomeTabProtocol.swift */; };
@@ -152,6 +153,7 @@
 		6B6D773827B924BE000CF8EA /* DestiSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestiSearchViewController.swift; sourceTree = "<group>"; };
 		6B6D773F27B924D3000CF8EA /* DestiSearchData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestiSearchData.swift; sourceTree = "<group>"; };
 		6B6D774027B924D3000CF8EA /* HomeTabData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabData.swift; sourceTree = "<group>"; };
+		6B6D774327BC3D60000CF8EA /* DetaileSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaileSettingViewModel.swift; sourceTree = "<group>"; };
 		6BA7894527B4E27D003CFE82 /* HomeTabSB.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeTabSB.storyboard; sourceTree = "<group>"; };
 		6BA7894B27B4E2D6003CFE82 /* HomeTabAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabAPIService.swift; sourceTree = "<group>"; };
 		6BA7896F27B4E3C0003CFE82 /* HomeTabProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabProtocol.swift; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 			children = (
 				6B6D772F27B924A0000CF8EA /* DestiSearchViewModel.swift */,
 				6B6D773027B924A0000CF8EA /* HomeTabViewModel.swift */,
+				6B6D774327BC3D60000CF8EA /* DetaileSettingViewModel.swift */,
 			);
 			path = HomeTabVM;
 			sourceTree = "<group>";
@@ -947,6 +950,7 @@
 				F0F0C9DC27B35BEC00FDBD10 /* JourneyListDetailPageViewModel.swift in Sources */,
 				6B6D772A27B92489000CF8EA /* TourAreaCalendarViewController.swift in Sources */,
 				6B6D773927B924BE000CF8EA /* AccomoViewController.swift in Sources */,
+				6B6D774427BC3D60000CF8EA /* DetaileSettingViewModel.swift in Sources */,
 				F00F17FA2778530200211A8D /* SceneDelegate.swift in Sources */,
 				F0CADCE72781F63D00DDC1CD /* SignInViewModel.swift in Sources */,
 				6B6D772D27B92489000CF8EA /* RestaurantViewCell.swift in Sources */,

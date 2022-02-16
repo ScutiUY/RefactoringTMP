@@ -269,7 +269,7 @@ class ReviewScrollView: UIScrollView {
         
         reviewPhotoCollectionView.snp.makeConstraints {
             $0.width.equalTo(ReviewContentView.snp.width).multipliedBy(0.9)
-            $0.height.equalTo(200)
+            $0.height.equalTo(250)
             $0.top.equalTo(photoButton.snp.bottom).offset(10)
             $0.leading.equalTo(headerview.snp.leading).offset(20)
             $0.bottom.equalToSuperview()

@@ -32,6 +32,7 @@ class ReviewWriteViewController: UIViewController {
     
     let picker = UIImagePickerController()
     let activity = UIActivityIndicatorView()
+    let sectionInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     
     init(title titleSendFromCommunity: String, sDate sDateSendFromCommunity: String, eDate eDateSendFromCommunity: String, theme themeSendFromCommunity: String, shopList shopListSendFromCommunity: [ShopListDetail]) {
         self.titleSendFromCommunity = titleSendFromCommunity
@@ -142,10 +143,17 @@ class ReviewWriteViewController: UIViewController {
         reviewDataWillSendToVM.theme = themeSendFromCommunity
         reviewDataWillSendToVM.shopList = shopListSendFromCommunity
         
-        reviewViewModel.setReviewParams(reviewData: reviewDataWillSendToVM, idx: shopListSendFromCommunity.count)
-        reviewViewModel.setReviewData()
-        
-        self.navigationController?.popViewController(animated: true)
+        if (self.selectedImages.isEmpty) {
+            //
+        } else {
+            // 파라미터 먼저 넣어주기
+            reviewViewModel.setReviewParams(reviewData: reviewDataWillSendToVM, idx: shopListSendFromCommunity.count)
+            // 이미지와 함께 호출 시
+            reviewViewModel.setReviewDataWithImage(reviewData: reviewDataWillSendToVM, idx: shopListSendFromCommunity.count, previousImages: selectedImages)
+            // 이미지 없이 호출 시
+            // reviewViewModel.setReviewData()
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @objc func keyboardWillShow(_ sender: Notification) {
@@ -188,26 +196,18 @@ class ReviewWriteViewController: UIViewController {
         }, finish: { [self]
             (assets) in
                 // Done 버튼 누르면 실행되는 내용
-            #if DEBUG
-            print("==========<finish>==========")
-            #endif
             self.selectedAssets.removeAll()
             self.selectedImages.removeAll()
-//            print("before : \(selectedAssets)")
-//            print("before : \(selectedImages)")
-            print("====================<extension Asset>====================")
-            print(assets)
-            print("====================</extension Asset>====================")
-
             for i in assets {
                 self.selectedAssets.append(i)
             }
             self.converAssetToImages()
             reviewView.reviewPhotoCollectionView.reloadData()
             
-//            print("After : \(selectedAssets)")
-//            print("After : \(selectedImages)")
-//            print("==========</finish>==========")
+            
+            
+            
+            
         })
     }
     
@@ -277,7 +277,16 @@ extension ReviewWriteViewController : UICollectionViewDelegateFlowLayout, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width - 80, height: view.frame.height)
+        let width = reviewView.reviewPhotoCollectionView.frame.width
+        let height = reviewView.reviewPhotoCollectionView.frame.height
+        let itemsPerRow: CGFloat = 1
+        let widthPadding = sectionInsets.left * (itemsPerRow + 1)
+        let itemsPerColumn: CGFloat = 1
+        let heightPadding = sectionInsets.top * (itemsPerColumn + 1)
+        let cellWidth = (width - widthPadding) / itemsPerRow
+        let cellHeight = (height - heightPadding) / itemsPerColumn
+        
+        return CGSize(width: cellWidth, height: cellHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {

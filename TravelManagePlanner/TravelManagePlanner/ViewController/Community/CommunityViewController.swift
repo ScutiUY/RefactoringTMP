@@ -27,8 +27,6 @@ class CommunityViewController: UIViewController {
     var journeyDetailData : [JourneyDetailData] = []
     var shopListData : [Dictionary<String, String>] = [Dictionary<String, String>()]
     
-    
-
     let activity = UIActivityIndicatorView()
     let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     var filterTheme : String = ""

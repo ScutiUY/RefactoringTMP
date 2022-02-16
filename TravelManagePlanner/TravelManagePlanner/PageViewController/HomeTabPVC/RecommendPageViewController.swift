@@ -7,14 +7,10 @@
 
 import UIKit
 
-protocol CustomPageViewControllerDelegate: class {
-  func numberOfPage(numberOfPage: Int)
-  func pageChangedTo(index: Int)
-}
+
 
 // 숙박, 식당, 놀거리 추천지 Page
 class RecommendPageViewController: UIPageViewController {
-    
     
     // 뷰모델 선언
     

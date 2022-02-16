@@ -38,33 +38,38 @@ class DetaileSettingViewModel {
         guard let a = Int(dayToGo) else { fatalError()}
         guard let b = Int(dayToCome) else { fatalError()}
         
+        print("아무것도 입력x", title)
+        
         if title == "" || title.count < 6 {
-            print("제목을 6글자 이상 입력해주세요")
+//            print("제목을 6글자 이상 입력해주세요")
             
             return .invalidTitle
         }else if(a > b){
-            print("가는날의 날짜가 더이전입니다")
+            print("가는날이 오는날보다 이전입니다.")
             
             return .invalidDate
         }else if (peopleNum == "") {
-            print("인원수를 입력해주세요")
+            print("인원수를 입력해주세요.")
             
             return .invalidPeopleNumber
         }else if (budget == "") {
-            print("예상 금액을 입력해주세요")
+            print("예상 금액을 입력해주세요.")
             
             return .invalidPeopleNumber
         }else {
             // 디테일설정 데이터 업데이트
-            HomeTabViewModel.globalHomeTabData.title = title
-            HomeTabViewModel.globalHomeTabData.startDate = dayToGo
-            HomeTabViewModel.globalHomeTabData.endDate = dayToCome
-            HomeTabViewModel.globalHomeTabData.inviteNum = peopleNum
-            HomeTabViewModel.globalHomeTabData.price = budget
-            
             return .success
         }
     }
+    
+    func register() {
+        HomeTabViewModel.globalHomeTabData.title = title
+        HomeTabViewModel.globalHomeTabData.startDate = dayToGo
+        HomeTabViewModel.globalHomeTabData.endDate = dayToCome
+        HomeTabViewModel.globalHomeTabData.inviteNum = peopleNum
+        HomeTabViewModel.globalHomeTabData.price = budget
+    }
+    
 }
 
 extension DetaileSettingViewModel {

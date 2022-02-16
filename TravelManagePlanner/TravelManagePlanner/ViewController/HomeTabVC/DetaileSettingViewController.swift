@@ -11,8 +11,19 @@ class DetaileSettingViewController: UIViewController {
     
     // 뷰모델
     var detaileSettingViewModel = DetaileSettingViewModel()
-    
+   
     let dateFormatter = DateFormatter()
+    
+    // 알림창 구현
+    let invalidTitleAlert = UIAlertController(title: "", message: "제목을 6글자 이상 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
+    
+    let invalidDateAlert = UIAlertController(title: "", message: "오는날의 날짜가 더 이전입니다.", preferredStyle: UIAlertController.Style.alert)
+
+    let invalidPeopleNumberAlert = UIAlertController(title: "", message: "인원수를 입력해주세요", preferredStyle: UIAlertController.Style.alert)
+    
+    let invalidBudgetAlert = UIAlertController(title: "", message: "예상 금액을 입력해주세요", preferredStyle: UIAlertController.Style.alert)
+    
+    let addAlert = UIAlertAction(title: "확인", style: UIAlertAction.Style.cancel, handler: nil)
     
     
     //여행 제목 타이틀
@@ -28,7 +39,7 @@ class DetaileSettingViewController: UIViewController {
     
     lazy var journeyTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "여행 제목 입력"
+        textField.placeholder = "여행 제목을 입력해주세요."
         textField.font = UIFont.systemFont(ofSize: 20)
         textField.borderStyle = .roundedRect
         textField.layer.shadowColor = UIColor.black.cgColor
@@ -273,6 +284,9 @@ class DetaileSettingViewController: UIViewController {
         budgetSlider.addTarget(self, action: #selector(self.sliderAction(_:)), for: .valueChanged)
         nextButton.addTarget(self, action: #selector(self.nextButtonAction(_:)), for: .touchUpInside)
         cancleButton.addTarget(self, action: #selector(self.privousButtonAction(_:)), for: .touchUpInside)
+        
+        setAlert()
+        
     }
     
 //    @objc func dataSendButtonAction() {
@@ -299,7 +313,19 @@ class DetaileSettingViewController: UIViewController {
         detaileSettingViewModel.updateDate(dayToGo: startDate, dayToCome: endDate)
         detaileSettingViewModel.updatePeople(peopleNum: inviteNum)
         detaileSettingViewModel.updateBudget(budget: price)
-//        detaileSettingViewModel.validateUserInputData()
+        
+        switch detaileSettingViewModel.validateUserInputData() {
+        case .invalidTitle :
+            self.present(invalidTitleAlert, animated: true)
+        case .invalidDate:
+            self.present(invalidDateAlert, animated: true)
+        case .invalidPeopleNumber:
+            self.present(invalidPeopleNumberAlert, animated: true)
+        case .invalidBudget:
+            self.present(invalidBudgetAlert, animated: true)
+        case .success:
+            detaileSettingViewModel.register()
+        }
         
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil)
             .instantiateViewController(withIdentifier: "DestiSearchViewSB") as! DestiSearchViewController
@@ -324,6 +350,12 @@ class DetaileSettingViewController: UIViewController {
         numPeopleTextField.delegate = self
     }
     
+    func setAlert() {
+        invalidTitleAlert.addAction(addAlert)
+        invalidDateAlert.addAction(addAlert)
+        invalidPeopleNumberAlert.addAction(addAlert)
+        invalidBudgetAlert.addAction(addAlert)
+    }
     
     // 바텀뷰 불러오기
     //    @objc func presentModalController() {

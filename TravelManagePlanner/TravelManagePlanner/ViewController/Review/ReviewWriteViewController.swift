@@ -9,9 +9,9 @@ import UIKit
 import Then
 import BSImagePicker
 import Photos
+import Alamofire
 
 let photoID = "photoCell"
-
 
 class ReviewWriteViewController: UIViewController {
 
@@ -132,58 +132,7 @@ class ReviewWriteViewController: UIViewController {
         reviewView.travelTitleTextView.text = titleSendFromCommunity
         reviewView.dateTextView.text = sDateSendFromCommunity + " ~ " + eDateSendFromCommunity
     }
-    
-    @objc func finishedButtonClicked(_ sender: Any) {
-        reviewDataWillSendToVM.title = titleSendFromCommunity
-        reviewDataWillSendToVM.startDate =
-        sDateSendFromCommunity
-        reviewDataWillSendToVM.endDate = eDateSendFromCommunity
-        reviewDataWillSendToVM.content = reviewView.reviewTextView.text
-        reviewDataWillSendToVM.tags = reviewView.hashtagTextView.text
-        reviewDataWillSendToVM.theme = themeSendFromCommunity
-        reviewDataWillSendToVM.shopList = shopListSendFromCommunity
-        
-        if (self.selectedImages.isEmpty) {
-            let alert = UIAlertController(title: "사진을 첨부해주세요.", message: "한 개 이상의 사진을 넣어주세요.", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
-            alert.addAction(okAction)
-            present(alert, animated: true)
-        } else {
-            // 파라미터 먼저 넣어주기
-            reviewViewModel.setReviewParams(reviewData: reviewDataWillSendToVM, idx: shopListSendFromCommunity.count)
-            // 이미지와 함께 호출 시
-            reviewViewModel.setReviewDataWithImage(reviewData: reviewDataWillSendToVM, idx: shopListSendFromCommunity.count, previousImages: selectedImages)
-            // 이미지 없이 호출 시
-            // reviewViewModel.setReviewData()
-            self.navigationController?.popViewController(animated: true)
-        }
-    }
-    
-    @objc func keyboardWillShow(_ sender: Notification) {
-        self.view.frame.origin.y = -150
-    }
-    @objc func keyboardWillHide(_ sender: Notification) {
-        self.view.frame.origin.y = 0
-    }
-    
-    @objc func handleLongPressGesture(_ gesture: UITapGestureRecognizer) {
-        let collectionView = reviewView.reviewPhotoCollectionView
-        
-        switch gesture.state {
-        case .began:
-            guard let targetIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)) else {
-                return
-            }
-            collectionView.beginInteractiveMovementForItem(at: targetIndexPath)
-        case .changed:
-            collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: collectionView))
-        case .ended:
-            collectionView.endInteractiveMovement()
-        default:
-            collectionView.cancelInteractiveMovement()
-        }
-    }
-    
+  
     func openLibrary()
     {
         self.presentImagePicker(test,
@@ -206,11 +155,6 @@ class ReviewWriteViewController: UIViewController {
             }
             self.converAssetToImages()
             reviewView.reviewPhotoCollectionView.reloadData()
-            
-            
-            
-            
-            
         })
     }
     
@@ -261,6 +205,74 @@ class ReviewWriteViewController: UIViewController {
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
     }
+    
+    @objc func finishedButtonClicked(_ sender: Any) {
+        let okAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
+        
+        reviewDataWillSendToVM.title = titleSendFromCommunity
+        reviewDataWillSendToVM.startDate =
+        sDateSendFromCommunity
+        reviewDataWillSendToVM.endDate = eDateSendFromCommunity
+        reviewDataWillSendToVM.content = reviewView.reviewTextView.text
+        reviewDataWillSendToVM.tags = reviewView.hashtagTextView.text
+        reviewDataWillSendToVM.theme = themeSendFromCommunity
+        reviewDataWillSendToVM.shopList = shopListSendFromCommunity
+        
+        if (self.reviewView.hashtagTextView.text == "해쉬태그를 작성해주세요."){
+            let alert = UIAlertController(title: "해쉬태그를 작성해주세요.", message: "한 개 이상 해쉬태그를 작성해주세요.", preferredStyle: .alert)
+            alert.addAction(okAction)
+            present(alert, animated: true)
+        } else if (self.reviewView.reviewTextView.text == "리뷰를 작성해주세요." ) {
+            let alert = UIAlertController(title: "리뷰를 작성해주세요.", message: "한 글자 이상 작성해주세요.", preferredStyle: .alert)
+            alert.addAction(okAction)
+            present(alert, animated: true)
+        } else if (self.selectedImages.isEmpty) {
+            let alert = UIAlertController(title: "사진을 첨부해주세요.", message: "한 개 이상의 사진을 넣어주세요.", preferredStyle: .alert)
+            alert.addAction(okAction)
+            present(alert, animated: true)
+        } else {
+            // 파라미터 먼저 넣어주기
+            reviewViewModel.setReviewParams(reviewData: reviewDataWillSendToVM, idx: shopListSendFromCommunity.count)
+            // 이미지와 함께 호출 시
+            reviewViewModel.setReviewDataWithImage(reviewData: reviewDataWillSendToVM, idx: shopListSendFromCommunity.count, previousImages: selectedImages)
+            // 이미지 없이 호출 시
+            // reviewViewModel.setReviewData()
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    @objc func keyboardWillShow(_ sender: Notification) {
+        self.view.frame.origin.y = -150
+    }
+    @objc func keyboardWillHide(_ sender: Notification) {
+        self.view.frame.origin.y = 0
+    }
+    
+    @objc func handleLongPressGesture(_ gesture: UITapGestureRecognizer) {
+        let collectionView = reviewView.reviewPhotoCollectionView
+        
+        switch gesture.state {
+        case .began:
+            guard let targetIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView))
+            else { return }
+            UIView.animate(withDuration: TimeInterval(0.2), animations: {
+                () -> Void in
+                collectionView.cellForItem(at: targetIndexPath)?.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+            }, completion: { (finished: Bool) -> Void in
+                UIView.animate(withDuration: TimeInterval(0.2),
+                               animations: {() -> Void in
+                    collectionView.cellForItem(at: targetIndexPath)?.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                }, completion: nil)
+            })
+            collectionView.beginInteractiveMovementForItem(at: targetIndexPath)
+        case .changed:
+            collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: collectionView))
+        case .ended:
+            collectionView.endInteractiveMovement()
+        default:
+            collectionView.cancelInteractiveMovement()
+        }
+    }
 }
 
 // MARK: - extentions
@@ -309,11 +321,11 @@ extension ReviewWriteViewController : UITextViewDelegate {
         self.view.endEditing(true)
     }
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if "#제주 #우정 #10년지기" == textView.text {
+        if "해쉬태그를 작성해주세요." == textView.text {
             reviewView.hashtagTextView.text = nil
         }
         
-        if "리뷰를 등록해주세요." == textView.text {
+        if "리뷰를 작성해주세요." == textView.text {
             reviewView.reviewTextView.text = nil
         }
         textView.textColor = .black
@@ -322,10 +334,10 @@ extension ReviewWriteViewController : UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         textView.layer.borderColor = UIColor.lightGray.cgColor
         if textView.text == reviewView.hashtagTextView.text, reviewView.hashtagTextView.text == "" {
-            reviewView.hashtagTextView.text = "#제주 #우정 #10년지기"
+            reviewView.hashtagTextView.text = "해쉬태그를 작성해주세요."
             reviewView.hashtagTextView.textColor = .lightGray
         } else if textView.text == reviewView.reviewTextView.text, reviewView.reviewTextView.text == "" {
-            reviewView.reviewTextView.text = "리뷰를 등록해주세요."
+            reviewView.reviewTextView.text = "리뷰를 작성해주세요."
             reviewView.reviewTextView.textColor = .lightGray
         }
     }

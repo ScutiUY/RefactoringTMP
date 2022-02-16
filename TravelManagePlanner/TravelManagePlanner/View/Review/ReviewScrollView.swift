@@ -46,7 +46,7 @@ class ReviewScrollView: UIScrollView {
     
     lazy var hashtagTextView = UITextView().then {
         if ($0.text.isEmpty) {
-            $0.text = "#제주 #우정 #10년지기"
+            $0.text = "해쉬태그를 작성해주세요."
             $0.textColor = .lightGray
         }
         $0.layer.borderWidth = 1
@@ -88,7 +88,7 @@ class ReviewScrollView: UIScrollView {
     
     lazy var reviewTextView = UITextView().then {
         if ($0.text.isEmpty) {
-            $0.text = "리뷰를 등록해주세요."
+            $0.text = "리뷰를 작성해주세요."
             $0.textColor = .lightGray
         }
         $0.layer.borderWidth = 1

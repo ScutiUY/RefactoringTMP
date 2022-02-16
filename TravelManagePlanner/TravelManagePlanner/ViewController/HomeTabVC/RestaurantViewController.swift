@@ -46,6 +46,7 @@ class RestaurantViewController: UIViewController {
     lazy var restaurantTableView: UITableView = {
         let tableVIew = UITableView()
         tableVIew.backgroundColor = .clear
+        tableVIew.separatorStyle = .none // 가로라인 없애기
         return tableVIew
     }()
     

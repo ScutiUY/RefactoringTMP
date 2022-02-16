@@ -144,8 +144,8 @@ class DestiSearchViewModel {
                 print("destiSearchResponse[idx]", destiSearchResponse[idx])
         }
         
-        return destiSearchResponse[idx]
-//        return filterShopData
+//        return destiSearchResponse[idx]
+        return filterShopData
     }
 }
 

@@ -27,6 +27,7 @@ class AccomoViewController: UIViewController {
     lazy var basket: UIButton = {
         let button = UIButton()
         button.setTitle("바구니", for : .normal)
+//        button.setImage(UIImage(systemName: "heart"), for: .normal)
         
         button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 1), for: .normal)
         button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 0.6), for: .highlighted)
@@ -48,6 +49,8 @@ class AccomoViewController: UIViewController {
     lazy var accomoTableView: UITableView = {
         let tableVIew = UITableView()
         tableVIew.backgroundColor = .clear
+        tableVIew.separatorStyle = .none // 가로라인 없애기
+        
         return tableVIew
     }()
     
@@ -152,6 +155,7 @@ extension AccomoViewController: UITableViewDataSource {
         // 선택된 해당데이터 모델[배열]가져오기
         let shopData = destiSearchViewModel.getShopData(idx: indexPath.row, categoryIdx: "1")
         
+        
         print("shopData", shopData)
         
         self.firstaccomName = shopData.name
@@ -163,7 +167,6 @@ extension AccomoViewController: UITableViewDataSource {
         cell.accomoTitle.text = shopData.name
         cell.accomoSubTitle.text = shopData.content
         cell.cellDelegate = self
-        
         
         return cell
     }

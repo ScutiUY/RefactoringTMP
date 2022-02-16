@@ -77,6 +77,8 @@ class DestiSearchViewModel {
         }
     }
     
+   
+    
     func getTitle(idx: Int) -> String {
         return destiSearchResponse[idx].name
     }
@@ -115,3 +117,4 @@ class DestiSearchViewModel {
 //        return filterShopData
     }
 }
+

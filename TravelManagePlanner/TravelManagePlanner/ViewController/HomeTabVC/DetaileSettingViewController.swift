@@ -10,7 +10,7 @@ import SnapKit
 class DetaileSettingViewController: UIViewController {
     
     // 뷰모델
-    var homeTabViewModel = HomeTabViewModel()
+    var detaileSettingViewModel = DetaileSettingViewModel()
     
     let dateFormatter = DateFormatter()
     
@@ -289,14 +289,17 @@ class DetaileSettingViewController: UIViewController {
         let startDateStr = dateFormatter.string(from: dayToGocalendar.date)
         let endDateStr = dateFormatter.string(from: dayToComecalendar.date)
         
-        
         guard let title = journeyTextField.text else {return}
         let startDate = startDateStr
         let endDate = endDateStr
         guard let inviteNum = numPeopleTextField.text else {return}
         guard let price = budgetAmount.text else {return}
         
-        homeTabViewModel.updateDetailSettingData(title: title, startDate: startDate, endDate: endDate, inviteNum: inviteNum, price: price)
+        detaileSettingViewModel.updateTitle(title: title)
+        detaileSettingViewModel.updateDate(dayToGo: startDate, dayToCome: endDate)
+        detaileSettingViewModel.updatePeople(peopleNum: inviteNum)
+        detaileSettingViewModel.updateBudget(budget: price)
+//        detaileSettingViewModel.validateUserInputData()
         
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil)
             .instantiateViewController(withIdentifier: "DestiSearchViewSB") as! DestiSearchViewController
@@ -318,7 +321,7 @@ class DetaileSettingViewController: UIViewController {
     }
     
     func setDelegate(){
-        
+        numPeopleTextField.delegate = self
     }
     
     
@@ -387,4 +390,19 @@ class DetaileSettingViewController: UIViewController {
     
     // main에 있는 두번째화면 불러오기(스토리보드 활용)
     let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "AccomoViewSB") as! AccomoViewController
+}
+
+
+extension DetaileSettingViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        // 인원수 2글자까지 제한두기
+        guard textField.text!.count < 2 else { return false }
+        
+        // 숫자만 입력 받기
+        let allowedCharacters = CharacterSet.decimalDigits
+        let characterSet = CharacterSet(charactersIn: string)
+        
+        return true && allowedCharacters.isSuperset(of: characterSet)
+       }
 }

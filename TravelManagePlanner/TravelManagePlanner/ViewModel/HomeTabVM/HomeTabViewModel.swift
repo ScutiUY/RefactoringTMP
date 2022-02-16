@@ -41,20 +41,7 @@ class HomeTabViewModel {
         HomeTabViewModel.globalHomeTabData.uKey = uKey // 유저키 받는부분 추후 설정필요
     }
     
-    // 디테일설정 데이터 업데이트
-    func updateDetailSettingData(title: String, startDate: String, endDate: String, inviteNum: String, price: String) {
-        
-        if title == "" || title.count < 6 {
-            //            print("제목을 6글자 이상 입력해주세요")
-        }else {
-            HomeTabViewModel.globalHomeTabData.title = title
-        }
-        
-        HomeTabViewModel.globalHomeTabData.startDate = startDate
-        HomeTabViewModel.globalHomeTabData.endDate = endDate
-        HomeTabViewModel.globalHomeTabData.inviteNum = inviteNum
-        HomeTabViewModel.globalHomeTabData.price = price
-    }
+    
     
     // 숙박, 맛집, 놀거리 설정 업데이트
     func updateRecommendData(shopList: [HomeTabRequestData]) {
@@ -66,4 +53,11 @@ class HomeTabViewModel {
         
     }
     
+    
+//    // 디테일설정 사용자 입력 데이터 체크
+//    func validateUserInputData() -> ValidationResult{
+//
+//
+//        return
+//    }
 }// class

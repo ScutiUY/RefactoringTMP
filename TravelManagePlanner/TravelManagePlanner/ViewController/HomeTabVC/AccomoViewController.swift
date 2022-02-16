@@ -139,7 +139,7 @@ extension AccomoViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         // 1: 숙박, 2: 식당, 3: 놀거리
-        let tableCount = destiSearchViewModel.getDestiSearchCount(categoryIdx: "1")
+        let tableCount = destiSearchViewModel.getDestCount(categoryIdx: "1")
         print("tableCount",tableCount)
         return tableCount
     }
@@ -153,7 +153,7 @@ extension AccomoViewController: UITableViewDataSource {
         cell.backgroundColor = .clear
         
         // 선택된 해당데이터 모델[배열]가져오기
-        let shopData = destiSearchViewModel.getShopData(idx: indexPath.row, categoryIdx: "1")
+        let shopData = destiSearchViewModel.getShopDataSepWithCategory(idx: indexPath.row, categoryIdx: "1")
         
         
         print("shopData", shopData)

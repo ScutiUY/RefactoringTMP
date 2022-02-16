@@ -13,7 +13,7 @@ class RestaurantViewCell: UITableViewCell {
         
     lazy var restaurantImg: UIImageView = {
         let imageView = UIImageView()
-//        button.contentMode = .scaleToFill
+         imageView.contentMode = .scaleAspectFill
 //        imageView.imageEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         imageView.layer.cornerRadius = 10
         imageView.layer.shadowColor = UIColor.black.cgColor

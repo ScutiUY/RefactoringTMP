@@ -27,6 +27,7 @@ class AccomoViewController: UIViewController {
     lazy var basket: UIButton = {
         let button = UIButton()
         button.setTitle("바구니", for : .normal)
+//        button.setImage(UIImage(systemName: "heart"), for: .normal)
         
         button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 1), for: .normal)
         button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 0.6), for: .highlighted)
@@ -48,6 +49,8 @@ class AccomoViewController: UIViewController {
     lazy var accomoTableView: UITableView = {
         let tableVIew = UITableView()
         tableVIew.backgroundColor = .clear
+        tableVIew.separatorStyle = .none // 가로라인 없애기
+        
         return tableVIew
     }()
     

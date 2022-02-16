@@ -223,7 +223,7 @@ class AccomoCalendarViewController: UIViewController {
        
 //        animateDismissView()
         self.dismiss(animated: true)
-        self.present(alert, animated: true)
+        
         
         
         let accomoShopData = HomeTabRequestData(sIdx: sIdx, vDate: vDate, leaveDate: leaveDate)

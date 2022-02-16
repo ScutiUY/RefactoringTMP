@@ -14,7 +14,7 @@ class AccomoViewCell: UITableViewCell {
     
     lazy var accomoImg: UIImageView = {
         let imageView = UIImageView()
-//        button.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
 //        imageView.imageEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         imageView.layer.cornerRadius = 10
         imageView.clipsToBounds = true
@@ -93,12 +93,13 @@ class AccomoViewCell: UITableViewCell {
     
     func setLayout() {
 //        accomoImgButton.frame = CGRect.init(x: 0, y: 0, widthㅇ: contentView.frame.width, height: 160)
-        accomoImg.frame = CGRect.init(x: 0, y: 0, width: contentView.frame.width / 0.5, height: contentView.frame.height / 0.28)
+        //accomoImg.frame = CGRect.init(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height / 0.3)
+        accomoImg.frame = CGRect.init(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height / 0.3)
         
         accomoAllTitleStack.snp.makeConstraints {
             $0.top.equalTo(accomoImg.snp.bottom).multipliedBy(1.0)
-            $0.leading.equalToSuperview().offset(0)
-            $0.trailing.equalToSuperview().offset(0)
+            $0.leading.equalToSuperview().inset(0)
+            $0.trailing.equalToSuperview().inset(0)
         }
         
         

@@ -97,17 +97,6 @@ class DetaileSettingViewController: UIViewController {
         return label
     }()
     
-    
-    
-    //    // 오는날 달력 구현부
-    //    lazy var dayToComecalendar: UILabel = {
-    //        let label = UILabel()
-    //        label.text = "오는 날(달력)"
-    //        label.font = UIFont.systemFont(ofSize: 22)
-    //        label.textColor = .black
-    //        return label
-    //    }()
-    
     lazy var dayToComecalendar: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.preferredDatePickerStyle = .automatic

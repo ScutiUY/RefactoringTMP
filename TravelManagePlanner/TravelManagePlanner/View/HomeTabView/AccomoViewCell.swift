@@ -17,6 +17,7 @@ class AccomoViewCell: UITableViewCell {
 //        button.contentMode = .scaleToFill
 //        imageView.imageEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         imageView.layer.cornerRadius = 10
+        imageView.clipsToBounds = true
         imageView.layer.shadowColor = UIColor.black.cgColor
         imageView.layer.shadowOffset = CGSize(width: 0, height: 4)
         imageView.layer.shadowRadius = 5
@@ -71,7 +72,7 @@ class AccomoViewCell: UITableViewCell {
     lazy var accomoAllTitleStack: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [accomoTitleStack, accomoSelectButton])
         stackView.axis = .horizontal
-        stackView.spacing = 10
+//        stackView.spacing = 30
         
         return stackView
     }()
@@ -92,7 +93,7 @@ class AccomoViewCell: UITableViewCell {
     
     func setLayout() {
 //        accomoImgButton.frame = CGRect.init(x: 0, y: 0, widthㅇ: contentView.frame.width, height: 160)
-        accomoImg.frame = CGRect.init(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height / 0.28)
+        accomoImg.frame = CGRect.init(x: 0, y: 0, width: contentView.frame.width / 0.5, height: contentView.frame.height / 0.28)
         
         accomoAllTitleStack.snp.makeConstraints {
             $0.top.equalTo(accomoImg.snp.bottom).multipliedBy(1.0)

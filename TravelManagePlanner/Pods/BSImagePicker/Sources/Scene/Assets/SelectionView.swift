@@ -30,9 +30,9 @@ class SelectionView: UIView {
     
     var selectionIndex: Int? {
         didSet {
-            guard let numberView = icon as? NumberView, let selectionIndex = selectionIndex else { return }
+            guard let numberView = icon as? NumberView else { return }
             // Add 1 since selections should be 1-indexed
-            numberView.text = (selectionIndex + 1).description
+            numberView.text = "✓"
             setNeedsDisplay()
         }
     }

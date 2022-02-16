@@ -18,9 +18,14 @@ let themeColor = GlobalConstants.Color.Background.themeColor
 class CommunityViewController: UIViewController {
     
     // MARK: - Properties
+    var flag : Bool = false
     var communityViewModel: CommunityViewModel!
     private var journeyList = JourneyList.shared.data
-
+    private var journeyDetailListRepo : JourneyListRepository!
+    var reviewShopList : [ShopListDetail] = []
+    var journeyDetailData : [JourneyDetailData] = []
+    var shopListData : [Dictionary<String, String>] = [Dictionary<String, String>()]
+    
     let activity = UIActivityIndicatorView()
     let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     var filterTheme : String = ""
@@ -60,19 +65,23 @@ class CommunityViewController: UIViewController {
     }()
 
     // MARK: - Lifecyle
-    // 키보드나 pickerview올라가 있을 시, 다른 곳을 누르면 내려가게 해주는 것
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-        self.view.endEditing(true)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = themeColor
         communityViewModel = CommunityViewModel()
+        journeyDetailListRepo = JourneyListRepository()
         setUp()
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        if (flag)
+        {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                self.communityViewModel.getList()
+            }
+        }
+//        flag2 = true
+    }
     // MARK: - Methods
     func setUp() {
         getJourneyData()
@@ -175,10 +184,22 @@ class CommunityViewController: UIViewController {
         var alertData : [UIAlertAction] = []
         let alert = UIAlertController(title: "리뷰를 작성하세요.", message: "작성할 여행 리스트 제목을 클릭해주세요.", preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-        
+        flag = true
+        journeyDetailListRepo.getJourneyDetialList(travelId: Int.max) { result in
+            switch result {
+                case .success(let datailData):
+                self.journeyDetailData = datailData.data
+                for i in 0..<self.journeyDetailData.count {
+                    self.reviewShopList.append(ShopListDetail(sIdx: String(self.journeyDetailData[i].sIdx), vDate: self.journeyDetailData[i].visitDate))
+                    }
+                case .failure(let error):
+                    print(error);
+            }
+        }
         for idx in 0..<journeyList.count {
             alertData.append(UIAlertAction(title: journeyList[idx].title, style: .default, handler: { UIAlertAction in
-                let reviewVC = ReviewWriteViewController(title: self.journeyList[idx].title, sDate: self.journeyList[idx].sDate, eDate: self.journeyList[idx].eDate)
+                
+                let reviewVC = ReviewWriteViewController(title: self.journeyList[idx].title, sDate: self.journeyList[idx].sDate, eDate: self.journeyList[idx].eDate, theme: self.journeyList[idx].theme, shopList: self.reviewShopList)
                 self.navigationController!.pushViewController(reviewVC, animated: true)
             }))
             alert.addAction(alertData[idx])
@@ -199,6 +220,11 @@ class CommunityViewController: UIViewController {
         communityNavigationBar.NavTheme.text = "\(commuinityCategorydata[0])"
         communityNavigationBar.NavSearchBar.text = nil
     }
+
+    // 키보드나 pickerview올라가 있을 시, 다른 곳을 누르면 내려가게 해주는 것
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        self.view.endEditing(true)
+    }
 }
 
 // MARK: - extensions
@@ -212,6 +238,20 @@ extension CommunityViewController: UICollectionViewDataSource, UICollectionViewD
         let communityDataInfo = communityViewModel.getCommunity(index: indexPath.row)
         cell.backgroundColor = themeColor
         cell.setData(communityDataInfo)
+    
+//        if (flag == true && indexPath.row == 0) {
+//            print("if문 안 indexPath.row => ", indexPath.row)
+//            cell.layer.borderWidth = 1
+//            cell.layer.borderColor = UIColor.red.cgColor
+//            flag = false
+//        } else {
+//            print("else 밖 indexPath.row => ", indexPath.row)
+//        }
+//        if (flag2 == true && indexPath.row == 0) {
+//            cell.layer.borderColor = themeColor.cgColor
+//            flag2 = false
+//        }
+        
         return cell
     }
     

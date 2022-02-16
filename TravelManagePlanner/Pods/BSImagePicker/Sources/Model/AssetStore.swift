@@ -24,7 +24,7 @@ import Foundation
 import Photos
 
 @objcMembers public class AssetStore : NSObject {
-    public private(set) var assets: [PHAsset]
+    public var assets: [PHAsset]
 
     public init(assets: [PHAsset] = []) {
         self.assets = assets

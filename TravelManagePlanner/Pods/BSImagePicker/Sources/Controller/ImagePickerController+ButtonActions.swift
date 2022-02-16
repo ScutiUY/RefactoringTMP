@@ -36,7 +36,6 @@ extension ImagePickerController {
 
     @objc func doneButtonPressed(_ sender: UIBarButtonItem) {
         imagePickerDelegate?.imagePicker(self, didFinishWithAssets: assetStore.assets)
-        
         if settings.dismiss.enabled {
             dismiss(animated: true)
         }
@@ -44,7 +43,6 @@ extension ImagePickerController {
 
     @objc func cancelButtonPressed(_ sender: UIBarButtonItem) {
         imagePickerDelegate?.imagePicker(self, didCancelWithAssets: assetStore.assets)
-        
         if settings.dismiss.enabled {
             dismiss(animated: true)
         }

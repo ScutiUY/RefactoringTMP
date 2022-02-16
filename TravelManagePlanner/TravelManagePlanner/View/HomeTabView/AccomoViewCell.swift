@@ -6,11 +6,13 @@
 //
 import UIKit
 
-
-
 class AccomoViewCell: UITableViewCell {
         
     var cellDelegate: ContentsMainTextDelegate?
+    
+    // 디테일 캘린더로 전달할 데이터
+    lazy var place:String = ""
+    lazy var sIdx: Int = 0
     
     lazy var accomoImg: UIImageView = {
         let imageView = UIImageView()
@@ -22,7 +24,6 @@ class AccomoViewCell: UITableViewCell {
         imageView.layer.shadowOffset = CGSize(width: 0, height: 4)
         imageView.layer.shadowRadius = 5
         imageView.layer.shadowOpacity = 0.3
-        
         
         return imageView
     }()
@@ -58,7 +59,7 @@ class AccomoViewCell: UITableViewCell {
     
     @objc
     func accomoSelectAction() {
-        cellDelegate?.categoryButtonTapped()
+        cellDelegate?.categoryButtonTapped(title: accomoTitle.text ?? "", place: self.place, sIdx: self.sIdx)
     }
     
     lazy var accomoTitleStack: UIStackView = {
@@ -92,9 +93,8 @@ class AccomoViewCell: UITableViewCell {
     }
     
     func setLayout() {
-//        accomoImgButton.frame = CGRect.init(x: 0, y: 0, widthㅇ: contentView.frame.width, height: 160)
-        //accomoImg.frame = CGRect.init(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height / 0.3)
-        accomoImg.frame = CGRect.init(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height / 0.3)
+//        accomoImg.frame = CGRect.init(x: 0, y: 0, width: frame.width, height: contentView.frame.height / 0.3)
+        accomoImg.frame = CGRect.init(x: 0, y: 0, width: 347.0, height: 160.0)
         
         accomoAllTitleStack.snp.makeConstraints {
             $0.top.equalTo(accomoImg.snp.bottom).multipliedBy(1.0)

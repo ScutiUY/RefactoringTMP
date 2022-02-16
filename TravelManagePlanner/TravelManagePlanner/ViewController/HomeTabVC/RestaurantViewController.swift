@@ -157,7 +157,8 @@ extension RestaurantViewController: UITableViewDataSource {
 }
 
 extension RestaurantViewController:ContentsMainTextDelegate {
-    func categoryButtonTapped() {
+    
+    func categoryButtonTapped(title: String, place: String, sIdx: Int) {
         print("버튼 기능 구현")
         
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "RestaurantCalendarViewSB") as! RestaurantCalendarViewController

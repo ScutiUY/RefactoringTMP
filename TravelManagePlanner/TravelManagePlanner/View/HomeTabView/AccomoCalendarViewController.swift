@@ -139,7 +139,7 @@ class AccomoCalendarViewController: UIViewController {
         fscCalendar.dataSource = self
         
         accomoAddButton.addTarget(self, action: #selector(addButtonAction), for:  .touchUpInside)
-        alert.addAction(addAlert)
+        
     }
     
     func setUpView() {
@@ -223,7 +223,7 @@ class AccomoCalendarViewController: UIViewController {
        
 //        animateDismissView()
         self.dismiss(animated: true)
-        
+        self.present(alert, animated: true)
         
         
         let accomoShopData = HomeTabRequestData(sIdx: sIdx, vDate: vDate, leaveDate: leaveDate)

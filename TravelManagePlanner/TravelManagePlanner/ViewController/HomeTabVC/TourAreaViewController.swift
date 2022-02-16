@@ -16,6 +16,8 @@ class TourAreaViewController: UIViewController {
     let destiSearchViewModel = DestiSearchViewModel()
     let cellID = "Cell"
     
+    lazy var place:String = ""
+    
     lazy var tourAreaTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "놀거리"
@@ -143,8 +145,6 @@ extension TourAreaViewController: UITableViewDataSource {
         // 카테고리가 놀거리 인것만  == 3
         let shopData = destiSearchViewModel.getShopData(idx: indexPath.row, categoryIdx: "3")
             
-       
-        
         
         let url = URL(string: shopData.imgUrl)
         let data = try! Data(contentsOf: url!)
@@ -162,7 +162,7 @@ extension TourAreaViewController: UITableViewDataSource {
 }
 
 extension TourAreaViewController:ContentsMainTextDelegate {
-    func categoryButtonTapped() {
+    func categoryButtonTapped(title: String, place: String, sIdx: Int) {
         print("버튼 기능 구현")
         
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "TourAreaCalendarViewSB") as! TourAreaCalendarViewController

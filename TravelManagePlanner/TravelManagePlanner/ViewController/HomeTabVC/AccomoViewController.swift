@@ -47,11 +47,11 @@ class AccomoViewController: UIViewController {
     
     // 테이블뷰를 활용하여 추천지 구현하기
     lazy var accomoTableView: UITableView = {
-        let tableVIew = UITableView()
-        tableVIew.backgroundColor = .clear
-        tableVIew.separatorStyle = .none // 가로라인 없애기
+        let tabkeView = UITableView()
+        tabkeView.backgroundColor = .clear
+        tabkeView.separatorStyle = .none // 가로라인 없애기
         
-        return tableVIew
+        return tabkeView
     }()
     
     override func viewDidLoad() {
@@ -117,6 +117,8 @@ extension AccomoViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "AccomoCalendarViewSB") as! AccomoCalendarViewController
         
+        
+        
         nextView.accomoName = destiSearchViewModel.getTitle(idx: indexPath.row)
         nextView.accomoPlace = destiSearchViewModel.getArea(idx: indexPath.row)
         nextView.accomoSIdx = destiSearchViewModel.getSIdx(idx: indexPath.row)
@@ -140,7 +142,7 @@ extension AccomoViewController: UITableViewDataSource {
         
         // 1: 숙박, 2: 식당, 3: 놀거리
         let tableCount = destiSearchViewModel.getDestCount(categoryIdx: "1")
-        print("tableCount",tableCount)
+        
         return tableCount
     }
     
@@ -152,11 +154,18 @@ extension AccomoViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! AccomoViewCell
         cell.backgroundColor = .clear
         
+        cell.accomoSelectButton.tag = indexPath.row
+        
+        
+        // cell 선택시 백그라운드 색상 없애기
+        let cellBGView = UIView()
+        cellBGView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        cell.selectedBackgroundView = cellBGView
+        
+        
         // 선택된 해당데이터 모델[배열]가져오기
         let shopData = destiSearchViewModel.getShopDataSepWithCategory(idx: indexPath.row, categoryIdx: "1")
         
-        
-        print("shopData", shopData)
         
         self.firstaccomName = shopData.name
         
@@ -166,6 +175,9 @@ extension AccomoViewController: UITableViewDataSource {
         cell.accomoImg.image = UIImage(data: data)
         cell.accomoTitle.text = shopData.name
         cell.accomoSubTitle.text = shopData.content
+        cell.place = shopData.area
+        cell.sIdx = shopData.idx
+        
         cell.cellDelegate = self
         
         return cell
@@ -174,10 +186,12 @@ extension AccomoViewController: UITableViewDataSource {
 
 extension AccomoViewController:ContentsMainTextDelegate {
     //달력 이동
-    func categoryButtonTapped() {
+    func categoryButtonTapped(title: String, place: String, sIdx: Int) {
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "AccomoCalendarViewSB") as! AccomoCalendarViewController
         
-        nextView.accomoName = self.firstaccomName
+        nextView.accomoName = title
+        nextView.accomoPlace = place
+        nextView.accomoSIdx = 0
         
         // 다음화면에서 바텀탭 없애기
         nextView.hidesBottomBarWhenPushed = true

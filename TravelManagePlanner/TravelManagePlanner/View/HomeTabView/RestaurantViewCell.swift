@@ -56,7 +56,7 @@ class RestaurantViewCell: UITableViewCell {
         
         @objc
         func restaurantSelectAction() {
-            cellDelegate?.categoryButtonTapped()
+            cellDelegate?.categoryButtonTapped(title: "", place: "", sIdx: 0)
         }
         
         lazy var restaurantTitleStack: UIStackView = {

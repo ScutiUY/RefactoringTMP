@@ -11,6 +11,8 @@ class TourAreaViewCell: UITableViewCell {
     
     var cellDelegate: ContentsMainTextDelegate?
     
+    lazy var place:String = ""
+    
     lazy var tourAreaImg: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill // 이미지 잘려도 꽉채우기 설정
@@ -56,7 +58,7 @@ class TourAreaViewCell: UITableViewCell {
     
     @objc
     func tourAreaSelectAction() {
-        cellDelegate?.categoryButtonTapped()
+        cellDelegate?.categoryButtonTapped(title: "", place: "", sIdx: 0)
     }
     
     lazy var tourAreaTitleStack: UIStackView = {

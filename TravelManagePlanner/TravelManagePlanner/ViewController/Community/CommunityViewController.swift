@@ -19,7 +19,6 @@ class CommunityViewController: UIViewController {
     
     // MARK: - Properties
     var flag : Bool = false
-    var flag2 : Bool = false
     var communityViewModel: CommunityViewModel!
     private var journeyList = JourneyList.shared.data
     private var journeyDetailListRepo : JourneyListRepository!
@@ -75,15 +74,13 @@ class CommunityViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear")
         if (flag)
         {
-            print("NOT YET")
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
                 self.communityViewModel.getList()
             }
         }
-        flag2 = true
+//        flag2 = true
     }
     // MARK: - Methods
     func setUp() {

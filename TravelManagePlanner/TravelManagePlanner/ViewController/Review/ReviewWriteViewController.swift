@@ -144,7 +144,10 @@ class ReviewWriteViewController: UIViewController {
         reviewDataWillSendToVM.shopList = shopListSendFromCommunity
         
         if (self.selectedImages.isEmpty) {
-            //
+            let alert = UIAlertController(title: "사진을 첨부해주세요.", message: "한 개 이상의 사진을 넣어주세요.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
+            alert.addAction(okAction)
+            present(alert, animated: true)
         } else {
             // 파라미터 먼저 넣어주기
             reviewViewModel.setReviewParams(reviewData: reviewDataWillSendToVM, idx: shopListSendFromCommunity.count)

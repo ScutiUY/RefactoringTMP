@@ -21,7 +21,7 @@ class DetaileSettingViewController: UIViewController {
 
     let invalidPeopleNumberAlert = UIAlertController(title: "", message: "인원수를 입력해주세요", preferredStyle: UIAlertController.Style.alert)
     
-    let invalidBudgetAlert = UIAlertController(title: "", message: "예상 금액을 입력해주세요", preferredStyle: UIAlertController.Style.alert)
+    let invalidBudgetAlert = UIAlertController(title: "", message: "예상 금액을 설정해주세요", preferredStyle: UIAlertController.Style.alert)
     
     let addAlert = UIAlertAction(title: "확인", style: UIAlertAction.Style.cancel, handler: nil)
     
@@ -282,11 +282,10 @@ class DetaileSettingViewController: UIViewController {
         setButtonAction()
         
         budgetSlider.addTarget(self, action: #selector(self.sliderAction(_:)), for: .valueChanged)
-        nextButton.addTarget(self, action: #selector(self.nextButtonAction(_:)), for: .touchUpInside)
         cancleButton.addTarget(self, action: #selector(self.privousButtonAction(_:)), for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(self.nextButtonAction(_:)), for: .touchUpInside)
         
         setAlert()
-        
     }
     
 //    @objc func dataSendButtonAction() {
@@ -302,18 +301,19 @@ class DetaileSettingViewController: UIViewController {
         // 날짜 date to String 변환
         let startDateStr = dateFormatter.string(from: dayToGocalendar.date)
         let endDateStr = dateFormatter.string(from: dayToComecalendar.date)
-        
         guard let title = journeyTextField.text else {return}
         let startDate = startDateStr
         let endDate = endDateStr
-        guard let inviteNum = numPeopleTextField.text else {return}
-        guard let price = budgetAmount.text else {return}
+        let inviteNum = numPeopleTextField.text
+        let price = budgetAmount.text
+        
         
         detaileSettingViewModel.updateTitle(title: title)
         detaileSettingViewModel.updateDate(dayToGo: startDate, dayToCome: endDate)
-        detaileSettingViewModel.updatePeople(peopleNum: inviteNum)
-        detaileSettingViewModel.updateBudget(budget: price)
+        detaileSettingViewModel.updatePeople(peopleNum: inviteNum ?? "")
+        detaileSettingViewModel.updateBudget(budget: price ?? "")
         
+       
         switch detaileSettingViewModel.validateUserInputData() {
         case .invalidTitle :
             self.present(invalidTitleAlert, animated: true)

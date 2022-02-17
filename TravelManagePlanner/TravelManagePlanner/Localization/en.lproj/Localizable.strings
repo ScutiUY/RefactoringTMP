@@ -1,0 +1,31 @@
+/* 
+  Localizable.strings
+  TravelManagePlanner
+
+  Created by UY on 2022/02/13.
+  
+*/
+
+"Home" = "Home";
+"Journey List" = "Journey List";
+"Community" = "Community";
+"My Page" = "My Page";
+
+
+
+// My page
+
+"Personal Information" = "Personal Information";
+"Previous Travel" = "Previous Travel";
+"Settings" = "Settings";
+
+"Change Nickname" = "Change Nickname";
+"Resign" = "Resign";
+"Logout" = "Logout";
+
+"Version Information" = "Version Information";
+
+"Are you sure resign?" = "Are you sure resign?";
+
+"Confirm" = "Confirm";
+

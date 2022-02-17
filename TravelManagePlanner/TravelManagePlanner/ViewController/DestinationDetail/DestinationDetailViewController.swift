@@ -12,8 +12,6 @@ class DestinationDetailViewController: UIViewController {
     
     var destinationDetailViewModel = DestinationDetailViewModel()
     
-    //private var fetchedImages: [UIImage] = [] 캐싱용 수정필요
-    
     lazy var imageAnchorView: UIView = {
         var view = UIView()
         return view
@@ -100,6 +98,7 @@ class DestinationDetailViewController: UIViewController {
     
 }
 extension DestinationDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    // ImageCollectionView Delegate
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         imagePageControl.numberOfPages = destinationDetailViewModel.imagesCount()
         return destinationDetailViewModel.imagesCount()
@@ -120,6 +119,7 @@ extension DestinationDetailViewController: UICollectionViewDelegateFlowLayout {
     
 }
 extension DestinationDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    // Content TableView Delegate and DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }

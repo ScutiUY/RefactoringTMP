@@ -29,12 +29,10 @@ class ImageSliderCollectionViewCell: UICollectionViewCell {
             make.center.equalToSuperview()
             make.width.equalToSuperview()
             make.height.equalToSuperview()
-            
         }
     }
     
     func setCollectionViewIngredient(imageUrl: String) {
-        print(imageUrl)
         ImageLoader.loadImage(url: imageUrl) { image in
             self.imageView.image = image
         }

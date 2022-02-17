@@ -1,15 +1,14 @@
 //
-//  JourneyListViewController.swift
+//  PreviousTravelTableViewController.swift
 //  TravelManagePlanner
 //
-//  Created by UY on 2022/01/03.
+//  Created by UY on 2022/02/13.
 //
 
 import UIKit
-import SnapKit
 
-class JourneyListViewController: UIViewController {
-    
+class PreviousTravelViewController: UIViewController {
+
     var journeyListViewModel: JourneyListViewModel!
     
     lazy var journeyTableView: UITableView = {
@@ -29,6 +28,9 @@ class JourneyListViewController: UIViewController {
     }
     
     func setLayout() {
+        
+        self.view.backgroundColor = GlobalConstants.Color.Background.themeColor
+        journeyTableView.backgroundColor = GlobalConstants.Color.Background.themeColor
         
         journeyTableView.refreshControl = UIRefreshControl()
         journeyTableView.refreshControl?.addTarget(self, action: #selector(onRefresh), for: .valueChanged)
@@ -66,7 +68,7 @@ class JourneyListViewController: UIViewController {
             self?.journeyTableView.reloadData()
             self?.journeyTableView.refreshControl?.endRefreshing()
         }
-        journeyListViewModel.getList()
+        journeyListViewModel.getPreviousList()
         
     }
     
@@ -76,12 +78,11 @@ class JourneyListViewController: UIViewController {
     }
     
     @objc func onRefresh() {
-        journeyListViewModel.getList()
+        journeyListViewModel.getPreviousList()
     }
 }
 
-
-extension JourneyListViewController: UITableViewDelegate, UITableViewDataSource {
+extension PreviousTravelViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return journeyListViewModel.journeyListCount()

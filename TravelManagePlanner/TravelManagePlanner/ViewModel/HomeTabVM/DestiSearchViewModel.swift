@@ -13,7 +13,19 @@ class DestiSearchViewModel {
     var destiSearchRequest = DestiSearchRequest(place: "")
     
     // 목적지 응답 모델 소유
-    var destiSearchResponse = DestiSearchResponse.shared.data
+    var destiSearchResponse = DestiSearchResponse.shared.data {
+        didSet {
+            destiSearchResponse.forEach {
+                if categoryDic[$0.category] == nil {
+                    categoryDic[$0.category] = [$0]
+                } else {
+                    var destList = categoryDic[$0.category]!
+                    destList.append($0)
+                    categoryDic[$0.category] = destList
+                }
+            }
+        }
+    }
     
     
     // repository 소유
@@ -23,6 +35,9 @@ class DestiSearchViewModel {
     
     // 유저입력 목적지
     static var serchData = ""
+    
+    //category 대응 데이터
+    var categoryDic = [String: [DestiSearchResponseData]]()
     
     // 상태 정의
     private var isLoading: Bool = false
@@ -92,6 +107,15 @@ class DestiSearchViewModel {
     }
     
     // 카테고리별 생설될 cell갯수 카운트
+    
+    // 의연
+    func getDestCount(categoryIdx: String) -> Int{
+        guard let destDataArr = categoryDic[categoryIdx] else {
+            return 0
+        }
+        return destDataArr.count
+    }
+    //
     func getDestiSearchCount(categoryIdx: String) -> Int {
         var cnt = 0
         for i in 0..<destiSearchResponse.count {
@@ -104,17 +128,24 @@ class DestiSearchViewModel {
     }
     
     // 카테고리별 뷰 담아주기
+    
+    // 의연
+    func getShopDataSepWithCategory(idx: Int, categoryIdx: String) -> DestiSearchResponseData {
+        return categoryDic[categoryIdx]!.sorted{ $0.idx < $1.idx }[idx]
+    }
+    //
+    
     func getShopData(idx: Int, categoryIdx: String) -> DestiSearchResponseData {
         var filterShopData = DestiSearchResponseData(area: "", imgUrl: "", address: "", name: "", idx: 0, category: "", content: "")
         
             if destiSearchResponse[idx].category == categoryIdx{
-               
+                
                 filterShopData = destiSearchResponse[idx]
                 print("destiSearchResponse[idx]", destiSearchResponse[idx])
         }
         
-        return destiSearchResponse[idx]
-//        return filterShopData
+//        return destiSearchResponse[idx]
+        return filterShopData
     }
 }
 

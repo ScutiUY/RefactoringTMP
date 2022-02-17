@@ -8,6 +8,7 @@
 import UIKit
 
 
+
 // 숙박, 식당, 놀거리 추천지 Page
 class RecommendPageViewController: UIPageViewController {
     
@@ -16,9 +17,12 @@ class RecommendPageViewController: UIPageViewController {
     var recommendVCArray: [UIViewController] = {
         let storyBoard = UIStoryboard(name: "HomeTabSB", bundle: nil)
         
-        let vc1 = storyBoard.instantiateViewController(withIdentifier: "AccomoViewSB") // 숙박
-        let vc2 = storyBoard.instantiateViewController(withIdentifier: "RestaurantViewSB") // 식당
-        let vc3 = storyBoard.instantiateViewController(withIdentifier: "TourAreaViewSB") // 관광지역
+        let vc1 = storyBoard.instantiateViewController(withIdentifier: "AccomoViewSB") as! AccomoViewController// 숙박
+        let vc2 = storyBoard.instantiateViewController(withIdentifier: "RestaurantViewSB") as! RestaurantViewController// 식당
+        let vc3 = storyBoard.instantiateViewController(withIdentifier: "TourAreaViewSB") as! TourAreaViewController// 관광지역
+        
+
+        
         
         return [vc1, vc2, vc3]
     }()
@@ -31,8 +35,10 @@ class RecommendPageViewController: UIPageViewController {
         if let firstVC = recommendVCArray.first {
             self.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
-        //        self.recommendVCArray.backgroundStyle = .prominent
+        
+        
     }
+    
     
     //     백그라운드 블랙 없애기
     override func viewDidLayoutSubviews() {

@@ -346,11 +346,11 @@
 		6BA7898127B4E53A003CFE82 /* HomeTabVC */ = {
 			isa = PBXGroup;
 			children = (
-				6B6D773327B924BD000CF8EA /* AccomoViewController.swift */,
-				6B6D773827B924BE000CF8EA /* DestiSearchViewController.swift */,
-				6B6D773727B924BE000CF8EA /* DetaileSettingViewController.swift */,
-				6B6D773527B924BE000CF8EA /* RestaurantViewController.swift */,
 				6B6D773427B924BE000CF8EA /* ThemeViewController.swift */,
+				6B6D773727B924BE000CF8EA /* DetaileSettingViewController.swift */,
+				6B6D773827B924BE000CF8EA /* DestiSearchViewController.swift */,
+				6B6D773327B924BD000CF8EA /* AccomoViewController.swift */,
+				6B6D773527B924BE000CF8EA /* RestaurantViewController.swift */,
 				6B6D773627B924BE000CF8EA /* TourAreaViewController.swift */,
 			);
 			path = HomeTabVC;
@@ -502,13 +502,13 @@
 		F080CF27279AE7C7007C1151 /* HomeTabView */ = {
 			isa = PBXGroup;
 			children = (
-				6B6D772427B92489000CF8EA /* AccomoCalendarViewController.swift */,
-				6B6D772527B92489000CF8EA /* AccomoViewCell.swift */,
-				6B6D772127B92489000CF8EA /* RestaurantCalendarViewController.swift */,
-				6B6D772627B92489000CF8EA /* RestaurantViewCell.swift */,
 				6B6D772227B92489000CF8EA /* ThemeViewCell.swift */,
-				6B6D772327B92489000CF8EA /* TourAreaCalendarViewController.swift */,
+				6B6D772527B92489000CF8EA /* AccomoViewCell.swift */,
+				6B6D772427B92489000CF8EA /* AccomoCalendarViewController.swift */,
+				6B6D772627B92489000CF8EA /* RestaurantViewCell.swift */,
+				6B6D772127B92489000CF8EA /* RestaurantCalendarViewController.swift */,
 				6B6D772727B92489000CF8EA /* TourAreaViewCell.swift */,
+				6B6D772327B92489000CF8EA /* TourAreaCalendarViewController.swift */,
 			);
 			path = HomeTabView;
 			sourceTree = "<group>";

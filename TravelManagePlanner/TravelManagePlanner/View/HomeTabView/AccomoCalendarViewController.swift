@@ -18,8 +18,6 @@ class AccomoCalendarViewController: UIViewController {
     // 뷰모델 소지
     let homeTabViewModel = HomeTabViewModel()
     
-    let fscCalendarDateFormat = DateFormatter()
-    
     let dateFormatter = DateFormatter()
     
     var accomoName: String = ""
@@ -37,7 +35,6 @@ class AccomoCalendarViewController: UIViewController {
         return view
     }()
     
-    // 2
     let maxDimmedAlpha: CGFloat = 0.5
     lazy var dimmedView: UIView = {
         let view = UIView()
@@ -111,7 +108,6 @@ class AccomoCalendarViewController: UIViewController {
         return button
     }()
     
-    
     // 바텀 버튼 스택
     lazy var bottomButtonStack: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [reSelectButton, accomoAddButton])
@@ -123,7 +119,6 @@ class AccomoCalendarViewController: UIViewController {
     
     // BottomCalendar 높이
     let defaultHeight: CGFloat = 500
-    let cancelHeight: CGFloat = 0
     
     var containerViewHeightConstraint: NSLayoutConstraint?
     var containerViewBottomConstraint: NSLayoutConstraint?
@@ -133,13 +128,12 @@ class AccomoCalendarViewController: UIViewController {
         view.backgroundColor = .clear
         setUpView()
         setLayout()
-        fscCalendarDateFormat.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         
         fscCalendar.delegate = self
         fscCalendar.dataSource = self
         
         accomoAddButton.addTarget(self, action: #selector(addButtonAction), for:  .touchUpInside)
-        alert.addAction(addAlert)
     }
     
     func setUpView() {
@@ -150,6 +144,7 @@ class AccomoCalendarViewController: UIViewController {
         view.addSubview(fscCalendar)
         view.addSubview(bottomButtonStack)
     }
+    
     func setLayout() {
         dimmedView.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -225,7 +220,6 @@ class AccomoCalendarViewController: UIViewController {
         self.dismiss(animated: true)
         self.present(alert, animated: true)
         
-        
         let accomoShopData = HomeTabRequestData(sIdx: sIdx, vDate: vDate, leaveDate: leaveDate)
        
         homeTabViewModel.updateRecommendData(shopList: [accomoShopData])
@@ -244,12 +238,15 @@ extension AccomoCalendarViewController:FSCalendarDelegate {
 extension AccomoCalendarViewController:FSCalendarDelegateAppearance {
     // 날짜 선택 시 콜백 메소드
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+       
+        print(dateFormatter.string(from: date) + " 선택됨")
+        
+        // 선택한 날짜 담기
         dateFormatter.dateFormat = "yyyyMMdd"
-        print(fscCalendarDateFormat.string(from: date) + " 선택됨")
         self.selectCheckIn = dateFormatter.string(from: date)
     }
     // 날짜 선택 해제 시 콜백 메소드
     public func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        print(fscCalendarDateFormat.string(from: date) + " 해제됨")
+        print(dateFormatter.string(from: date) + " 해제됨")
     }
 }

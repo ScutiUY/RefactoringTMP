@@ -108,16 +108,14 @@ extension JourneyListDetailViewController: UICollectionViewDelegate, UICollectio
             /// 아님 날짜를 정렬한 배열을 보내고 현재 인덱스를 넘겨서 detailCollectionView에서 처리
             
             let cell = journeyListDetailPageCollectionView.dequeueReusableCell(withReuseIdentifier: "pageCell", for: indexPath) as! JourneyListDetailPageCollectionView
-            
+            cell.delegate = self
             cell.parentViewSize = CGSize(width: view.frame.width, height: collectionView.frame.height)
             
-            cell.viewModel.getList(journeyDetailDataFromPageCollectionView: viewModel.passJourneyData())
-            cell.viewModel.dateDic = viewModel.passDateDic()
-            cell.viewModel.dateIdx = indexPath.row
+            
+            // 해당 index 날짜에 대한 모든 여행 데이터를 넘김 나머진 알아서
+            cell.viewModel.getList(journeyDetailDataFromPageCollectionView: viewModel.passJourneyInfoInDate(index: indexPath.row))
             return cell
         }
-        
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize { // collectionView 셀 사이즈
@@ -143,4 +141,14 @@ extension JourneyListDetailViewController {
         }
     }
 
+}
+
+extension JourneyListDetailViewController: PassDestinationData {
+    func journeyListDetailCV(destinationIdx: Int) {
+        
+        let destinationDetailVC = UIStoryboard(name: "DestinationDetailSB", bundle: nil).instantiateViewController(withIdentifier: "DestinationDetailSB") as! DestinationDetailViewController
+        destinationDetailVC.destinationDetailViewModel.shopId = String(destinationIdx)
+        destinationDetailVC.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(destinationDetailVC, animated: true)
+    }
 }

@@ -11,7 +11,7 @@ import Alamofire
 class DestiSearchViewController: UIViewController {
     
     //뷰모델 소유
-    var homeTabViewModel = HomeTabViewModel()
+    var destiSearchViewModel = DestiSearchViewModel()
     
     // 테마 타이틀
     lazy var themeTitleLabel: UILabel = {
@@ -45,7 +45,7 @@ class DestiSearchViewController: UIViewController {
         return tableView
     }()
     
-    var data: DestiSearchData = DestiSearchData(place: "")
+    var data: DestiSearchRequest = DestiSearchRequest(place: "")
     
     var filterCheck: Bool {
         let searchController = self.navigationItem.searchController
@@ -112,7 +112,6 @@ extension DestiSearchViewController: UITableViewDataSource {
 extension DestiSearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        print("테이블뷰 클릭")
         // main에 있는 두번째화면 불러오기(스토리보드 활용)
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "RecommendPageViewSB") as! RecommendPageViewController
         
@@ -120,19 +119,19 @@ extension DestiSearchViewController: UITableViewDelegate {
         navigationController!.pushViewController(nextView, animated: true)
    
         let placeData = self.data.placeData[indexPath.row]
-        homeTabViewModel.updateDestiSearchData(userDestiData: placeData)
-        
+//        homeTabViewModel.updateDestiSearchData(placeData)
+        DestiSearchViewModel.serchData = placeData
+        #if DEBUG
         print("선택된 장소 :", placeData)
+        #endif
     }
 }
 
 extension DestiSearchViewController: UISearchResultsUpdating {
     // 서치바에서 타이핑시마다 해당 메소드 실행
     func updateSearchResults(for placeSearch: UISearchController) {
-        guard let userText = placeSearch.searchBar.text
-        else {
-            return
-        }
+        guard let userText = placeSearch.searchBar.text else { return }
+        
         print("사용자 입력 : ", userText )
         self.data.filterValue = self.data.placeData.filter{ $0.localizedCaseInsensitiveContains(userText)}
         self.placeDataTable.reloadData()

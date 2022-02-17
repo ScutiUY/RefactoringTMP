@@ -8,24 +8,11 @@
 import UIKit
 
 class RestaurantViewController: UIViewController {
-
+    
+    // 뷰모델 소유
+    let destiSearchViewModel = DestiSearchViewModel()
     let cellID = "Cell"
-    
-    lazy var imgDataName = ["accomoA", "accomoB", "accomoC","accomoA", "accomoB", "accomoC"]
-    
-    var imgArray: [UIImage] {
-        var img:[UIImage] = []
-        
-        for i in imgDataName {
-            if let asImg = UIImage(named: i) {
-                
-                img.append(asImg)
-            }else {
-                print("Restaurant imgData is nil")
-            }
-        }
-        return img
-    }
+    let restaurantCategory:String = "2"
     
     lazy var restaurantTitleLabel: UILabel = {
         let label = UILabel()
@@ -60,12 +47,15 @@ class RestaurantViewController: UIViewController {
     lazy var restaurantTableView: UITableView = {
         let tableVIew = UITableView()
         tableVIew.backgroundColor = .clear
+        tableVIew.separatorStyle = .none // 가로라인 없애기
         return tableVIew
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = GlobalConstants.Color.Background.themeColor
+        
+        setObserver()
         setUpView()
         setLayout()
         setDelegate()
@@ -98,13 +88,33 @@ class RestaurantViewController: UIViewController {
         restaurantTableView.register(RestaurantViewCell.classForCoder(), forCellReuseIdentifier: cellID)
     }
     
+    func setObserver() {
+        destiSearchViewModel.getData()
+        
+        destiSearchViewModel.loadingStarted = {
+            
+        }
+        destiSearchViewModel.loadingEnded = {
+            
+        }
+        destiSearchViewModel.dataUpdated = {
+            self.restaurantTableView.reloadData()
+        }
+    }
+    
 }
+    
 
 
 // cellHeight 지정
 extension RestaurantViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.height / 4
+        return view.frame.height / 3.7
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        // 디테일뷰 구현하기
     }
 
 }
@@ -118,33 +128,51 @@ extension RestaurantViewController: UITableViewDataSource {
     
     // cell 갯수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        imgDataName.count
+        
+        let tableCount = destiSearchViewModel.getDestCount(categoryIdx: restaurantCategory)
+        
+        return tableCount
     }
     
-    // 테이블 구성
+    // 테이블 화면데이터구성
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        print(indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! RestaurantViewCell
         cell.backgroundColor = .clear
-        cell.cellLoadImage(imgDataName[indexPath.row])
-        cell.restaurantTitle.text = imgDataName[indexPath.row]
-        cell.restaurantSubTitle.text = "업소의 간단한 설명"
-        cell.cellDelegate = self
+   
+      
         
-    
-//        cell.contentView.isUserInteractionEnabled = false
+        // cell 선택시 백그라운드 색상 없애기
+        let cellBGView = UIView()
+        cellBGView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        cell.selectedBackgroundView = cellBGView
+        
+        // 선택된 해당데이터 모델[배열]가져오기
+        let shopData = destiSearchViewModel.getShopDataSepWithCategory(idx: indexPath.row, categoryIdx: restaurantCategory)
+        
+        let url = URL(string: shopData.imgUrl)
+        let data = try! Data(contentsOf: url!)
+        
+        cell.restaurantImg.image = UIImage(data: data)
+        cell.restaurantTitle.text = shopData.name
+        cell.restaurantSubTitle.text = shopData.content
+        cell.place = shopData.area
+        cell.sIdx = shopData.idx
+        
+        cell.cellDelegate = self
         
         return cell
     }
 }
 
 extension RestaurantViewController:ContentsMainTextDelegate {
-    func categoryButtonTapped() {
-        print("버튼 기능 구현")
-        
+    // 달력 이동
+    func categoryButtonTapped(title: String, place: String, sIdx: Int) {
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "RestaurantCalendarViewSB") as! RestaurantCalendarViewController
+        
+        nextView.restaurantName = title
+        nextView.restaurantPlace = place
+        nextView.restaurantSIdx = sIdx
         
         // 다음화면에서 바텀탭 없애기
         nextView.hidesBottomBarWhenPushed = true

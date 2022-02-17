@@ -33,7 +33,7 @@ class JourneyListViewController: UIViewController {
         journeyTableView.refreshControl = UIRefreshControl()
         journeyTableView.refreshControl?.addTarget(self, action: #selector(onRefresh), for: .valueChanged)
         
-        self.title = "여행 리스트"
+        self.title = "Journey List".localized
         self.navigationController?.navigationItem.largeTitleDisplayMode = .always
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
@@ -79,6 +79,7 @@ class JourneyListViewController: UIViewController {
         journeyListViewModel.getList()
     }
 }
+
 
 extension JourneyListViewController: UITableViewDelegate, UITableViewDataSource {
     

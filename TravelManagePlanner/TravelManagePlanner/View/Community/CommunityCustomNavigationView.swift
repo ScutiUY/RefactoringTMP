@@ -9,7 +9,7 @@ import UIKit
 import Then
 import SnapKit
 
-class CommunityCustomNavigationView: UIView {
+class CommunityCustomNavigationView: UIView, UISearchBarDelegate {
 
     // MARK: Properties
     lazy var NavTitle = UITextView().then {
@@ -27,8 +27,10 @@ class CommunityCustomNavigationView: UIView {
         $0.setImage(UIImage(named: "icCaencel"), for: .clear, state: .normal)
         $0.frame = CGRect(x: 0, y: 0, width: 85, height: 0)
         $0.backgroundImage = UIImage()
-        $0.backgroundColor = GlobalConstants.Color.Background.themeColor
+        $0.tintColor = .clear
+        $0.backgroundColor = .clear
         $0.barTintColor = GlobalConstants.Color.Background.themeColor
+        $0.layer.borderWidth = 0
     }
 
     lazy var NavTheme = UITextField().then {
@@ -61,7 +63,7 @@ class CommunityCustomNavigationView: UIView {
         self.addSubview(NavTheme)
         
         NavTitle.snp.makeConstraints {
-            $0.top.equalTo(self.snp.top).offset(39)
+            $0.top.equalTo(self.snp.top).offset(36)
             $0.width.equalTo(self.snp.width).multipliedBy(0.5)
             $0.height.equalTo(self.snp.height).multipliedBy(0.32)
             $0.centerX.equalTo(self.snp.centerX)
@@ -78,7 +80,7 @@ class CommunityCustomNavigationView: UIView {
             $0.centerY.equalTo(self.NavSearchBar.searchTextField.snp.centerY)
             $0.trailing.equalTo(self.snp.trailing).offset(-20)
             $0.width.equalTo(self.snp.width).multipliedBy(0.3)
-            $0.height.equalTo(self.snp.height).multipliedBy(0.27)
+            $0.height.equalTo(self.NavSearchBar.searchTextField)
         }
     }
 

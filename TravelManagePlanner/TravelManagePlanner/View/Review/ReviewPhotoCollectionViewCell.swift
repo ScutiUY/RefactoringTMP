@@ -22,12 +22,14 @@ class ReviewPhotoCollectionViewCell: UICollectionViewCell {
     
     func CellSetup()
     {
-        imageSelectedView.backgroundColor = UIColor(red: 243/255, green: 255/255, blue: 251/255, alpha: 1)
+        imageSelectedView.backgroundColor = GlobalConstants.Color.Background.themeColor
         
         addSubview(imageSelectedView)
         
         imageSelectedView.snp.makeConstraints {
-            $0.top.bottom.trailing.leading.equalToSuperview()
+            $0.trailing.leading.equalToSuperview()
+            $0.centerX.centerY.equalToSuperview()
+            $0.width.height.equalToSuperview().multipliedBy(0.9)
         }
     }
 }

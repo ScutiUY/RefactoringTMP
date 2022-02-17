@@ -8,12 +8,12 @@
 import UIKit
 import SnapKit
 
-protocol passDestinationData {
-    
+protocol PassDestinationData {
+    func journeyListDetailCV(destinationIdx: Int)
 }
 
 class JourneyListDetailPageCollectionView: UICollectionViewCell {
-    
+    var delegate: PassDestinationData!
     var viewModel = JourneyListDetailPageViewModel()
     
     var parentViewSize = CGSize(width: 0, height: 0)
@@ -22,6 +22,7 @@ class JourneyListDetailPageCollectionView: UICollectionViewCell {
         let layout = UICollectionViewFlowLayout()
         var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(JourneyListDetailCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        //collectionView.register(<#T##viewClass: AnyClass?##AnyClass?#>, forSupplementaryViewOfKind: <#T##String#>, withReuseIdentifier: <#T##String#>)
         return collectionView
     }()
     
@@ -61,8 +62,12 @@ class JourneyListDetailPageCollectionView: UICollectionViewCell {
 
 extension JourneyListDetailPageCollectionView: UICollectionViewDelegate, UICollectionViewDataSource {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return viewModel.categoriesCount()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.count()
+        return viewModel.countInSectionItems(idx: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -74,17 +79,26 @@ extension JourneyListDetailPageCollectionView: UICollectionViewDelegate, UIColle
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) { // 선택시 delegate를 통해  JourneyListDetailViewController로 destination idx를 넘긴다
         
-        let destinationDetailVC = UIStoryboard(name: "DestinationDetailSB", bundle: nil).instantiateViewController(withIdentifier: "DestinationDetailSB") as! DestinationDetailViewController
-        
+        delegate.journeyListDetailCV(destinationIdx: viewModel.destination(idx: indexPath.row))
     }
     
 }
 
 extension JourneyListDetailPageCollectionView: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: parentViewSize.width * 0.9, height: 150)
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView { // 섹션 헤더 
+//
+//    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: 0, height: 0)
+    }
+    
 }
 

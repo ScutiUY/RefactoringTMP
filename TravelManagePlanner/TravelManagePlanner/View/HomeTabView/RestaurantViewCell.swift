@@ -4,25 +4,28 @@
 //
 //  Created by YoonDaeSung on 2022/02/08.
 //
-
 import UIKit
 
 class RestaurantViewCell: UITableViewCell {
 
     var cellDelegate: ContentsMainTextDelegate?
         
-        lazy var restaurantImgButton: UIButton = {
-            let button = UIButton()
-    //        button.contentMode = .scaleToFill
-            button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
-            button.imageView?.layer.cornerRadius = 10
-            button.layer.shadowColor = UIColor.black.cgColor
-            button.layer.shadowOffset = CGSize(width: 0, height: 4)
-            button.layer.shadowRadius = 5
-            button.layer.shadowOpacity = 0.3
-            
-            return button
-        }()
+    // 디테일 캘린더로 전달할 데이터
+    lazy var place:String = ""
+    lazy var sIdx: Int = 0
+    
+    lazy var restaurantImg: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 10
+        imageView.clipsToBounds = true
+        imageView.layer.shadowColor = UIColor.black.cgColor
+        imageView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        imageView.layer.shadowRadius = 5
+        imageView.layer.shadowOpacity = 0.3
+        
+        return imageView
+    }()
         
         lazy var restaurantTitle: UILabel = {
             let label = UILabel()
@@ -52,16 +55,15 @@ class RestaurantViewCell: UITableViewCell {
             return button
         }()
         
-        
         @objc
         func restaurantSelectAction() {
-            cellDelegate?.categoryButtonTapped()
+            cellDelegate?.categoryButtonTapped(title: restaurantTitle.text ?? "", place: self.place, sIdx: self.sIdx)
         }
         
         lazy var restaurantTitleStack: UIStackView = {
             let stackView = UIStackView(arrangedSubviews: [restaurantTitle, restaurantSubTitle])
             stackView.axis = .vertical
-            stackView.spacing = 2
+            stackView.spacing = 3
             
             return stackView
         }()
@@ -69,16 +71,11 @@ class RestaurantViewCell: UITableViewCell {
         lazy var restaurantAllTitleStack: UIStackView = {
             let stackView = UIStackView(arrangedSubviews: [restaurantTitleStack, restaurantSelectButton])
             stackView.axis = .horizontal
-            stackView.spacing = 10
+            stackView.spacing = 200
             
             return stackView
         }()
         
-        // 함수생성후 뷰컨에서 호출 이미지를 뷰컨에서 넘겨줌
-        func cellLoadImage(_ imgData: String) {
-            
-            restaurantImgButton.setImage(UIImage(named: imgData), for: .normal)
-        }
         
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -91,22 +88,20 @@ class RestaurantViewCell: UITableViewCell {
         }
         
         func setUpView() {
-            contentView.addSubview(restaurantImgButton)
+            contentView.addSubview(restaurantImg)
             contentView.addSubview(restaurantAllTitleStack)
             
         }
         
         func setLayout() {
-    //        accomoImgButton.frame = CGRect.init(x: 0, y: 0, widthㅇ: contentView.frame.width, height: 160)
-            restaurantImgButton.frame = CGRect.init(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height / 0.28)
+//            restaurantImg.frame = CGRect.init(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height / 0.28)
+            restaurantImg.frame = CGRect.init(x: 0, y: 0, width: 347.0, height: 160.0) //추후 오토레이아웃 변경필요
             
             restaurantAllTitleStack.snp.makeConstraints {
-                $0.top.equalTo(restaurantImgButton.snp.bottom).multipliedBy(1.0)
+                $0.top.equalTo(restaurantImg.snp.bottom).multipliedBy(1.0)
                 $0.leading.equalToSuperview().offset(0)
                 $0.trailing.equalToSuperview().offset(0)
             }
-            
-            
         }
         
         required init?(coder aDecoder: NSCoder) {

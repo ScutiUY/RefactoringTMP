@@ -290,6 +290,7 @@ class SignUpViewController: UIViewController {
 
 
 extension SignUpViewController : UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == emailTextField {
             pwTextField.becomeFirstResponder()
@@ -300,6 +301,7 @@ extension SignUpViewController : UITextFieldDelegate {
         }
         return true
     }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.2) {
             self.invalidLabel.snp.remakeConstraints({ (m) in

@@ -15,11 +15,16 @@ class CommunityCollectionViewCell: UICollectionViewCell {
     
     var communityViewModel: CommunityViewModel!
     
-    lazy var communityCollectionViewImage = UIImageView().then {
-        $0.layer.shadowColor = UIColor.black.cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
+    lazy var imageShadowView = UIView().then {
+        $0.layer.shadowOffset = CGSize(width: 2, height: 2)
+        $0.layer.shadowOpacity = 0.7
         $0.layer.shadowRadius = 5
-        $0.layer.shadowOpacity = 0.2
+        $0.layer.shadowColor = UIColor.gray.cgColor
+    }
+    
+    lazy var communityCollectionViewImage = UIImageView().then {
+        $0.layer.cornerRadius = 10
+        $0.clipsToBounds = true
         $0.backgroundColor = .lightGray
     }
     
@@ -40,6 +45,14 @@ class CommunityCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        communityCollectionViewImage.image = nil
+        communityCollectionViewTitle.text = ""
+        communityCollectionViewHashtags.text = ""
+        self.layer.borderColor = .none
+    }
+    
     // MARK: functions
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,15 +68,22 @@ class CommunityCollectionViewCell: UICollectionViewCell {
     
     // MARK: functions
     private func setLayout() {
-        self.addSubview(communityCollectionViewImage)
+        self.addSubview(imageShadowView)
+        imageShadowView.addSubview(communityCollectionViewImage)
         self.addSubview(communityCollectionViewTitle)
         self.addSubview(communityCollectionViewHashtags)
         
-        communityCollectionViewImage.snp.makeConstraints {
+        imageShadowView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(5)
             $0.centerX.equalTo(self.snp.centerX)
             $0.width.equalToSuperview()
             $0.height.equalToSuperview().multipliedBy(0.7)
+        }
+        
+        communityCollectionViewImage.snp.makeConstraints {
+            $0.trailing.leading.equalToSuperview()
+            $0.centerX.centerY.equalToSuperview()
+            $0.width.height.equalToSuperview()
         }
         
         communityCollectionViewTitle.snp.makeConstraints {

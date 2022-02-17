@@ -100,7 +100,8 @@ class CommunityViewController: UIViewController {
     }
     
     func setDelegate() {
-        communityNavigationBar.NavSearchBar.delegate = self
+        self.communityNavigationBar.NavSearchBar.delegate = self
+        self.communityNavigationBar.NavTheme.delegate = self
         communityCollectionView.dataSource = self
         communityCollectionView.delegate = self
         communityFloatingButton.delegate = self
@@ -245,7 +246,7 @@ extension CommunityViewController: UICollectionViewDataSource, UICollectionViewD
 //            cell.layer.borderColor = UIColor.red.cgColor
 //            flag = false
 //        } else {
-//            print("else 밖 indexPath.row => ", indexPath.row)
+//            print("else 밖 indexPath.row => ", indexPath.row)#imageLiteral(resourceName: "simulator_screenshot_63100446-18B2-415C-94E8-E2A115AD9F0E.png")
 //        }
 //        if (flag2 == true && indexPath.row == 0) {
 //            cell.layer.borderColor = themeColor.cgColor
@@ -316,10 +317,10 @@ extension CommunityViewController : JJFloatingActionButtonDelegate
 {
     func floatingActionButtonWillOpen(_ button: JJFloatingActionButton) {
         communityFloatingButton.buttonColor = .white
-        communityFloatingButton.buttonImageColor = #colorLiteral(red: 0.2039215686, green: 0.5960784314, blue: 0.8588235294, alpha: 1)
+        communityFloatingButton.buttonImageColor = GlobalConstants.Color.Background.communityButtonColor
     }
     func floatingActionButtonWillClose(_ button: JJFloatingActionButton) {
-        communityFloatingButton.buttonColor =  #colorLiteral(red: 0.2039215686, green: 0.5960784314, blue: 0.8588235294, alpha: 1)
+        communityFloatingButton.buttonColor = GlobalConstants.Color.Background.communityButtonColor
         communityFloatingButton.buttonImageColor = .white
     }
 }
@@ -331,5 +332,30 @@ extension CommunityViewController : UISearchBarDelegate {
         communityViewModel.getSearchList()
         communityNavigationBar.NavSearchBar.resignFirstResponder()
         communityNavigationBar.NavTheme.text = "\(commuinityCategorydata[0])"
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.searchTextField.layer.borderColor = UIColor.black.cgColor
+        searchBar.searchTextField.layer.borderWidth = 0.8
+        searchBar.searchTextField.tintColor = #colorLiteral(red: 0.2039215686, green: 0.5960784314, blue: 0.8588235294, alpha: 1)
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.searchTextField.layer.borderColor = UIColor.gray.cgColor
+        searchBar.searchTextField.layer.borderWidth = 0.6
+    }
+}
+
+extension CommunityViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.layer.borderColor = UIColor.black.cgColor
+        textField.layer.borderWidth = 0.8
+        textField.textColor = .black
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.layer.borderColor = UIColor.gray.cgColor
+        textField.layer.borderWidth = 0.6
+        textField.textColor = .lightGray
     }
 }

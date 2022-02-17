@@ -27,15 +27,16 @@ class ReviewScrollView: UIScrollView {
     
     lazy var travelTitleTextView = UITextView().then {
         $0.font = .systemFont(ofSize: 16)
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.lightGray.cgColor
         $0.backgroundColor = .white
+        $0.layer.borderWidth = 0.8
+        $0.layer.borderColor = UIColor.lightGray.cgColor
         $0.layer.cornerRadius = 5
-        $0.layer.shadowColor = UIColor.black.cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
-        $0.layer.shadowRadius = 5
-        $0.layer.shadowOpacity = 10
         $0.textContainerInset = UIEdgeInsets(top: 15, left: 5, bottom: 10, right: 5)
+        $0.clipsToBounds = false
+        $0.layer.shadowColor = UIColor.gray.cgColor
+        $0.layer.shadowOffset = CGSize(width: 1, height: 0)
+        $0.layer.shadowRadius = 1
+        $0.layer.shadowOpacity = 0.4
     }
     
     lazy var hashtagTitle = UILabel().then {
@@ -49,7 +50,7 @@ class ReviewScrollView: UIScrollView {
             $0.text = "해쉬태그를 작성해주세요."
             $0.textColor = .lightGray
         }
-        $0.layer.borderWidth = 1
+        $0.layer.borderWidth = 0.8
         $0.layer.borderColor = UIColor.lightGray.cgColor
         $0.font = .systemFont(ofSize: 16)
         $0.backgroundColor = .white
@@ -59,6 +60,11 @@ class ReviewScrollView: UIScrollView {
         $0.layer.shadowRadius = 5
         $0.layer.shadowOpacity = 0
         $0.textContainerInset = UIEdgeInsets(top: 15, left: 5, bottom: 10, right: 5)
+        $0.clipsToBounds = false
+        $0.layer.shadowColor = UIColor.gray.cgColor
+        $0.layer.shadowOffset = CGSize(width: 1, height: 0)
+        $0.layer.shadowRadius = 1
+        $0.layer.shadowOpacity = 0.4
     }
     
     lazy var dateTitle = UILabel().then {
@@ -69,15 +75,16 @@ class ReviewScrollView: UIScrollView {
     
     lazy var dateTextView = UITextView().then {
         $0.font = .systemFont(ofSize: 16)
-        $0.layer.borderWidth = 1
+        $0.layer.borderWidth = 0.8
         $0.layer.borderColor = UIColor.lightGray.cgColor
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 5
-        $0.layer.shadowColor = UIColor.black.cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
-        $0.layer.shadowRadius = 5
-        $0.layer.shadowOpacity = 0.2
         $0.textContainerInset = UIEdgeInsets(top: 15, left: 5, bottom: 10, right: 5)
+        $0.clipsToBounds = false
+        $0.layer.shadowColor = UIColor.gray.cgColor
+        $0.layer.shadowOffset = CGSize(width: 1, height: 0)
+        $0.layer.shadowRadius = 1
+        $0.layer.shadowOpacity = 0.4
     }
     
     lazy var reviewTitle = UILabel().then {
@@ -91,16 +98,17 @@ class ReviewScrollView: UIScrollView {
             $0.text = "리뷰를 작성해주세요."
             $0.textColor = .lightGray
         }
-        $0.layer.borderWidth = 1
+        $0.layer.borderWidth = 0.8
         $0.layer.borderColor = UIColor.lightGray.cgColor
         $0.font = .systemFont(ofSize: 16)
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 5
-        $0.layer.shadowColor = UIColor.black.cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
-        $0.layer.shadowRadius = 5
-        $0.layer.shadowOpacity = 0.2
         $0.textContainerInset = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        $0.clipsToBounds = false
+        $0.layer.shadowColor = UIColor.gray.cgColor
+        $0.layer.shadowOffset = CGSize(width: 1, height: 0)
+        $0.layer.shadowRadius = 1
+        $0.layer.shadowOpacity = 0.4
 
     }
     
@@ -116,9 +124,9 @@ class ReviewScrollView: UIScrollView {
         $0.setTitleColor(.black, for: .normal)
         $0.frame(forAlignmentRect: CGRect(x: 10, y: 10, width: 10, height: 10))
         $0.backgroundColor = #colorLiteral(red: 0.8784313798, green: 0.8784313798, blue: 0.8784313798, alpha: 1)
-        $0.layer.cornerRadius = 10
+        $0.layer.cornerRadius = 5
         $0.layer.shadowColor = UIColor.black.cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
+        $0.layer.shadowOffset = CGSize(width: 0, height: 2)
         $0.layer.shadowRadius = 5
         $0.layer.shadowOpacity = 0.2
     }

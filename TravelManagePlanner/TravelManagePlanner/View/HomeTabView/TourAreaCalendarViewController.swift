@@ -93,9 +93,9 @@ class TourAreaCalendarViewController: UIViewController {
     }()
     
     // 다시선택 버튼
-    lazy var reSelectButton: UIButton = {
+    lazy var cancleButton: UIButton = {
         let button = UIButton()
-        button.setTitle("다시 선택", for : .normal)
+        button.setTitle("취        소", for : .normal)
         button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 1), for: .normal)
         button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 0.6), for: .highlighted)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 21)
@@ -115,7 +115,7 @@ class TourAreaCalendarViewController: UIViewController {
     
     // 바텀 버튼 스택
     lazy var bottomButtonStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [reSelectButton, tourAreaAddButton])
+        let stackView = UIStackView(arrangedSubviews: [cancleButton, tourAreaAddButton])
         stackView.axis = .horizontal
         stackView.spacing = 120
         
@@ -138,6 +138,8 @@ class TourAreaCalendarViewController: UIViewController {
         fscCalendar.dataSource = self
         
         tourAreaAddButton.addTarget(self, action: #selector(addButtonAction), for:  .touchUpInside)
+        
+        cancleButton.addTarget(self, action: #selector(cancleButtonAction), for:  .touchUpInside)
     }
     
     func setUpView() {
@@ -210,6 +212,11 @@ class TourAreaCalendarViewController: UIViewController {
             // once done, dismiss without animation
             self.dismiss(animated: true)
         }
+    }
+    
+    // 취소 버튼(다시 선택)
+    @objc func cancleButtonAction() {
+        self.dismiss(animated: true)
     }
     
     // 장바구니에 담기

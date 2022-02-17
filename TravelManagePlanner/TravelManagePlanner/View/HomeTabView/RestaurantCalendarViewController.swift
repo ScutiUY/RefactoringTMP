@@ -88,10 +88,10 @@ class RestaurantCalendarViewController: UIViewController {
         return label
     }()
     
-    // 다시선택 버튼
-    lazy var reSelectButton: UIButton = {
+    // 취소 버튼
+    lazy var cancleButton: UIButton = {
         let button = UIButton()
-        button.setTitle("다시 선택", for : .normal)
+        button.setTitle("취        소", for : .normal)
         button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 1), for: .normal)
         button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 0.6), for: .highlighted)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 21)
@@ -112,7 +112,7 @@ class RestaurantCalendarViewController: UIViewController {
     
     // 바텀 버튼 스택
     lazy var bottomButtonStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [reSelectButton, restaurantAddButton])
+        let stackView = UIStackView(arrangedSubviews: [cancleButton, restaurantAddButton])
         stackView.axis = .horizontal
         stackView.spacing = 120
         
@@ -135,6 +135,8 @@ class RestaurantCalendarViewController: UIViewController {
         fscCalendar.dataSource = self
         
         restaurantAddButton.addTarget(self, action: #selector(addButtonAction), for: .touchUpInside)
+        
+        cancleButton.addTarget(self, action: #selector(cancleButtonAction), for: .touchUpInside)
     }
     
     func setUpView() {
@@ -210,7 +212,12 @@ class RestaurantCalendarViewController: UIViewController {
         }
     }
     
-    // 식당 추가하기
+    // 취소 버튼(다시 선택)
+    @objc func cancleButtonAction() {
+        self.dismiss(animated: true)
+    }
+    
+    // 장바구니에 담기
     @objc func addButtonAction() {
         // 추가시에 present화면 dismiss설정하기
         let sIdx = String(restaurantSIdx)

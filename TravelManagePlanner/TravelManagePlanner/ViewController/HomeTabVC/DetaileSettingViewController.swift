@@ -203,9 +203,9 @@ class DetaileSettingViewController: UIViewController {
     // 예산 슬라이더
     lazy var budgetSlider: UISlider = {
         let slider = UISlider()
-        slider.minimumValue = 200000
-        slider.maximumValue = 2000000
-        slider.value = 200000
+        slider.minimumValue = 1
+        slider.maximumValue = 10
+        slider.value = 1
 //        self.budgetAmount.text = "22"
         return slider
     }()
@@ -213,8 +213,23 @@ class DetaileSettingViewController: UIViewController {
     @objc
     func sliderAction(_ sender: UISlider) {
         sender.value = budgetSlider.value
-        budgetAmount.text = String(format: "%.0f", sender.value)
         
+        var sendValue:Int = 0
+        
+        switch sender.value {
+        case 1:
+        sendValue = 200000
+        case 2:
+        sendValue = 400000
+        case 3:
+        sendValue = 600000
+        case 4:
+        sendValue = 800000
+        default:
+        sendValue = 1000000
+        }
+        
+        budgetAmount.text = String(sendValue)
     }
     
     // 예산 모든 스택뷰

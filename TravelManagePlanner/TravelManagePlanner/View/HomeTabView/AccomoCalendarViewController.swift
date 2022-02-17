@@ -90,7 +90,7 @@ class AccomoCalendarViewController: UIViewController {
     // 취소 버튼
     lazy var cancleButton: UIButton = {
         let button = UIButton()
-        button.setTitle("취 소", for : .normal)
+        button.setTitle("취        소", for : .normal)
         button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 1), for: .normal)
         button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 0.6), for: .highlighted)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 21)
@@ -208,6 +208,11 @@ class AccomoCalendarViewController: UIViewController {
             // once done, dismiss without animation
             self.dismiss(animated: true)
         }
+    }
+    
+    // 취소 버튼(다시 선택)
+    @objc func cancleButtonAction() {
+        self.dismiss(animated: true)
     }
     
     // 장바구니에 담기

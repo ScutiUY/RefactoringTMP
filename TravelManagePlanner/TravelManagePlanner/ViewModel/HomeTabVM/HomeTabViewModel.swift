@@ -12,8 +12,9 @@ class HomeTabViewModel {
     // 모델 소유
     static var globalHomeTabData = HomeTabRequest(uKey: "", title: "", startDate: "", endDate: "", inviteNum:"", price: "", theme: "", shopList: [])
     
+    
     // repository 소유
-    private var repo = HomeTabRepository()
+    private var repo = HomeTabDataRepository()
     
     // 상태 정의
     private var isLoading: Bool = false

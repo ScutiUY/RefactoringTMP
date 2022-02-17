@@ -29,7 +29,7 @@ class DestiSearchViewModel {
     
     
     // repository 소유
-    private var repo = HomeTabRepository()
+    private var repo = HomeTabDataRepository()
     
     // 모델을 static
     

@@ -11,6 +11,8 @@ class AccomoViewController: UIViewController {
     
     //  뷰모델 소유
     let destiSearchViewModel = DestiSearchViewModel()
+    let destinationDetailViewModel = DestinationDetailViewModel()
+    
     let cellID = "Cell"
     let accomoCategory:String = "1"
     
@@ -114,8 +116,13 @@ extension AccomoViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        // 디테일뷰 구현하기
+        
+        let shopData = destiSearchViewModel.getShopDataSepWithCategory(idx: indexPath.row, categoryIdx: accomoCategory)
+        
+        let destinationVC = DestinationDetailViewController()
+        destinationVC.destinationDetailViewModel.shopId = String(shopData.idx)
+        
+        self.navigationController?.pushViewController(destinationVC, animated: true)
     }
 
 }
@@ -141,6 +148,7 @@ extension AccomoViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! AccomoViewCell
         cell.backgroundColor = .clear
+        
         
         // cell 선택시 백그라운드 색상 없애기
         let cellBGView = UIView()
@@ -179,3 +187,4 @@ extension AccomoViewController:ContentsMainTextDelegate {
         self.present(nextView, animated: true)
     }
 }
+

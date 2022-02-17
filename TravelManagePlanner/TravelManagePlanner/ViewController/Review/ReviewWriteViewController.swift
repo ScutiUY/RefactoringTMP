@@ -47,7 +47,7 @@ class ReviewWriteViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    lazy var test = ImagePickerController().then {
+    lazy var imagePickerController = ImagePickerController().then {
     $0.modalPresentationStyle = .automatic
     $0.settings.selection.max = 10
     $0.settings.theme.selectionStyle = .numbered
@@ -135,7 +135,7 @@ class ReviewWriteViewController: UIViewController {
   
     func openLibrary()
     {
-        self.presentImagePicker(test,
+        self.presentImagePicker(imagePickerController,
         select: {
             (asset) in
                 // 사진 하나 선택할 때마다 실행되는 내용 쓰기
@@ -160,15 +160,15 @@ class ReviewWriteViewController: UIViewController {
     
     func converAssetToImages()
     {
-        if test.selectedAssets.count != 0 {
-            for i in 0..<test.selectedAssets.count {
+        if imagePickerController.selectedAssets.count != 0 {
+            for i in 0..<imagePickerController.selectedAssets.count {
                 
                 let imageManager = PHImageManager.default()
                 let option = PHImageRequestOptions()
                 option.isSynchronous = true
                 var thumbnail = UIImage()
                 
-                imageManager.requestImage(for: test.selectedAssets[i],
+                imageManager.requestImage(for: imagePickerController.selectedAssets[i],
                                              targetSize: CGSize(width: 200, height: 200),
                                              contentMode: .aspectFit,
                                              options: option) { (result, info) in
@@ -285,9 +285,10 @@ extension ReviewWriteViewController : UICollectionViewDelegateFlowLayout, UIColl
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photoID, for: indexPath) as! ReviewPhotoCollectionViewCell
-        print(indexPath.row)
         cell.imageSelectedView.image = self.selectedImages[indexPath.row]
-        cell.imageSelectedView.contentMode = .scaleAspectFit
+        cell.imageSelectedView.contentMode = .scaleAspectFill
+        
+        
         return cell
     }
     

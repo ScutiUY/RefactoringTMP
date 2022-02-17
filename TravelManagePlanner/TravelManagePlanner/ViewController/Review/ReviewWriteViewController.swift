@@ -203,6 +203,8 @@ class ReviewWriteViewController: UIViewController {
         alert.addAction(library)
         alert.addAction(camera)
         alert.addAction(cancel)
+        self.reviewView.reviewTextView.resignFirstResponder()
+        self.reviewView.hashtagTextView.resignFirstResponder()
         present(alert, animated: true, completion: nil)
     }
     
@@ -287,8 +289,6 @@ extension ReviewWriteViewController : UICollectionViewDelegateFlowLayout, UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photoID, for: indexPath) as! ReviewPhotoCollectionViewCell
         cell.imageSelectedView.image = self.selectedImages[indexPath.row]
         cell.imageSelectedView.contentMode = .scaleAspectFill
-        
-        
         return cell
     }
     
@@ -325,7 +325,6 @@ extension ReviewWriteViewController : UITextViewDelegate {
         if "해쉬태그를 작성해주세요." == textView.text {
             reviewView.hashtagTextView.text = nil
         }
-        
         if "리뷰를 작성해주세요." == textView.text {
             reviewView.reviewTextView.text = nil
         }
@@ -347,7 +346,7 @@ extension ReviewWriteViewController : UITextViewDelegate {
         textField.resignFirstResponder()
         self.dismiss(animated: true, completion: nil)
         return true
-        }
+    }
     
     func textViewDidChange(_ textView: UITextView) {
         if reviewView.hashtagTextView.text.count > 50 {

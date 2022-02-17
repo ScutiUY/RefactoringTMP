@@ -16,14 +16,14 @@ class CommunityCollectionViewCell: UICollectionViewCell {
     var communityViewModel: CommunityViewModel!
     
     lazy var imageShadowView = UIView().then {
-        $0.layer.shadowOffset = CGSize(width: 5, height: 5)
+        $0.layer.shadowOffset = CGSize(width: 2, height: 2)
         $0.layer.shadowOpacity = 0.7
         $0.layer.shadowRadius = 5
         $0.layer.shadowColor = UIColor.gray.cgColor
     }
     
     lazy var communityCollectionViewImage = UIImageView().then {
-        $0.layer.cornerRadius = 5
+        $0.layer.cornerRadius = 10
         $0.clipsToBounds = true
         $0.backgroundColor = .lightGray
     }
@@ -43,6 +43,14 @@ class CommunityCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        communityCollectionViewImage.image = nil
+        communityCollectionViewTitle.text = ""
+        communityCollectionViewHashtags.text = ""
+        self.layer.borderColor = .none
     }
     
     // MARK: functions

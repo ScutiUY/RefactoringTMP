@@ -111,13 +111,11 @@ extension JourneyListDetailViewController: UICollectionViewDelegate, UICollectio
             cell.delegate = self
             cell.parentViewSize = CGSize(width: view.frame.width, height: collectionView.frame.height)
             
-            cell.viewModel.getList(journeyDetailDataFromPageCollectionView: viewModel.passJourneyData())
-            cell.viewModel.dateDic = viewModel.passDateDic()
-            cell.viewModel.dateIdx = indexPath.row
+            
+            // 해당 index 날짜에 대한 모든 여행 데이터를 넘김 나머진 알아서
+            cell.viewModel.getList(journeyDetailDataFromPageCollectionView: viewModel.passJourneyInfoInDate(index: indexPath.row))
             return cell
         }
-        
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize { // collectionView 셀 사이즈

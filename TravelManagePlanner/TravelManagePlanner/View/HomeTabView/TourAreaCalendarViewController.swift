@@ -11,7 +11,21 @@ import FSCalendar
 
 class TourAreaCalendarViewController: UIViewController {
 
-    let fscCalendarDateFormat = DateFormatter()
+    // 알림창 구현
+    let alert = UIAlertController(title: "", message: "장바구니에 추가 되었습니다.", preferredStyle: UIAlertController.Style.alert)
+    
+    let addAlert = UIAlertAction(title: "확인", style: UIAlertAction.Style.cancel, handler: nil)
+    
+    // 뷰모델 소지
+    let homeTabViewModel = HomeTabViewModel()
+    
+    let dateFormatter = DateFormatter()
+    
+    var tourAreaName: String = ""
+    var tourAreaPlace: String = ""
+    var tourAreaSIdx: Int = 0
+    
+    var selectVisitDate = ""
     
     lazy var containerView: UIView = {
         let view = UIView()
@@ -21,7 +35,6 @@ class TourAreaCalendarViewController: UIViewController {
         return view
     }()
     
-    // 2
     let maxDimmedAlpha: CGFloat = 0.5
     lazy var dimmedView: UIView = {
         let view = UIView()
@@ -33,7 +46,6 @@ class TourAreaCalendarViewController: UIViewController {
     lazy var fscCalendar: FSCalendar = {
         let calendar = FSCalendar()
         
-        
         //선택 버튼색상
         calendar.appearance.selectionColor = UIColor(red: 104/255, green: 209/255, blue: 148/255, alpha: 1)
         calendar.backgroundColor = UIColor(red: 228/255, green: 245/255, blue: 255/255, alpha: 1)
@@ -41,16 +53,29 @@ class TourAreaCalendarViewController: UIViewController {
         calendar.allowsMultipleSelection = true
         calendar.scrollEnabled = true
         calendar.scrollDirection = .horizontal
+        calendar.appearance.headerDateFormat = "YYYY년 M월"
+        calendar.calendarWeekdayView.weekdayLabels[0].text = "일"
+        calendar.calendarWeekdayView.weekdayLabels[1].text = "월"
+        calendar.calendarWeekdayView.weekdayLabels[2].text = "화"
+        calendar.calendarWeekdayView.weekdayLabels[3].text = "수"
+        calendar.calendarWeekdayView.weekdayLabels[4].text = "목"
+        calendar.calendarWeekdayView.weekdayLabels[5].text = "금"
+        calendar.calendarWeekdayView.weekdayLabels[6].text = "토"
         calendar.layer.cornerRadius = 20
+        
+        var components = DateComponents()
+        components.day = 0
+        let minDate = Calendar.autoupdatingCurrent.date(byAdding: components, to: Date())
+        
         return calendar
     }()
     
-    // 선택한 숙박업소 명
+    // 선택한 관광지역 명
     lazy var selectAccomName: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 21)
 //        label.textAlignment = .center
-        label.text = "숙박장소 명"
+        label.text = tourAreaName
         label.textColor = UIColor(red: 94/255, green: 94/255, blue: 94/255, alpha: 1)
         
         return label
@@ -61,16 +86,16 @@ class TourAreaCalendarViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
 //        label.textAlignment = .center
-        label.text = "지역 명"
+        label.text = tourAreaPlace
         label.textColor = UIColor(red: 94/255, green: 94/255, blue: 94/255, alpha: 1)
         
         return label
     }()
     
     // 다시선택 버튼
-    lazy var reSelectButton: UIButton = {
+    lazy var cancleButton: UIButton = {
         let button = UIButton()
-        button.setTitle("다시 선택", for : .normal)
+        button.setTitle("취        소", for : .normal)
         button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 1), for: .normal)
         button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 0.6), for: .highlighted)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 21)
@@ -88,10 +113,9 @@ class TourAreaCalendarViewController: UIViewController {
         return button
     }()
     
-    
     // 바텀 버튼 스택
     lazy var bottomButtonStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [reSelectButton, tourAreaAddButton])
+        let stackView = UIStackView(arrangedSubviews: [cancleButton, tourAreaAddButton])
         stackView.axis = .horizontal
         stackView.spacing = 120
         
@@ -108,10 +132,14 @@ class TourAreaCalendarViewController: UIViewController {
         view.backgroundColor = .clear
         setUpView()
         setLayout()
-        fscCalendarDateFormat.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         
         fscCalendar.delegate = self
         fscCalendar.dataSource = self
+        
+        tourAreaAddButton.addTarget(self, action: #selector(addButtonAction), for:  .touchUpInside)
+        
+        cancleButton.addTarget(self, action: #selector(cancleButtonAction), for:  .touchUpInside)
     }
     
     func setUpView() {
@@ -167,6 +195,47 @@ class TourAreaCalendarViewController: UIViewController {
         containerViewHeightConstraint?.isActive = true
         containerViewBottomConstraint?.isActive = true
     }
+    
+    func animateDismissView() {
+        // hide main container view by updating bottom constraint in animation block
+        UIView.animate(withDuration: 0.5) {
+            self.containerViewBottomConstraint?.constant = self.defaultHeight
+            // call this to trigger refresh constraint
+            self.view.layoutIfNeeded()
+        }
+        
+        // hide blur view
+        dimmedView.alpha = maxDimmedAlpha
+        UIView.animate(withDuration: 0.5) {
+            self.dimmedView.alpha = 0
+        } completion: { _ in
+            // once done, dismiss without animation
+            self.dismiss(animated: true)
+        }
+    }
+    
+    // 취소 버튼(다시 선택)
+    @objc func cancleButtonAction() {
+        self.dismiss(animated: true)
+    }
+    
+    // 장바구니에 담기
+    @objc func addButtonAction() {
+        // 추가시에 present화면 dismiss설정하기
+        let sIdx = String(tourAreaSIdx)
+        let vDate = self.selectVisitDate
+        let leaveDate = self.selectVisitDate // 테스트 데이터 수정필요
+       
+//        animateDismissView()
+        self.dismiss(animated: true)
+        self.present(alert, animated: true)
+        
+        let accomoShopData = HomeTabRequestData(sIdx: sIdx, vDate: vDate, leaveDate: leaveDate)
+       
+        homeTabViewModel.updateRecommendData(shopList: [accomoShopData])
+        
+    }
+    
 }
 
 extension TourAreaCalendarViewController:FSCalendarDataSource {
@@ -174,16 +243,20 @@ extension TourAreaCalendarViewController:FSCalendarDataSource {
 }
 
 extension TourAreaCalendarViewController:FSCalendarDelegate {
-  
 }
 
 extension TourAreaCalendarViewController:FSCalendarDelegateAppearance {
     // 날짜 선택 시 콜백 메소드
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        print(fscCalendarDateFormat.string(from: date) + " 선택됨")
+        print(dateFormatter.string(from: date) + " 선택됨")
+    
+        // 선택한 날짜 담기
+        dateFormatter.dateFormat = "yyyyMMdd"
+        self.selectVisitDate = dateFormatter.string(from: date)
     }
+    
     // 날짜 선택 해제 시 콜백 메소드
     public func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        print(fscCalendarDateFormat.string(from: date) + " 해제됨")
+        print(dateFormatter.string(from: date) + " 해제됨")
     }
 }

@@ -18,8 +18,6 @@ class AccomoCalendarViewController: UIViewController {
     // 뷰모델 소지
     let homeTabViewModel = HomeTabViewModel()
     
-    let fscCalendarDateFormat = DateFormatter()
-    
     let dateFormatter = DateFormatter()
     
     var accomoName: String = ""
@@ -37,7 +35,6 @@ class AccomoCalendarViewController: UIViewController {
         return view
     }()
     
-    // 2
     let maxDimmedAlpha: CGFloat = 0.5
     lazy var dimmedView: UIView = {
         let view = UIView()
@@ -90,10 +87,10 @@ class AccomoCalendarViewController: UIViewController {
         return label
     }()
     
-    // 다시선택 버튼
-    lazy var reSelectButton: UIButton = {
+    // 취소 버튼
+    lazy var cancleButton: UIButton = {
         let button = UIButton()
-        button.setTitle("다시 선택", for : .normal)
+        button.setTitle("취        소", for : .normal)
         button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 1), for: .normal)
         button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 0.6), for: .highlighted)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 21)
@@ -111,10 +108,9 @@ class AccomoCalendarViewController: UIViewController {
         return button
     }()
     
-    
     // 바텀 버튼 스택
     lazy var bottomButtonStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [reSelectButton, accomoAddButton])
+        let stackView = UIStackView(arrangedSubviews: [cancleButton, accomoAddButton])
         stackView.axis = .horizontal
         stackView.spacing = 120
         
@@ -123,7 +119,6 @@ class AccomoCalendarViewController: UIViewController {
     
     // BottomCalendar 높이
     let defaultHeight: CGFloat = 500
-    let cancelHeight: CGFloat = 0
     
     var containerViewHeightConstraint: NSLayoutConstraint?
     var containerViewBottomConstraint: NSLayoutConstraint?
@@ -133,13 +128,13 @@ class AccomoCalendarViewController: UIViewController {
         view.backgroundColor = .clear
         setUpView()
         setLayout()
-        fscCalendarDateFormat.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         
         fscCalendar.delegate = self
         fscCalendar.dataSource = self
         
         accomoAddButton.addTarget(self, action: #selector(addButtonAction), for:  .touchUpInside)
-        alert.addAction(addAlert)
+        cancleButton.addTarget(self, action: #selector(addButtonAction), for:  .touchUpInside)
     }
     
     func setUpView() {
@@ -150,6 +145,7 @@ class AccomoCalendarViewController: UIViewController {
         view.addSubview(fscCalendar)
         view.addSubview(bottomButtonStack)
     }
+    
     func setLayout() {
         dimmedView.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -214,6 +210,11 @@ class AccomoCalendarViewController: UIViewController {
         }
     }
     
+    // 취소 버튼(다시 선택)
+    @objc func cancleButtonAction() {
+        self.dismiss(animated: true)
+    }
+    
     // 장바구니에 담기
     @objc func addButtonAction() {
         // 추가시에 present화면 dismiss설정하기
@@ -224,7 +225,6 @@ class AccomoCalendarViewController: UIViewController {
 //        animateDismissView()
         self.dismiss(animated: true)
         self.present(alert, animated: true)
-        
         
         let accomoShopData = HomeTabRequestData(sIdx: sIdx, vDate: vDate, leaveDate: leaveDate)
        
@@ -244,12 +244,15 @@ extension AccomoCalendarViewController:FSCalendarDelegate {
 extension AccomoCalendarViewController:FSCalendarDelegateAppearance {
     // 날짜 선택 시 콜백 메소드
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+       
+        print(dateFormatter.string(from: date) + " 선택됨")
+        
+        // 선택한 날짜 담기
         dateFormatter.dateFormat = "yyyyMMdd"
-        print(fscCalendarDateFormat.string(from: date) + " 선택됨")
         self.selectCheckIn = dateFormatter.string(from: date)
     }
     // 날짜 선택 해제 시 콜백 메소드
     public func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        print(fscCalendarDateFormat.string(from: date) + " 해제됨")
+        print(dateFormatter.string(from: date) + " 해제됨")
     }
 }

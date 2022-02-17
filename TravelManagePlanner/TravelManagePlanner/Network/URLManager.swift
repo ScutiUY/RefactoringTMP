@@ -22,4 +22,8 @@ enum URLManager {
         static var getShopDetailInfo = "/plan/getShopDetailInfo.tpi"
     }
     
+    enum Settings {
+        static var checkingVersion = "/cmn/getVersionInfo.tpi"
+    }
+    
 }

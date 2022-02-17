@@ -248,7 +248,6 @@ extension TourAreaCalendarViewController:FSCalendarDelegateAppearance {
         self.selectVisitDate = dateFormatter.string(from: date)
     }
     
-    
     // 날짜 선택 해제 시 콜백 메소드
     public func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
         print(dateFormatter.string(from: date) + " 해제됨")

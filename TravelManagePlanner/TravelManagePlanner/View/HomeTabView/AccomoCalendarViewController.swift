@@ -87,10 +87,10 @@ class AccomoCalendarViewController: UIViewController {
         return label
     }()
     
-    // 다시선택 버튼
-    lazy var reSelectButton: UIButton = {
+    // 취소 버튼
+    lazy var cancleButton: UIButton = {
         let button = UIButton()
-        button.setTitle("다시 선택", for : .normal)
+        button.setTitle("취 소", for : .normal)
         button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 1), for: .normal)
         button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 0.6), for: .highlighted)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 21)
@@ -110,7 +110,7 @@ class AccomoCalendarViewController: UIViewController {
     
     // 바텀 버튼 스택
     lazy var bottomButtonStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [reSelectButton, accomoAddButton])
+        let stackView = UIStackView(arrangedSubviews: [cancleButton, accomoAddButton])
         stackView.axis = .horizontal
         stackView.spacing = 120
         
@@ -134,6 +134,7 @@ class AccomoCalendarViewController: UIViewController {
         fscCalendar.dataSource = self
         
         accomoAddButton.addTarget(self, action: #selector(addButtonAction), for:  .touchUpInside)
+        cancleButton.addTarget(self, action: #selector(addButtonAction), for:  .touchUpInside)
     }
     
     func setUpView() {

@@ -9,11 +9,10 @@ import Foundation
 
 
 // VM을 통해 담았던 model을 decoding, encoding하여 보관
-struct HomeTabRepository {
+struct HomeTabDataRepository {
     // api 소지
     let api = HomeTapAPIRequest()
     private let httpClient = HttpClient(baseUrl: "https://eunryuplaners.com:19624")
-    
     
     // 목적지 기반 가게 불러오기
     func getPlaceRepository(placeData: DestiSearchRequest,completed: @escaping (Result <DestiSearchResponse, APIError>) -> Void) {

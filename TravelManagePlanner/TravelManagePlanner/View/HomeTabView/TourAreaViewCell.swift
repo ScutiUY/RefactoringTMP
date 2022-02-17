@@ -12,12 +12,13 @@ class TourAreaViewCell: UITableViewCell {
     var cellDelegate: ContentsMainTextDelegate?
     
     lazy var place:String = ""
+    lazy var sIdx: Int = 0
     
     lazy var tourAreaImg: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill // 이미지 잘려도 꽉채우기 설정
-//        imageView.imageEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         imageView.layer.cornerRadius = 10
+        imageView.clipsToBounds = true
         imageView.layer.shadowColor = UIColor.black.cgColor
         imageView.layer.shadowOffset = CGSize(width: 0, height: 4)
         imageView.layer.shadowRadius = 5
@@ -58,13 +59,13 @@ class TourAreaViewCell: UITableViewCell {
     
     @objc
     func tourAreaSelectAction() {
-        cellDelegate?.categoryButtonTapped(title: "", place: "", sIdx: 0)
+        cellDelegate?.categoryButtonTapped(title: tourAreaTitle.text ?? "", place: self.place, sIdx: self.sIdx)
     }
     
     lazy var tourAreaTitleStack: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [tourAreaTitle, tourAreaSubTitle])
         stackView.axis = .vertical
-        stackView.spacing = 2
+        stackView.spacing = 3
         
         return stackView
     }()
@@ -72,7 +73,7 @@ class TourAreaViewCell: UITableViewCell {
     lazy var tourAreaAllTitleStack: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [tourAreaTitleStack, tourAreaSelectButton])
         stackView.axis = .horizontal
-        stackView.spacing = 10
+        stackView.spacing = 200
         
         return stackView
     }()
@@ -95,7 +96,7 @@ class TourAreaViewCell: UITableViewCell {
     
     func setLayout() {
         //        accomoImgButton.frame = CGRect.init(x: 0, y: 0, widthㅇ: contentView.frame.width, height: 160)
-        tourAreaImg.frame = CGRect.init(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height / 0.28)
+        tourAreaImg.frame = CGRect.init(x: 0, y: 0, width: 347.0, height: 160.0) //추후 오토레이아웃 변경필요
         
         tourAreaAllTitleStack.snp.makeConstraints {
             $0.top.equalTo(tourAreaImg.snp.bottom).multipliedBy(1.0)

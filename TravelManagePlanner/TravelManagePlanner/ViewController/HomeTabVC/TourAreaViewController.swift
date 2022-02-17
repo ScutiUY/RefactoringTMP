@@ -10,13 +10,10 @@ import UIKit
 // 추천놀거리(관광지)
 class TourAreaViewController: UIViewController {
     
-  
-    
     // 뷰모델 소유
     let destiSearchViewModel = DestiSearchViewModel()
     let cellID = "Cell"
-    
-    lazy var place:String = ""
+    let tourAreaCategory:String = "3"
     
     lazy var tourAreaTitleLabel: UILabel = {
         let label = UILabel()
@@ -112,8 +109,15 @@ class TourAreaViewController: UIViewController {
 
 // cellHeight 지정
 extension TourAreaViewController: UITableViewDelegate {
+    
+    // 셀높이 간격
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.height / 4
+        return view.frame.height / 3.7
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        // 디테일뷰 구현하기
     }
     
 }
@@ -129,22 +133,24 @@ extension TourAreaViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         // 1: 숙박, 2: 식당, 3: 놀거리
-        let tableCount = destiSearchViewModel.getDestiSearchCount(categoryIdx: "3")
+        let tableCount = destiSearchViewModel.getDestiSearchCount(categoryIdx: tourAreaCategory)
         
         return tableCount
     }
     
-    // 테이블 구성
+    // 테이블 화면데이터구성
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        print(indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! TourAreaViewCell
         cell.backgroundColor = .clear
         
+        // cell 선택시 백그라운드 색상 없애기
+        let cellBGView = UIView()
+        cellBGView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        cell.selectedBackgroundView = cellBGView
         
-        // 카테고리가 놀거리 인것만  == 3
-        let shopData = destiSearchViewModel.getShopData(idx: indexPath.row, categoryIdx: "3")
-            
+        // 선택된 해당데이터 모델[배열]가져오기
+        let shopData = destiSearchViewModel.getShopData(idx: indexPath.row, categoryIdx: tourAreaCategory)
         
         let url = URL(string: shopData.imgUrl)
         let data = try! Data(contentsOf: url!)
@@ -152,10 +158,10 @@ extension TourAreaViewController: UITableViewDataSource {
         cell.tourAreaImg.image = UIImage(data: data)
         cell.tourAreaTitle.text = shopData.name
         cell.tourAreaSubTitle.text = shopData.content
+        cell.place = shopData.area
+        cell.sIdx = shopData.idx
+        
         cell.cellDelegate = self
-        
-        
-        //        cell.contentView.isUserInteractionEnabled = false
         
         return cell
     }
@@ -167,6 +173,9 @@ extension TourAreaViewController:ContentsMainTextDelegate {
         
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "TourAreaCalendarViewSB") as! TourAreaCalendarViewController
         
+        nextView.tourAreaName = title
+        nextView.tourAreaPlace = place
+        nextView.tourAreaSIdx = sIdx
         
         // 다음화면에서 바텀탭 없애기
         nextView.hidesBottomBarWhenPushed = true

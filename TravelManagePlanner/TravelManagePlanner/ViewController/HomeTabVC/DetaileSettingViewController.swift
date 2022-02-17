@@ -61,8 +61,6 @@ class DetaileSettingViewController: UIViewController {
         return label
     }()
     
-    
-    
     lazy var dayToGocalendar: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.preferredDatePickerStyle = .automatic
@@ -76,8 +74,6 @@ class DetaileSettingViewController: UIViewController {
         components.day = 0
         let minDate = Calendar.autoupdatingCurrent.date(byAdding: components, to: Date())
         datePicker.minimumDate = minDate
-        
-        //        datePicker.preferredDatePickerStyle = .compact
         
         return datePicker
     }()

@@ -12,8 +12,7 @@ class AccomoViewController: UIViewController {
     //  뷰모델 소유
     let destiSearchViewModel = DestiSearchViewModel()
     let cellID = "Cell"
-    
-    var firstaccomName: String = ""
+    let accomoCategory:String = "1"
     
     lazy var accomoTitleLabel: UILabel = {
         let label = UILabel()
@@ -62,7 +61,6 @@ class AccomoViewController: UIViewController {
         setUpView()
         setLayout()
         setDelegate()
-       
     }
     
     func setUpView() {
@@ -107,25 +105,17 @@ class AccomoViewController: UIViewController {
     }
 }
 
-
 // cellHeight 지정
 extension AccomoViewController: UITableViewDelegate {
+    
+    // 셀높이 간격
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.height / 4
+        return view.frame.height / 3.7
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "AccomoCalendarViewSB") as! AccomoCalendarViewController
-        
-        
-        
-        nextView.accomoName = destiSearchViewModel.getTitle(idx: indexPath.row)
-        nextView.accomoPlace = destiSearchViewModel.getArea(idx: indexPath.row)
-        nextView.accomoSIdx = destiSearchViewModel.getSIdx(idx: indexPath.row)
-        
-        // 다음화면에서 바텀탭 없애기
-        nextView.hidesBottomBarWhenPushed = true
-        self.present(nextView, animated: true)
+
+        // 디테일뷰 구현하기
     }
 
 }
@@ -141,7 +131,7 @@ extension AccomoViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         // 1: 숙박, 2: 식당, 3: 놀거리
-        let tableCount = destiSearchViewModel.getDestCount(categoryIdx: "1")
+        let tableCount = destiSearchViewModel.getDestCount(categoryIdx: accomoCategory)
         
         return tableCount
     }
@@ -149,25 +139,16 @@ extension AccomoViewController: UITableViewDataSource {
     // 테이블 화면데이터구성
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        print(indexPath)
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! AccomoViewCell
         cell.backgroundColor = .clear
-        
-        cell.accomoSelectButton.tag = indexPath.row
-        
         
         // cell 선택시 백그라운드 색상 없애기
         let cellBGView = UIView()
         cellBGView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         cell.selectedBackgroundView = cellBGView
         
-        
         // 선택된 해당데이터 모델[배열]가져오기
-        let shopData = destiSearchViewModel.getShopDataSepWithCategory(idx: indexPath.row, categoryIdx: "1")
-        
-        
-        self.firstaccomName = shopData.name
+        let shopData = destiSearchViewModel.getShopDataSepWithCategory(idx: indexPath.row, categoryIdx: accomoCategory)
         
         let url = URL(string: shopData.imgUrl)
         let data = try! Data(contentsOf: url!)
@@ -191,7 +172,7 @@ extension AccomoViewController:ContentsMainTextDelegate {
         
         nextView.accomoName = title
         nextView.accomoPlace = place
-        nextView.accomoSIdx = 0
+        nextView.accomoSIdx = sIdx
         
         // 다음화면에서 바텀탭 없애기
         nextView.hidesBottomBarWhenPushed = true

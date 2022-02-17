@@ -10,7 +10,21 @@ import SnapKit
 class DetaileSettingViewController: UIViewController {
     
     // 뷰모델
-    var homeTabViewModel = HomeTabViewModel()
+    var detaileSettingViewModel = DetaileSettingViewModel()
+   
+    let dateFormatter = DateFormatter()
+    
+    // 알림창 구현
+    let invalidTitleAlert = UIAlertController(title: "", message: "제목을 6글자 이상 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
+    
+    let invalidDateAlert = UIAlertController(title: "", message: "오는날의 날짜가 더 이전입니다.", preferredStyle: UIAlertController.Style.alert)
+
+    let invalidPeopleNumberAlert = UIAlertController(title: "", message: "인원수를 입력해주세요", preferredStyle: UIAlertController.Style.alert)
+    
+    let invalidBudgetAlert = UIAlertController(title: "", message: "예상 금액을 설정해주세요", preferredStyle: UIAlertController.Style.alert)
+    
+    let addAlert = UIAlertAction(title: "확인", style: UIAlertAction.Style.cancel, handler: nil)
+    
     
     //여행 제목 타이틀
     lazy var journeyTitle: UILabel = {
@@ -25,7 +39,7 @@ class DetaileSettingViewController: UIViewController {
     
     lazy var journeyTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "여행 제목 입력"
+        textField.placeholder = "여행 제목을 입력해주세요."
         textField.font = UIFont.systemFont(ofSize: 20)
         textField.borderStyle = .roundedRect
         textField.layer.shadowColor = UIColor.black.cgColor
@@ -47,8 +61,6 @@ class DetaileSettingViewController: UIViewController {
         return label
     }()
     
-    
-    
     lazy var dayToGocalendar: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.preferredDatePickerStyle = .automatic
@@ -62,8 +74,6 @@ class DetaileSettingViewController: UIViewController {
         components.day = 0
         let minDate = Calendar.autoupdatingCurrent.date(byAdding: components, to: Date())
         datePicker.minimumDate = minDate
-        
-        //        datePicker.preferredDatePickerStyle = .compact
         
         return datePicker
     }()
@@ -82,18 +92,6 @@ class DetaileSettingViewController: UIViewController {
         
         return label
     }()
-    
-    
-    
-    //    // 오는날 달력 구현부
-    //    lazy var dayToComecalendar: UILabel = {
-    //        let label = UILabel()
-    //        label.text = "오는 날(달력)"
-    //        label.font = UIFont.systemFont(ofSize: 22)
-    //        label.textColor = .black
-    //
-    //        return label
-    //    }()
     
     lazy var dayToComecalendar: UIDatePicker = {
         let datePicker = UIDatePicker()
@@ -239,7 +237,6 @@ class DetaileSettingViewController: UIViewController {
         return button
     }()
     
-    
     // 다음 버튼
     lazy var nextButton: UIButton = {
         let button = UIButton()
@@ -248,7 +245,6 @@ class DetaileSettingViewController: UIViewController {
         button.setTitleColor(UIColor(red: 85/255, green: 185/255, blue: 188/255, alpha: 0.6), for: .highlighted)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 21)
         button.backgroundColor = .clear
-//        button.addTarget(self, action: #selector(dataSendButtonAction), for: .touchUpInside)
         
         return button
     }()
@@ -262,7 +258,6 @@ class DetaileSettingViewController: UIViewController {
         return stackView
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = GlobalConstants.Color.Background.themeColor
@@ -272,15 +267,51 @@ class DetaileSettingViewController: UIViewController {
         setButtonAction()
         
         budgetSlider.addTarget(self, action: #selector(self.sliderAction(_:)), for: .valueChanged)
+        cancleButton.addTarget(self, action: #selector(self.privousButtonAction(_:)), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(self.nextButtonAction(_:)), for: .touchUpInside)
+        
+        setAlert()
     }
     
 //    @objc func dataSendButtonAction() {
 //        themeViewModel.themeData = self.journeyTextField.text ?? "title is nil"
 //    }
-    
+    @objc func privousButtonAction(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     @objc func nextButtonAction(_ sender: UIButton) {
+        dateFormatter.dateFormat = "yyyyMMdd"
+        
+        // 날짜 date to String 변환
+        let startDateStr = dateFormatter.string(from: dayToGocalendar.date)
+        let endDateStr = dateFormatter.string(from: dayToComecalendar.date)
+        guard let title = journeyTextField.text else {return}
+        let startDate = startDateStr
+        let endDate = endDateStr
+        let inviteNum = numPeopleTextField.text
+        let price = budgetAmount.text
+        
+        
+        detaileSettingViewModel.updateTitle(title: title)
+        detaileSettingViewModel.updateDate(dayToGo: startDate, dayToCome: endDate)
+        detaileSettingViewModel.updatePeople(peopleNum: inviteNum ?? "")
+        detaileSettingViewModel.updateBudget(budget: price ?? "")
+        
+       
+        switch detaileSettingViewModel.validateUserInputData() {
+        case .invalidTitle :
+            self.present(invalidTitleAlert, animated: true)
+        case .invalidDate:
+            self.present(invalidDateAlert, animated: true)
+        case .invalidPeopleNumber:
+            self.present(invalidPeopleNumberAlert, animated: true)
+        case .invalidBudget:
+            self.present(invalidBudgetAlert, animated: true)
+        case .success:
+            detaileSettingViewModel.register()
+        }
+        
         let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil)
             .instantiateViewController(withIdentifier: "DestiSearchViewSB") as! DestiSearchViewController
             navigationController?.pushViewController(nextView, animated: true)
@@ -300,13 +331,16 @@ class DetaileSettingViewController: UIViewController {
         view.addSubview(bottomButtonStack)
     }
     
-    
-    
-    
     func setDelegate(){
-        
+        numPeopleTextField.delegate = self
     }
     
+    func setAlert() {
+        invalidTitleAlert.addAction(addAlert)
+        invalidDateAlert.addAction(addAlert)
+        invalidPeopleNumberAlert.addAction(addAlert)
+        invalidBudgetAlert.addAction(addAlert)
+    }
     
     // 바텀뷰 불러오기
     //    @objc func presentModalController() {
@@ -373,4 +407,19 @@ class DetaileSettingViewController: UIViewController {
     
     // main에 있는 두번째화면 불러오기(스토리보드 활용)
     let nextView = UIStoryboard(name: "HomeTabSB", bundle: nil).instantiateViewController(withIdentifier: "AccomoViewSB") as! AccomoViewController
+}
+
+
+extension DetaileSettingViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        // 인원수 2글자까지 제한두기
+        guard textField.text!.count < 2 else { return false }
+        
+        // 숫자만 입력 받기
+        let allowedCharacters = CharacterSet.decimalDigits
+        let characterSet = CharacterSet(charactersIn: string)
+        
+        return true && allowedCharacters.isSuperset(of: characterSet)
+       }
 }

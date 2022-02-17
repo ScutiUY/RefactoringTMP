@@ -36,6 +36,10 @@ class CommunityCollectionViewCell: UICollectionViewCell {
         $0.backgroundColor = GlobalConstants.Color.Background.themeColor
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
     // MARK: functions
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -78,7 +82,6 @@ class CommunityCollectionViewCell: UICollectionViewCell {
     }
     
     func setData(_ communityDataDetail: CommunityData.CommunityDataDetail) {
-            
         ImageLoader.loadImage(url: communityDataDetail.imgUrl) { [weak self] image in
                 self?.communityCollectionViewImage.image = image
             }

@@ -9,392 +9,152 @@ import UIKit
 import Then
 import BSImagePicker
 import Photos
+import Alamofire
 
 let photoID = "photoCell"
-
 
 class ReviewWriteViewController: UIViewController {
 
     // MARK: - Properties
     var selectedAssets: [PHAsset] = []
     var selectedImages: [UIImage] = []
+    
+    var titleSendFromCommunity: String
+    var sDateSendFromCommunity: String
+    var eDateSendFromCommunity: String
+    var themeSendFromCommunity: String
+    
+    var reviewView : ReviewScrollView!
+    var reviewViewModel: ReviewViewModel!
+    private var reviewDataWillSendToVM: ReviewData = ReviewData.shared
+    var shopListSendFromCommunity: [ShopListDetail]
 
-    
-    let scrollView = UIScrollView()
-    let contentView = UIView()
-    
-    let headerview = UIView()
-    
-    
-    lazy var headerTitle = UILabel().then({
-        $0.text = "리뷰를 작성하여\n여행을 함께 공유해요!"
-        $0.font = UIFont.boldSystemFont(ofSize: 30)
-        $0.numberOfLines = 0
-        $0.textColor = #colorLiteral(red: 0.3333333333, green: 0.7254901961, blue: 0.737254902, alpha: 1)
-    })
-    
-    lazy var travelTitle = UILabel().then {
-        $0.text = "제목을 입력하세요."
-        $0.font = UIFont.boldSystemFont(ofSize: 20)
-        $0.textColor = #colorLiteral(red: 0.5095663667, green: 0.5823678374, blue: 0.5935699344, alpha: 1)
-    }
-    
-    lazy var travelTextField = UITextField().then {
-        $0.placeholder = "민수와 제주도 우정여행"
-        $0.backgroundColor = .white
-        $0.layer.cornerRadius = 5
-        $0.addLeftPadding()
-        $0.layer.shadowColor = UIColor.black.cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
-        $0.layer.shadowRadius = 5
-        $0.layer.shadowOpacity = 0.2
-    }
-    
-    lazy var hashtagTitle = UILabel().then {
-        $0.text = "해쉬태그를 입력해주세요."
-        $0.font = UIFont.boldSystemFont(ofSize: 20)
-        $0.textColor = #colorLiteral(red: 0.5095663667, green: 0.5823678374, blue: 0.5935699344, alpha: 1)
-    }
-    
-    lazy var hashtagTextField = UITextField().then {
-        $0.placeholder = "#제주 #우정 #10년지기"
-        $0.backgroundColor = .white
-        $0.layer.cornerRadius = 5
-        $0.addLeftPadding()
-        $0.layer.shadowColor = UIColor.black.cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
-        $0.layer.shadowRadius = 5
-        $0.layer.shadowOpacity = 0.2
-    }
-    
-    lazy var foodTitle = UILabel().then {
-        $0.text = "다녀온 맛집이 어디인가요?"
-        $0.font = UIFont.boldSystemFont(ofSize: 20)
-        $0.textColor = #colorLiteral(red: 0.5095663667, green: 0.5823678374, blue: 0.5935699344, alpha: 1)
-    }
-    
-    lazy var foodTextField = UITextField().then {
-        $0.placeholder = "#돌하르방삼겹살 #장독김치국수"
-        $0.backgroundColor = .white
-        $0.layer.cornerRadius = 5
-        $0.addLeftPadding()
-        $0.layer.shadowColor = UIColor.black.cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
-        $0.layer.shadowRadius = 5
-        $0.layer.shadowOpacity = 0.2
-    }
-
-    lazy var sleepTitle = UILabel().then {
-        $0.text = "어떤 숙소에서 머무르셨나요?"
-        $0.font = UIFont.boldSystemFont(ofSize: 20)
-        $0.textColor = #colorLiteral(red: 0.5095663667, green: 0.5823678374, blue: 0.5935699344, alpha: 1)
-    }
-    
-    lazy var sleepTextField = UITextField().then {
-        $0.placeholder = "#델리호텔 #예스호텔"
-        $0.backgroundColor = .white
-        $0.layer.cornerRadius = 5
-        $0.addLeftPadding()
-        $0.layer.shadowColor = UIColor.black.cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
-        $0.layer.shadowRadius = 5
-        $0.layer.shadowOpacity = 0.2
-    }
-    
-    lazy var reviewTitle = UILabel().then {
-        $0.text = "리뷰"
-        $0.font = UIFont.boldSystemFont(ofSize: 20)
-        $0.textColor = #colorLiteral(red: 0.5095663667, green: 0.5823678374, blue: 0.5935699344, alpha: 1)
-    }
-    
-    lazy var reviewTextField = UITextField().then {
-        $0.placeholder = "리뷰를 등록해주세요."
-        $0.backgroundColor = .white
-        $0.frame.size.height = 100
-        $0.frame.size.width = 200
-        $0.layer.cornerRadius = 5
-        $0.addLeftPadding()
-        $0.layer.shadowColor = UIColor.black.cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
-        $0.layer.shadowRadius = 5
-        $0.layer.shadowOpacity = 0.2
-    }
-    
-    lazy var photoTitle = UILabel().then {
-        $0.text = "사진을 등록 해주세요."
-        $0.font = UIFont.boldSystemFont(ofSize: 20)
-        $0.textColor = #colorLiteral(red: 0.5095663667, green: 0.5823678374, blue: 0.5935699344, alpha: 1)
-    }
-    
-    lazy var photoButton = UIButton().then {
-        $0.setTitle("+", for: .normal)
-        $0.titleLabel?.font = .boldSystemFont(ofSize: 15)
-        $0.setTitleColor(.black, for: .normal)
-        $0.frame(forAlignmentRect: CGRect(x: 10, y: 10, width: 10, height: 10))
-        $0.backgroundColor = #colorLiteral(red: 0.8784313798, green: 0.8784313798, blue: 0.8784313798, alpha: 1)
-        $0.layer.cornerRadius = 10
-        $0.layer.shadowColor = UIColor.black.cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
-        $0.layer.shadowRadius = 5
-        $0.layer.shadowOpacity = 0.2
-    }
     
     let picker = UIImagePickerController()
+    let activity = UIActivityIndicatorView()
+    let sectionInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    
+    init(title titleSendFromCommunity: String, sDate sDateSendFromCommunity: String, eDate eDateSendFromCommunity: String, theme themeSendFromCommunity: String, shopList shopListSendFromCommunity: [ShopListDetail]) {
+        self.titleSendFromCommunity = titleSendFromCommunity
+        self.eDateSendFromCommunity = eDateSendFromCommunity
+        self.sDateSendFromCommunity = sDateSendFromCommunity
+        self.themeSendFromCommunity = themeSendFromCommunity
+        self.shopListSendFromCommunity = shopListSendFromCommunity
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     lazy var test = ImagePickerController().then {
-        $0.modalPresentationStyle = .automatic
-        $0.settings.selection.max = 10
-        $0.settings.theme.selectionStyle = .numbered
-        $0.settings.fetch.assets.supportedMediaTypes = [.image]
-        $0.settings.theme.selectionFillColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        $0.settings.theme.selectionStrokeColor = .white
-        $0.settings.theme.selectionShadowColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        $0.doneButton.tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        $0.cancelButton.tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        $0.albumButton.tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        $0.doneButtonTitle = "선택완료"
-    }
+    $0.modalPresentationStyle = .automatic
+    $0.settings.selection.max = 10
+    $0.settings.theme.selectionStyle = .numbered
+    $0.settings.fetch.assets.supportedMediaTypes = [.image]
+    $0.settings.theme.selectionFillColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+    $0.settings.theme.selectionStrokeColor = .white
+    $0.settings.theme.selectionShadowColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+    $0.doneButton.tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+    $0.cancelButton.tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+    $0.albumButton.tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+    $0.doneButtonTitle = "선택완료"
+}
 
-    lazy var reviewPhotoCollectionView: UICollectionView = {
-        let flowlayout = UICollectionViewFlowLayout()
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: flowlayout)
-        flowlayout.scrollDirection = .horizontal
-        flowlayout.minimumLineSpacing = 20
-        flowlayout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        cv.backgroundColor = UIColor(red: 243/255, green: 255/255, blue: 251/255, alpha: 1)
-        return cv
-    }()
-    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 243/255, green: 255/255, blue: 251/255, alpha: 1)
-//        picker.delegate = self
-        Setup()
-        headerSetUp()
-        bodySetup()
-        photoButton.addTarget(self, action: #selector(photoButtonPressed), for: .touchUpInside)
-        
-        reviewPhotoCollectionView.dataSource = self
-        reviewPhotoCollectionView.delegate = self
-        reviewPhotoCollectionView.register(ReviewPhotoCollectionViewCell.self, forCellWithReuseIdentifier: photoID)
+        reviewView = ReviewScrollView()
+        reviewViewModel = ReviewViewModel()
+        setNav()
+        setKeyBoard()
+        setDelegate()
+        setReviewView()
+        setCollection()
+    }
+    
+    // MARK: - 메소드
+
+    func setCollection() {
+        reviewView.photoButton.addTarget(self, action: #selector(photoButtonPressed), for: .touchUpInside)
+        reviewView.reviewPhotoCollectionView.register(ReviewPhotoCollectionViewCell.self, forCellWithReuseIdentifier: photoID)
         
         // 사진 드레그 관련
         let gesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture(_:)))
-        reviewPhotoCollectionView.addGestureRecognizer(gesture)
-        
-        // 네비게이션 등록관련 
-        let finishedButton = UIBarButtonItem(title: "등록하기", style: .plain, target: nil, action: nil)
-        self.navigationItem.rightBarButtonItem = finishedButton
-        
-    }
-    @objc func handleLongPressGesture(_ gesture: UITapGestureRecognizer)
-    {
-        let collectionView = reviewPhotoCollectionView
-        
-        switch gesture.state {
-        case .began:
-            guard let targetIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)) else {
-                return
-            }
-            collectionView.beginInteractiveMovementForItem(at: targetIndexPath)
-        case .changed:
-            collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: collectionView))
-        case .ended:
-            collectionView.endInteractiveMovement()
-        default:
-            collectionView.cancelInteractiveMovement()
-        }
+        reviewView.reviewPhotoCollectionView.addGestureRecognizer(gesture)
     }
 
-    // MARK: - Helpers
-    
-    func Setup()
-    {
-        view.addSubview(scrollView)
-        scrollView.addSubview(contentView)
+    func setRefresh() {
+        view.addSubview(activity)
         
-        scrollView.snp.makeConstraints {
+        activity.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview()
+        }
+        
+        reviewViewModel.loadingStarted = { [weak activity] in
+            activity?.isHidden = false
+            activity?.startAnimating()
+        }
+        reviewViewModel.loadingEnded = { [weak activity] in
+            activity?.stopAnimating()
+        }
+    }
+    
+    func setKeyBoard() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    func setNav() {
+        let finishedButton = UIBarButtonItem(title: "등록하기", style: .plain, target: self, action: #selector(finishedButtonClicked))
+        self.navigationItem.rightBarButtonItem = finishedButton
+    }
+    
+    func setDelegate() {
+        reviewView.reviewPhotoCollectionView.dataSource = self
+        reviewView.reviewPhotoCollectionView.delegate = self
+        reviewView.reviewTextView.delegate = self
+        reviewView.hashtagTextView.delegate = self
+    }
+    
+    func setReviewView() {
+        view.backgroundColor = GlobalConstants.Color.Background.themeColor
+        view.addSubview(reviewView)
+        
+        reviewView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
         
-        contentView.snp.makeConstraints {
-            $0.top.equalTo(scrollView.contentLayoutGuide.snp.top)
-            $0.trailing.equalTo(scrollView.contentLayoutGuide.snp.trailing)
-            $0.leading.equalTo(scrollView.contentLayoutGuide.snp.leading)
-            $0.bottom.equalTo(scrollView.contentLayoutGuide.snp.bottom)
-            $0.width.greaterThanOrEqualTo(scrollView.snp.width)
-    
-        }
-        
-        let contentViewHeight = contentView.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor)
-        contentViewHeight.priority = .defaultLow
-        contentViewHeight.isActive = true
-        
+        reviewView.travelTitleTextView.text = titleSendFromCommunity
+        reviewView.dateTextView.text = sDateSendFromCommunity + " ~ " + eDateSendFromCommunity
     }
-    
-    func headerSetUp()
-    {
-        contentView.addSubview(headerview)
-        contentView.addSubview(headerTitle)
-        headerview.snp.makeConstraints {
-            $0.width.equalTo(contentView.snp.width)
-            $0.top.equalTo(contentView.snp.top)
-            $0.height.equalTo(contentView.snp.height).multipliedBy(0.2)
-        }
-        headerTitle.snp.makeConstraints {
-            $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
-            $0.height.equalTo(headerview.snp.height).multipliedBy(0.7)
-            $0.bottom.equalTo(headerview.snp.bottom)
-            $0.centerX.equalTo(contentView.snp.centerX)
-        }
-    }
-
-    
-    func bodySetup()
-    {
-        contentView.addSubview(travelTitle)
-        contentView.addSubview(travelTextField)
-        contentView.addSubview(hashtagTitle)
-        contentView.addSubview(hashtagTextField)
-        contentView.addSubview(foodTitle)
-        contentView.addSubview(foodTextField)
-        contentView.addSubview(sleepTitle)
-        contentView.addSubview(sleepTextField)
-        contentView.addSubview(reviewTitle)
-        contentView.addSubview(reviewTextField)
-        contentView.addSubview(photoTitle)
-        contentView.addSubview(photoButton)
-        contentView.addSubview(reviewPhotoCollectionView)
-
-
-        travelTitle.snp.makeConstraints {
-            $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
-            $0.height.equalTo(50)
-            $0.top.equalTo(headerview.snp.bottom).offset(10)
-            $0.leading.equalTo(headerview.snp.leading).offset(20)
-        }
-        travelTextField.snp.makeConstraints {
-            $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
-            $0.height.equalTo(50)
-            $0.top.equalTo(travelTitle.snp.bottom)
-            $0.leading.equalTo(headerview.snp.leading).offset(20)
-        }
-        
-        hashtagTitle.snp.makeConstraints {
-            $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
-            $0.height.equalTo(50)
-            $0.top.equalTo(travelTextField.snp.bottom).offset(10)
-            $0.leading.equalTo(headerview.snp.leading).offset(20)
-        }
-        
-        hashtagTextField.snp.makeConstraints {
-            $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
-            $0.height.equalTo(50)
-            $0.top.equalTo(hashtagTitle.snp.bottom)
-            $0.leading.equalTo(headerview.snp.leading).offset(20)
-        }
-        
-        foodTitle.snp.makeConstraints {
-            $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
-            $0.height.equalTo(50)
-            $0.top.equalTo(hashtagTextField.snp.bottom).offset(10)
-            $0.leading.equalTo(headerview.snp.leading).offset(20)
-        }
-        
-        foodTextField.snp.makeConstraints {
-            $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
-            $0.height.equalTo(50)
-            $0.top.equalTo(foodTitle.snp.bottom)
-            $0.leading.equalTo(headerview.snp.leading).offset(20)
-        }
-        
-        sleepTitle.snp.makeConstraints {
-            $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
-            $0.height.equalTo(50)
-            $0.top.equalTo(foodTextField.snp.bottom).offset(10)
-            $0.leading.equalTo(headerview.snp.leading).offset(20)
-        }
-        
-        sleepTextField.snp.makeConstraints {
-            $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
-            $0.height.equalTo(50)
-            $0.top.equalTo(sleepTitle.snp.bottom)
-            $0.leading.equalTo(headerview.snp.leading).offset(20)
-        }
-        
-        reviewTitle.snp.makeConstraints {
-            $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
-            $0.height.equalTo(50)
-            $0.top.equalTo(sleepTextField.snp.bottom).offset(10)
-            $0.leading.equalTo(headerview.snp.leading).offset(20)
-        }
-        
-        reviewTextField.snp.makeConstraints {
-            $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
-            $0.height.equalTo(50)
-            $0.top.equalTo(reviewTitle.snp.bottom)
-            $0.leading.equalTo(headerview.snp.leading).offset(20)
-        }
-        
-        photoTitle.snp.makeConstraints {
-            $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
-            $0.height.equalTo(50)
-            $0.top.equalTo(reviewTextField.snp.bottom).offset(10)
-            $0.leading.equalTo(headerview.snp.leading).offset(20)
-        }
-        
-        photoButton.snp.makeConstraints {
-            $0.top.equalTo(photoTitle.snp.bottom)
-            $0.leading.equalTo(headerview.snp.leading).offset(30)
-            $0.height.equalTo(30)
-        }
-        
-        
-        reviewPhotoCollectionView.snp.makeConstraints {
-            $0.width.equalTo(contentView.snp.width).multipliedBy(0.9)
-            $0.height.equalTo(200)
-            $0.top.equalTo(photoButton.snp.bottom).offset(10)
-            $0.leading.equalTo(headerview.snp.leading).offset(20)
-            $0.bottom.equalToSuperview()
-        }
-        
-
-    }
+  
     func openLibrary()
     {
         self.presentImagePicker(test,
         select: {
             (asset) in
                 // 사진 하나 선택할 때마다 실행되는 내용 쓰기
-            print("==========selected==========")
         }, deselect: {
             (asset) in
                 // 선택했던 사진들 중 하나를 선택 해제할 때마다 실행되는 내용 쓰기
-            print("==========didselect==========")
         }, cancel: {
             (assets) in
                 // Cancel 버튼 누르면 실행되는 내용
-            print("==========cancel==========")
         }, finish: { [self]
             (assets) in
                 // Done 버튼 누르면 실행되는 내용
-            print("==========<finish>==========")
             self.selectedAssets.removeAll()
-            print("before : \(selectedAssets)")
-            print("before : \(selectedImages)")
-
+            self.selectedImages.removeAll()
             for i in assets {
                 self.selectedAssets.append(i)
             }
             self.converAssetToImages()
-            self.reviewPhotoCollectionView.reloadData()
-            print("After : \(selectedAssets)")
-            print("After : \(selectedImages)")
-            print("==========</finish>==========")
+            reviewView.reviewPhotoCollectionView.reloadData()
         })
     }
     
@@ -414,18 +174,14 @@ class ReviewWriteViewController: UIViewController {
                                              options: option) { (result, info) in
                     thumbnail = result!
                 }
-                
                 let data = thumbnail.jpegData(compressionQuality: 0.7)
                 let newImage = UIImage(data: data!)
                 self.selectedImages.append(newImage! as UIImage)
-                
             }
         }
     }
     
-    
-    func openCamera(){
-
+    func openCamera() {
         if (UIImagePickerController.isSourceTypeAvailable(.camera)) {
             picker.sourceType = .camera
             present(picker, animated: false, completion: nil)
@@ -433,12 +189,9 @@ class ReviewWriteViewController: UIViewController {
         else {
             print("Simulator doesn't have Camera")
         }
-        
-
     }
 
-    @objc func photoButtonPressed(_: UIButton)
-    {
+    @objc func photoButtonPressed(_: UIButton) {
         let alert = UIAlertController(title: "사진을 골라주세요.", message: "", preferredStyle: .actionSheet)
         let library = UIAlertAction(title: "사진앨범", style: .default) {(action) in
             self.openLibrary()
@@ -452,28 +205,103 @@ class ReviewWriteViewController: UIViewController {
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
     }
+    
+    @objc func finishedButtonClicked(_ sender: Any) {
+        let okAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
+        
+        reviewDataWillSendToVM.title = titleSendFromCommunity
+        reviewDataWillSendToVM.startDate =
+        sDateSendFromCommunity
+        reviewDataWillSendToVM.endDate = eDateSendFromCommunity
+        reviewDataWillSendToVM.content = reviewView.reviewTextView.text
+        reviewDataWillSendToVM.tags = reviewView.hashtagTextView.text
+        reviewDataWillSendToVM.theme = themeSendFromCommunity
+        reviewDataWillSendToVM.shopList = shopListSendFromCommunity
+        
+        if (self.reviewView.hashtagTextView.text == "해쉬태그를 작성해주세요."){
+            let alert = UIAlertController(title: "해쉬태그를 작성해주세요.", message: "한 개 이상 해쉬태그를 작성해주세요.", preferredStyle: .alert)
+            alert.addAction(okAction)
+            present(alert, animated: true)
+        } else if (self.reviewView.reviewTextView.text == "리뷰를 작성해주세요." ) {
+            let alert = UIAlertController(title: "리뷰를 작성해주세요.", message: "한 글자 이상 작성해주세요.", preferredStyle: .alert)
+            alert.addAction(okAction)
+            present(alert, animated: true)
+        } else if (self.selectedImages.isEmpty) {
+            let alert = UIAlertController(title: "사진을 첨부해주세요.", message: "한 개 이상의 사진을 넣어주세요.", preferredStyle: .alert)
+            alert.addAction(okAction)
+            present(alert, animated: true)
+        } else {
+            // 파라미터 먼저 넣어주기
+            reviewViewModel.setReviewParams(reviewData: reviewDataWillSendToVM, idx: shopListSendFromCommunity.count)
+            // 이미지와 함께 호출 시
+            reviewViewModel.setReviewDataWithImage(reviewData: reviewDataWillSendToVM, idx: shopListSendFromCommunity.count, previousImages: selectedImages)
+            // 이미지 없이 호출 시
+            // reviewViewModel.setReviewData()
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    @objc func keyboardWillShow(_ sender: Notification) {
+        self.view.frame.origin.y = -150
+    }
+    @objc func keyboardWillHide(_ sender: Notification) {
+        self.view.frame.origin.y = 0
+    }
+    
+    @objc func handleLongPressGesture(_ gesture: UITapGestureRecognizer) {
+        let collectionView = reviewView.reviewPhotoCollectionView
+        
+        switch gesture.state {
+        case .began:
+            guard let targetIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView))
+            else { return }
+            UIView.animate(withDuration: TimeInterval(0.2), animations: {
+                () -> Void in
+                collectionView.cellForItem(at: targetIndexPath)?.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+            }, completion: { (finished: Bool) -> Void in
+                UIView.animate(withDuration: TimeInterval(0.2),
+                               animations: {() -> Void in
+                    collectionView.cellForItem(at: targetIndexPath)?.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                }, completion: nil)
+            })
+            collectionView.beginInteractiveMovementForItem(at: targetIndexPath)
+        case .changed:
+            collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: collectionView))
+        case .ended:
+            collectionView.endInteractiveMovement()
+        default:
+            collectionView.cancelInteractiveMovement()
+        }
+    }
 }
-
 
 // MARK: - extentions
 
 extension ReviewWriteViewController : UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("==========numberOfItemsInSection==========")
         return self.selectedAssets.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("==========cellForItemAt==========")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photoID, for: indexPath) as! ReviewPhotoCollectionViewCell
+        print(indexPath.row)
         cell.imageSelectedView.image = self.selectedImages[indexPath.row]
         cell.imageSelectedView.contentMode = .scaleAspectFit
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width - 80, height: view.frame.height)
+        let width = reviewView.reviewPhotoCollectionView.frame.width
+        let height = reviewView.reviewPhotoCollectionView.frame.height
+        let itemsPerRow: CGFloat = 1
+        let widthPadding = sectionInsets.left * (itemsPerRow + 1)
+        let itemsPerColumn: CGFloat = 1
+        let heightPadding = sectionInsets.top * (itemsPerColumn + 1)
+        let cellWidth = (width - widthPadding) / itemsPerRow
+        let cellHeight = (height - heightPadding) / itemsPerColumn
+        
+        return CGSize(width: cellWidth, height: cellHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
@@ -486,18 +314,44 @@ extension ReviewWriteViewController : UICollectionViewDelegateFlowLayout, UIColl
     }
     
 }
-//
-//
-//extension reviewWriteViewController : UIImagePickerControllerDelegate, UINavigationBarDelegate
-//{
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
-////                  photoImageView.image = image
-//                  print(info)
-//              }
-//              dismiss(animated: true, completion: nil)
-//    }
-//}
-//
-//
-//
+
+// TextView 관련 Extension
+extension ReviewWriteViewController : UITextViewDelegate {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        self.view.endEditing(true)
+    }
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if "해쉬태그를 작성해주세요." == textView.text {
+            reviewView.hashtagTextView.text = nil
+        }
+        
+        if "리뷰를 작성해주세요." == textView.text {
+            reviewView.reviewTextView.text = nil
+        }
+        textView.textColor = .black
+        textView.layer.borderColor = UIColor.black.cgColor
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        textView.layer.borderColor = UIColor.lightGray.cgColor
+        if textView.text == reviewView.hashtagTextView.text, reviewView.hashtagTextView.text == "" {
+            reviewView.hashtagTextView.text = "해쉬태그를 작성해주세요."
+            reviewView.hashtagTextView.textColor = .lightGray
+        } else if textView.text == reviewView.reviewTextView.text, reviewView.reviewTextView.text == "" {
+            reviewView.reviewTextView.text = "리뷰를 작성해주세요."
+            reviewView.reviewTextView.textColor = .lightGray
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        self.dismiss(animated: true, completion: nil)
+        return true
+        }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if reviewView.hashtagTextView.text.count > 50 {
+            reviewView.hashtagTextView.deleteBackward()
+        }
+    }
+}
+

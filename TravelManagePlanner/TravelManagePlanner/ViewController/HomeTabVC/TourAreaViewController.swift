@@ -26,7 +26,7 @@ class TourAreaViewController: UIViewController {
     
     lazy var basket: UIButton = {
         let button = UIButton()
-        button.setTitle("바구니", for : .normal)
+        button.setImage(UIImage(named: "basket"), for: .normal)
         
         button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 1), for: .normal)
         button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 0.6), for: .highlighted)
@@ -34,14 +34,6 @@ class TourAreaViewController: UIViewController {
         button.backgroundColor = .clear
         
         return button
-    }()
-    
-    lazy var tourAreaHeadStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [tourAreaTitleLabel, basket])
-        stackView.axis = .horizontal
-        //        stackView.spacing = 5
-        
-        return stackView
     }()
     
     // 테이블뷰를 활용하여 추천지 구현하기
@@ -64,19 +56,26 @@ class TourAreaViewController: UIViewController {
     }
     
     func setUpView() {
-        view.addSubview(tourAreaHeadStack)
+        view.addSubview(tourAreaTitleLabel)
+        view.addSubview(basket)
         view.addSubview(tourAreaTableView)
     }
     
     func setLayout() {
-        tourAreaHeadStack.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).multipliedBy(1.1)
+        tourAreaTitleLabel.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.leading.equalTo(view.snp.centerX).multipliedBy(0.1)
             $0.trailing.equalToSuperview().offset(-24)
         }
         
+        basket.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.bottom.equalTo(tourAreaTableView.snp.top).offset(-35)
+            $0.trailing.equalToSuperview().offset(-24)
+        }
+        
         tourAreaTableView.snp.makeConstraints {
-            $0.top.equalTo(tourAreaHeadStack.snp.bottom).multipliedBy(1.1)
+            $0.top.equalTo(tourAreaTitleLabel.snp.bottom).multipliedBy(1.1)
             $0.leading.equalTo(view.snp.centerX).multipliedBy(0.1)
             $0.bottom.equalToSuperview().offset(-30)
             $0.trailing.equalToSuperview().offset(-24)

@@ -36,7 +36,7 @@ class ReviewViewModel {
         var resizedImages : [UIImage] = []
         
         for i in 0..<previousImages.count {
-            resizedImages.append(resizeImage(image: previousImages[i], targetSize: CGSize(width: 100, height: 200)))
+            resizedImages.append(resizeImage(image: previousImages[i], targetSize: CGSize(width: 700, height: 500)))
         }
         
         repo.imgUpload(imageData: resizedImages)

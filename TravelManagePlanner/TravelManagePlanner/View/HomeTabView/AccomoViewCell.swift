@@ -91,8 +91,12 @@ class AccomoViewCell: UITableViewCell {
     }
     
     func setLayout() {
-//        accomoImg.frame = CGRect.init(x: 0, y: 0, width: frame.width, height: contentView.frame.height / 0.3)
-        accomoImg.frame = CGRect.init(x: 0, y: 0, width: 347.0, height: 160.0) //추후 오토레이아웃 변경필요
+        accomoImg.snp.makeConstraints {
+            $0.top.equalToSuperview().multipliedBy(1.1)
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-80)
+        }
         
         accomoAllTitleStack.snp.makeConstraints {
             $0.top.equalTo(accomoImg.snp.bottom).multipliedBy(1.0)

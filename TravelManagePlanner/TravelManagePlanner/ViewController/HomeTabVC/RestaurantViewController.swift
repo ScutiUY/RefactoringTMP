@@ -109,7 +109,7 @@ class RestaurantViewController: UIViewController {
 // cellHeight 지정
 extension RestaurantViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.height / 3.7
+        return view.frame.height / 3.5
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

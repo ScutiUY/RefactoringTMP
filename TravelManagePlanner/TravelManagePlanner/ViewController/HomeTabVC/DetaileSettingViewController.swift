@@ -215,7 +215,7 @@ class DetaileSettingViewController: UIViewController {
     lazy var bugetAmountStack: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [budgetApproximately, budgetAmount, budgetWon])
         stackView.axis = .horizontal
-        stackView.spacing = 3
+        stackView.spacing = 5
         
         return stackView
     }()
@@ -450,6 +450,7 @@ extension DetaileSettingViewController: UITextFieldDelegate {
         // 숫자만 입력 받기
         let allowedCharacters = CharacterSet.decimalDigits
         let characterSet = CharacterSet(charactersIn: string)
+        
         
         return true && allowedCharacters.isSuperset(of: characterSet)
        }

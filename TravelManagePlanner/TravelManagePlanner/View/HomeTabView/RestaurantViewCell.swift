@@ -94,8 +94,12 @@ class RestaurantViewCell: UITableViewCell {
         }
         
         func setLayout() {
-//            restaurantImg.frame = CGRect.init(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height / 0.28)
-            restaurantImg.frame = CGRect.init(x: 0, y: 0, width: 347.0, height: 160.0) //추후 오토레이아웃 변경필요
+            restaurantImg.snp.makeConstraints {
+                $0.top.equalToSuperview().multipliedBy(1.1)
+                $0.leading.equalToSuperview()
+                $0.trailing.equalToSuperview()
+                $0.bottom.equalToSuperview().offset(-80)
+            }
             
             restaurantAllTitleStack.snp.makeConstraints {
                 $0.top.equalTo(restaurantImg.snp.bottom).multipliedBy(1.0)

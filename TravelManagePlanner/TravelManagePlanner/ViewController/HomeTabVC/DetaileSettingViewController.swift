@@ -15,13 +15,13 @@ class DetaileSettingViewController: UIViewController {
     let dateFormatter = DateFormatter()
     
     // 알림창 구현
-    let invalidTitleAlert = UIAlertController(title: "", message: "제목을 6글자 이상 입력해주세요.", preferredStyle: UIAlertController.Style.alert)
+    let invalidTitleAlert = UIAlertController(title: "제목을 6글자 이상 입력해주세요.", message: "", preferredStyle: UIAlertController.Style.alert)
     
-    let invalidDateAlert = UIAlertController(title: "", message: "오는날의 날짜가 더 이전입니다.", preferredStyle: UIAlertController.Style.alert)
+    let invalidDateAlert = UIAlertController(title: "오는날의 날짜가 더 이전입니다.", message: "", preferredStyle: UIAlertController.Style.alert)
 
-    let invalidPeopleNumberAlert = UIAlertController(title: "", message: "인원수를 입력해주세요", preferredStyle: UIAlertController.Style.alert)
+    let invalidPeopleNumberAlert = UIAlertController(title: "인원수를 입력해주세요", message: "", preferredStyle: UIAlertController.Style.alert)
     
-    let invalidBudgetAlert = UIAlertController(title: "", message: "예상 금액을 설정해주세요", preferredStyle: UIAlertController.Style.alert)
+    let invalidBudgetAlert = UIAlertController(title: "예상 금액을 설정해주세요", message: "", preferredStyle: UIAlertController.Style.alert)
     
     let addAlert = UIAlertAction(title: "확인", style: UIAlertAction.Style.cancel, handler: nil)
     
@@ -183,6 +183,26 @@ class DetaileSettingViewController: UIViewController {
         return label
     }()
     
+    // 예산 '약'표시
+    lazy var budgetApproximately: UILabel = {
+        let label = UILabel()
+        label.text = "약"
+        label.font = UIFont.systemFont(ofSize: 22)
+        label.textColor = UIColor(red: 85/255, green: 185/255, blue: 188/255, alpha: 1)
+        
+        return label
+    }()
+    
+    // 예산 '만원'표시
+    lazy var budgetWon: UILabel = {
+        let label = UILabel()
+        label.text = "만원"
+        label.font = UIFont.systemFont(ofSize: 22)
+        label.textColor = UIColor(red: 85/255, green: 185/255, blue: 188/255, alpha: 1)
+        
+        return label
+    }()
+    
     // 예산 금액 수치화
     lazy var budgetAmount: UILabel = {
         let label = UILabel()
@@ -192,9 +212,17 @@ class DetaileSettingViewController: UIViewController {
         return label
     }()
     
+    lazy var bugetAmountStack: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [budgetApproximately, budgetAmount, budgetWon])
+        stackView.axis = .horizontal
+        stackView.spacing = 3
+        
+        return stackView
+    }()
+    
     // 예산 스택뷰
     lazy var budgetStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [budget, budgetAmount])
+        let stackView = UIStackView(arrangedSubviews: [budget, bugetAmountStack])
         stackView.axis = .horizontal
         stackView.spacing = 1
         return stackView
@@ -204,7 +232,7 @@ class DetaileSettingViewController: UIViewController {
     lazy var budgetSlider: UISlider = {
         let slider = UISlider()
         slider.minimumValue = 1
-        slider.maximumValue = 10
+        slider.maximumValue = 5
         slider.value = 1
 //        self.budgetAmount.text = "22"
         return slider
@@ -214,22 +242,10 @@ class DetaileSettingViewController: UIViewController {
     func sliderAction(_ sender: UISlider) {
         sender.value = budgetSlider.value
         
-        var sendValue:Int = 0
+        let formatValue = String(format: "%0.0f", sender.value)
+        let sendValue:String = detaileSettingViewModel.budgetChangeData(buget: formatValue)
         
-        switch sender.value {
-        case 1:
-        sendValue = 200000
-        case 2:
-        sendValue = 400000
-        case 3:
-        sendValue = 600000
-        case 4:
-        sendValue = 800000
-        default:
-        sendValue = 1000000
-        }
-        
-        budgetAmount.text = String(sendValue)
+        budgetAmount.text = sendValue
     }
     
     // 예산 모든 스택뷰

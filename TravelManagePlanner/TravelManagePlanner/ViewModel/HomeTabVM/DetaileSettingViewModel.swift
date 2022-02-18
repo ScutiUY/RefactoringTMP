@@ -15,6 +15,26 @@ class DetaileSettingViewModel {
     private var peopleNum = ""
     private var budget = ""
     
+    func budgetChangeData(buget: String) -> String{
+       
+        var returnValue:String = ""
+        
+        switch buget {
+        case "1":
+        returnValue = "20"
+        case "2":
+            returnValue = "40"
+        case "3":
+            returnValue = "60"
+        case "4":
+            returnValue = "80"
+        default:
+            returnValue = "100"
+        }
+        
+        return returnValue
+    }
+    
     func updateTitle(title: String) {
         self.title = title
     }
@@ -31,6 +51,7 @@ class DetaileSettingViewModel {
     func updateBudget(budget: String) {
         self.budget = budget
     }
+    
     
     // 유저입력데이터 유효성
     func validateUserInputData() -> ValidationResult {

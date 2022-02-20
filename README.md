@@ -1,7 +1,10 @@
 # TMP - Travel Manage Planner
 
 [![CI Status](https://img.shields.io/travis/ScutiUY/UYRadioButton.svg?style=flat)](https://travis-ci.org/ScutiUY/UYRadioButton) [![Version](https://img.shields.io/cocoapods/v/UYRadioButton.svg?style=flat)](https://cocoapods.org/pods/UYRadioButton) [![License](https://img.shields.io/cocoapods/l/UYRadioButton.svg?style=flat)](https://cocoapods.org/pods/UYRadioButton) [![Platform](https://img.shields.io/cocoapods/p/UYRadioButton.svg?style=flat)](https://cocoapods.org/pods/UYRadioButton) <img src="https://img.shields.io/badge/version-1.0.1-blue.svg?{ style(optional)"> <img src="https://img.shields.io/badge/Swift-F05138?style=flat&logo=Swift&logoColor=white"/></a> 
+<div align="center">
 <img src = "https://user-images.githubusercontent.com/36326157/154835234-1b827a22-75fd-4e9b-a827-3ed50402647c.png" width="50%" height="50%">
+</div>
+
 
 ## 개요
 TMP(Travel Manage Planner)는 여행 테마에 따른 여행지 자동 추천 플랫폼입니다. 사용자의 여행 관리와 커뮤니티 리뷰 기능으로 사용자와 다른 여행자들이 다녀온 여행을 함께 공유 할수 있는 기능을 제공합니다.

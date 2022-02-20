@@ -2,7 +2,7 @@
 
 [![CI Status](https://img.shields.io/travis/ScutiUY/UYRadioButton.svg?style=flat)](https://travis-ci.org/ScutiUY/UYRadioButton) [![Version](https://img.shields.io/cocoapods/v/UYRadioButton.svg?style=flat)](https://cocoapods.org/pods/UYRadioButton) [![License](https://img.shields.io/cocoapods/l/UYRadioButton.svg?style=flat)](https://cocoapods.org/pods/UYRadioButton) [![Platform](https://img.shields.io/cocoapods/p/UYRadioButton.svg?style=flat)](https://cocoapods.org/pods/UYRadioButton) <img src="https://img.shields.io/badge/version-1.0.1-blue.svg?{ style(optional)"> <img src="https://img.shields.io/badge/Swift-F05138?style=flat&logo=Swift&logoColor=white"/></a> 
 <div align="center">
-<img src = "https://user-images.githubusercontent.com/59588256/154835989-e0ead964-374a-4fcb-bf62-91fd84519441.png" width="30%" height="30%">
+<img src = "https://user-images.githubusercontent.com/59588256/154836068-bd7efce0-bed9-4d7d-a76e-0b2e64ca0e27.png" width="40%" height="40%">
 </div>
 
 

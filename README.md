@@ -13,6 +13,9 @@ TMP(Travel Manage Planner)는 여행 테마에 따른 여행지 자동 추천 �
 
 ## 기술 스택
 MVVM + Swift
+![image](https://user-images.githubusercontent.com/50395900/154967544-389c19fc-8939-47fe-acc2-80dd30375c88.png)
 
 ## 프로젝트 관리 및 팀 워크
 https://github.com/TravelMockPlanner/TravelManagerPlanner/wiki
+
+

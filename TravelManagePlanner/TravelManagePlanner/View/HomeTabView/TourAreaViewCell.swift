@@ -47,10 +47,8 @@ class TourAreaViewCell: UITableViewCell {
     
     lazy var tourAreaSelectButton: UIButton = {
         let  button = UIButton()
-        button.setTitle("선택", for: .normal)
-        button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 1), for: .normal)
-        button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 0.6), for: .highlighted)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 22)
+        button.setImage(UIImage(named: "selectIcon"), for: .normal) // You can set image direct from Storyboard
+        button.setImageTintColor(GlobalConstants.Color.IconColor.recommendSelectButtonColor)
         button.backgroundColor = .clear
         
         return button
@@ -73,7 +71,7 @@ class TourAreaViewCell: UITableViewCell {
     lazy var tourAreaAllTitleStack: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [tourAreaTitleStack, tourAreaSelectButton])
         stackView.axis = .horizontal
-        stackView.spacing = 200
+        stackView.spacing = 215
         
         return stackView
     }()
@@ -95,8 +93,12 @@ class TourAreaViewCell: UITableViewCell {
     }
     
     func setLayout() {
-        //        accomoImgButton.frame = CGRect.init(x: 0, y: 0, widthㅇ: contentView.frame.width, height: 160)
-        tourAreaImg.frame = CGRect.init(x: 0, y: 0, width: 347.0, height: 160.0) //추후 오토레이아웃 변경필요
+        tourAreaImg.snp.makeConstraints {
+            $0.top.equalToSuperview().multipliedBy(1.1)
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-80)
+        }
         
         tourAreaAllTitleStack.snp.makeConstraints {
             $0.top.equalTo(tourAreaImg.snp.bottom).multipliedBy(1.0)

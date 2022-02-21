@@ -46,10 +46,9 @@ class RestaurantViewCell: UITableViewCell {
         
         lazy var restaurantSelectButton: UIButton = {
            let  button = UIButton()
-            button.setTitle("선택", for: .normal)
-            button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 1), for: .normal)
-            button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 0.6), for: .highlighted)
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 22)
+            button.setImage(UIImage(named: "selectIcon"), for: .normal) // You can set image direct from Storyboard
+            button.setImageTintColor(GlobalConstants.Color.IconColor.recommendSelectButtonColor)
+            
             button.backgroundColor = .clear
             
             return button
@@ -71,7 +70,7 @@ class RestaurantViewCell: UITableViewCell {
         lazy var restaurantAllTitleStack: UIStackView = {
             let stackView = UIStackView(arrangedSubviews: [restaurantTitleStack, restaurantSelectButton])
             stackView.axis = .horizontal
-            stackView.spacing = 200
+            stackView.spacing = 215
             
             return stackView
         }()
@@ -94,8 +93,12 @@ class RestaurantViewCell: UITableViewCell {
         }
         
         func setLayout() {
-//            restaurantImg.frame = CGRect.init(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height / 0.28)
-            restaurantImg.frame = CGRect.init(x: 0, y: 0, width: 347.0, height: 160.0) //추후 오토레이아웃 변경필요
+            restaurantImg.snp.makeConstraints {
+                $0.top.equalToSuperview().multipliedBy(1.1)
+                $0.leading.equalToSuperview()
+                $0.trailing.equalToSuperview()
+                $0.bottom.equalToSuperview().offset(-80)
+            }
             
             restaurantAllTitleStack.snp.makeConstraints {
                 $0.top.equalTo(restaurantImg.snp.bottom).multipliedBy(1.0)

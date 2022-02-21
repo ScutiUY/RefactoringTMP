@@ -25,22 +25,11 @@ class RestaurantViewController: UIViewController {
     
     lazy var basket: UIButton = {
         let button = UIButton()
-        button.setTitle("바구니", for : .normal)
-        
-        button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 1), for: .normal)
-        button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 0.6), for: .highlighted)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 22)
+        button.setImage(UIImage(named: "basket"), for: .normal)
+        button.setImageTintColor(GlobalConstants.Color.IconColor.basketColor)
         button.backgroundColor = .clear
         
         return button
-    }()
-    
-    lazy var restaurantHeadStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [restaurantTitleLabel, basket])
-        stackView.axis = .horizontal
-//        stackView.spacing = 5
-        
-        return stackView
     }()
     
     // 테이블뷰를 활용하여 추천지 구현하기
@@ -62,19 +51,26 @@ class RestaurantViewController: UIViewController {
     }
     
     func setUpView() {
-        view.addSubview(restaurantHeadStack)
+        view.addSubview(restaurantTitleLabel)
+        view.addSubview(basket)
         view.addSubview(restaurantTableView)
     }
     
     func setLayout() {
-        restaurantHeadStack.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).multipliedBy(1.1)
+        restaurantTitleLabel.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.leading.equalTo(view.snp.centerX).multipliedBy(0.1)
             $0.trailing.equalToSuperview().offset(-24)
         }
         
+        basket.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.bottom.equalTo(restaurantTableView.snp.top).offset(-27)
+            $0.trailing.equalToSuperview().offset(-24)
+        }
+        
         restaurantTableView.snp.makeConstraints {
-            $0.top.equalTo(restaurantHeadStack.snp.bottom).multipliedBy(1.1)
+            $0.top.equalTo(restaurantTitleLabel.snp.bottom).multipliedBy(1.1)
             $0.leading.equalTo(view.snp.centerX).multipliedBy(0.1)
             $0.bottom.equalToSuperview().offset(-30)
             $0.trailing.equalToSuperview().offset(-24)
@@ -109,7 +105,7 @@ class RestaurantViewController: UIViewController {
 // cellHeight 지정
 extension RestaurantViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.height / 3.7
+        return view.frame.height / 3.5
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

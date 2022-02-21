@@ -28,10 +28,7 @@ class AccomoViewController: UIViewController {
     lazy var basket: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "basket"), for: .normal)
-        
-        button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 1), for: .normal)
-        button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 0.6), for: .highlighted)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 22)
+        button.setImageTintColor(GlobalConstants.Color.IconColor.basketColor)
         button.backgroundColor = .clear
         
         return button
@@ -72,7 +69,7 @@ class AccomoViewController: UIViewController {
         
         basket.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            $0.bottom.equalTo(accomoTableView.snp.top).offset(-35)
+            $0.bottom.equalTo(accomoTableView.snp.top).offset(-27)
             $0.trailing.equalToSuperview().offset(-24)
         }
         

@@ -43,6 +43,7 @@
 		6B6D774127B924D3000CF8EA /* DestiSearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6D773F27B924D3000CF8EA /* DestiSearchData.swift */; };
 		6B6D774227B924D3000CF8EA /* HomeTabData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6D774027B924D3000CF8EA /* HomeTabData.swift */; };
 		6B6D774427BC3D60000CF8EA /* DetaileSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6D774327BC3D60000CF8EA /* DetaileSettingViewModel.swift */; };
+		6B6D774B27C3FC87000CF8EA /* HomeTabExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6D774A27C3FC87000CF8EA /* HomeTabExtensions.swift */; };
 		6BA7894627B4E27D003CFE82 /* HomeTabSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BA7894527B4E27D003CFE82 /* HomeTabSB.storyboard */; };
 		6BA7894C27B4E2D6003CFE82 /* HomeTabAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA7894B27B4E2D6003CFE82 /* HomeTabAPIService.swift */; };
 		6BA7897027B4E3C0003CFE82 /* HomeTabProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA7896F27B4E3C0003CFE82 /* HomeTabProtocol.swift */; };
@@ -175,6 +176,7 @@
 		6B6D773F27B924D3000CF8EA /* DestiSearchData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestiSearchData.swift; sourceTree = "<group>"; };
 		6B6D774027B924D3000CF8EA /* HomeTabData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabData.swift; sourceTree = "<group>"; };
 		6B6D774327BC3D60000CF8EA /* DetaileSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaileSettingViewModel.swift; sourceTree = "<group>"; };
+		6B6D774A27C3FC87000CF8EA /* HomeTabExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabExtensions.swift; sourceTree = "<group>"; };
 		6BA7894527B4E27D003CFE82 /* HomeTabSB.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeTabSB.storyboard; sourceTree = "<group>"; };
 		6BA7894B27B4E2D6003CFE82 /* HomeTabAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabAPIService.swift; sourceTree = "<group>"; };
 		6BA7896F27B4E3C0003CFE82 /* HomeTabProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabProtocol.swift; sourceTree = "<group>"; };
@@ -647,6 +649,7 @@
 				6BA7896F27B4E3C0003CFE82 /* HomeTabProtocol.swift */,
 				F04FD8B4278B8F22007D8866 /* DateUtil.swift */,
 				F0AFB7712783D7AF00FBA3FF /* Observable.swift */,
+				6B6D774A27C3FC87000CF8EA /* HomeTabExtensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1064,6 +1067,7 @@
 				4A716B9027A2706C00D15024 /* ReviewPhotoCollectionViewCell.swift in Sources */,
 				F079D513278ADA9E004BF9F6 /* SignUpViewModel.swift in Sources */,
 				F02403A6279FD013005F209F /* JourneyListRepository.swift in Sources */,
+				6B6D774B27C3FC87000CF8EA /* HomeTabExtensions.swift in Sources */,
 				F0CADCE12781EF5500DDC1CD /* LoadingButton.swift in Sources */,
 				F00F182A2778637D00211A8D /* SignInUpRepository.swift in Sources */,
 				4AAABC3627B8F11F0086B3FD /* ReviewData.swift in Sources */,

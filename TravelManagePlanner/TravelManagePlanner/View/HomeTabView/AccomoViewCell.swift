@@ -46,9 +46,10 @@ class AccomoViewCell: UITableViewCell {
     
     lazy var accomoSelectButton: UIButton = {
        let  button = UIButton()
-        button.setTitle("선택", for: .normal)
-        button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 1), for: .normal)
-        button.setTitleColor(UIColor(red: 209/255, green: 120/255, blue: 168/255, alpha: 0.6), for: .highlighted)
+        
+        button.setImage(UIImage(named: "selectIcon"), for: .normal) // You can set image direct from Storyboard
+        button.setImageTintColor(GlobalConstants.Color.IconColor.recommendSelectButtonColor)
+        
         button.titleLabel?.font = UIFont.systemFont(ofSize: 22)
         button.backgroundColor = .clear
         
@@ -71,7 +72,7 @@ class AccomoViewCell: UITableViewCell {
     lazy var accomoAllTitleStack: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [accomoTitleStack, accomoSelectButton])
         stackView.axis = .horizontal
-        stackView.spacing = 200
+        stackView.spacing = 215
         
         return stackView
     }()

@@ -395,6 +395,9 @@
 				6B6D773327B924BD000CF8EA /* AccomoViewController.swift */,
 				6B6D773527B924BE000CF8EA /* RestaurantViewController.swift */,
 				6B6D773627B924BE000CF8EA /* TourAreaViewController.swift */,
+				6B6D772427B92489000CF8EA /* AccomoCalendarViewController.swift */,
+				6B6D772127B92489000CF8EA /* RestaurantCalendarViewController.swift */,
+				6B6D772327B92489000CF8EA /* TourAreaCalendarViewController.swift */,
 			);
 			path = HomeTabVC;
 			sourceTree = "<group>";
@@ -634,11 +637,8 @@
 			children = (
 				6B6D772227B92489000CF8EA /* ThemeViewCell.swift */,
 				6B6D772527B92489000CF8EA /* AccomoViewCell.swift */,
-				6B6D772427B92489000CF8EA /* AccomoCalendarViewController.swift */,
 				6B6D772627B92489000CF8EA /* RestaurantViewCell.swift */,
-				6B6D772127B92489000CF8EA /* RestaurantCalendarViewController.swift */,
 				6B6D772727B92489000CF8EA /* TourAreaViewCell.swift */,
-				6B6D772327B92489000CF8EA /* TourAreaCalendarViewController.swift */,
 			);
 			path = HomeTabView;
 			sourceTree = "<group>";

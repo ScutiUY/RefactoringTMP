@@ -5,36 +5,52 @@
 //  Created by UY on 2021/12/31.
 //
 
-import Foundation
 import UIKit
 
-class ImageLoader {
-    private static var imageCache = [String: UIImage]()
+private enum ImageLoaderError: Error {
+    case noImage
+    case invalidImageURL
+}
+
+final class ImageLoder {
     
-    static func loadImage(url: String, completed: @escaping (UIImage?) -> Void) {
+    static let imageCache = NSCache<NSString, UIImage>()
+    
+    func leadImage(url: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
         if url.isEmpty {
-            completed(nil)
-            return
+            completion(.failure(ImageLoaderError.invalidImageURL))
         }
-        if let image = imageCache[url] {
+        if let image = ImageLoder.imageCache.object(forKey: url as NSString) {
             DispatchQueue.main.async {
-                completed(image)
+                completion(.success(image))
             }
             return
-        } else {
-            DispatchQueue.global(qos: .background).async {
-                if let data = try? Data(contentsOf: URL(string: url)!) {
-                    let image = UIImage(data: data)
-                    //imageCache[url] = image
+        }
+        
+        DispatchQueue.global().async {
+            guard let imageUrl = URL(string: url) else { return }
+            let session = URLSession(configuration: .ephemeral)
+            let task = session.dataTask(with: imageUrl) { data, response, error in
+                if let error = error {
+                    completion(.failure(ImageLoaderError.invalidImageURL))
+                }
+                guard let httpResponse = response as? HTTPURLResponse else { return }
+                guard 200..<300 ~= httpResponse.statusCode else { completion(.failure(ImageLoaderError.failedResponse(statusCode: httpResponse.statusCode)))
+                    return
+                }
+                if let data = data {
+                    guard let image = UIImage(data: data) else { return }
+                    ImageLoder.imageCache.setObject(image, forKey: url as NSString)
                     DispatchQueue.main.async {
-                        completed(image)
+                        completion(.success(image))
                     }
                 } else {
                     DispatchQueue.main.async {
-                        completed(nil)
+                        completion(.failure(NetworkError.emptyData))
                     }
                 }
             }
+            task.resume()
         }
     }
 }

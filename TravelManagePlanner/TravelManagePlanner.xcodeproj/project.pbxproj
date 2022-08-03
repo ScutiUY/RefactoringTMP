@@ -116,6 +116,8 @@
 		F0CADCFB2782478400DDC1CD /* JourneyListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCFA2782478400DDC1CD /* JourneyListDetailViewController.swift */; };
 		F0CADCFF27824EF000DDC1CD /* JourneyListDetailPageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADCFE27824EF000DDC1CD /* JourneyListDetailPageCollectionViewCell.swift */; };
 		F0CADD0127824F0000DDC1CD /* JourneyListDetailDateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CADD0027824F0000DDC1CD /* JourneyListDetailDateCollectionViewCell.swift */; };
+		F0EBDBBC289A6E7B002DD6BF /* TMPEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EBDBBB289A6E7B002DD6BF /* TMPEndPoint.swift */; };
+		F0EBDBBF289A96F1002DD6BF /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EBDBBE289A96F1002DD6BF /* NetworkError.swift */; };
 		F0F0C9DC27B35BEC00FDBD10 /* JourneyListDetailPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F0C9DB27B35BEC00FDBD10 /* JourneyListDetailPageViewModel.swift */; };
 		F0F0C9DE27B4838100FDBD10 /* URLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F0C9DD27B4838100FDBD10 /* URLManager.swift */; };
 /* End PBXBuildFile section */
@@ -254,6 +256,8 @@
 		F0CADCFA2782478400DDC1CD /* JourneyListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyListDetailViewController.swift; sourceTree = "<group>"; };
 		F0CADCFE27824EF000DDC1CD /* JourneyListDetailPageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyListDetailPageCollectionViewCell.swift; sourceTree = "<group>"; };
 		F0CADD0027824F0000DDC1CD /* JourneyListDetailDateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyListDetailDateCollectionViewCell.swift; sourceTree = "<group>"; };
+		F0EBDBBB289A6E7B002DD6BF /* TMPEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMPEndPoint.swift; sourceTree = "<group>"; };
+		F0EBDBBE289A96F1002DD6BF /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		F0F0C9DB27B35BEC00FDBD10 /* JourneyListDetailPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyListDetailPageViewModel.swift; sourceTree = "<group>"; };
 		F0F0C9DD27B4838100FDBD10 /* URLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLManager.swift; sourceTree = "<group>"; };
 		F7ABD5855A525E4DBDAD53D2 /* Pods_TravelManagePlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravelManagePlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -500,10 +504,12 @@
 		F00F182B277866B900211A8D /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				F0EBDBBD289A96E6002DD6BF /* Common */,
 				6BA7894B27B4E2D6003CFE82 /* HomeTabAPIService.swift */,
 				F0A9C536277E7FEE009EE5FE /* ImageLoader.swift */,
 				F0F0C9DD27B4838100FDBD10 /* URLManager.swift */,
 				F0B258552798FA740042771F /* HttpClient.swift */,
+				F0EBDBBB289A6E7B002DD6BF /* TMPEndPoint.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -777,6 +783,14 @@
 				F0782694278FE77D00B9319F /* JourneyListDetailCollectionViewCell.swift */,
 			);
 			path = JourneyList;
+			sourceTree = "<group>";
+		};
+		F0EBDBBD289A96E6002DD6BF /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				F0EBDBBE289A96F1002DD6BF /* NetworkError.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		F0F0C9D927B0DCC600FDBD10 /* Destination */ = {
@@ -1056,6 +1070,7 @@
 				F0B24DCA27B91EEC000A8797 /* SettingsViewController.swift in Sources */,
 				F055537827BB8954003F6FF8 /* ResignViewModel.swift in Sources */,
 				6B6D773E27B924BE000CF8EA /* DestiSearchViewController.swift in Sources */,
+				F0EBDBBC289A6E7B002DD6BF /* TMPEndPoint.swift in Sources */,
 				F0CADCEB278212D500DDC1CD /* DestinationDetailViewController.swift in Sources */,
 				F0412E9B27ACD5900087E7C5 /* MypageViewController.swift in Sources */,
 				4AC16C5F27B1F38B005F74FB /* CommunityViewModel.swift in Sources */,
@@ -1148,6 +1163,7 @@
 				4AAABC3827B8F34C0086B3FD /* ReviewDataRepository.swift in Sources */,
 				F076BDD72796922A00AF6FFD /* DestinationDetailContentTableViewCell.swift in Sources */,
 				6BE2143027A186CC004B8816 /* (null) in Sources */,
+				F0EBDBBF289A96F1002DD6BF /* NetworkError.swift in Sources */,
 				F076BDD72796922A00AF6FFD /* DestinationDetailContentTableViewCell.swift in Sources */,
 				6B6D772C27B92489000CF8EA /* AccomoViewCell.swift in Sources */,
 				F0CADCDD2781EEFA00DDC1CD /* SignInViewController.swift in Sources */,

@@ -8,6 +8,9 @@
 import Foundation
 
 enum URLManager {
+    enum Base {
+        static var baseURL = "https://eunryuplaners.com:19624"
+    }
     
     enum Member {
         static var login = "/mmb/checkLogin.tpi"

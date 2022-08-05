@@ -12,15 +12,16 @@ private enum ImageLoaderError: Error {
     case invalidImageURL
 }
 
-final class ImageLoder {
+final class ImageLoader {
     
+    static let shard = ImageLoader()
     static let imageCache = NSCache<NSString, UIImage>()
     
-    func leadImage(url: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
+    func loadImage(url: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
         if url.isEmpty {
             completion(.failure(ImageLoaderError.invalidImageURL))
         }
-        if let image = ImageLoder.imageCache.object(forKey: url as NSString) {
+        if let image = ImageLoader.imageCache.object(forKey: url as NSString) {
             DispatchQueue.main.async {
                 completion(.success(image))
             }
@@ -31,22 +32,26 @@ final class ImageLoder {
             guard let imageUrl = URL(string: url) else { return }
             let session = URLSession(configuration: .ephemeral)
             let task = session.dataTask(with: imageUrl) { data, response, error in
-                if let error = error {
+                if error == nil {
                     completion(.failure(ImageLoaderError.invalidImageURL))
-                }
-                guard let httpResponse = response as? HTTPURLResponse else { return }
-                guard 200..<300 ~= httpResponse.statusCode else { completion(.failure(ImageLoaderError.failedResponse(statusCode: httpResponse.statusCode)))
                     return
                 }
+                
+                guard let httpResponse = response as? HTTPURLResponse else { return }
+                
+                guard 200..<300 ~= httpResponse.statusCode else {
+                    return
+                }
+                
                 if let data = data {
                     guard let image = UIImage(data: data) else { return }
-                    ImageLoder.imageCache.setObject(image, forKey: url as NSString)
+                    ImageLoader.imageCache.setObject(image, forKey: url as NSString)
                     DispatchQueue.main.async {
                         completion(.success(image))
                     }
                 } else {
                     DispatchQueue.main.async {
-                        completion(.failure(NetworkError.emptyData))
+                        completion(.failure(ImageLoaderError.noImage))
                     }
                 }
             }

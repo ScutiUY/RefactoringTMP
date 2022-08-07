@@ -14,7 +14,7 @@ enum APIError: Int, Error {
     case notFoundInDB = 3001
     case invalidPw = 4001
     
-    var errorDescription: String? {
+    var errorDescription: String {
         switch self {
             
         case .omittedParams:
@@ -39,7 +39,7 @@ enum NetworkError: Error {
     case decodeError
     
     
-    var errorDescription: String? {
+    var errorDescription: String {
         switch self {
         case .invalidURL:
             return "유효하지 않은 URL입니다."

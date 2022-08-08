@@ -7,24 +7,6 @@
 
 import Foundation
 
-struct LoginData: Codable {
-
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        resCode = try values.decode(String.self, forKey: .resCode)
-        resMsg = try values.decode(String.self, forKey: .resMsg)
-        data = try? values.decode(UserData.self, forKey: .data)
-    }
-    
-    var resCode: String
-    var resMsg: String
-    var data: UserData?
-    
-    enum CodingKeys: CodingKey {
-        case resCode, resMsg, data
-    }
-}
-
 struct UserData: Codable {
     static var shared = UserData(nickname: "", pw: "", userKey: "")
     

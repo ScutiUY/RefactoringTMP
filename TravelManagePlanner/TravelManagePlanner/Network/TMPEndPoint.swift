@@ -13,7 +13,6 @@ protocol TargetType: URLRequestConvertible {
     var method: HTTPMethod { get }
     var path: String { get }
     var parameters: Parameters? { get }
-    var dataType: Any.Type { get }
 }
 
 enum APIEndpoint {
@@ -57,16 +56,7 @@ extension APIEndpoint: TargetType {
             return ["loginId": id, "loginPw": pw]
         }
     }
-    
-    var dataType: Any.Type {
-        switch self {
-        case .signIn:
-            return LoginData.Type.self
-        case .signUp:
-            return LoginData.Type.self
-        }
-    }
-    
+ 
     func asURLRequest() throws -> URLRequest {
         var urlRequest = URLRequest(url: baseURL.appendingPathComponent(self.path))
         urlRequest.method = self.method

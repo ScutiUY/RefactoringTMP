@@ -7,14 +7,8 @@
 
 import Foundation
 
-enum SignInValidationResult {
-    case success
-    case invalidEmail
-    case invalidPwd
-}
-
 class SignUpViewModel {
-    private var api = SignInUpRepository()
+    private var api = APIService()
     
     var userInfoInputErrorMessage: Observable<String> = Observable("")
     var registerSuccess: Observable = Observable(false)
@@ -56,13 +50,16 @@ class SignUpViewModel {
     }
     
     func register() {
-        api.signUp(inputEmail: self.email, inputPw: self.password, inputName: self.name) { result in
+        let endPoint = APIEndpoint.signUp(id: "", password: "", "")
+        api.requestData(
+            endPoint: endPoint,
+            dataType: UserData.self
+        ) { result in
             switch result {
             case .success(_):
                 self.registerSuccess.value = true
             case .failure(let error):
-                self.userInfoInputErrorMessage.value = "네트워크 오류"
-                print(error.localizedDescription)
+                self.userInfoInputErrorMessage.value = error.localizedDescription
             }
         }
     }

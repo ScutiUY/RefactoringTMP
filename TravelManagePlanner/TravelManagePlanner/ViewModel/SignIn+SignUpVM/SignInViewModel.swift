@@ -8,11 +8,16 @@
 import Foundation
 import UIKit
 
-
 class SignInViewModel {
     
+    enum SignInValidationResult {
+        case success
+        case invalidEmail
+        case invalidPwd
+    }
+
     //private let signInData: UserData
-    private var api = SignInUpRepository()
+    private var api = APIService()
     
     var userInfoInputErrorMessage: Observable<String> = Observable("")
     var loadingStarted: Observable<Bool> = Observable(false)
@@ -27,10 +32,6 @@ class SignInViewModel {
     }
     func updateUserPwd(password: String) {
         self.password = password
-    }
-    func inputUserInfo(textField: UITextField) {
-        
-        print(textField)
     }
     
     func validateUserInformation() -> ValidationResult {
@@ -51,45 +52,30 @@ class SignInViewModel {
     
     func login() {
         self.loadingStarted.value = true
-        api.login(inputId: self.email, inputPw: self.password) { result in
+        let endpoint = APIEndpoint.signIn(id: "", password: "")
+        api.requestData(
+            endPoint: endpoint,
+            dataType: UserData.self
+        ) { result in
+            self.loadingStarted.value = false
+            self.loadingEnded.value = true
             switch result {
             case .success(let userData):
-                if let userData = userData.data {
-                    UserData.shared = userData
-                }
+                UserData.shared = userData
                 self.loginSuccess.value = true
-                self.loadingEnded.value = true
             case .failure(let error):
-                print("넘어온 에러", error.localizedDescription)
-                self.loginSuccess.value = false
-                self.loadingStarted.value = false
-                self.loadingEnded.value = true
-                
-                switch error {
-                case .notFoundInDB:
-                    self.userInfoInputErrorMessage.value = "계정을 찾을 수 없습니다"
-                case .unknown:
-                    print("알수 없는 오류")
-                case .jsonError:
-                    print("Json 오류")
-                case .invalidArgument:
-                    print("매개변수 오류")
-                case .badRequest:
-                    print("400")
-                case .notFound:
-                    print("404")
-                case .internalServerError:
-                    print("repo error")
-                case .omittedParams:
-                    print("params error")
-                case .ommittedHeader:
-                    print("header error")
-                case .invalidPw:
-                    self.userInfoInputErrorMessage.value = "아이디 및 비밀번호가 일치하지 않습니다, 확인 후 다시 시도해주세요"
+                if let apiError = error as? APIError {
+                    self.userInfoInputErrorMessage.value = apiError.errorDescription
+                    self.loginSuccess.value = false
+                } else {
+                    #if DEBUG
+                    print(error.localizedDescription, #function)
+                    #endif
                 }
             }
         }
     }
+    
 }
 
 extension SignInViewModel {

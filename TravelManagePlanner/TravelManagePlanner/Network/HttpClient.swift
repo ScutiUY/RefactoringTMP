@@ -35,8 +35,6 @@ struct HttpClient {
         } catch let requestError {
             completion(.failure(NetworkError.requestFail(requestError)))
         }
-        
-        
     }
     
 }

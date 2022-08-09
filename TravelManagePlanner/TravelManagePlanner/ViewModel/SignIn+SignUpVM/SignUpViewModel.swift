@@ -14,15 +14,21 @@ class SignUpViewModel {
     var registerSuccess: Observable = Observable(false)
     
     private var email = ""
-    private var password = ""
+    private var password = "" {
+        didSet {
+            self.password = CryptoManager.shared.convertToSHA256String(with: password)
+        }
+    }
     private var name = ""
     
     func updateUserEmail(email: String) {
         self.email = email
     }
+    
     func updateUserPwd(password: String) {
         self.password = password
     }
+    
     func updateUserName(name: String) {
         self.name = name
     }
@@ -50,7 +56,7 @@ class SignUpViewModel {
     }
     
     func register() {
-        let endPoint = APIEndpoint.signUp(id: "", password: "", "")
+        let endPoint = APIEndpoint.signUp(id: email, password: self.password, "")
         api.requestData(
             endPoint: endPoint,
             dataType: UserData.self
@@ -74,3 +80,4 @@ extension SignUpViewModel {
         case invalidName
     }
 }
+

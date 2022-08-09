@@ -10,11 +10,12 @@ import Foundation
 struct UserData: Codable {
     static var shared = UserData(nickname: "", pw: "", userKey: "")
     
-    init(nickname: String, pw: String, userKey: String) {
+    private init(nickname: String, pw: String, userKey: String) {
         self.userpw = pw
         self.nickname = nickname
         self.userKey = userKey
     }
+    
     var userpw: String
     var nickname: String
     var userKey: String

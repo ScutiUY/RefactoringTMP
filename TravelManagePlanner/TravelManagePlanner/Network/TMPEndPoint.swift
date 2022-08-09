@@ -18,6 +18,7 @@ protocol TargetType: URLRequestConvertible {
 enum APIEndpoint {
     case signIn(id: String, password: String)
     case signUp(id: String, password: String,_ name: String)
+    case journeyList(userKey: String)
 }
 
 extension APIEndpoint: TargetType {
@@ -32,6 +33,8 @@ extension APIEndpoint: TargetType {
             return .post
         case .signUp:
             return .post
+        case .journeyList:
+            return .post
         }
     }
     
@@ -41,6 +44,8 @@ extension APIEndpoint: TargetType {
             return URLManager.Member.login
         case .signUp:
             return URLManager.Member.joinMember
+        case .journeyList:
+            return URLManager.Plan.getMyTravelList
         }
     }
     
@@ -54,6 +59,8 @@ extension APIEndpoint: TargetType {
             return ["loginId": id, "loginPw": pw]
         case .signUp(let id, let pw, _):
             return ["loginId": id, "loginPw": pw]
+        case .journeyList(let userKey):
+            return ["uKey": userKey]
         }
     }
  

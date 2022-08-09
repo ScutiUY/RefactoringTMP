@@ -19,6 +19,7 @@ enum APIEndpoint {
     case signIn(id: String, password: String)
     case signUp(id: String, password: String,_ name: String)
     case journeyList(userKey: String)
+    case journeyDetail(travelID: String)
 }
 
 extension APIEndpoint: TargetType {
@@ -35,6 +36,8 @@ extension APIEndpoint: TargetType {
             return .post
         case .journeyList:
             return .post
+        case .journeyDetail:
+            return .post
         }
     }
     
@@ -46,6 +49,8 @@ extension APIEndpoint: TargetType {
             return URLManager.Member.joinMember
         case .journeyList:
             return URLManager.Plan.getMyTravelList
+        case .journeyDetail:
+            return URLManager.Plan.getTravelDetailinfo
         }
     }
     
@@ -61,6 +66,8 @@ extension APIEndpoint: TargetType {
             return ["loginId": id, "loginPw": pw]
         case .journeyList(let userKey):
             return ["uKey": userKey]
+        case .journeyDetail(let travelID):
+            return ["travelId": travelID]
         }
     }
  

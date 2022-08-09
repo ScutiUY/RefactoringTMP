@@ -25,11 +25,16 @@ class SignInViewModel {
     var loginSuccess: Observable = Observable(false)
     
     private var email = ""
-    private var password = ""
+    private var password = "" {
+        didSet {
+            self.password = CryptoManager.shared.convertToSHA256String(with: password)
+        }
+    }
     
     func updateUserEmail(email: String) {
         self.email = email
     }
+    
     func updateUserPwd(password: String) {
         self.password = password
     }
@@ -52,7 +57,7 @@ class SignInViewModel {
     
     func login() {
         self.loadingStarted.value = true
-        let endpoint = APIEndpoint.signIn(id: "", password: "")
+        let endpoint = APIEndpoint.signIn(id: email, password: self.password)
         api.requestData(
             endPoint: endpoint,
             dataType: UserData.self

@@ -51,9 +51,12 @@ class JourneyListDetailPageViewModel {
     
     func getImage() -> UIImage {
         var img = UIImage(named: "Seoul1")!
-        ImageLoader.loadImage(url: self.journeyDetailList[0].imgUrl) { image in
-            if let image = image {
-                img = image
+        ImageLoader.shard.loadImage(url: self.journeyDetailList[0].imgUrl) { result in
+            switch result {
+            case .success(let image):
+               img = image
+            case .failure(let error):
+                print(error)
             }
         }
         return img

@@ -8,12 +8,12 @@
 import UIKit
 import SnapKit
 
-protocol PassDestinationData {
+protocol PassDestinationData: AnyObject {
     func journeyListDetailCV(destinationIdx: Int)
 }
 
 class JourneyListDetailPageCollectionView: UICollectionViewCell {
-    var delegate: PassDestinationData!
+    weak var delegate: PassDestinationData!
     var viewModel = JourneyListDetailPageViewModel()
     
     var parentViewSize = CGSize(width: 0, height: 0)

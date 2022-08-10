@@ -33,12 +33,14 @@ class JourneyListDetailDateCollectionViewCell: UICollectionViewCell {
             make.bottom.equalToSuperview()
         }
     }
+    
     func setLabelName(name: String) {
         dateLabel.text = name
     }
+    
     private func setSelected(_ selected: Bool) {
             if selected {
-                self.backgroundColor = .red
+                self.backgroundColor = .systemGray
             } else {
                 self.backgroundColor = .clear
             }

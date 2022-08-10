@@ -33,8 +33,14 @@ class ImageSliderCollectionViewCell: UICollectionViewCell {
     }
     
     func setCollectionViewIngredient(imageUrl: String) {
-        ImageLoader.loadImage(url: imageUrl) { image in
-            self.imageView.image = image
+        ImageLoader.shard.loadImage(url: imageUrl) { [weak self] result in
+            switch result {
+            case .success(let image):
+                self?.imageView.image = image
+            case .failure(let error):
+                print(error)
+            }
+            
         }
     }
     func setImage(image: UIImage?) {

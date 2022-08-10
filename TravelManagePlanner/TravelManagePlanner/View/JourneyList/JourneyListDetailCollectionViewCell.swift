@@ -61,8 +61,13 @@ class JourneyListDetailCollectionViewCell: UICollectionViewCell {
     func fetchData(idx: Int) {
         self.titleLabel.text = JourneyDetail.shared.data[idx].name
         self.descLabel.text = JourneyDetail.shared.data[idx].address
-         ImageLoader.loadImage(url: JourneyDetail.shared.data[idx].imgUrl, completed: { image in
-             self.thumNailImage.image = image
-        })
+        ImageLoader.shard.loadImage(url: JourneyDetail.shared.data[idx].imgUrl) { [weak self] result in
+            switch result {
+            case .success(let image):
+                self?.thumNailImage.image = image
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }

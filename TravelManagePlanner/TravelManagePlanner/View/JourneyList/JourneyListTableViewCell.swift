@@ -66,8 +66,14 @@ class JourneyListTableViewCell: UITableViewCell {
         }
     }
     func setData(_ journey: Journey) {
-        ImageLoader.loadImage(url: journey.imgUrl) { [weak self] image in
-            self?.journeyImage.image = image
+        
+        ImageLoader.shard.loadImage(url: journey.imgUrl) { [weak self] result in
+            switch result {
+            case .success(let image):
+                self?.journeyImage.image = image
+            case .failure(let error):
+                print(error)
+            }
         }
         self.journeyTitleLabel.text = journey.title
         self.journeyDate.text = journey.sDate + " - " + journey.eDate

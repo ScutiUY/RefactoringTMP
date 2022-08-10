@@ -102,10 +102,15 @@ class CommunityCollectionViewCell: UICollectionViewCell {
     }
     
     func setData(_ communityDataDetail: CommunityData.CommunityDataDetail) {
-        ImageLoader.loadImage(url: communityDataDetail.imgUrl) { [weak self] image in
+        ImageLoader.shard.loadImage(url: communityDataDetail.imgUrl) { [weak self] result in
+            switch result {
+            case .success(let image):
                 self?.communityCollectionViewImage.image = image
+            case .failure(let error):
+                print(error)
             }
+        }
         self.communityCollectionViewTitle.text = communityDataDetail.title
-            self.communityCollectionViewHashtags.text = communityDataDetail.tags
+        self.communityCollectionViewHashtags.text = communityDataDetail.tags
     }
 }

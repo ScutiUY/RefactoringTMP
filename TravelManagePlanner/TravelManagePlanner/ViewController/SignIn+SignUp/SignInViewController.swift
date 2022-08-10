@@ -55,6 +55,7 @@ class SignInViewController: UIViewController {
         var textField = UITextField()
         textField.placeholder = "비밀번호를 입력해주세요"
         textField.font = UIFont.systemFont(ofSize: GlobalConstants.Font.Size.mainFontSize)
+        textField.textContentType = .password
         textField.borderStyle = .roundedRect
         return textField
     }()
@@ -263,6 +264,7 @@ class SignInViewController: UIViewController {
         loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
         signUpButton.addTarget(self, action: #selector(signUpButtonPressed), for: .touchUpInside)
     }
+    
     func setDelegate() {
         emailTextField.delegate = self
         pwdTextField.delegate = self

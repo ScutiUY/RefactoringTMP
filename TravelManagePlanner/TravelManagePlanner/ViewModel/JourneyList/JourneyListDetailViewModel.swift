@@ -19,6 +19,7 @@ class JourneyListDetailViewModel {
         }
     }
     
+    private var api = APIService()
     private var repo = JourneyListRepository()
     
     var detailListIdx = Int.max
@@ -44,7 +45,7 @@ class JourneyListDetailViewModel {
     }
     
     func passJourneyInfoInDate(index: Int) -> [JourneyDetailData] {
-        return journeyDetailList.filter{
+        return journeyDetailList.filter {
             if $0.visitDate == dateArr[index] || $0.leaveDate == dateArr[index] {
                 return true
             }
@@ -54,30 +55,22 @@ class JourneyListDetailViewModel {
     
     func getData() {
         self.loadingStarted()
-        repo.getJourneyDetialList(travelId: detailListIdx) { result in
+        
+        let endPoint = APIEndpoint.journeyDetail(travelID: "testTravelID")
+        api.requestData(
+            endPoint: endPoint,
+            dataType: JourneyDetail.self
+        ) { result in
             switch result {
             case .success(let detailData):
                 self.journeyDetailList = detailData.data
                 self.dataUpdated()
                 self.loadingEnded()
-            case .failure(let error):
-                self.loadingEnded()
+            case .failure(let error as APIError):
                 switch error {
                 case .notFoundInDB:
                     self.journeyDetailList = []
                     self.dataUpdated()
-                case .unknown:
-                    print("알수 없는 오류")
-                case .jsonError:
-                    print("Json 오류")
-                case .invalidArgument:
-                    print("매개변수 오류")
-                case .badRequest:
-                    print("400")
-                case .notFound:
-                    print("404")
-                case .internalServerError:
-                    print("repo error")
                 case .omittedParams:
                     print("params error")
                 case .ommittedHeader:
@@ -85,6 +78,7 @@ class JourneyListDetailViewModel {
                 case .invalidPw:
                     print("Pw error")
                 }
+            case .failure(_): break
             }
         }
     }

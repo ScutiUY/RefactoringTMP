@@ -42,7 +42,10 @@ class JourneyListViewModel {
         isLoading = true
         loadingStarted()
         let endPoint = APIEndpoint.journeyList(userKey: UserData.shared.userKey)
-        api.requestData(endPoint: endPoint, dataType: [Journey].self) { result in
+        api.requestData(
+            endPoint: endPoint,
+            dataType: [Journey].self
+        ) { result in
             switch result {
             case .success(let journey):
                 journey.forEach {
@@ -70,8 +73,6 @@ class JourneyListViewModel {
         var list = [Journey]()
         isLoading = true
         loadingStarted()
-        self.journeyListUpdated()
-        self.loadingEnded()
         let endPoint = APIEndpoint.journeyList(userKey: UserData.shared.userKey)
         api.requestData(endPoint: endPoint, dataType: [Journey].self) { result in
             switch result {

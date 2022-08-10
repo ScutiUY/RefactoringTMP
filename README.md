@@ -7,19 +7,21 @@
 
 
 ## 개요
-TMP(Travel Manage Planner)는 여행 테마에 따른 여행지 자동 추천 플랫폼입니다. 사용자의 여행 관리와 커뮤니티 리뷰 기능으로 사용자와 다른 여행자들이 다녀온 여행을 함께 공유 할수 있는 기능을 제공합니다.
+본 프로젝트는 기존의 프로젝트를 리팩토링하며 얻은 깨달음을 기록하고 보다 더 나은 코드를 지향하는 목적으로 시작 되었습니다.
 
-## 프로젝트 구조
-
-## 기술 스택
-![KakaoTalk_Photo_2022-02-22-20-36-24](https://user-images.githubusercontent.com/50395900/155124649-67919eef-c2a6-42f5-8ac5-79438935b741.png)
-
-
-
-MVVM + Swift
-![image](https://user-images.githubusercontent.com/50395900/154967544-389c19fc-8939-47fe-acc2-80dd30375c88.png)
-
-## 프로젝트 관리 및 팀 워크
+## 기존 프로젝트 소개
+https://github.com/TravelMockPlanner/TravelManagerPlanner
 https://github.com/TravelMockPlanner/TravelManagerPlanner/wiki
 
+## 리팩토링 목록
+- 네트워크
+    - 네트워크 레이어 나누기 (네트워크 레이어 꼭 필요한가?)
+- 로그인/회원가입
+    - UserKey 다루기 (싱글톤인가 UserDefault인가? - 싱글톤에 대한 고찰)
+    - 암호화 (왜 암호화를 해야 하는가?)
+- 여행 리스트
+    - 최적화
+
+## 리팩토링 스토리
+https://debonair-record-6e9.notion.site/1cb1c441700145e0b3e51c42cf27e9d9
 

@@ -10,6 +10,7 @@ import UIKit
 private enum ImageLoaderError: Error {
     case noImage
     case invalidImageURL
+    case networkError(Error)
 }
 
 final class ImageLoader {
@@ -32,8 +33,8 @@ final class ImageLoader {
             guard let imageUrl = URL(string: url) else { return }
             let session = URLSession(configuration: .ephemeral)
             let task = session.dataTask(with: imageUrl) { data, response, error in
-                if error == nil {
-                    completion(.failure(ImageLoaderError.invalidImageURL))
+                if let error = error {
+                    completion(.failure(ImageLoaderError.networkError(error)))
                     return
                 }
                 

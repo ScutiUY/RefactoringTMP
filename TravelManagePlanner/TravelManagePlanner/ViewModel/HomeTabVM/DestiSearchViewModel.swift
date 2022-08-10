@@ -69,18 +69,6 @@ class DestiSearchViewModel {
                 case .notFoundInDB:
                     self.destiSearchResponse = []
                     self.dataUpdated()
-                case .unknown:
-                    print("알수 없는 오류")
-                case .jsonError:
-                    print("Json 오류")
-                case .invalidArgument:
-                    print("매개변수 오류")
-                case .badRequest:
-                    print("400")
-                case .notFound:
-                    print("404")
-                case .internalServerError:
-                    print("repo error")
                 case .omittedParams:
                     print("params error")
                 case .ommittedHeader:

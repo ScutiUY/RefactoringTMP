@@ -9,7 +9,7 @@ import Foundation
 
 class JourneyListViewModel {
     
-    private var repo = JourneyListRepository()
+    private var api = APIService()
     
     private var journeyList = [Journey]()
     private var isLoading = false
@@ -41,18 +41,27 @@ class JourneyListViewModel {
         var list = [Journey]()
         isLoading = true
         loadingStarted()
-        repo.getJourneyList(completed: { result in
-            result.forEach {
-                if Int($0.eDate)! >= Int(self.currentDate)! {
-                    list.append($0)
+        let endPoint = APIEndpoint.journeyList(userKey: UserData.shared.userKey)
+        api.requestData(endPoint: endPoint, dataType: [Journey].self) { result in
+            switch result {
+            case .success(let journey):
+                journey.forEach {
+                    if Int($0.eDate)! >= Int(self.currentDate)! {
+                        list.append($0)
+                    }
+                }
+                self.journeyList = list
+                self.journeyListUpdated()
+                self.loadingEnded()
+                self.isLoading = false
+            case .failure(let error):
+                #if DEBUG
+                print("getJourneyList error in \(error)")
+                #endif
+                self.loadingEnded()
+                self.isLoading = false
                 }
             }
-            self.journeyList = list
-            print(#function, self.journeyList.count)
-            self.journeyListUpdated()
-            self.loadingEnded()
-            self.isLoading = false
-        })
     }
     
     // mypage의 지난 여행 불러오기
@@ -61,16 +70,28 @@ class JourneyListViewModel {
         var list = [Journey]()
         isLoading = true
         loadingStarted()
-        repo.getJourneyList(completed: { result in
-            result.forEach {
-                if Int($0.eDate)! < Int(self.currentDate)! {
-                    list.append($0)
+        self.journeyListUpdated()
+        self.loadingEnded()
+        let endPoint = APIEndpoint.journeyList(userKey: UserData.shared.userKey)
+        api.requestData(endPoint: endPoint, dataType: [Journey].self) { result in
+            switch result {
+            case .success(let journey):
+                journey.forEach {
+                    if Int($0.eDate)! < Int(self.currentDate)! {
+                        list.append($0)
+                    }
+                }
+                self.journeyList = list
+                self.journeyListUpdated()
+                self.loadingEnded()
+                self.isLoading = false
+            case .failure(let error):
+                #if DEBUG
+                print("getJourneyList error in \(error)")
+                #endif
+                self.loadingEnded()
+                self.isLoading = false
                 }
             }
-            self.journeyList = list
-            self.journeyListUpdated()
-            self.loadingEnded()
-            self.isLoading = false
-        })
     }
 }

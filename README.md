@@ -21,6 +21,8 @@ https://github.com/TravelMockPlanner/TravelManagerPlanner/wiki
     - 암호화 (왜 암호화를 해야 하는가?)
 - 여행 리스트
     - 최적화
+        - Delegate retain cycle 방지
+        - 접근 제한 (Dispatch)
 
 ## 리팩토링 스토리
 https://debonair-record-6e9.notion.site/1cb1c441700145e0b3e51c42cf27e9d9

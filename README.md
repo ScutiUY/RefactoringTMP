@@ -13,6 +13,11 @@
 https://github.com/TravelMockPlanner/TravelManagerPlanner
 https://github.com/TravelMockPlanner/TravelManagerPlanner/wiki
 
+- 로그인/회원가입
+- 테마 설정 및 테마 별 숙소, 식당, 놀거리 장소를 선택 할수 있는 장바구니 기능
+- 장바구니에 담긴 여행 일정 보여주기 및 예약한 여정 보여주기
+- 여행지 정보에 대한 커뮤니티 
+
 ## 리팩토링 목록
 - 네트워크
     - 네트워크 레이어 나누기 (네트워크 레이어 꼭 필요한가?)

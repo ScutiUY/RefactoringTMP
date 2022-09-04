@@ -38,7 +38,7 @@ struct APIService {
                         }
                         completion(.success(data))
                     default:
-                        completion(.failure(NetworkError.emptyData))
+                        completion(.failure(APIError.unknownError))
                     }
                     
                 } catch {

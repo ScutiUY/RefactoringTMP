@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 enum GlobalConstants {
-    
     enum Font {
         enum Size {
             static var mainFontSize: CGFloat = 15

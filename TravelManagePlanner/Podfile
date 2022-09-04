@@ -12,6 +12,7 @@ target 'TravelManagePlanner' do
   pod 'Then'
   pod 'BSImagePicker'
   pod 'FSCalendar'
+  pod 'SwiftLint'
 
   target 'TravelManagePlannerTests' do
     inherit! :search_paths

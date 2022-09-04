@@ -34,7 +34,7 @@ class CommunityViewController: UIViewController {
 
     let communityCategoryPickerView = UIPickerView()
     let communityCategoryToolBarSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-    let communityCategoryToolBarButton = UIBarButtonItem(title: "확인", style: .done, target: self, action: #selector(themeFiltering))
+    let communityCategoryToolBarButton = UIBarButtonItem(title: "확인", style: .done, target: CommunityViewController.self, action: #selector(themeFiltering))
     
     lazy var communityCategorytextField = UITextField().then({
         $0.text = "전체"

@@ -75,6 +75,8 @@ class DestiSearchViewModel {
                     print("header error")
                 case .invalidPw:
                     print("Pw error")
+                case .unknownError:
+                    print("Unknown error")
                 }
             }
         }

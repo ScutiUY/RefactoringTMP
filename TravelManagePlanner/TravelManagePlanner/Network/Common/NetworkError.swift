@@ -13,6 +13,7 @@ enum APIError: Int, Error {
     case ommittedHeader = 4444
     case notFoundInDB = 3001
     case invalidPw = 4001
+    case unknownError
     
     var errorDescription: String {
         switch self {
@@ -25,6 +26,8 @@ enum APIError: Int, Error {
             return "결과를 DB에서 찾을수 없습니다."
         case .invalidPw:
             return "비밀번호 오류"
+        case .unknownError:
+            return "알수없는 오류"
         }
     }
 }

@@ -10,7 +10,6 @@ import Alamofire
 
 struct APIService {
     private let httpClient = HttpClient()
-    
     func requestData<T: Codable> (
         endPoint: APIEndpoint,
         dataType: T.Type,
@@ -48,10 +47,12 @@ struct APIService {
                     completion(.failure(NetworkError.decodeError))
                 }
             case .failure(let error):
-                completion(.failure(error as! NetworkError))
+                if let networkError = error as? NetworkError {
+                    completion(.failure(networkError))
+                } else {
+                    completion(.failure(error))
+                }
             }
         }
-        
     }
 }
-

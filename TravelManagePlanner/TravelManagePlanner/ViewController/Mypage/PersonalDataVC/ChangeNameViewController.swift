@@ -80,24 +80,24 @@ class ChangeNameViewController: UIViewController {
             make.width.equalTo(150)
             make.height.equalTo(50)
         }
-        invalidLabel.snp.makeConstraints { (m) in
-            m.centerY.equalTo(nickNameTextField.snp.centerY)
-            m.leading.equalTo(nickNameTextField.snp.leading)
+        invalidLabel.snp.makeConstraints { (make) in
+            make.centerY.equalTo(nickNameTextField.snp.centerY)
+            make.leading.equalTo(nickNameTextField.snp.leading)
         }
         
     }
     
     @objc func confirmChangeName() {
-        guard let ChangedName = nickNameTextField.text else { return }
-        viewModel.updateUserName(name: ChangedName)
+        guard let changedName = nickNameTextField.text else { return }
+        viewModel.updateUserName(name: changedName)
         
         if viewModel.validateName() == .success {
             viewModel.register()
         } else {
             UIView.animate(withDuration: 0.2) {
-                self.invalidLabel.snp.remakeConstraints({ (m) in
-                    m.top.equalTo(self.nickNameTextField.snp.bottom).offset(5)
-                    m.leading.equalTo(self.nickNameTextField.snp.leading)
+                self.invalidLabel.snp.remakeConstraints({ (make) in
+                    make.top.equalTo(self.nickNameTextField.snp.bottom).offset(5)
+                    make.leading.equalTo(self.nickNameTextField.snp.leading)
                 })
                 self.view.layoutIfNeeded()
             }

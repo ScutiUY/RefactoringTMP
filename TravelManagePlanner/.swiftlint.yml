@@ -1,0 +1,29 @@
+disabled_rules:
+- line_length
+included:
+excluded:
+- Pods
+- TravelManagePlanner/Repository
+- TravelManagePlanner/ViewModel/HomeTabVM
+- TravelManagePlanner/ViewModel/Mypage
+- TravelManagePlanner/ViewModel/Review
+- TravelManagePlanner/ViewModel/Community
+
+- TravelManagePlanner/PageViewController
+
+- TravelManagePlanner/ViewController/HomeTabVC
+- TravelManagePlanner/ViewController/MyPage
+- TravelManagePlanner/ViewController/Community
+- TravelManagePlanner/ViewController/Review
+
+- TravelManagePlanner/Model/Mypage
+- TravelManagePlanner/Model/Review
+- TravelManagePlanner/Model/Community
+- TravelManagePlanner/Model/HomTabModel
+
+- TravelManagePlanner/View/Mypage
+- TravelManagePlanner/View/Review
+- TravelManagePlanner/View/Community
+- TravelManagePlanner/View/HomeTabView
+
+

@@ -117,70 +117,70 @@ class SignUpViewController: UIViewController {
         containerView.addSubview(invalidLabel)
         containerView.sendSubviewToBack(invalidLabel)
         
-        containerView.snp.makeConstraints { (m) in
-            m.centerX.equalTo(view.snp.centerX)
-            m.centerY.equalTo(view.snp.centerY).multipliedBy(0.8)
-            m.width.equalTo(view.snp.width).multipliedBy(0.8)
-            m.height.equalTo(view.snp.height).multipliedBy(0.5)
+        containerView.snp.makeConstraints { (make) in
+            make.centerX.equalTo(view.snp.centerX)
+            make.centerY.equalTo(view.snp.centerY).multipliedBy(0.8)
+            make.width.equalTo(view.snp.width).multipliedBy(0.8)
+            make.height.equalTo(view.snp.height).multipliedBy(0.5)
         }
         
-        emailLabel.snp.makeConstraints { (m) in
-            m.leading.equalTo(emailTextField.snp.leading)
-            m.bottom.equalTo(emailTextField.snp.top).offset(-5)
+        emailLabel.snp.makeConstraints { (make) in
+            make.leading.equalTo(emailTextField.snp.leading)
+            make.bottom.equalTo(emailTextField.snp.top).offset(-5)
         }
         
-        emailTextField.snp.makeConstraints { (m) in
-            m.centerX.equalTo(containerView.snp.centerX)
-            m.bottom.equalTo(pwLabel.snp.top).offset(-10)
-            m.width.equalTo(containerView.snp.width).multipliedBy(0.85)
-            m.height.equalTo(30)
+        emailTextField.snp.makeConstraints { (make) in
+            make.centerX.equalTo(containerView.snp.centerX)
+            make.bottom.equalTo(pwLabel.snp.top).offset(-10)
+            make.width.equalTo(containerView.snp.width).multipliedBy(0.85)
+            make.height.equalTo(30)
         }
         
-        pwLabel.snp.makeConstraints { (m) in
-            m.leading.equalTo(pwTextField.snp.leading)
-            m.bottom.equalTo(pwTextField.snp.top).offset(-5)
+        pwLabel.snp.makeConstraints { (make) in
+            make.leading.equalTo(pwTextField.snp.leading)
+            make.bottom.equalTo(pwTextField.snp.top).offset(-5)
         }
-        pwTextField.snp.makeConstraints { (m) in
-            m.centerX.equalTo(containerView.snp.centerX)
-            m.centerY.equalTo(containerView.snp.centerY)
-            m.width.equalTo(containerView.snp.width).multipliedBy(0.85)
-            m.height.equalTo(30)
-        }
-        
-        nameLabel.snp.makeConstraints { (m) in
-            m.leading.equalTo(nameTextField.snp.leading)
-            m.top.equalTo(pwTextField.snp.bottom).offset(5)
-        }
-        nameTextField.snp.makeConstraints { (m) in
-            m.centerX.equalTo(containerView.snp.centerX)
-            m.top.equalTo(nameLabel.snp.bottom).offset(5)
-            m.width.equalTo(containerView.snp.width).multipliedBy(0.85)
-            m.height.equalTo(30)
+        pwTextField.snp.makeConstraints { (make) in
+            make.centerX.equalTo(containerView.snp.centerX)
+            make.centerY.equalTo(containerView.snp.centerY)
+            make.width.equalTo(containerView.snp.width).multipliedBy(0.85)
+            make.height.equalTo(30)
         }
         
-        registerButton.snp.makeConstraints { (m) in
-            m.centerX.equalTo(containerView.snp.centerX)
-            m.bottom.equalTo(containerView.snp.bottom).offset(-10)
-            m.width.equalTo(view.snp.width).multipliedBy(0.5)
+        nameLabel.snp.makeConstraints { (make) in
+            make.leading.equalTo(nameTextField.snp.leading)
+            make.top.equalTo(pwTextField.snp.bottom).offset(5)
+        }
+        nameTextField.snp.makeConstraints { (make) in
+            make.centerX.equalTo(containerView.snp.centerX)
+            make.top.equalTo(nameLabel.snp.bottom).offset(5)
+            make.width.equalTo(containerView.snp.width).multipliedBy(0.85)
+            make.height.equalTo(30)
         }
         
-        exitButton.snp.makeConstraints { (m) in
-            m.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            m.leading.equalTo(view.snp.leading).offset(10)
-            m.width.equalTo(40)
-            m.height.equalTo(40)
+        registerButton.snp.makeConstraints { (make) in
+            make.centerX.equalTo(containerView.snp.centerX)
+            make.bottom.equalTo(containerView.snp.bottom).offset(-10)
+            make.width.equalTo(view.snp.width).multipliedBy(0.5)
         }
         
-        cottonView.snp.makeConstraints { (m) in
-            m.centerX.equalTo(containerView.snp.centerX)
-            m.top.equalTo(nameLabel.snp.bottom).offset(5)
-            m.width.equalTo(containerView.snp.width).multipliedBy(0.85)
-            m.height.equalTo(30)
+        exitButton.snp.makeConstraints { (make) in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.leading.equalTo(view.snp.leading).offset(10)
+            make.width.equalTo(40)
+            make.height.equalTo(40)
         }
         
-        invalidLabel.snp.makeConstraints { (m) in
-            m.centerY.equalTo(nameTextField.snp.centerY)
-            m.leading.equalTo(nameTextField.snp.leading)
+        cottonView.snp.makeConstraints { (make) in
+            make.centerX.equalTo(containerView.snp.centerX)
+            make.top.equalTo(nameLabel.snp.bottom).offset(5)
+            make.width.equalTo(containerView.snp.width).multipliedBy(0.85)
+            make.height.equalTo(30)
+        }
+        
+        invalidLabel.snp.makeConstraints { (make) in
+            make.centerY.equalTo(nameTextField.snp.centerY)
+            make.leading.equalTo(nameTextField.snp.leading)
         }
     }
     
@@ -253,26 +253,26 @@ class SignUpViewController: UIViewController {
         if signUpViewModel.validateUserInformation() == .invalidEmail {
             
             UIView.animate(withDuration: 0.2) {
-                self.invalidLabel.snp.remakeConstraints({ (m) in
-                    m.top.equalTo(self.nameTextField.snp.bottom).offset(5)
-                    m.leading.equalTo(self.nameTextField.snp.leading)
+                self.invalidLabel.snp.remakeConstraints({ (make) in
+                    make.top.equalTo(self.nameTextField.snp.bottom).offset(5)
+                    make.leading.equalTo(self.nameTextField.snp.leading)
                 })
                 self.view.layoutIfNeeded()
             }
             return
         } else if signUpViewModel.validateUserInformation() == .invalidPwd {
             UIView.animate(withDuration: 0.2) {
-                self.invalidLabel.snp.remakeConstraints({ (m) in
-                    m.top.equalTo(self.nameTextField.snp.bottom).offset(5)
-                    m.leading.equalTo(self.nameTextField.snp.leading)
+                self.invalidLabel.snp.remakeConstraints({ (make) in
+                    make.top.equalTo(self.nameTextField.snp.bottom).offset(5)
+                    make.leading.equalTo(self.nameTextField.snp.leading)
                 })
                 self.view.layoutIfNeeded()
             }
         } else if signUpViewModel.validateUserInformation() == .invalidName {
             UIView.animate(withDuration: 0.2) {
-                self.invalidLabel.snp.remakeConstraints({ (m) in
-                    m.top.equalTo(self.nameTextField.snp.bottom).offset(5)
-                    m.leading.equalTo(self.nameTextField.snp.leading)
+                self.invalidLabel.snp.remakeConstraints({ (make) in
+                    make.top.equalTo(self.nameTextField.snp.bottom).offset(5)
+                    make.leading.equalTo(self.nameTextField.snp.leading)
                 })
                 self.view.layoutIfNeeded()
             }
@@ -304,9 +304,9 @@ extension SignUpViewController : UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.2) {
-            self.invalidLabel.snp.remakeConstraints({ (m) in
-                m.centerY.equalTo(self.nameTextField.snp.centerY)
-                m.leading.equalTo(self.nameTextField.snp.leading)
+            self.invalidLabel.snp.remakeConstraints({ (make) in
+                make.centerY.equalTo(self.nameTextField.snp.centerY)
+                make.leading.equalTo(self.nameTextField.snp.leading)
             })
             self.view.layoutIfNeeded()
         }

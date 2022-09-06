@@ -54,7 +54,7 @@ extension PersonalDataViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = personalDataTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PersonalDataTableViewCell
+        guard let cell = personalDataTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? PersonalDataTableViewCell else { fatalError() }
         cell.setLayout()
         cell.fetchData(title: personalDataList[indexPath.row])
         return cell

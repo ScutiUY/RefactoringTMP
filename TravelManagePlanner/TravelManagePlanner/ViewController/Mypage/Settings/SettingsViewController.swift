@@ -51,7 +51,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = settingsTableview.dequeueReusableCell(withIdentifier: "myPageCell") as! MypageTableViewCell
+        guard let cell = settingsTableview.dequeueReusableCell(withIdentifier: "myPageCell") as? MypageTableViewCell else { fatalError() }
         cell.setLayout()
         cell.fetchData(title: settingList[indexPath.row])
         return cell

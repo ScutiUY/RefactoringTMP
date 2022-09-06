@@ -52,7 +52,7 @@ extension MypageViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = mypageTableview.dequeueReusableCell(withIdentifier: "myPageCell") as! MypageTableViewCell
+        guard let cell = mypageTableview.dequeueReusableCell(withIdentifier: "myPageCell") as? MypageTableViewCell else { fatalError() }
         cell.setLayout()
         cell.fetchData(title: mypageList[indexPath.row])
         return cell

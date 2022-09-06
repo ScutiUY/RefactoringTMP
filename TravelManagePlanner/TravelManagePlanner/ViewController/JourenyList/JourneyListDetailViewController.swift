@@ -91,7 +91,7 @@ extension JourneyListDetailViewController: UICollectionViewDelegate, UICollectio
         ///VM에서 journeyDetailList: [JourneyDetailData]의 dataDic에 들어있는 날짜를 cell에 담아 리턴해준다
         if collectionView == journeyListDetailDateCollectionView {
             
-            let cell = journeyListDetailDateCollectionView.dequeueReusableCell(withReuseIdentifier: "dateCell", for: indexPath) as! JourneyListDetailDateCollectionViewCell
+            guard let cell = journeyListDetailDateCollectionView.dequeueReusableCell(withReuseIdentifier: "dateCell", for: indexPath) as? JourneyListDetailDateCollectionViewCell else { fatalError() }
             cell.setLayout()
             cell.setLabelName(name: viewModel.journey(idx: indexPath.row).visitDate)
             
@@ -107,7 +107,7 @@ extension JourneyListDetailViewController: UICollectionViewDelegate, UICollectio
             /// 현재 날짜에 맞는 데이터만 datailCollectionView로 넘김
             /// 아님 날짜를 정렬한 배열을 보내고 현재 인덱스를 넘겨서 detailCollectionView에서 처리
             
-            let cell = journeyListDetailPageCollectionView.dequeueReusableCell(withReuseIdentifier: "pageCell", for: indexPath) as! JourneyListDetailPageCollectionView
+            guard let cell = journeyListDetailPageCollectionView.dequeueReusableCell(withReuseIdentifier: "pageCell", for: indexPath) as? JourneyListDetailPageCollectionView else { fatalError() }
             cell.delegate = self
             cell.parentViewSize = CGSize(width: view.frame.width, height: collectionView.frame.height)
             
@@ -146,7 +146,7 @@ extension JourneyListDetailViewController {
 extension JourneyListDetailViewController: PassDestinationData {
     func journeyListDetailCV(destinationIdx: Int) {
         
-        let destinationDetailVC = UIStoryboard(name: "DestinationDetailSB", bundle: nil).instantiateViewController(withIdentifier: "DestinationDetailSB") as! DestinationDetailViewController
+        guard let destinationDetailVC = UIStoryboard(name: "DestinationDetailSB", bundle: nil).instantiateViewController(withIdentifier: "DestinationDetailSB") as? DestinationDetailViewController else { fatalError() }
         destinationDetailVC.destinationDetailViewModel.shopId = String(destinationIdx)
         destinationDetailVC.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(destinationDetailVC, animated: true)

@@ -253,7 +253,7 @@ class SignInViewController: UIViewController {
         signInViewModel.loginSuccess.bind { [weak self] in
             print("login 성공여부: ", $0)
             if $0 {
-                let tabbar = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabbarControllerSB") as! TabbarController
+                guard let tabbar = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabbarControllerSB") as? TabbarController else { fatalError() }
                 tabbar.modalPresentationStyle = .fullScreen
                 self!.present(tabbar, animated: true, completion: nil)
             }
@@ -294,7 +294,7 @@ class SignInViewController: UIViewController {
     }
     
     @objc func signUpButtonPressed() {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignUpSB") as! SignUpViewController
+        guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignUpSB") as? SignUpViewController else { fatalError() }
         vc.modalPresentationStyle = .fullScreen
         
         self.present(vc, animated: true, completion: nil)

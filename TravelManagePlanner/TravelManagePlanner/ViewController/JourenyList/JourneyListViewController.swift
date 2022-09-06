@@ -88,7 +88,7 @@ extension JourneyListViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = journeyTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! JourneyListTableViewCell
+        guard let cell = journeyTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? JourneyListTableViewCell else { fatalError() }
         let journeyListInfo = journeyListViewModel.journey(index: indexPath.row)
         cell.setLayout()
         cell.setData(journeyListInfo)
@@ -96,7 +96,7 @@ extension JourneyListViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailJourneyListVC = UIStoryboard(name: "JourneyListSB", bundle: nil).instantiateViewController(withIdentifier: "JourneyListDetailSB") as! JourneyListDetailViewController
+        guard let detailJourneyListVC = UIStoryboard(name: "JourneyListSB", bundle: nil).instantiateViewController(withIdentifier: "JourneyListDetailSB") as? JourneyListDetailViewController else { fatalError() } 
         detailJourneyListVC.title = journeyListViewModel.getTitle(idx: indexPath.row)
         detailJourneyListVC.viewModel.detailListIdx = journeyListViewModel.journey(index: indexPath.row).idx
         self.navigationController?.pushViewController(detailJourneyListVC, animated: true)

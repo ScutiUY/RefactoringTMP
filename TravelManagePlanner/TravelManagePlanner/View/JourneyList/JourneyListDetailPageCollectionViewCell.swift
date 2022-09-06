@@ -71,7 +71,7 @@ extension JourneyListDetailPageCollectionView: UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = journeyListDetailCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! JourneyListDetailCollectionViewCell
+        guard let cell = journeyListDetailCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? JourneyListDetailCollectionViewCell else { fatalError()}
         cell.setLayout()
         cell.titleLabel.text = viewModel.journey(idx: indexPath.row).name
         cell.descLabel.text = viewModel.journey(idx: indexPath.row).content

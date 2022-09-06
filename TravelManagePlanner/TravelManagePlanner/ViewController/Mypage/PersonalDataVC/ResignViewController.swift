@@ -40,9 +40,9 @@ class ResignViewController: UIViewController {
         view.addSubview(checkLabel)
         view.addSubview(resignButton)
         
-        checkLabel.snp.makeConstraints { (m) in
-            m.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(150)
-            m.centerX.equalTo(view.safeAreaLayoutGuide.snp.centerX)
+        checkLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(150)
+            make.centerX.equalTo(view.safeAreaLayoutGuide.snp.centerX)
         }
         
         resignButton.snp.makeConstraints { make in

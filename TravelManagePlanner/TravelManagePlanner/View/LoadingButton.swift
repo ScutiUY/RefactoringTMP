@@ -31,9 +31,9 @@ class LoadingButton: UIButton {
     private func makeIndicator() {
         self.addSubview(indicator)
 
-        indicator.snp.makeConstraints { (m) in
-            m.centerX.equalTo(self.snp.centerX)
-            m.centerY.equalTo(self.snp.centerY)
+        indicator.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.snp.centerX)
+            make.centerY.equalTo(self.snp.centerY)
         }
         
     }

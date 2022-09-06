@@ -105,7 +105,7 @@ extension DestinationDetailViewController: UICollectionViewDelegate, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = imageSliderCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ImageSliderCollectionViewCell
+        guard let cell = imageSliderCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ImageSliderCollectionViewCell else { fatalError() }
         cell.setCollectionViewIngredient(imageUrl: destinationDetailViewModel.getImage(index: indexPath.row))
        // cell.setImage(image: fetchedImages[indexPath.row])
         return cell
@@ -125,7 +125,7 @@ extension DestinationDetailViewController: UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = destinationDetailContentTableView.dequeueReusableCell(withIdentifier: "JDCcell", for: indexPath) as! DestinationDetailContentTableViewCell
+        guard let cell = destinationDetailContentTableView.dequeueReusableCell(withIdentifier: "JDCcell", for: indexPath) as? DestinationDetailContentTableViewCell else { fatalError() }
         cell.setLayout()
         cell.fetchDestInfo(data: destinationDetailViewModel.data)
         return cell

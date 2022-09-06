@@ -9,14 +9,12 @@ import Foundation
 import UIKit
 
 class SignInViewModel {
-    
     enum SignInValidationResult {
         case success
         case invalidEmail
         case invalidPwd
     }
 
-    //private let signInData: UserData
     private var api = APIService()
     
     var userInfoInputErrorMessage: Observable<String> = Observable("")
@@ -84,10 +82,6 @@ class SignInViewModel {
 }
 
 extension SignInViewModel {
-    enum userDataStatus {
-        case Correct
-        case Incorrect
-    }
     enum ValidationResult {
         case success
         case invalidEmail
